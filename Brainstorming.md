@@ -29,14 +29,14 @@
 8. implement visual generaor
 
 
-### Logic Idea
+## Logic Idea
 
 jedes level implementiert ein interface welches die logik übernimmt
 
 #### Level interface
-- Buzzer Press
+- Buzzer Press (index as parameter)
 - setup
-- 
+- buzzer releas (index as parameter)
 
 
 ### Player
@@ -46,3 +46,10 @@ jedes level implementiert ein interface welches die logik übernimmt
 ### master
 - Add Player
 - Add LVLs
+
+## Buzzer idea
+
+- interface
+- new text on serial chanel crates evetnt (Serial watcher class)
+- event calls button funtiontn
+- that parses and calls a button handler function

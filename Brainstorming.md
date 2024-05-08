@@ -43,7 +43,7 @@ jedes level implementiert ein interface welches die logik übernimmt
 - name
 - points
 
-### master
+### Game
 - Add Player
 - Add LVLs
 

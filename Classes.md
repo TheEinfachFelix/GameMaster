@@ -7,25 +7,25 @@
 
 ## Game
 
-Singletion
+- [x] Singletion
 
-This Class Takes a list of Players and a list of Levels on initiation.
+- [x] This Class Takes a list of Players and a list of Levels.
 
-This Class is the Router in the Back
+- [ ] This Class is the Router in the Back
 
 
 ## Levels
 
-Implements a Interface
+- [x] Implements a Interface
 
-Does all the Level Logic
+- [ ] Does all the Level Logic
 
 
 ## Player
 
-Implements a Interface
+- [x] Implements a Interface
 
-Stores Information about the Player
+- [x] Stores Information about the Player
 
 
 # Outputs

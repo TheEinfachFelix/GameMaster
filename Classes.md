@@ -18,7 +18,7 @@
 
 - [x] Implements a Interface
 
-- [ ] Does all the Level Logic
+- [X] Does all the Level Logic
 
 
 ## Player

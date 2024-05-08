@@ -34,9 +34,9 @@
 jedes level implementiert ein interface welches die logik übernimmt
 
 #### Level interface
-- [ ] Buzzer Press (index as parameter)
-- [ ] setup
-- [ ] buzzer releas (index as parameter)
+- [x] Buzzer Press (index as parameter)
+- [x] setup
+- [x] buzzer releas (index as parameter)
 
 
 ### Player

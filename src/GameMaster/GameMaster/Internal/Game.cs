@@ -8,8 +8,6 @@
         public int LevelID { get; set; }
         public ILevel? CLevel { get; set; }
 
-
-
         private Game()
         {
             

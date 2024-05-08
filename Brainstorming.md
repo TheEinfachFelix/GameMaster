@@ -34,22 +34,22 @@
 jedes level implementiert ein interface welches die logik übernimmt
 
 #### Level interface
-- Buzzer Press (index as parameter)
-- setup
-- buzzer releas (index as parameter)
+- [ ] Buzzer Press (index as parameter)
+- [ ] setup
+- [ ] buzzer releas (index as parameter)
 
 
 ### Player
-- name
-- points
+- [x] name
+- [x] points
 
 ### Game
-- Add Player
-- Add LVLs
+- [x] Add Player
+- [x] Add LVLs
 
 ## Buzzer idea
 
-- interface
-- new text on serial chanel crates evetnt (Serial watcher class)
-- event calls button funtiontn
-- that parses and calls a button handler function
+- [ ] interface
+- [ ] new text on serial chanel crates evetnt (Serial watcher class)
+- [ ] event calls button funtiontn
+- [ ] that parses and calls a button handler function

@@ -15,19 +15,16 @@
 ### OBS
 - https://github.com/GoaLitiuM/libobs-sharp
 
-
-
 ## TODOs
 
-1. greate logic idea
-2. implement basic logic
-3. implement buzzer
-4. implement audio
-5. implement dot2
-6. implement remote
-7. implement obs
-8. implement visual generaor
-
+1. [x] greate logic idea
+2. [x] implement basic logic
+3. [x] implement buzzer
+4. [ ] implement audio
+5. [ ] implement dot2
+6. [ ] implement remote
+7. [ ] implement obs
+8. [ ] implement visual generaor
 
 ## Logic Idea
 
@@ -49,7 +46,7 @@ jedes level implementiert ein interface welches die logik übernimmt
 
 ## Buzzer idea
 
-- [ ] interface
-- [ ] new text on serial chanel crates evetnt (Serial watcher class)
-- [ ] event calls button funtiontn
-- [ ] that parses and calls a button handler function
+- [X] interface
+- [X] new text on serial chanel crates evetnt (Serial watcher class)
+- [X] event calls button funtiontn
+- [X] that parses and calls a button handler function

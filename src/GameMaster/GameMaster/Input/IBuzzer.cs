@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GameMaster.Input
+﻿namespace GameMaster.Input
 {
     internal interface IBuzzer
     {
+
+        public void Start(int ComPort, int Rate);
+        public void Stop();
+        
     }
 }

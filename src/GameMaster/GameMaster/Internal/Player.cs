@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GameMaster
+﻿namespace GameMaster
 {
     public class Player :IPlayer
     {
@@ -19,7 +13,6 @@ namespace GameMaster
         {
             get { return pName; }
         }
-
         public int Points 
         {
             get

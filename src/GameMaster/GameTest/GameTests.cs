@@ -1,24 +1,15 @@
 ﻿using GameMaster;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameTest
 {
     internal class GameTests
     {
-        public Game game = Game.getInstance();
+        public Game game = Game.GetInstance();
 
         [SetUp]
         public void Setup()
         {
-            game.Players = new();
-            game.Levels = new();
-            game.LevelID = new();
-            game.CLevel = null;
-
+            game.ResetAll();
         }
 
         [Test]
@@ -78,8 +69,8 @@ namespace GameTest
         [Test]
         public void TestGameGetInstance()
         {
-            var a = Game.getInstance();
-            var b = Game.getInstance();
+            var a = Game.GetInstance();
+            var b = Game.GetInstance();
 
             Assert.IsNotNull(a);
             Assert.IsNotNull(b);
@@ -89,15 +80,73 @@ namespace GameTest
         [Test]
         public void TestLevelID() 
         {
+            TestAddingLevelToGame();
+
+            Assert.That(game.Levels, Is.Not.Null);
+
             Assert.IsNotNull(game.LevelID);
-            Assert.IsTrue(game.LevelID == 0);
+            Assert.That(game.LevelID == 0, Is.True);
             game.LevelID = 1;
-            Assert.IsTrue(game.LevelID == 1);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(game.CLevel, Is.Not.Null);
+
+                Assert.That(game.LevelID, Is.EqualTo(1));
+
+                Assert.That(game.CLevel, Is.EqualTo(game.Levels[1]));
+            });
+
+            try
+            {
+                game.LevelID = 10;
+            }
+            catch { }
+            Assert.That(game.LevelID == 0, Is.True);
+
         }
         [Test]
         public void TestCLevel()
         {
             Assert.IsNull(game.CLevel);
         }
+        [Test]
+        public void TestGameNextLevel() 
+        {
+            // setup
+            TestAddingLevelToGame();
+
+            Assert.That(game.Levels, Is.Not.Null);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(game.CLevel, Is.Null);
+
+                // check if nextlevel worx
+                Assert.That(game.NextLevel(), Is.True);
+
+                Assert.That(game.CLevel, Is.Not.Null);
+
+                Assert.That(game.LevelID, Is.EqualTo(0));
+
+                Assert.That(game.CLevel, Is.EqualTo(game.Levels[0]));
+
+                // check argain
+                Assert.That(game.NextLevel(), Is.True);
+
+                Assert.That(game.CLevel, Is.Not.Null);
+
+                Assert.That(game.LevelID, Is.EqualTo(1));
+
+                Assert.That(game.CLevel, Is.EqualTo(game.Levels[1]));
+
+                // Check End of level behavior
+                Assert.That(game.NextLevel(), Is.False);
+            });
+
+        }
     }
 }
+
+
+// RestetAll

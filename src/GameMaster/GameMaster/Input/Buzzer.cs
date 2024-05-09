@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GameMaster.Input
+﻿namespace GameMaster.Input
 {
-    public class Buzzer:IBuzzer
+    public class TestBuzzer : IBuzzer
     {
+        public void Start(int ComPort, int Rate)
+        {
+            Console.WriteLine("stop");
+        }
+
+        public void Stop()
+        {
+            Console.WriteLine("stop");
+        }
     }
 }

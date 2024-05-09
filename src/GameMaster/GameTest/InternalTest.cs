@@ -4,16 +4,12 @@ namespace GameTest
 {
     public class InternalTests
     {
-        public Game game = Game.getInstance();
+        public Game game = Game.GetInstance();
 
         [SetUp]
         public void Setup()
         {
-            game.Players = new();
-            game.Levels = new();
-            game.LevelID = new();
-            game.CLevel = null;
-
+            game.ResetAll();
         }
 
         [Test]

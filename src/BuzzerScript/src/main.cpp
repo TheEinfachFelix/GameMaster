@@ -31,11 +31,12 @@ void loop() {
 
         if(!now)
         {
-          Serial.println(" press");
+          Serial.print(" press");
         } else 
         {
-          Serial.println(" release");
+          Serial.print(" release");
         }
+        Serial.println(" --");
         delay(1);
     }
 

@@ -16,7 +16,8 @@
             }
             set
             {
-                var a = value;
+                var a = value; 
+                pLevelID = 0;
                 SetLevel(a);
                 pLevelID = a;
             }
@@ -84,7 +85,11 @@
             if (Levels == null) { throw new Exception("Levels is null"); }
             if (Levels.ElementAtOrDefault(LvlID) == null) { throw new Exception("LevelID is out of range"); }
 
+
+            if (CLevel != null) { CLevel.Clear(); }
+            
             pCLevel = Levels.ElementAt(LvlID);
+            CLevel.Setup();
         }
     }
 }

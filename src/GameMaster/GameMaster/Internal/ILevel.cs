@@ -6,7 +6,5 @@
         public void Clear();
         public void BuzzerPress(int BuzzerID);
         public void BuzzerRelease(int BuzzerID);
-
-
     }
 }

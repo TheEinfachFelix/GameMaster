@@ -8,7 +8,6 @@
         { 
             pName = Name;
         }
-
         public string Name 
         {
             get { return pName; }

@@ -1,4 +1,6 @@
-﻿namespace GameMaster
+﻿using GameMaster.Output;
+
+namespace GameMaster
 {
     public class TestLevel : ILevel
     {
@@ -9,6 +11,9 @@
         }
         public void BuzzerPress(int BuzzerID)
         {
+
+            BasicAudioPlayer b = new(@"C:\Users\felix\Downloads\");
+            b.PlayWAV("Zu_gut_fuer_dich");
             Console.WriteLine("BuzzerPress" + BuzzerID.ToString());
             if (BuzzerID == 0) 
             { 
@@ -18,6 +23,7 @@
                 }
             }
             Console.WriteLine("Level ID is: " + game.LevelID);
+            
         }
 
         public void BuzzerRelease(int BuzzerID)
@@ -27,7 +33,10 @@
 
         public void Clear()
         {
-             Console.WriteLine("Clear");
+            Console.WriteLine("Clear");
+            BasicAudioPlayer a = new(@"C:\Users\felix\Downloads\");
+            a.PlayWAV("Test-1");
+
         }
     }
 }

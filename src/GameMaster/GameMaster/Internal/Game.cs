@@ -42,7 +42,6 @@
             pLevelID = 0;
             pCLevel = null;
         }
-
         public static Game GetInstance()
         {
             instance ??= new Game();

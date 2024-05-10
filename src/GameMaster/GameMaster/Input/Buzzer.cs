@@ -1,11 +1,8 @@
-﻿using System;
-using System.IO.Ports;
-using System.Threading;
-using static System.Net.Mime.MediaTypeNames;
+﻿using System.IO.Ports;
 
 namespace GameMaster.Input
 {
-    public class TestBuzzer : IBuzzer
+    public class TestBuzzer
     {
         private SerialPort? port;
         private String msg = "";
@@ -22,8 +19,6 @@ namespace GameMaster.Input
             // Begin communications
             port.Open();
 
-            // Enter an application loop to keep this thread alive
-            //Application.Run();
         }
         public void Stop()
         {
@@ -79,6 +74,5 @@ namespace GameMaster.Input
             }
             msg = "";
         }
-
     }
 }

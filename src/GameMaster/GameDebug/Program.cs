@@ -34,9 +34,15 @@ else
 
     dot2.Open();
     while (!dot2.Ready) { }
-    
-    dot2.SendButtonPress(101);
-    dot2.SendButtonPress(103);
+
+    //dot2.SendButtonPress(101);
+    //dot2.SendButtonPress(103);
+
+    //dot2.SetBlackOut(false);
+
+    dot2.SetFaderValue(1, 75);
+    dot2.SetFaderValue(2, 0);
+    dot2.SetFaderValue(3, 0);
 
     while (true) ;
 }

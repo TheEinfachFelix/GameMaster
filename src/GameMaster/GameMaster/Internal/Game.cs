@@ -88,7 +88,8 @@
             if (CLevel != null) { CLevel.Clear(); }
             
             pCLevel = Levels.ElementAt(LvlID);
-            CLevel.Setup();
+            if (pCLevel == null) { throw new Exception("Clevel is Null Something went wrong"); }
+            CLevel?.Setup();
         }
     }
 }

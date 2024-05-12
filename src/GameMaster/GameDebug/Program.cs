@@ -28,7 +28,7 @@ if (false)
 
     while (true) ;
 }
-else
+else if(true)
 {
     dot2Connector dot2 = new();
 
@@ -41,8 +41,8 @@ else
     //dot2.SetBlackOut(false);
 
     dot2.SetFaderValue(1, 75);
-    dot2.SetFaderValue(2, 0);
-    dot2.SetFaderValue(3, 0);
+    dot2.SetFaderValue(2, 100);
+    dot2.SetFaderValue(3, 50);
 
     while (true) ;
 }

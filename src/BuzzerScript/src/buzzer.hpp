@@ -1,5 +1,5 @@
 
-
+#pragma once
 // Libs
 #include <Arduino.h>
 

@@ -28,6 +28,7 @@ String Buzzer::Read()
           return "release";
         }
     }
+    return "";
 }
 
 void Buzzer::PrintRead()

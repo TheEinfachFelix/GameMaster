@@ -1,3 +1,4 @@
+#pragma once
 #include "buzzer.hpp"
 #include "BuzzerMngr.hpp"
 #include "LEDController.hpp"

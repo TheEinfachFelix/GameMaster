@@ -14,7 +14,7 @@ Buzzer::Buzzer(int pPressPin, int pLEDPin, int pID)
 
 String Buzzer::Read()
 {
-    bool now = digitalRead(LedPin);
+    bool now = digitalRead(PressPin);
     bool old = PressState;
     if (old != now)
     {
@@ -34,7 +34,7 @@ String Buzzer::Read()
 void Buzzer::PrintRead()
 {
     String buttonState = Read();
-
+    Serial.print(digitalRead(47));
 
     if (buttonState == "press")
     {

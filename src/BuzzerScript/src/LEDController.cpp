@@ -1,15 +1,14 @@
 #include "LEDController.hpp"
 
-LEDController::LEDController(int numLeds, int LEDPin)
+LEDController::LEDController()
 {
-    strip = Adafruit_NeoPixel(numLeds, LEDPin, NEO_GRB + NEO_KHZ800);
     strip.begin();
     strip.show();
 }
 
-void LEDController::SetLED(int id, RGBColor pColor)
+void LEDController::SetLED(int id, int R = 0, int G = 0, int B = 0)
 {
-    strip.setPixelColor(id, pColor.R, pColor.G, pColor.B);
+    strip.setPixelColor(id, R, G, B);
     strip.show();
 }
 

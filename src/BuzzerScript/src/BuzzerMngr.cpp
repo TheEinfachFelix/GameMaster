@@ -1,4 +1,5 @@
 #include "BuzzerMngr.hpp"
+#include <list>
 
 BuzzerMngr::BuzzerMngr(/* args */)
 {

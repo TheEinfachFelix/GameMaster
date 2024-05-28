@@ -6,7 +6,7 @@ Buzzer::Buzzer(int pPressPin, int pLEDPin, int pID)
     LedPin = pLEDPin;
     ID = pID;
 
-    pinMode(PressPin, INPUT);
+    pinMode(PressPin, INPUT_PULLDOWN);
     pinMode(LedPin, OUTPUT);
 
     PressState = digitalRead(PressPin);
@@ -34,7 +34,6 @@ String Buzzer::Read()
 void Buzzer::PrintRead()
 {
     String buttonState = Read();
-    Serial.print(digitalRead(47));
 
     if (buttonState == "press")
     {
@@ -49,7 +48,7 @@ void Buzzer::PrintRead()
 
 void Buzzer::SetLED(bool value)
 {
-    digitalWrite(LedPin, !value);
+    digitalWrite(LedPin, value);
 }
 
 

@@ -1,20 +1,17 @@
 #pragma once
 #include <Arduino.h>
-
 #include <Adafruit_NeoPixel.h>
+#include "Config.hpp"
 
-struct RGBColor {
-  int R;
-  int G;
-  int B;
-};
+
 
 class LEDController
 {
 private:
-    Adafruit_NeoPixel strip;
+    //Adafruit_NeoPixel strip;
+    Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, LED_PIN, NEO_GRB + NEO_KHZ800);
 public:
-    LEDController(int numLeds, int LEDPin);
-    void SetLED(int id, RGBColor pColor);
+    LEDController();
+    void SetLED(int id, int R, int G, int B);
     ~LEDController();
 };

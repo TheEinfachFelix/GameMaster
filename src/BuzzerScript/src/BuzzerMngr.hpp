@@ -12,6 +12,5 @@ public:
     void ChecknPrintPinstate();
     void SetLED(int BuzzerID, bool Value);
     ~BuzzerMngr();
+    void Setup();
 };
-
-

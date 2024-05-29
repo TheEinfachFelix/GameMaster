@@ -5,22 +5,26 @@ Buzzer BuzzerList[] = CBuzzerList;
 
 BuzzerMngr::BuzzerMngr()
 {
-    // Set the ID of the Buzzer
-    int IDCounter = 0;
-    for(auto i: BuzzerList)
-    {
-        IDCounter ++;
-        i.ID = IDCounter;
-    }
 }
 
 BuzzerMngr::~BuzzerMngr()
 {
 }
 
+void BuzzerMngr::Setup()
+{
+    // Set the ID of the Buzzer
+    int IDCounter = 0;
+    for(auto &i: BuzzerList)
+    {
+        IDCounter ++;
+        i.ID = IDCounter;
+    }
+}
+
 void BuzzerMngr::ChecknPrintPinstate()
 {
-    for(auto i: BuzzerList)
+    for(auto &i: BuzzerList)
     {
         i.PrintRead();
     }

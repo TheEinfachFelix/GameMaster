@@ -1,5 +1,6 @@
 #include "buzzer.hpp"
 
+
 Buzzer::Buzzer(int pPressPin, int pLEDPin)
 {
     PressPin = pPressPin;
@@ -11,7 +12,7 @@ Buzzer::Buzzer(int pPressPin, int pLEDPin)
     PressState = digitalRead(PressPin);
 }
 
-String Buzzer::Read()
+int Buzzer::Read()
 {
     bool now = digitalRead(PressPin);
     bool old = PressState;
@@ -21,27 +22,25 @@ String Buzzer::Read()
 
         if(!now)
         {
-          return "press";
+          return 1;
         } else 
         {
-          return "release";
+          return 0;
         }
     }
-    return "";
+    return -1;
 }
 
 void Buzzer::PrintRead()
 {
-    String buttonState = Read();
+    int buttonState = Read();
 
-    if (buttonState == "press")
+    if (buttonState == 1)
     {
-        Serial.print(ID);
-        Serial.println(" press --");
-    }else if (buttonState == "release")
+        PrintButtonValueChanged(BuzzerType, ID , true);
+    }else if (buttonState == 0)
     {
-        Serial.print(ID);
-        Serial.println(" release --");
+        PrintButtonValueChanged(BuzzerType, ID , false);
     }
 }
 

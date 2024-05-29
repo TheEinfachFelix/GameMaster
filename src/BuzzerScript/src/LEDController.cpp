@@ -2,6 +2,10 @@
 
 LEDController::LEDController()
 {
+}
+
+void LEDController::Setup()
+{
     strip.begin();
     strip.show();
 }

@@ -2,6 +2,9 @@
 
 #include <Arduino.h>
 
+#include "SerialHandler.hpp"
+#include "Config.hpp"
+
 class Taster
 {
 private:
@@ -11,6 +14,6 @@ public:
     int ID = 0;
     Taster(int pPressPin);
     void PrintRead();
-    String Read();
+    int Read();
     ~Taster();
 };

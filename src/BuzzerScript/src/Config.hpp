@@ -4,9 +4,11 @@
 #define LED_PIN 21 // NeoPixel LED strip
 #define NUM_LEDS 12 // Number of LEDs
 
-//////////////////// Input Config ////////////////////,Taster(39), Taster(38)
+//////////////////// Input Config ////////////////////
 // Taster
-#define CTasterList {Taster(40)}
+#define CTasterList {Taster(40),Taster(39), Taster(38)}
+#define TasterType "Taster"
 
 // Buzzer
-#define CBuzzerList {Buzzer(47, 48),Buzzer(14, 13),Buzzer(12, 11),Buzzer(10,  9),Buzzer(18, 17),Buzzer(16, 15),Buzzer( 7,  6),Buzzer( 5,  4)}
+#define CBuzzerList {Buzzer(47, 48),Buzzer(13, 14),Buzzer(11, 12),Buzzer(9, 10),Buzzer(17, 18),Buzzer(15, 16),Buzzer(6,  7),Buzzer(4, 5)}
+#define BuzzerType "Buzzer"

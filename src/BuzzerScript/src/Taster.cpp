@@ -7,17 +7,11 @@ Taster::Taster(int pPressPin)
     pinMode(PressPin, INPUT_PULLUP);
 
     PressState = digitalRead(PressPin);
-    //PressState = 0;
 }
 
-String Taster::Read()
+int Taster::Read()
 {
     bool now = digitalRead(PressPin);
-
-Serial.print("now: ");
-Serial.print(now);
-Serial.print(" PressState: ");
-Serial.print(PressState);
 
     if (PressState != now)
     {
@@ -25,33 +19,27 @@ Serial.print(PressState);
 
         if(!now)
         {
-          return "on";
+          return 1;
         } else 
         {
-          return "off";
+          return 0;
         }
     }
-    return "";
+    return -1;
 }
 
 void Taster::PrintRead()
 {
-    String buttonState = Read();
+    int buttonState = Read();
 
-    if (buttonState == "on")
+    if (buttonState == 1)
     {
-
-        Serial.print("{\"Input_Type\" = \"Taster\" ,\"ID\" = ");
-        Serial.print(PressPin);
-        Serial.println(", \"value\" = true }");
-    }else if (buttonState == "off")
+        PrintButtonValueChanged(TasterType, ID , true);
+    }else if (buttonState == 0)
     {
-        Serial.print("{\"Input_Type\" = \"Taster\" ,\"ID\" = ");
-        Serial.print(PressPin);
-        Serial.println(", \"value\" = false }");
+        PrintButtonValueChanged(TasterType, ID , false);
     }
 }
-
 
 
 

@@ -1,22 +1,30 @@
 #include "main.hpp"
 
-BuzzerMngr mngr = BuzzerMngr();
-TasterMngr taster = TasterMngr();
+BuzzerMngr BuzzMngr = BuzzerMngr();
+TasterMngr tastMngr = TasterMngr();
+LEDController ledCntrl = LEDController();
+
 
 void setup() {
+  
   Serial.begin(9600);
 
-  mngr.SetLED(1,true);
+  tastMngr.Setup();
+  BuzzMngr.Setup();
+  //ledCntrl.Setup();
 
-  LEDController controller = LEDController();
-  controller.SetLED(1, 50,50,50);
+  BuzzMngr.SetLED(1,true);
+  BuzzMngr.SetLED(3,true);
+  //ledCntrl.SetLED(1, 50,50,50);
+  //ledCntrl.SetLED(3, 50,15,0);
 }
 
 void loop() 
 {
-  //mngr.ChecknPrintPinstate();
-  taster.ChecknPrintPinstate();
-  
-  delay(1000);
+  BuzzMngr.ChecknPrintPinstate();
+  tastMngr.ChecknPrintPinstate();
+
+
+  delay(10);
 }
 

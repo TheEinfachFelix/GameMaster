@@ -6,28 +6,22 @@ Taster::Taster(int pPressPin)
 
     pinMode(PressPin, INPUT_PULLUP);
 
-    this->PressState = digitalRead(PressPin);
+    PressState = digitalRead(PressPin);
     //PressState = 0;
 }
 
 String Taster::Read()
 {
     bool now = digitalRead(PressPin);
-    bool old = PressState;
 
 Serial.print("now: ");
 Serial.print(now);
 Serial.print(" PressState: ");
 Serial.print(PressState);
-Serial.print(" - old: ");
-Serial.println(old);
-    
-    
-    if (old != now)
-    {
-        this->PressState = now;
-        old = now;
 
+    if (PressState != now)
+    {
+        PressState = now;
 
         if(!now)
         {

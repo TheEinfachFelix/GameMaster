@@ -1,27 +1,32 @@
 #include "BuzzerMngr.hpp"
-#include <list>
+#include "Config.hpp"
 
-BuzzerMngr::BuzzerMngr(/* args */)
+Buzzer BuzzerList[] = CBuzzerList;
+
+BuzzerMngr::BuzzerMngr()
 {
+    // Set the ID of the Buzzer
+    int IDCounter = 0;
+    for(auto i: BuzzerList)
+    {
+        IDCounter ++;
+        i.ID = IDCounter;
+    }
 }
 
 BuzzerMngr::~BuzzerMngr()
 {
 }
 
-void BuzzerMngr::AddBuzzer(int TasterPin, int LEDPin)
-{
-    int id = 2;
-    Buzzer newBuzz = Buzzer(TasterPin, LEDPin, id);
-    // add buzzer to buzzer list
-}
-
 void BuzzerMngr::ChecknPrintPinstate()
 {
-
+    for(auto i: BuzzerList)
+    {
+        i.PrintRead();
+    }
 }
 
 void BuzzerMngr::SetLED(int BuzzerID, bool Value)
 {
-
+    BuzzerList[BuzzerID-1].SetLED(Value);
 }

@@ -2,14 +2,17 @@
 #include <Arduino.h>
 
 #include "buzzer.hpp"
+#include "Config.hpp"
+
+
 
 class BuzzerMngr
 {
 private:
-    // buzzer list here
+    
+    //Buzzer Buzzerlist[] = CBuzzerList;
 public:
     BuzzerMngr();
-    void AddBuzzer(int TasterPin, int LEDPin);
     void ChecknPrintPinstate();
     void SetLED(int BuzzerID, bool Value);
     ~BuzzerMngr();

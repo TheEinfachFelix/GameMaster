@@ -4,18 +4,15 @@
 #include <Arduino.h>
 
 
-class Buzzer
+class Taster
 {
 private:
-    int PressPin;
-    int LedPin;
-    
+    int PressPin;    
     bool PressState;
 public:
     int ID = 0;
-    Buzzer(int pPressPin, int pLEDPin);
+    Taster(int pPressPin);
     void PrintRead();
     String Read();
-    void SetLED(bool value);
-    ~Buzzer();
+    ~Taster();
 };

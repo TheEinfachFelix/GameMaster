@@ -1,17 +1,15 @@
-#include "buzzer.hpp"
+#include "Taster.hpp"
 
-Buzzer::Buzzer(int pPressPin, int pLEDPin)
+Taster::Taster(int pPressPin)
 {
     PressPin = pPressPin;
-    LedPin = pLEDPin;
 
     pinMode(PressPin, INPUT_PULLDOWN);
-    pinMode(LedPin, OUTPUT);
 
     PressState = digitalRead(PressPin);
 }
 
-String Buzzer::Read()
+String Taster::Read()
 {
     bool now = digitalRead(PressPin);
     bool old = PressState;
@@ -30,7 +28,7 @@ String Buzzer::Read()
     return "";
 }
 
-void Buzzer::PrintRead()
+void Taster::PrintRead()
 {
     String buttonState = Read();
 
@@ -45,12 +43,9 @@ void Buzzer::PrintRead()
     }
 }
 
-void Buzzer::SetLED(bool value)
-{
-    digitalWrite(LedPin, value);
-}
 
 
-Buzzer::~Buzzer()
+
+Taster::~Taster()
 {
 }

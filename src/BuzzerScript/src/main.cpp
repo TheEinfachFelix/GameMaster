@@ -1,16 +1,18 @@
 #include "main.hpp"
 
 
-Buzzer BuzzerList[] = {Buzzer(47,48,1)};
+//Buzzer BuzzerList[] = {Buzzer(47,48)};
+BuzzerMngr mngr = BuzzerMngr();
+TasterMngr taster = TasterMngr();
 
 void setup() {
 
   Serial.begin(9600);
-  BuzzerList[0].SetLED(false);
+  //BuzzerList[0].SetLED(false);
 
   if (false){
-    BuzzerMngr mngr = BuzzerMngr();
-    mngr.AddBuzzer(47,48);
+    mngr.SetLED(1,true);
+
   }
   if (true)
   {
@@ -22,7 +24,7 @@ void setup() {
 void loop() 
 {
 
-  BuzzerList[0].PrintRead();
+  mngr.ChecknPrintPinstate();
   //Serial.write("x");
   delay(10);
 }

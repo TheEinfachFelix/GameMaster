@@ -1,7 +1,7 @@
 #pragma once
-#include "buzzer.hpp"
 #include "BuzzerMngr.hpp"
 #include "LEDController.hpp"
+#include "TasterMngr.hpp"
 
 // Libs
 #include <Arduino.h>

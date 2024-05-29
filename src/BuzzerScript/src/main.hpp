@@ -3,5 +3,4 @@
 #include "LEDController.hpp"
 #include "TasterMngr.hpp"
 
-// Libs
 #include <Arduino.h>

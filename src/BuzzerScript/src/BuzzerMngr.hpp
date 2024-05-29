@@ -4,13 +4,9 @@
 #include "buzzer.hpp"
 #include "Config.hpp"
 
-
-
 class BuzzerMngr
 {
 private:
-    
-    //Buzzer Buzzerlist[] = CBuzzerList;
 public:
     BuzzerMngr();
     void ChecknPrintPinstate();

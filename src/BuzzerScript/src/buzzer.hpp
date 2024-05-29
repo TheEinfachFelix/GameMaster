@@ -1,8 +1,6 @@
-
 #pragma once
-// Libs
-#include <Arduino.h>
 
+#include <Arduino.h>
 
 class Buzzer
 {

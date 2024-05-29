@@ -14,7 +14,9 @@ void setup() {
 
 void loop() 
 {
-  mngr.ChecknPrintPinstate();
-  delay(10);
+  //mngr.ChecknPrintPinstate();
+  taster.ChecknPrintPinstate();
+  
+  delay(1000);
 }
 

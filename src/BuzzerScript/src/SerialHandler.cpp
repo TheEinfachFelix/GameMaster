@@ -10,3 +10,10 @@ void PrintButtonValueChanged(String type, int ID, bool Value)
     Serial.print(ID);
     Serial.println(", \"value\" = " + strValue + " }");
 }
+
+void PrintError(String errorMSG)
+{
+    Serial.print("\"Error\":\"");
+    Serial.print(errorMSG);
+    Serial.println("\"}");
+}

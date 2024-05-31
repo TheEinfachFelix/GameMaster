@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using Websocket.Client;
 using Newtonsoft.Json;
-using System.Globalization;
-using System.Security.Principal;
-using static System.Collections.Specialized.BitVector32;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Net.NetworkInformation;
-using System.Diagnostics;
 
 namespace GameMaster.Output
 {

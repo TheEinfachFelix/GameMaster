@@ -1,4 +1,6 @@
 ﻿using System.IO.Ports;
+using GameMaster.Output;
+using Newtonsoft.Json;
 
 namespace GameMaster.Input
 {
@@ -38,6 +40,19 @@ namespace GameMaster.Input
         }
         private void CheckDataTransmissionDone(string pmsg)
         {
+            int countOpen = pmsg.Split('{').Length - 1;
+            int countClose = pmsg.Split('}').Length - 1;
+            if (countClose > countOpen) // catch more close than open
+            {
+                PrintError("there where to many } send");
+                pinput = "";
+                return;
+            }
+            if (countClose == countClose && countOpen != 0) // the msg is copletly recived
+            {
+                inputToJson();
+            }
+
             if (!pmsg.Contains("-")) { return; }
             if (pmsg.Count() < 2) { return; }
             if (pmsg.First() == '-') 
@@ -46,18 +61,12 @@ namespace GameMaster.Input
                 return;
             }
 
-            CleanData(pmsg);
-        }
-        private void CleanData(string pmsg)
-        {
-            pmsg = pmsg.Replace(" ", "");
-            pmsg = pmsg.Replace("\n", "");
-            pmsg.ToLower();
-
             HandleData(pmsg);
         }
+
         private void HandleData(string pmsg)
         {
+            JsonMSG JsonMsg = JsonConvert.DeserializeObject<JsonMSG>(pmsg)!;
             // get Buzzer Index
             int index = pmsg.ElementAt(0) - '0';
             // get Buzzer Event

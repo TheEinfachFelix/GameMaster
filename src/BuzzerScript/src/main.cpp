@@ -45,7 +45,7 @@ void checkInputComplete()
     pinput = "";
     return;
   }
-  if (countClose == countClose && countOpen != 0) // the msg is copletly recived
+  if (countClose == countOpen && countOpen != 0) // the msg is copletly recived
   {
     inputToJson();
   }

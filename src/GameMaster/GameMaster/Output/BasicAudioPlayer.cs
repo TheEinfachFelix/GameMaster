@@ -13,7 +13,7 @@ namespace GameMaster.Output
         
         public void PlayWAV(string File)
         {
-            SoundPlayer player = new SoundPlayer(path + File + ".wav");
+            SoundPlayer player = new(path + File + ".wav");
             player.Play();
         }
     }

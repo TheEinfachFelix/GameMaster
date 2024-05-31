@@ -4,10 +4,12 @@
     {
         private string pName;
         private int pPoints;
+
         public Player(string Name) 
         { 
             pName = Name;
         }
+
         public string Name 
         {
             get { return pName; }

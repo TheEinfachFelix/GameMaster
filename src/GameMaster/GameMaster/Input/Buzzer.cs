@@ -1,6 +1,7 @@
 ﻿using System.IO.Ports;
-using GameMaster.Output;
+
 using Newtonsoft.Json;
+
 
 namespace GameMaster.Input
 {
@@ -12,19 +13,21 @@ namespace GameMaster.Input
 
         public void Start(int ComPort, int Rate)
         {
-            if (port != null) { throw new Exception("Connection alredy open"); }
+            if (port != null) { throw new Exception("Buzzer connection alredy open"); }
 
             port = new SerialPort("COM" + ComPort.ToString(), Rate, Parity.None, 8, StopBits.One);
 
+            // Setup Eventhandler
             port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
 
             // Begin communications
             port.Open();
-
+            Console.WriteLine("pe");
+            port.Write("{\"Output_Type\" : \"LED\", \"ID\" : 2, \"Value\" : {\"R\":50, \"G\":10, \"B\":0}}");
         }
         public void Stop()
         {
-            if (port == null) { throw new Exception("Connection alredy Closed"); }
+            if (port == null) { throw new Exception("Buzzer connection alredy Closed"); }
 
             port.Close();
             port = null;
@@ -33,8 +36,11 @@ namespace GameMaster.Input
         }
         private void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            Console.WriteLine("peinsi");
             if (port == null) { return; }
             msg += port.ReadExisting();
+
+            Console.WriteLine($"{msg}");
 
             CheckDataTransmissionDone(msg);
         }
@@ -42,46 +48,58 @@ namespace GameMaster.Input
         {
             int countOpen = pmsg.Split('{').Length - 1;
             int countClose = pmsg.Split('}').Length - 1;
-            if (countClose > countOpen) // catch more close than open
-            {
-                PrintError("there where to many } send");
-                pinput = "";
-                return;
-            }
-            if (countClose == countClose && countOpen != 0) // the msg is copletly recived
-            {
-                inputToJson();
-            }
 
-            if (!pmsg.Contains("-")) { return; }
-            if (pmsg.Count() < 2) { return; }
-            if (pmsg.First() == '-') 
-            {  
+            if (countClose > countOpen)// catch more close than open
+            {
                 msg = "";
-                return;
+                throw new Exception("there where to many } send");
             }
-
-            HandleData(pmsg);
+            if (countClose == countOpen && countOpen != 0) // the msg is copletly recived
+            {
+                HandleData(pmsg);
+            }
         }
 
         private void HandleData(string pmsg)
         {
-            JsonMSG JsonMsg = JsonConvert.DeserializeObject<JsonMSG>(pmsg)!;
-            // get Buzzer Index
-            int index = pmsg.ElementAt(0) - '0';
-            // get Buzzer Event
-            string? myevent = pmsg.ElementAt(1).ToString();
-            
-            switch (myevent)
+            BuzzerJson JsonMsg = JsonConvert.DeserializeObject<BuzzerJson>(pmsg)!;
+
+            // do Error catching
+            if (JsonMsg == null) { throw new Exception("Buzzer PCB recieved Json not readebel"); }
+            if (JsonMsg.Error != null) { throw new Exception("Buzzer PCB Error was" + JsonMsg.Error); }
+            if (JsonMsg.Value == null || JsonMsg.ID == null || JsonMsg.Output_Type == null) { throw new Exception("Json missing Data"); }
+
+            int index = (int)JsonMsg.ID;
+
+            switch (JsonMsg.Output_Type)
             {
-                case "r":
-                    game.BuzzerRelease(index);
+                case "Buzzer":
+                    if ((bool)JsonMsg.Value)
+                    {
+                        game.BuzzerPress(index);
+                    }
+                    else
+                    {
+                        game.BuzzerRelease(index);
+                    }
                     break;
-                case "p":
-                    game.BuzzerPress(index);
+                case "Taster":
+                    // TODO: Implement666666
                     break;
+                default:
+                    throw new Exception("Buzzer PCB Output_Type not found");
             }
             msg = "";
         }
+    }
+
+    public class BuzzerJson
+    {
+        // {"status":"server ready", "appType":"dot2"}
+        public string? Output_Type { get; set; }
+        public string? Error { get; set; }
+        public int? ID { get; set; }
+        public bool? Value { get; set; }
+
     }
 }

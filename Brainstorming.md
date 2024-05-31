@@ -26,6 +26,7 @@
 7. [ ] implement obs
 8. [ ] implement visual generaor
 9. [ ] Simultanios Audio Playing
+10. [ ] Rewite buzzer Handler with all the new feature
 
 ## Logic Idea
 

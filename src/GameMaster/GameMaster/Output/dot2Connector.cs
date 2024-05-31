@@ -17,7 +17,6 @@ namespace GameMaster.Output
 
         private static string notConnectedError = "client not connected";
 
-
         public bool Open()
         {
             if (client != null) { throw new Exception("already connected"); }
@@ -56,15 +55,13 @@ namespace GameMaster.Output
         private void HandleMSG(JsonMSG obj)
         {
             if (client == null) { throw new Exception(notConnectedError); }
-            request = request + 1;
+            request++;
             if (request >= 9)
             {
                 client.Send("{\"session\":" + session + "}");
                 client.Send(
-                  "{\"requestType\":\"getdata\",\"data\":\"set\",\"session\":" +
-                    session +
-                    ",\"maxRequests\":1}"
-                );
+                    "{\"requestType\":\"getdata\",\"data\":\"set\",\"session\":" +  session +
+                    ",\"maxRequests\":1}");
                 request = 0;
             }
 
@@ -119,7 +116,7 @@ namespace GameMaster.Output
             }
             if (obj.responseType == "login" && obj.result == true)
             {
-                //setInterval(interval, 100); //TODO
+                //setInterval(interval, 100); //TODO: Set interval to recieve data from dot
                 Console.WriteLine("logged in!");
                 Console.WriteLine("session: " + session);
                 Ready = true;
@@ -138,7 +135,7 @@ namespace GameMaster.Output
             }
             if (obj.responseType == "playbacks")
             {
-                //wsUpdateLights(obj); //TODO
+                //wsUpdateLights(obj); //TODO: parese the interval data
             }
         }
 
@@ -149,59 +146,41 @@ namespace GameMaster.Output
             if (session > 0)
             {
                 //client.Send(
-                //  "{"requestType":"playbacks","startIndex":[300,400,500,600,700,800],"itemsCount":[16,16,16,16,16,16],"pageIndex":" +
-                //    pageIndex +
-                //    ","itemsType":[3,3,3,3,3,3],"view":3,"execButtonViewMode":2,"buttonsViewMode":0,"session":" +
-                //    session +
-                //    ","maxRequests":1}"
-                //);
+                //  "{"requestType":"playbacks","startIndex":[300,400,500,600,700,800],"itemsCount":[16,16,16,16,16,16],"pageIndex":" + pageIndex +
+                //    ","itemsType":[3,3,3,3,3,3],"view":3,"execButtonViewMode":2,"buttonsViewMode":0,"session":" + session +
+                //    ","maxRequests":1}");
                 //client.Send(
-                //  "{"requestType":"playbacks","startIndex":[6,106,206],"itemsCount":[8,8,8],"pageIndex":" +
-                //    pageIndex2 +
-                //    ","itemsType":[2,3,3],"view":2,"execButtonViewMode":1,"buttonsViewMode":0,"session":" +
-                //    session +
-                //    ","maxRequests":1}"
-                //);
+                //  "{"requestType":"playbacks","startIndex":[6,106,206],"itemsCount":[8,8,8],"pageIndex":" + pageIndex2 +
+                //    ","itemsType":[2,3,3],"view":2,"execButtonViewMode":1,"buttonsViewMode":0,"session":" + session +
+                //    ","maxRequests":1}");
                 client.Send(
-                    "{\"requestType\":\"playbacks\",\"startIndex\":[0,100,200],\"itemsCount\":[6,6,6],\"pageIndex\":" +
-                    pageIndex +
-                    ",\"itemsType\":[2,3,3],\"view\":2,\"execButtonViewMode\":1,\"buttonsViewMode\":0,\"session\":" +
-                    session +
-                    ",\"maxRequests\":1}"
-                );
+                    "{\"requestType\":\"playbacks\",\"startIndex\":[0,100,200],\"itemsCount\":[6,6,6],\"pageIndex\":" + pageIndex +
+                    ",\"itemsType\":[2,3,3],\"view\":2,\"execButtonViewMode\":1,\"buttonsViewMode\":0,\"session\":"   + session +
+                    ",\"maxRequests\":1}");
             }
         }
         
         public void SendButtonPress(int ButtonID)
         {
-            if (client == null) { throw new Exception(notConnectedError); }
-            ButtonID--;
+            if (client == null) { throw new Exception(notConnectedError);}
+
             client.Send(
-                "{\"requestType\":\"playbacks_userInput\",\"cmdline\":\"\",\"execIndex\":" +
-                ButtonID +
-                ",\"pageIndex\":" +
-                pageIndex +
-                ",\"buttonId\":0,\"pressed\":true,\"released\":false,\"type\":0,\"session\":" +
-                session +
+                "{\"requestType\":\"playbacks_userInput\",\"cmdline\":\"\",\"execIndex\":" + (ButtonID-1) +
+                ",\"pageIndex\":" + pageIndex +
+                ",\"buttonId\":0,\"pressed\":true,\"released\":false,\"type\":0,\"session\":" + session +
                 ",\"maxRequests\":0}");
         }
 
         public void SetFaderValue(int FaderID, double FaderValue)
         {
-            if (client == null) { throw new Exception(notConnectedError); }
-            FaderID--;
-            client.Send(
-                "{\"requestType\":\"playbacks_userInput\",\"execIndex\":" +
-                FaderID +
-                ",\"pageIndex\":" +
-                pageIndex +
-                ",\"faderValue\":" +
-                (FaderValue/100).ToString().Replace(",",".") +
-                ",\"type\":1,\"session\":" +
-                session +
-                ",\"maxRequests\":0}");
-            //client.Send( "{\"command\":\"ExecButton1 1.1 At " +  FaderValue +  "\",\"session\":" +  session +  ",\"requestType\":\"command\",\"maxRequests\":0}" );
+            if (client == null) { throw new Exception(notConnectedError);}
 
+            client.Send(
+                "{\"requestType\":\"playbacks_userInput\",\"execIndex\":" + (FaderID-1) +
+                ",\"pageIndex\":" + pageIndex +
+                ",\"faderValue\":" + (FaderValue/100).ToString().Replace(",",".") +
+                ",\"type\":1,\"session\":" + session +
+                ",\"maxRequests\":0}");
         }
 
         public void SetBlackOut(bool IsBlackOutOn)

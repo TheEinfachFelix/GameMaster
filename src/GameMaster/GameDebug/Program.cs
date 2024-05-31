@@ -2,8 +2,9 @@
 using GameMaster;
 using GameMaster.Input;
 using GameMaster.Output;
+using static System.Net.Mime.MediaTypeNames;
 
-if (false)
+if (true)
 {
     Game game = Game.GetInstance();
 
@@ -24,11 +25,13 @@ if (false)
 
     var a = new TestBuzzer();
 
-    a.Start(12, 9600);
+    a.Start(13, 115200);
+
+
 
     while (true) ;
 }
-else if(true)
+else if(false)
 {
     dot2Connector dot2 = new();
 

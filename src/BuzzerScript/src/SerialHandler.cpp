@@ -6,14 +6,14 @@ void PrintButtonValueChanged(String type, int ID, bool Value)
     if (Value)
         strValue = "true";
     
-    Serial.print("{\"Input_Type\" = \"" + type + "\" ,\"ID\" = ");
+    Serial.print("{\""+String(JsonType)+"\" = \"" + type + "\" ,\""+String(JsonID)+"\" = ");
     Serial.print(ID);
-    Serial.println(", \"value\" = " + strValue + " }");
+    Serial.println(", \""+String(JsonValue)+"\" = " + strValue + " }");
 }
 
 void PrintError(String errorMSG)
 {
-    Serial.print("\"Error\":\"");
+    Serial.print("\""+String(JsonError)+"\":\"");
     Serial.print(errorMSG);
     Serial.println("\"}");
 }

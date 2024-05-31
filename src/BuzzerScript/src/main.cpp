@@ -3,12 +3,12 @@
 BuzzerMngr BuzzMngr = BuzzerMngr();
 TasterMngr tastMngr = TasterMngr();
 LEDController ledCntrl = LEDController();
-
 String pinput;
 JsonDocument readJson = JsonDocument();
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(SerialSpeed);
+  Serial.setTimeout(SerialTimeout);
 
   tastMngr.Setup();
   BuzzMngr.Setup();
@@ -22,8 +22,6 @@ void loop()
 
   pinput = pinput + Serial.readString();
   checkInputComplete();
-
-  delay(5);
 }
 
 void checkInputComplete()
@@ -52,7 +50,6 @@ void checkInputComplete()
     inputToJson();
   }
 }
-
 void inputToJson()
 {
   DeserializationError error = deserializeJson(readJson, pinput);
@@ -64,29 +61,27 @@ void inputToJson()
     return;
   }
   
-  String OutpT = readJson[String("Output_Type")];
-  if (OutpT == "null") //catch empty json
+  String OutputType = readJson[String(JsonType)];
+  if (OutputType == "null") //catch empty json
   {
     PrintError("The Json is Empty");
-    readJson = JsonDocument();
     return;
   }
 
   HandleJson();
 }
-
 void HandleJson()
 {
-  String OutpT = readJson[String("Output_Type")];
-  if (OutpT == BuzzerType) 
+  String OutputType = readJson[String(JsonType)];
+  if (OutputType == BuzzerType) 
   {
-    BuzzMngr.SetLED(readJson[String("ID")],readJson[String("Value")]);
+    BuzzMngr.SetLED(readJson[String(JsonID)],readJson[String(JsonValue)]);
   }
-  if (OutpT == LEDType) 
+  if (OutputType == LEDType) 
   {
-    ledCntrl.SetLED(readJson[String("ID")], readJson[String("Value")][String("R")],
-                                            readJson[String("Value")][String("G")],
-                                            readJson[String("Value")][String("B")]);
+    ledCntrl.SetLED(readJson[String(JsonID)], readJson[String(JsonValue)][String("R")],
+                                              readJson[String(JsonValue)][String("G")],
+                                              readJson[String(JsonValue)][String("B")]);
   }
 }
 

@@ -38,6 +38,10 @@ namespace WebGameController.Models
     public class FirstLevel : ILevel
     {
         dot2Connector dot2 = new();
+
+        public string Name { get; set; } = "Bzzer to .2";
+        public string Beschreibung { get; set; } = "Setzt auf BuzzerPress dot2 Values";
+
         public void BuzzerPress(int BuzzerID)
         {
             dot2.SendButtonPress(101);

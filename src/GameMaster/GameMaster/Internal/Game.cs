@@ -1,11 +1,13 @@
-﻿namespace GameMaster
+﻿using Newtonsoft.Json;
+
+namespace GameMaster
 {
     public class Game
     {
         private static Game? instance;
 
-        public List<IPlayer>? Players { get; set; }
-        public List<ILevel>? Levels { get; set; }
+        public List<IPlayer> Players { get; set; }
+        public List<ILevel> Levels { get; set; }
 
         private int pLevelID  = 0;
         public int LevelID
@@ -33,7 +35,8 @@
 
         private Game()
         {
-            
+            Players = [];
+            Levels = [];
         }
         public void ResetAll()
         {
@@ -42,11 +45,42 @@
             pLevelID = 0;
             pCLevel = null;
         }
+
+        // Setup the Game
         public static Game GetInstance()
         {
             instance ??= new Game();
             return instance;
         }
+
+        // Load and Store Config
+        public static Game LoadFromJson(string inputJson)
+        {
+            Game newGame = JsonConvert.DeserializeObject<Game>(inputJson, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Objects
+            })!;
+            instance = newGame;
+            return newGame;
+        }
+        public static Game LoadFromFile(string FileAddress)
+        {
+            using StreamReader r = new(FileAddress);
+            string readJson = r.ReadToEnd();
+            return LoadFromJson(readJson);
+        }
+        public static string SaveToJson()
+        {
+            return JsonConvert.SerializeObject(instance, Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Objects,
+            });
+        }
+        public static void SaveToFile(string saveToFile)
+        {
+            File.WriteAllText(saveToFile, SaveToJson());
+        }
+
 
         // Buzzer Routing
         public void BuzzerPress(int BuzzerID)

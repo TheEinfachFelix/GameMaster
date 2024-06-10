@@ -23,12 +23,14 @@ if (true)
 
     Console.WriteLine("Hello, World!");
 
-    var a = new Buzzer();
+    var a = new BuzzerHandler(8,3,12);
 
     a.Start(3, 115200);
 
 
-
+    a.BuzzerList[1].LEDState = true;
+    a.BuzzerList[0].LEDState = true;
+    a.LEDListe[0].SetLEDColor(50, 10, 0);
     while (true) ;
 }
 else if(false)

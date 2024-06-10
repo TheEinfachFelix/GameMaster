@@ -22,6 +22,7 @@ void loop()
   tastMngr.ChecknPrintPinstate();
 
   pinput = pinput + Serial.readString();
+  //Serial.println(pinput);
   checkInputComplete();
 }
 

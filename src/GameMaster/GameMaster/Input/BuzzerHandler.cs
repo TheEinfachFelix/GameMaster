@@ -49,7 +49,6 @@ namespace GameMaster.Input
             }
         }
 
-
         public void Start(int ComPort, int Rate)
         {
             if (port != null) { throw new Exception("Buzzer connection alredy open"); }
@@ -63,7 +62,6 @@ namespace GameMaster.Input
             // Begin communications
             port.Open();
             port.DiscardInBuffer();
-            //port.Write("{\"Output_Type\" : \"LED\", \"ID\" : 2, \"Value\" : {\"R\":50, \"G\":10, \"B\":0}}");
         }
         public void Stop()
         {
@@ -79,10 +77,13 @@ namespace GameMaster.Input
             if (port == null) { return; }
             msg += port.ReadExisting();
 
+            //Console.WriteLine(msg);
+
             CheckDataTransmissionDone(msg);
         }
         private void CheckDataTransmissionDone(string pmsg)
         {
+            pmsg = new string(pmsg.Where(c => !char.IsControl(c)).ToArray());
             int countOpen = pmsg.Split('{').Length - 1;
             int countClose = pmsg.Split('}').Length - 1;
 
@@ -91,7 +92,7 @@ namespace GameMaster.Input
                 msg = "";
                 throw new Exception("there where to many } send");
             }
-            if (countClose == countOpen && countOpen != 0) // the msg is copletly recived
+            if (countClose == countOpen && countOpen != 0 && pmsg != "") // the msg is copletly recived
             {
                 msg = "";
                 HandleData(pmsg);
@@ -99,14 +100,18 @@ namespace GameMaster.Input
         }
         private void HandleData(string pmsg)
         {
+            
             BuzzerJson JsonMsg = JsonConvert.DeserializeObject<BuzzerJson>(pmsg)!;
+            
+
+
 
             // do Error catching
             if (JsonMsg == null) { throw new Exception("Buzzer PCB recieved Json not readebel"); }
             if (JsonMsg.Error != null) { throw new Exception("Buzzer PCB Error was" + JsonMsg.Error); }
             if (JsonMsg.Value == null || JsonMsg.ID == null || JsonMsg.Output_Type == null) { throw new Exception("Json missing Data"); }
 
-            int index = (int)JsonMsg.ID;
+            int index = (int)JsonMsg.ID - 1;
 
             switch (JsonMsg.Output_Type)
             {
@@ -148,7 +153,7 @@ namespace GameMaster.Input
 
                 if (newVal != _TasterState) 
                 {
-                    if (newVal)
+                    if (!newVal)
                     {
                         game.BuzzerPress(myID);
                     }
@@ -172,7 +177,7 @@ namespace GameMaster.Input
             {
                 _LEDState = value;
                 Trace.WriteLine("pene");
-                parent.sendData("{"+ $"\"Output_Type\" : \"Buzzer\", \"ID\" : {myID}, \"Value\" : {_LEDState}" + "}");
+                parent.sendData("{"+ $"\"Output_Type\" : \"Buzzer\", \"ID\" : {myID+1}, \"Value\" : {_LEDState.ToString().ToLower()}" + "}");
             }
         }
 
@@ -187,7 +192,7 @@ namespace GameMaster.Input
         private Game game = Game.GetInstance();
         
 
-        public int myID { get; set; } = -1;
+        public int myID { get; private set; } = -1;
 
         private bool _TasterState = false;
         public bool TasterState
@@ -224,7 +229,7 @@ namespace GameMaster.Input
     public class LED
     {
         private BuzzerHandler parent;
-        public int myID { get; set; } = -1;
+        public int myID { get; private set; } = -1;
 
         private int _R;
         public int R
@@ -274,7 +279,7 @@ namespace GameMaster.Input
         private void Send() 
         {
             Trace.WriteLine("pene");
-            parent.sendData("{" + $"\"Output_Type\" : \"Buzzer\", \"ID\" : {myID}, \"Value\" : "+"{"+$"\"R\":{R}, \"G\":{G}, \"B\":{B}" + "}}");
+            parent.sendData("{" + $"\"Output_Type\" : \"LED\", \"ID\" : {myID}, \"Value\" : " +"{"+$"\"R\":{R}, \"G\":{G}, \"B\":{B}" + "}}");
         }
         public void SetLEDColor(int pR, int pG, int pB)
         {

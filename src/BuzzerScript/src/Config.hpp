@@ -15,7 +15,7 @@
 #define BuzzerType "Buzzer"
 
 //////////////////// Serial ////////////////////
-#define SerialTimeout 20
+#define SerialTimeout 5
 #define SerialSpeed 115200
 
 // Json Keys

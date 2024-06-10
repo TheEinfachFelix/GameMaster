@@ -28,7 +28,7 @@ namespace WebGameController.Models
             game.NextLevel();
 
 
-            var Buzzer = new Buzzer();
+            var Buzzer = new BuzzerHandler(8,3,12);
 
             Buzzer.Start(12, 9600);
 

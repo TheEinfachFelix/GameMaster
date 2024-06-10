@@ -23,7 +23,7 @@ if (true)
 
     Console.WriteLine("Hello, World!");
 
-    var a = new TestBuzzer();
+    var a = new Buzzer();
 
     a.Start(3, 115200);
 

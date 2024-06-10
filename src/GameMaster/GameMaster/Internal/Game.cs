@@ -39,7 +39,7 @@ namespace GameMaster
             Levels = [];
         }
         public void ResetAll()
-        {
+        {  
             Players = [];
             Levels = [];
             pLevelID = 0;

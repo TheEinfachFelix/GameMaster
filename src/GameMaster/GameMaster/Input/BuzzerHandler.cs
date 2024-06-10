@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,36 +12,127 @@ namespace GameMaster.Input
     public class BuzzerHandler
     {
         public List<Buzzer> BuzzerList = [];
-        public int amountOfBuzzer { get; private set; }
+        public int AmountOfBuzzer { get; private set; }
 
         public List<Taster> TasterList = [];
-        public int amountOfTaster { get; private set; }
+        public int AmountOfTaster { get; private set; }
+
+        public List<LED> LEDListe = [];
+        public int AmountOfLED { get; private set; }
 
 
-        public BuzzerHandler(int pamountOfBuzzer, int pamountOfTaster) 
+        private SerialPort? port;
+        private string msg = "";
+
+        public BuzzerHandler(int pamountOfBuzzer, int pamountOfTaster, int pamountOfLED) 
         {
-            amountOfBuzzer =  pamountOfBuzzer;
-            amountOfTaster = pamountOfTaster;
+            AmountOfBuzzer =  pamountOfBuzzer;
+            AmountOfTaster = pamountOfTaster;
+            AmountOfLED = pamountOfLED;
             Setup();
         }
-
         private void Setup()
         {
-            for (int i = 0; i < amountOfBuzzer; i++)
+            for (int i = 0; i < AmountOfBuzzer; i++)
             {
-                BuzzerList.Add(new(i));
+                BuzzerList.Add(new(i,this));
             }
 
-            for (int i = 0; i < amountOfTaster; i++)
+            for (int i = 0; i < AmountOfTaster; i++)
             {
                 TasterList.Add(new(i));
             }
+
+            for (int i = 0; i < AmountOfLED; i++)
+            {
+                LEDListe.Add(new(i,this));
+            }
+        }
+
+
+        public void Start(int ComPort, int Rate)
+        {
+            if (port != null) { throw new Exception("Buzzer connection alredy open"); }
+
+            port = new SerialPort("COM" + ComPort.ToString(), Rate, Parity.None, 8, StopBits.One);
+            port.Handshake = Handshake.RequestToSend; // DAS IST EXTREM WICHTIG
+
+            // Setup Eventhandler
+            port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
+
+            // Begin communications
+            port.Open();
+            port.DiscardInBuffer();
+            //port.Write("{\"Output_Type\" : \"LED\", \"ID\" : 2, \"Value\" : {\"R\":50, \"G\":10, \"B\":0}}");
+        }
+        public void Stop()
+        {
+            if (port == null) { throw new Exception("Buzzer connection alredy Closed"); }
+
+            port.Close();
+            port = null;
+
+            Console.WriteLine("stop");
+        }
+        private void DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            if (port == null) { return; }
+            msg += port.ReadExisting();
+
+            CheckDataTransmissionDone(msg);
+        }
+        private void CheckDataTransmissionDone(string pmsg)
+        {
+            int countOpen = pmsg.Split('{').Length - 1;
+            int countClose = pmsg.Split('}').Length - 1;
+
+            if (countClose > countOpen)// catch more close than open
+            {
+                msg = "";
+                throw new Exception("there where to many } send");
+            }
+            if (countClose == countOpen && countOpen != 0) // the msg is copletly recived
+            {
+                msg = "";
+                HandleData(pmsg);
+            }
+        }
+        private void HandleData(string pmsg)
+        {
+            BuzzerJson JsonMsg = JsonConvert.DeserializeObject<BuzzerJson>(pmsg)!;
+
+            // do Error catching
+            if (JsonMsg == null) { throw new Exception("Buzzer PCB recieved Json not readebel"); }
+            if (JsonMsg.Error != null) { throw new Exception("Buzzer PCB Error was" + JsonMsg.Error); }
+            if (JsonMsg.Value == null || JsonMsg.ID == null || JsonMsg.Output_Type == null) { throw new Exception("Json missing Data"); }
+
+            int index = (int)JsonMsg.ID;
+
+            switch (JsonMsg.Output_Type)
+            {
+                case "Buzzer":
+                    BuzzerList[index].TasterState = (bool)JsonMsg.Value;
+                    break;
+                case "Taster":
+                    TasterList[index].TasterState = (bool)JsonMsg.Value;
+                    break;
+                default:
+                    throw new Exception("Buzzer PCB Output_Type not found");
+            }
+        }
+
+        public void sendData(string json)
+        {
+            if (port == null) return;
+            port.Write(json);
+            Trace.WriteLine($"Serial Data send: {json}");
         }
     }
 
     public class Buzzer
     {
         private Game game = Game.GetInstance();
+        private BuzzerHandler parent;
 
         public int myID { get; set; } = -1;
 
@@ -77,18 +171,21 @@ namespace GameMaster.Input
             set
             {
                 _LEDState = value;
-                // TODO: send state
+                Trace.WriteLine("pene");
+                parent.sendData("{"+ $"\"Output_Type\" : \"Buzzer\", \"ID\" : {myID}, \"Value\" : {_LEDState}" + "}");
             }
         }
 
-        public Buzzer(int pID)
+        public Buzzer(int pID, BuzzerHandler pparent)
         {
             myID = pID;
+            parent = pparent;
         }
     }
     public class Taster
     {
         private Game game = Game.GetInstance();
+        
 
         public int myID { get; set; } = -1;
 
@@ -107,11 +204,11 @@ namespace GameMaster.Input
                 {
                     if (newVal)
                     {
-                        game.BuzzerPress(myID);
+                        //game.BuzzerPress(myID);
                     }
                     else
                     {
-                        game.BuzzerRelease(myID);
+                        //game.BuzzerRelease(myID); //TODO: handle this
                     }
                 }
                 _TasterState = newVal;
@@ -124,5 +221,75 @@ namespace GameMaster.Input
             myID = pID;
         }
     }
+    public class LED
+    {
+        private BuzzerHandler parent;
+        public int myID { get; set; } = -1;
 
+        private int _R;
+        public int R
+        {
+            get
+            {
+                return _R;
+            }
+            set
+            {
+                _R = value;
+                Send();
+            }
+        }
+        private int _G;
+        public int G
+        {
+            get
+            {
+                return _G;
+            }
+            set
+            {
+                _G = value;
+                Send();
+            }
+        }
+        private int _B;
+        public int B
+        {
+            get
+            {
+                return _B;
+            }
+            set
+            {
+                _B = value;
+                Send();
+            }
+        }
+
+        public LED(int pID, BuzzerHandler pparent)
+        {
+            myID = pID;
+            parent = pparent;
+        }
+        private void Send() 
+        {
+            Trace.WriteLine("pene");
+            parent.sendData("{" + $"\"Output_Type\" : \"Buzzer\", \"ID\" : {myID}, \"Value\" : "+"{"+$"\"R\":{R}, \"G\":{G}, \"B\":{B}" + "}}");
+        }
+        public void SetLEDColor(int pR, int pG, int pB)
+        {
+            _R = pR;
+            _G = pG;
+            _B = pB;
+            Send();
+        }
+    }
+
+    public class BuzzerJson
+    {
+        public string? Output_Type { get; set; }
+        public string? Error { get; set; }
+        public int? ID { get; set; }
+        public bool? Value { get; set; }
+    }
 }

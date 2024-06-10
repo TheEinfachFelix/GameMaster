@@ -1,22 +1,10 @@
 ﻿using GameMaster;
-using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
-using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WebGameController.Models;
 
 namespace GameController
 {
@@ -24,13 +12,15 @@ namespace GameController
     {
         Game game;
         DataBinding dataBinding = new();
-        readonly string ConfigLocation = "G:/Felix/GitHub/GameMaster/testconfig.json";
+        readonly string ConfigLocation = "C:/Github/GameMaster/testconfig.json";
+
         public MainWindow()
         {
             game = Game.LoadFromFile(ConfigLocation);
 
-            Closing += OnWindowClosing;
+            Closing += OnWindowClosing!;
             DataContext = dataBinding;
+
             InitializeComponent();
 
             UpdateBinding();
@@ -53,10 +43,9 @@ namespace GameController
             Player p1 = new("Peter");
             game.Players.Add(p1);
 
-            dataBinding.ViewType = 1;
-            dataBinding.ViewType = 2;
             Trace.WriteLine(game.Players.Count);
             //Game.SaveToFile(ConfigLocation);
+            UpdateBinding();
         }
         private void UpdateBinding()
         {
@@ -68,8 +57,6 @@ namespace GameController
             e.Handled = regex.IsMatch(e.Text);
         }
     }
-
-
 
     class DataBinding : INotifyPropertyChanged
     {

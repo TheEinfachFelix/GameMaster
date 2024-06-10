@@ -5,6 +5,21 @@
       "$type": "GameMaster.Player, GameMaster",
       "Name": "Peter",
       "Points": 0
+    },
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Peter",
+      "Points": 0
+    },
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Peter",
+      "Points": 0
+    },
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Peter",
+      "Points": 0
     }
   ],
   "Levels": [

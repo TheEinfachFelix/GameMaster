@@ -26,8 +26,12 @@
 7. [ ] implement obs
 8. [ ] implement visual generaor
 9. [ ] Simultanios Audio Playing
-10. [ ] Rewite buzzer Handler with all the new feature
+10. [X] Rewite buzzer Handler with all the new feature
 11. [X] Load Data fom Json
+
+## Mini TODOs
+- led numbering is offset
+- clean / refactor Buzzer
 
 ## Logic Idea
 

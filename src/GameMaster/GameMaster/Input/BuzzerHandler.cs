@@ -130,7 +130,6 @@ namespace GameMaster.Input
         {
             if (port == null) return;
             port.Write(json);
-            Trace.WriteLine($"Serial Data send: {json}");
         }
     }
 
@@ -278,7 +277,6 @@ namespace GameMaster.Input
         }
         private void Send() 
         {
-            Trace.WriteLine("pene");
             parent.sendData("{" + $"\"Output_Type\" : \"LED\", \"ID\" : {myID}, \"Value\" : " +"{"+$"\"R\":{R}, \"G\":{G}, \"B\":{B}" + "}}");
         }
         public void SetLEDColor(int pR, int pG, int pB)

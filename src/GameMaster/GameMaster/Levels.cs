@@ -15,7 +15,7 @@ namespace GameMaster
             BasicAudioPlayer b = new(@"C:\Users\felix\Downloads\");
             b.PlayWAV("Zu_gut_fuer_dich");
             Console.WriteLine("BuzzerPress" + BuzzerID.ToString());
-            if (BuzzerID == 0) 
+            if (BuzzerID == 1) 
             { 
                 if (!game.NextLevel()) 
                 { 

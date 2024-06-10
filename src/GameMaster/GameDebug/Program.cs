@@ -25,7 +25,7 @@ if (true)
 
     var a = new TestBuzzer();
 
-    a.Start(13, 115200);
+    a.Start(3, 115200);
 
 
 

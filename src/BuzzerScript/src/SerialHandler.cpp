@@ -6,9 +6,9 @@ void PrintButtonValueChanged(String type, int ID, bool Value)
     if (Value)
         strValue = "true";
     
-    Serial.print("{\""+String(JsonType)+"\" = \"" + type + "\" ,\""+String(JsonID)+"\" = ");
+    Serial.print("{\""+String(JsonType)+"\" : \"" + type + "\" ,\""+String(JsonID)+"\" : ");
     Serial.print(ID);
-    Serial.println(", \""+String(JsonValue)+"\" = " + strValue + " }");
+    Serial.println(", \""+String(JsonValue)+"\" : " + strValue + " }");
 }
 
 void PrintError(String errorMSG)

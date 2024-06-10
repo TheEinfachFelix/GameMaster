@@ -16,14 +16,14 @@ namespace GameMaster.Input
             if (port != null) { throw new Exception("Buzzer connection alredy open"); }
 
             port = new SerialPort("COM" + ComPort.ToString(), Rate, Parity.None, 8, StopBits.One);
-
+            port.Handshake = Handshake.RequestToSend; // DAS IST EXTREM WICHTIG
             // Setup Eventhandler
             port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
 
             // Begin communications
             port.Open();
-            Console.WriteLine("pe");
-            port.Write("{\"Output_Type\" : \"LED\", \"ID\" : 2, \"Value\" : {\"R\":50, \"G\":10, \"B\":0}}");
+            port.DiscardInBuffer();
+            //port.Write("{\"Output_Type\" : \"LED\", \"ID\" : 2, \"Value\" : {\"R\":50, \"G\":10, \"B\":0}}");
         }
         public void Stop()
         {
@@ -36,11 +36,8 @@ namespace GameMaster.Input
         }
         private void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            Console.WriteLine("peinsi");
             if (port == null) { return; }
             msg += port.ReadExisting();
-
-            Console.WriteLine($"{msg}");
 
             CheckDataTransmissionDone(msg);
         }
@@ -95,11 +92,9 @@ namespace GameMaster.Input
 
     public class BuzzerJson
     {
-        // {"status":"server ready", "appType":"dot2"}
         public string? Output_Type { get; set; }
         public string? Error { get; set; }
         public int? ID { get; set; }
         public bool? Value { get; set; }
-
     }
 }

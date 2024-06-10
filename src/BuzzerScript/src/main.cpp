@@ -9,6 +9,7 @@ JsonDocument readJson = JsonDocument();
 void setup() {
   Serial.begin(SerialSpeed);
   Serial.setTimeout(SerialTimeout);
+  Serial.setDebugOutput(true);
 
   tastMngr.Setup();
   BuzzMngr.Setup();
@@ -23,6 +24,7 @@ void loop()
   pinput = pinput + Serial.readString();
   checkInputComplete();
 }
+
 
 void checkInputComplete()
 {
@@ -84,5 +86,4 @@ void HandleJson()
                                               readJson[String(JsonValue)][String("B")]);
   }
 }
-
 

@@ -5,6 +5,10 @@ namespace GameMaster
     public class TestLevel : ILevel
     {
         private Game game = Game.GetInstance();
+
+        public string Name { get; set; } = "Sound";
+        public string Beschreibung { get; set; } = "Spielt Sound";
+
         public void Setup()
         {
             Console.WriteLine("Setup Level ID is: " + game.LevelID);

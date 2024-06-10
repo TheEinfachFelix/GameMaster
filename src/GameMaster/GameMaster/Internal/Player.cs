@@ -3,7 +3,7 @@
     public class Player :IPlayer
     {
         private string pName;
-        private int pPoints;
+        private int pPoints = 0;
 
         public Player(string Name) 
         { 
@@ -13,6 +13,7 @@
         public string Name 
         {
             get { return pName; }
+            set { pName = value; }
         }
         public int Points 
         {

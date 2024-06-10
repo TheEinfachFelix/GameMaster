@@ -27,6 +27,7 @@
 8. [ ] implement visual generaor
 9. [ ] Simultanios Audio Playing
 10. [ ] Rewite buzzer Handler with all the new feature
+11. [X] Load Data fom Json
 
 ## Logic Idea
 

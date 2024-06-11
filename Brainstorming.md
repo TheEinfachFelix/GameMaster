@@ -32,6 +32,7 @@
 ## Mini TODOs
 - led numbering is offset
 - clean / refactor Buzzer
+- smart display of pcb valus
 
 ## Logic Idea
 

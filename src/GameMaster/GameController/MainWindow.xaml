@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="1.5*" />
         </Grid.RowDefinitions>
         <Button Grid.Column="0" Grid.Row="0" Content="Hier Level Specific stuff" Background="Beige" Click="Button_Click"/>
         <DockPanel Grid.Row="0" Grid.Column="1">
@@ -53,7 +53,12 @@
             </ListView>
         </DockPanel>
         <DockPanel Grid.Row="1" Grid.Column="1" >
-            <TextBlock Text="Level Information:" TextAlignment="Center" FontSize="20" DockPanel.Dock="Top"/>
+            <DockPanel DockPanel.Dock="Top">
+                <TextBlock Text="Level Information:" TextAlignment="Center" FontSize="20" Width="222" />
+                <TextBlock Text="Level ID is:" TextAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding CLevelID}" TextAlignment="Left" VerticalAlignment="Center"/>
+            </DockPanel>
+            
             <ListView ItemsSource="{Binding LevelList}" Name="Levellist" Background="Aqua">
                 <ListView.Resources>
                     <GridView x:Key="one">
@@ -68,6 +73,20 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox Text="{Binding Beschreibung}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Punkte" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox PreviewTextInput="NumberValidationTextBox"  Text="{Binding Points}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Step" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox PreviewTextInput="NumberValidationTextBox"  Text="{Binding CStep}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -88,6 +107,32 @@
                 </ListView.Style>
             </ListView>
         </DockPanel>
-        
+
+        <DockPanel Grid.Column="0" Grid.Row="1">
+            <Button Content="Buzzer Controll Placeholder" DockPanel.Dock="Top" Height="100"/>
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Grid.Row="0" FontSize="20" Content="Next Level" Click="Button_Click" />
+                <Button Grid.Column="1" Grid.Row="0" FontSize="20" Content="Set Level" Click="Button_Click" />
+                <Button Grid.Column="2" Grid.Row="0" FontSize="20" Content="Level GO" Click="Button_Click" />
+                <Button Grid.Column="2" Grid.Row="1" FontSize="20" Content="Level GO Back" Click="Button_Click" />
+                <Button Grid.Column="0" Grid.Row="1" FontSize="20" Content="Player is Winner" Click="Button_Click" />
+
+                <Button Grid.Column="0" Grid.Row="2" FontSize="30" Content="GO" Click="Button_Click" />
+                <TextBlock Grid.Column="2" Grid.Row="2" FontSize="20" Text="{Binding Com_Buffer}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+
+
+
+        </DockPanel>
     </Grid>
 </Window>

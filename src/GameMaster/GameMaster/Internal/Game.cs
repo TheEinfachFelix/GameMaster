@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace GameMaster
 {
@@ -6,10 +7,10 @@ namespace GameMaster
     {
         private static Game? instance;
 
-        public List<IPlayer> Players { get; set; }
-        public List<ILevel> Levels { get; set; }
+        public List<IPlayer> Players { get; set; } = [];
+        public List<ILevel> Levels { get; set; } = [];
 
-        private int pLevelID  = 0;
+        private int pLevelID  = -1;
         public int LevelID
         {
             get 
@@ -35,8 +36,7 @@ namespace GameMaster
 
         private Game()
         {
-            Players = [];
-            Levels = [];
+            
         }
         public void ResetAll()
         {  
@@ -110,7 +110,6 @@ namespace GameMaster
             {
                 LevelID++;
             }
-
             return true;
         }
         private void SetLevel(int LvlID)
@@ -118,11 +117,11 @@ namespace GameMaster
             if (Levels == null) { throw new Exception("Levels is null"); }
             if (Levels.ElementAtOrDefault(LvlID) == null) { throw new Exception("LevelID is out of range"); }
 
-
             if (CLevel != null) { CLevel.Clear(); }
             
             pCLevel = Levels.ElementAt(LvlID);
             if (pCLevel == null) { throw new Exception("Clevel is Null Something went wrong"); }
+
             CLevel?.Setup();
         }
     }

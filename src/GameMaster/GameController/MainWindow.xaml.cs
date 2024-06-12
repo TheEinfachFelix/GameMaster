@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace GameController
@@ -12,14 +13,15 @@ namespace GameController
     {
         Game game;
         DataBinding dataBinding = new();
-        readonly string ConfigLocation = "C:/Github/GameMaster/testconfig.json";
+        readonly string ConfigLocation = "G:/Felix/GitHub/GameMaster/testconfig.json"; // G:\Felix\GitHub\GameMaster "C:/Github/GameMaster/testconfig.json"
 
         public MainWindow()
         {
-            game = Game.LoadFromFile(ConfigLocation);
+            game = Game.LoadFromFile(ConfigLocation); // Game.GetInstance();//
 
             Closing += OnWindowClosing!;
             DataContext = dataBinding;
+            game.LevelID *= 1; // causes the level setup to run
 
             InitializeComponent();
 
@@ -40,12 +42,45 @@ namespace GameController
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Player p1 = new("Peter");
-            game.Players.Add(p1);
+            string Btn_Name = (sender as Button).Content.ToString()!;
 
-            Trace.WriteLine(game.Players.Count);
-            //Game.SaveToFile(ConfigLocation);
+            if (Btn_Name == "GO")
+            {
+                CallBtnFunc();
+                return;
+            }
+
+            dataBinding.Com_Buffer = Btn_Name;
             UpdateBinding();
+        }
+        private void CallBtnFunc() 
+        { 
+            switch (dataBinding.Com_Buffer) 
+            {
+                case "Next Level":
+                    Trace.WriteLine(game.NextLevel());
+                    break;
+                case "Set Level":
+                    if (Levellist.SelectedIndex == -1) return;
+                    game.LevelID = Levellist.SelectedIndex;
+                    break;
+                case "Level GO":
+                    game.CLevel.GO();
+                    break;
+
+                case "Level GO Back":
+                    game.CLevel.GO(-1);
+                    break;
+
+                case "Player is Winner":
+                    if (Playerlist.SelectedIndex == -1) return;
+                    game.CLevel.WinnerIs(Playerlist.SelectedIndex);
+                    break;
+
+                default:
+                    Trace.WriteLine($"Btn Name not found:{dataBinding.Com_Buffer}");
+                    break;
+            }
         }
         private void UpdateBinding()
         {
@@ -70,6 +105,7 @@ namespace GameController
             Game game = Game.GetInstance();
             PlayerList = game.Players;
             LevelList = game.Levels;    
+            CLevelID = game.LevelID;
             ViewType = 1;
             ViewType = 2;
         }
@@ -106,6 +142,26 @@ namespace GameController
                 NotifyPropertyChanged();
             }
         }
+
+        private int _CLevelID;
+        public int CLevelID
+        {
+            get { return _CLevelID; }
+            set { _CLevelID = value; NotifyPropertyChanged(); }
+        }
+
+        private string _Com_Buffer = "";
+        public string Com_Buffer
+        {
+            get { return _Com_Buffer; }
+            set 
+            { 
+                _Com_Buffer = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

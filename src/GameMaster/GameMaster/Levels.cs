@@ -1,4 +1,5 @@
 ﻿using GameMaster.Output;
+using System.Diagnostics;
 
 namespace GameMaster
 {
@@ -8,17 +9,20 @@ namespace GameMaster
 
         public string Name { get; set; } = "Sound";
         public string Beschreibung { get; set; } = "Spielt Sound";
+        public int Points { get; set; } = 3;
+        public int CStep { get; set; } = 0;
 
         public void Setup()
         {
-            Console.WriteLine("Setup Level ID is: " + game.LevelID);
+            game = Game.GetInstance();
+            Trace.WriteLine("Setup Level ID is: " + game.LevelID);
         }
         public void BuzzerPress(int BuzzerID)
         {
 
             BasicAudioPlayer b = new(@"C:\Users\felix\Downloads\");
             b.PlayWAV("Zu_gut_fuer_dich");
-            Console.WriteLine("BuzzerPress" + BuzzerID.ToString());
+            Trace.WriteLine("BuzzerPress" + BuzzerID.ToString());
             if (BuzzerID == 1) 
             { 
                 if (!game.NextLevel()) 
@@ -26,21 +30,31 @@ namespace GameMaster
                     game.LevelID = 0;
                 }
             }
-            Console.WriteLine("Level ID is: " + game.LevelID);
+            Trace.WriteLine("Level ID is: " + game.LevelID);
             
         }
 
         public void BuzzerRelease(int BuzzerID)
         {
-            Console.WriteLine("BuzzerRelease" + BuzzerID.ToString());
+            Trace.WriteLine("BuzzerRelease" + BuzzerID.ToString());
         }
 
         public void Clear()
         {
-            Console.WriteLine("Clear");
-            BasicAudioPlayer a = new(@"C:\Users\felix\Downloads\");
-            a.PlayWAV("Test-1");
+            Trace.WriteLine("Clear");
+            //BasicAudioPlayer a = new(@"C:\Users\felix\Downloads\");
+            //a.PlayWAV("Test-1");
 
+        }
+
+        public void WinnerIs(int PlayerID)
+        {
+            game.Players[PlayerID].Points += Points;
+        }
+
+        public void GO(int steps = 1)
+        {
+            CStep += steps;
         }
     }
 }

@@ -33,6 +33,8 @@
 - led numbering is offset
 - clean / refactor Buzzer
 - smart display of pcb valus
+- create event to update binding
+
 
 ## Logic Idea
 

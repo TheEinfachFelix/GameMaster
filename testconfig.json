@@ -4,17 +4,17 @@
     {
       "$type": "GameMaster.Player, GameMaster",
       "Name": "Peter",
-      "Points": 0
+      "Points": 7
     },
     {
       "$type": "GameMaster.Player, GameMaster",
       "Name": "Peter",
-      "Points": 0
+      "Points": 3
     },
     {
       "$type": "GameMaster.Player, GameMaster",
       "Name": "Peter",
-      "Points": 0
+      "Points": 16
     },
     {
       "$type": "GameMaster.Player, GameMaster",
@@ -26,18 +26,24 @@
     {
       "$type": "GameMaster.TestLevel, GameMaster",
       "Name": "Sound",
-      "Beschreibung": "Spielt Sound"
+      "Beschreibung": "Spielt Sound",
+      "Points": 10,
+      "CStep": 0
     },
     {
       "$type": "WebGameController.Models.FirstLevel, GameMaster",
       "Name": "Bzzer to .2",
-      "Beschreibung": "Setzt auf BuzzerPress dot2 Values"
+      "Beschreibung": "Setzt auf BuzzerPress dot2 Values",
+      "Points": 2,
+      "CStep": 1
     }
   ],
   "LevelID": 0,
   "CLevel": {
     "$type": "GameMaster.TestLevel, GameMaster",
     "Name": "Sound",
-    "Beschreibung": "Spielt Sound"
+    "Beschreibung": "Spielt Sound",
+    "Points": 10,
+    "CStep": 0
   }
 }

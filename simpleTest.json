@@ -1,0 +1,13 @@
+{
+  "$type": "GameMaster.Game, GameMaster",
+  "Players": [
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Peter",
+      "Points": 0
+    }
+  ],
+  "Levels": [],
+  "LevelID": 0,
+  "CLevel": null
+}

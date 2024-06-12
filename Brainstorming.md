@@ -21,11 +21,20 @@
 2. [x] implement basic logic
 3. [x] implement buzzer
 4. [x] implement audio
-5. [ ] implement dot2
+5. [x] implement dot2
 6. [ ] implement remote
 7. [ ] implement obs
 8. [ ] implement visual generaor
 9. [ ] Simultanios Audio Playing
+10. [X] Rewite buzzer Handler with all the new feature
+11. [X] Load Data fom Json
+
+## Mini TODOs
+- led numbering is offset
+- clean / refactor Buzzer
+- smart display of pcb valus
+- create event to update binding
+
 
 ## Logic Idea
 

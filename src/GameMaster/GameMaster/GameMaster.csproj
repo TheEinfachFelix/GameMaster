@@ -8,9 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="obs-websocket-dotnet" Version="5.0.0.3" />
     <PackageReference Include="System.IO.Ports" Version="8.0.0" />
     <PackageReference Include="System.Windows.Extensions" Version="8.0.0" />
-    <PackageReference Include="Websocket.Client" Version="5.1.1" />
   </ItemGroup>
 
 </Project>

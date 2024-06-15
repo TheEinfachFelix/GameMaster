@@ -23,7 +23,7 @@
 4. [x] implement audio
 5. [x] implement dot2
 6. [X] implement remote
-7. [ ] implement obs
+7. [x] implement obs
 8. [ ] implement visual generaor
 9. [ ] Simultanios Audio Playing
 10. [X] Rewite buzzer Handler with all the new feature
@@ -34,6 +34,7 @@
 - clean / refactor Buzzer
 - smart display of pcb valus
 - create event to update binding
+- fix vs issues
 
 
 ## Logic Idea

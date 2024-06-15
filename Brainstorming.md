@@ -22,7 +22,7 @@
 3. [x] implement buzzer
 4. [x] implement audio
 5. [x] implement dot2
-6. [ ] implement remote
+6. [X] implement remote
 7. [ ] implement obs
 8. [ ] implement visual generaor
 9. [ ] Simultanios Audio Playing

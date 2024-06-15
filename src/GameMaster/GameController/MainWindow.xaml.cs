@@ -1,4 +1,5 @@
 ﻿using GameMaster;
+using GameMaster.Output;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -6,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace GameController
 {
@@ -14,7 +16,8 @@ namespace GameController
         Game game;
         DataBinding dataBinding = new();
         readonly string ConfigLocation = "G:/Felix/GitHub/GameMaster/testconfig.json"; // G:\Felix\GitHub\GameMaster "C:/Github/GameMaster/testconfig.json"
-
+        
+        obsConnector myobs = new("ws://127.0.0.1:4455", "123456"); //, "","Gameshow"
         public MainWindow()
         {
             game = Game.LoadFromFile(ConfigLocation); // Game.GetInstance();//
@@ -26,6 +29,10 @@ namespace GameController
             InitializeComponent();
 
             UpdateBinding();
+
+            
+
+            
         }
 
         ////////////// Handle Window Closing magic
@@ -58,9 +65,11 @@ namespace GameController
             switch (dataBinding.Com_Buffer) 
             {
                 case "Next Level":
+                    myobs.SetScene("2");
                     Trace.WriteLine(game.NextLevel());
                     break;
                 case "Set Level":
+                    myobs.SetScene("1");
                     if (Levellist.SelectedIndex == -1) return;
                     game.LevelID = Levellist.SelectedIndex;
                     break;

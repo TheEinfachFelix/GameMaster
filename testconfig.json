@@ -38,12 +38,12 @@
       "CStep": 1
     }
   ],
-  "LevelID": 0,
+  "LevelID": 1,
   "CLevel": {
-    "$type": "GameMaster.TestLevel, GameMaster",
-    "Name": "Sound",
-    "Beschreibung": "Spielt Sound",
-    "Points": 10,
-    "CStep": 0
+    "$type": "WebGameController.Models.FirstLevel, GameMaster",
+    "Name": "Bzzer to .2",
+    "Beschreibung": "Setzt auf BuzzerPress dot2 Values",
+    "Points": 2,
+    "CStep": 1
   }
 }

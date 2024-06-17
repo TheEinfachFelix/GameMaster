@@ -16,23 +16,18 @@ namespace GameController
         Game game;
         DataBinding dataBinding = new();
         readonly string ConfigLocation = "G:/Felix/GitHub/GameMaster/testconfig.json"; // G:\Felix\GitHub\GameMaster "C:/Github/GameMaster/testconfig.json"
-        
-        obsConnector myobs = new("ws://127.0.0.1:4455", "123456"); //, "","Gameshow"
+
         public MainWindow()
         {
-            game = Game.LoadFromFile(ConfigLocation); // Game.GetInstance();//
+            game = Game.LoadFromFile(ConfigLocation);
 
             Closing += OnWindowClosing!;
             DataContext = dataBinding;
-            game.LevelID *= 1; // causes the level setup to run
-
+            
             InitializeComponent();
 
+            game.Setup();
             UpdateBinding();
-
-            
-
-            
         }
 
         ////////////// Handle Window Closing magic
@@ -58,32 +53,33 @@ namespace GameController
             }
 
             dataBinding.Com_Buffer = Btn_Name;
-            UpdateBinding();
+            //UpdateBinding();
+            game.dot2ConnectorList[0].SendButtonPress(101);
         }
         private void CallBtnFunc() 
         { 
             switch (dataBinding.Com_Buffer) 
             {
                 case "Next Level":
-                    myobs.SetScene("2");
+                    game.obsConnectorList[0].SetScene("2");
                     Trace.WriteLine(game.NextLevel());
                     break;
                 case "Set Level":
-                    myobs.SetScene("1");
+                    game.obsConnectorList[0].SetScene("1");
                     if (Levellist.SelectedIndex == -1) return;
                     game.LevelID = Levellist.SelectedIndex;
                     break;
                 case "Level GO":
-                    game.CLevel.GO();
+                    game.CLevel?.GO();
                     break;
 
                 case "Level GO Back":
-                    game.CLevel.GO(-1);
+                    game.CLevel?.GO(-1);
                     break;
 
                 case "Player is Winner":
                     if (Playerlist.SelectedIndex == -1) return;
-                    game.CLevel.WinnerIs(Playerlist.SelectedIndex);
+                    game.CLevel?.WinnerIs(Playerlist.SelectedIndex);
                     break;
 
                 default:

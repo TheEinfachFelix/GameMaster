@@ -1,26 +1,39 @@
 ﻿
 using Websocket.Client;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace GameMaster.Output
 {
     // Danke philip für deine dot2 Websocet Implementaion für den apc mini gedöns
     public class dot2Connector
     {
-        Uri url = new("ws://localhost:80/");
+        public bool Enable { get; set; } = false;
+        public string IP { get; set; } = "ws://localhost:80/";
+        public int pageIndex { get; set; } = 0;
+
         WebsocketClient? client;
         private int session;
         private int request;
         private string text = "";
-        public int pageIndex = 0;
-        public bool Ready = false;
+
+        
+        [JsonIgnore]
+        public bool Ready { get; private set; } = false;
+        
 
         private static string notConnectedError = "client not connected";
 
+        private void PrintError(string msg)
+        {
+            Trace.WriteLine(msg);
+        }
+
         public bool Open()
         {
+            if (!Enable) { return false; }
             if (client != null) { throw new Exception("already connected"); }
-            client = new(url)
+            client = new(new Uri(IP))
             {
                 ReconnectTimeout = TimeSpan.FromSeconds(30)
             };
@@ -40,7 +53,8 @@ namespace GameMaster.Output
             return true;
         }
         public void Close() 
-        { 
+        {
+            if (!Enable) { return; }
             if (client == null) { return; }
             client.Dispose();
             Ready = false;
@@ -54,7 +68,7 @@ namespace GameMaster.Output
 
         private void HandleMSG(JsonMSG obj)
         {
-            if (client == null) { throw new Exception(notConnectedError); }
+            if (client == null) { PrintError(notConnectedError); return; }
             request++;
             if (request >= 9)
             {
@@ -142,7 +156,7 @@ namespace GameMaster.Output
         //interval function requests data from dot2 endpoint
         private void interval()
         {
-            if (client == null) { throw new Exception(notConnectedError); }
+            if (client == null) { PrintError(notConnectedError); return; }
             if (session > 0)
             {
                 //client.Send(
@@ -162,7 +176,8 @@ namespace GameMaster.Output
         
         public void SendButtonPress(int ButtonID)
         {
-            if (client == null) { throw new Exception(notConnectedError);}
+            if (!Enable) { return; }
+            if (client == null) {PrintError(notConnectedError); return; }
 
             client.Send(
                 "{\"requestType\":\"playbacks_userInput\",\"cmdline\":\"\",\"execIndex\":" + (ButtonID-1) +
@@ -173,7 +188,8 @@ namespace GameMaster.Output
 
         public void SetFaderValue(int FaderID, double FaderValue)
         {
-            if (client == null) { throw new Exception(notConnectedError);}
+            if (!Enable) { return; }
+            if (client == null) { PrintError(notConnectedError); return; }
 
             client.Send(
                 "{\"requestType\":\"playbacks_userInput\",\"execIndex\":" + (FaderID-1) +
@@ -184,10 +200,9 @@ namespace GameMaster.Output
         }
 
         public void SetBlackOut(bool IsBlackOutOn)
-
-
         {
-            if (client == null) { throw new Exception(notConnectedError); }
+            if (!Enable) { return; }
+            if (client == null) { PrintError(notConnectedError); return; }
 
             int faderValue = 100;
             if (IsBlackOutOn) { faderValue = 0; }

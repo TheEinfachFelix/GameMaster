@@ -30,34 +30,15 @@
 11. [X] Load Data fom Json
 
 ## Mini TODOs
-- led numbering is offset
-- clean / refactor Buzzer
-- smart display of pcb valus
-- create event to update binding
-- fix vs issues
-
+- [ ] led numbering is offset
+- [ ] clean / refactor Buzzer add to json
+- [ ] smart display of pcb valus
+- [ ] create event to update binding
+- [ ] fix vs issues
+- [ ] distribute game instance
+- [x] obs setup -> becaus the constructor stuff is not working
+- [x] store instances of outputs in json
 
 ## Logic Idea
 
 jedes level implementiert ein interface welches die logik übernimmt
-
-#### Level interface
-- [x] Buzzer Press (index as parameter)
-- [x] setup
-- [x] buzzer releas (index as parameter)
-
-
-### Player
-- [x] name
-- [x] points
-
-### Game
-- [x] Add Player
-- [x] Add LVLs
-
-## Buzzer idea
-
-- [X] interface
-- [X] new text on serial chanel crates evetnt (Serial watcher class)
-- [X] event calls button funtiontn
-- [X] that parses and calls a button handler function

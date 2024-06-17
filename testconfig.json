@@ -1,5 +1,23 @@
 {
   "$type": "GameMaster.Game, GameMaster",
+  "obsConnectorList": [
+    {
+      "$type": "GameMaster.Output.obsConnector, GameMaster",
+      "Enable": false,
+      "IP": "ws://127.0.0.1:4455",
+      "PW": "123456",
+      "Profile": "",
+      "SceneCol": "Gameshow"
+    }
+  ],
+  "dot2ConnectorList": [
+    {
+      "$type": "GameMaster.Output.dot2Connector, GameMaster",
+      "Enable": false,
+      "IP": "ws://localhost:80/",
+      "pageIndex": 0
+    }
+  ],
   "Players": [
     {
       "$type": "GameMaster.Player, GameMaster",

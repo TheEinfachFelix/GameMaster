@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using GameMaster.Input;
+using GameMaster.Output;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace GameMaster
@@ -6,6 +8,10 @@ namespace GameMaster
     public class Game
     {
         private static Game? instance;
+
+        public List<obsConnector> obsConnectorList { get; set; } = [];
+        public List<dot2Connector> dot2ConnectorList { get; set; } = [];
+
 
         public List<IPlayer> Players { get; set; } = [];
         public List<ILevel> Levels { get; set; } = [];
@@ -36,7 +42,6 @@ namespace GameMaster
 
         private Game()
         {
-            
         }
         public void ResetAll()
         {  
@@ -61,6 +66,7 @@ namespace GameMaster
                 TypeNameHandling = TypeNameHandling.Objects
             })!;
             instance = newGame;
+
             return newGame;
         }
         public static Game LoadFromFile(string FileAddress)
@@ -81,6 +87,22 @@ namespace GameMaster
             File.WriteAllText(saveToFile, SaveToJson());
         }
 
+        public void Setup()
+        {
+            Trace.WriteLine("Game Setup:");
+            LevelID *= 1; // causes the level setup to run
+
+            foreach (var obs in obsConnectorList)
+            {
+                obs.Setup();
+            }
+            foreach (var dot2 in dot2ConnectorList)
+            {
+                dot2.Open();
+                while (!dot2.Ready && dot2.Enable) { }
+            }
+
+        }
 
         // Buzzer Routing
         public void BuzzerPress(int BuzzerID)

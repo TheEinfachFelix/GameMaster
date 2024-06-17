@@ -33,8 +33,8 @@
 - [ ] led numbering is offset
 - [ ] clean / refactor Buzzer add to json
 - [ ] smart display of pcb valus
-- [ ] create event to update binding
-- [ ] fix vs issues
+- [x] create event to update binding
+- [X] fix vs issues
 - [ ] distribute game instance
 - [x] obs setup -> becaus the constructor stuff is not working
 - [x] store instances of outputs in json

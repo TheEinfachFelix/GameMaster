@@ -5,6 +5,7 @@ using System.Diagnostics;
 
 namespace GameMaster
 {
+
     public class Game
     {
         private static Game? instance;

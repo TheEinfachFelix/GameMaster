@@ -1,16 +1,17 @@
 ﻿using GameMaster;
-using GameMaster.Output;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace GameController
 {
+    
     public partial class MainWindow : Window
     {
         Game game;
@@ -23,18 +24,30 @@ namespace GameController
 
             Closing += OnWindowClosing!;
             DataContext = dataBinding;
-            
+
+            // auto binding updates
+            System.Windows.Forms.Timer BindingUpdateTimer = new();
+            BindingUpdateTimer.Tick += new EventHandler(TimedUpdateBinding);
+            BindingUpdateTimer.Interval = 100; // Binding Update Speed
+            BindingUpdateTimer.Start();
+
             InitializeComponent();
 
             game.Setup();
             UpdateBinding();
+
+            // setup other page
+            GameDisplay gameDisplay = new GameDisplay();
+            gameDisplay.Show();
+            gameDisplay.DataContext = dataBinding;
+
         }
 
         ////////////// Handle Window Closing magic
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
             Trace.WriteLine("OnClosed");
         }
         public void OnWindowClosing(object sender, CancelEventArgs e)
@@ -44,7 +57,8 @@ namespace GameController
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string Btn_Name = (sender as Button).Content.ToString()!;
+            var btn = (System.Windows.Controls.Button)sender;
+            string Btn_Name = btn.Content.ToString()!;
 
             if (Btn_Name == "GO")
             {
@@ -87,6 +101,12 @@ namespace GameController
                     break;
             }
         }
+
+        private void TimedUpdateBinding(object? source, EventArgs e )
+        {
+            UpdateBinding();
+        }
+
         private void UpdateBinding()
         {
             dataBinding.UpdateData();
@@ -113,12 +133,29 @@ namespace GameController
             CLevelID = game.LevelID;
             ViewType = 1;
             ViewType = 2;
+
+            TotalPoints = 0;
+            foreach (var item in game.Players)
+            {
+                TotalPoints += item.Points;
+            }
+            
+            if (game.Players.Count > 1)
+            {
+                PointsA = game.Players[0].Points;
+                PointsB = game.Players[1].Points;
+                TotalPoints = -PointsA-2;
+            }
         }
 
-        private List<ILevel> _LevelList;
+        private List<ILevel>? _LevelList;
         public List<ILevel> LevelList
         {
-            get { return _LevelList; }
+            get 
+            {
+                _LevelList ??= [];
+                return _LevelList; 
+            }
             set
             {
                 _LevelList = value;
@@ -126,10 +163,14 @@ namespace GameController
             }
         }
 
-        private List<IPlayer> _PlayerList;
+        private List<IPlayer>? _PlayerList;
         public List<IPlayer> PlayerList
         {
-            get { return _PlayerList; }
+            get 
+            {
+                _PlayerList ??= [];
+                return _PlayerList; 
+            }
             set
             {
                 _PlayerList = value;
@@ -146,6 +187,41 @@ namespace GameController
                 _ViewType = value;
                 NotifyPropertyChanged();
             }
+        }
+
+        private int _TotalPoints;
+        public int TotalPoints
+        {
+            get { return _TotalPoints; }
+            set
+            {
+                _TotalPoints = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private int _PointsA;
+        public int PointsA
+        {
+            get { return _PointsA; }
+            set
+            {
+                _PointsA = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private int _PointsB;
+        public int PointsB
+        {
+            get { return _PointsB; }
+            set
+            {
+                _PointsB = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public int PointsB1
+        {
+            get { return _PointsB - 1; } set { NotifyPropertyChanged(); }
         }
 
         private int _CLevelID;
@@ -175,6 +251,7 @@ namespace GameController
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }
 

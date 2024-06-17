@@ -1,0 +1,22 @@
+﻿<Window x:Class="GameController.GameDisplay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameController"
+        mc:Ignorable="d"
+        Title="GameDisplay" Height="450" Width="800">
+    <Grid Background="Orange">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ProgressBar Grid.Row="0" Grid.Column="1" Minimum="{Binding TotalPoints}" Maximum="{Binding PointsB}" Value="-1" Background="CornflowerBlue" Foreground="GreenYellow"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding PointsA}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="100"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding PointsB}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="100"/>
+    </Grid>
+</Window>

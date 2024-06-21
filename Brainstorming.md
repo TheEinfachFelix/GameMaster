@@ -38,3 +38,4 @@
 - [ ] (distribute game instance)
 - [x] obs setup -> becaus the constructor stuff is not working
 - [x] store instances of outputs in json
+- [ ] Stop Autoupdating if editing list (M)

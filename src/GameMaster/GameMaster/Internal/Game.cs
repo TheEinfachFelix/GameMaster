@@ -13,7 +13,25 @@ namespace GameMaster
         public List<obsConnector> obsConnectorList { get; set; } = [];
         public List<dot2Connector> dot2ConnectorList { get; set; } = [];
 
-
+        public string CDisplayContent
+        {
+            get
+            {
+                if (CLevel == null)
+                {
+                    return "";
+                }
+                return CLevel.displayContent;
+              
+            }
+            set
+            {
+                if (CLevel != null)
+                {
+                    CLevel.displayContent = value;
+                }
+            }
+        }
         public List<IPlayer> Players { get; set; } = [];
         public List<ILevel> Levels { get; set; } = [];
 

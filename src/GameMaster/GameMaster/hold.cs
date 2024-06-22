@@ -44,6 +44,7 @@ namespace WebGameController.Models
         public string Beschreibung { get; set; } = "Setzt auf BuzzerPress dot2 Values";
         public int Points { get; set; } = 2;
         public int CStep { get; set; } = 1;
+        public string displayContent { get; set; } = "peter";
 
         public void BuzzerPress(int BuzzerID)
         {

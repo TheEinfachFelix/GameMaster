@@ -6,6 +6,17 @@
         xmlns:local="clr-namespace:GameController"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <ControlTemplate x:Key="hold" TargetType="ListView">
+            <Grid>
+                <ListView MouseEnter="ListView_MouseEnter"></ListView>
+                
+            </Grid>
+            
+        </ControlTemplate>
+        
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*" />
@@ -18,7 +29,7 @@
         <Button Grid.Column="0" Grid.Row="0" Content="Hier Level Specific stuff" Background="Beige" Click="Button_Click"/>
         <DockPanel Grid.Row="0" Grid.Column="1">
             <TextBlock Text="Player Information:" TextAlignment="Center" FontSize="20" DockPanel.Dock="Top"/>
-            <ListView ItemsSource="{Binding PlayerList}" Name="Playerlist" Background="Aqua" >
+            <ListView MouseEnter="ListView_MouseEnter" MouseLeave="Levellist_MouseLeave" ItemsSource="{Binding PlayerList}" Name="Playerlist" Background="Aqua" >
                 <ListView.Resources>
                     <GridView x:Key="one">
                         <GridViewColumn Header="Punkte" >
@@ -58,8 +69,8 @@
                 <TextBlock Text="Level ID is:" TextAlignment="Right" VerticalAlignment="Center"/>
                 <TextBlock Text="{Binding CLevelID}" TextAlignment="Left" VerticalAlignment="Center"/>
             </DockPanel>
-            
-            <ListView ItemsSource="{Binding LevelList}" Name="Levellist" Background="Aqua">
+
+            <ListView MouseEnter="ListView_MouseEnter" MouseLeave="Levellist_MouseLeave" ItemsSource="{Binding LevelList}" Name="Levellist" Background="Aqua">
                 <ListView.Resources>
                     <GridView x:Key="one">
                         <GridViewColumn Header="Name" >

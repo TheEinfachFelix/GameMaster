@@ -18,11 +18,12 @@
       "pageIndex": 0
     }
   ],
+  "CDisplayContent": "später",
   "Players": [
     {
       "$type": "GameMaster.Player, GameMaster",
       "Name": "Betreuer",
-      "Points": 0
+      "Points": 10
     },
     {
       "$type": "GameMaster.Player, GameMaster",
@@ -36,14 +37,16 @@
       "Name": "Sound",
       "Beschreibung": "Spielt Sound",
       "Points": 10,
-      "CStep": 0
+      "CStep": 0,
+      "displayContent": "später"
     },
     {
       "$type": "WebGameController.Models.FirstLevel, GameMaster",
       "Name": "Bzzer to .2",
       "Beschreibung": "Setzt auf BuzzerPress dot2 Values",
       "Points": 2,
-      "CStep": 1
+      "CStep": 1,
+      "displayContent": "peter"
     }
   ],
   "LevelID": 0,
@@ -52,6 +55,7 @@
     "Name": "Sound",
     "Beschreibung": "Spielt Sound",
     "Points": 10,
-    "CStep": 0
+    "CStep": 0,
+    "displayContent": "später"
   }
 }

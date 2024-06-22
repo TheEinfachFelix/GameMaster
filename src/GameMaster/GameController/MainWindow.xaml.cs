@@ -17,6 +17,7 @@ namespace GameController
         Game game;
         DataBinding dataBinding = new();
         readonly string ConfigLocation = "G:/Felix/GitHub/GameMaster/testconfig.json"; // G:\Felix\GitHub\GameMaster "C:/Github/GameMaster/testconfig.json"
+        System.Windows.Forms.Timer BindingUpdateTimer;
 
         public MainWindow()
         {
@@ -26,7 +27,7 @@ namespace GameController
             DataContext = dataBinding;
 
             // auto binding updates
-            System.Windows.Forms.Timer BindingUpdateTimer = new();
+            BindingUpdateTimer = new();
             BindingUpdateTimer.Tick += new EventHandler(TimedUpdateBinding);
             BindingUpdateTimer.Interval = 100; // Binding Update Speed
             BindingUpdateTimer.Start();
@@ -116,6 +117,14 @@ namespace GameController
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+        private void ListView_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            BindingUpdateTimer.Stop();
+        }
+        private void Levellist_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            BindingUpdateTimer.Start();
+        }
     }
 
     class DataBinding : INotifyPropertyChanged
@@ -133,13 +142,10 @@ namespace GameController
             CLevelID = game.LevelID;
             ViewType = 1;
             ViewType = 2;
+            DContent = game.CDisplayContent;
 
-            TotalPoints = 0;
-            foreach (var item in game.Players)
-            {
-                TotalPoints += item.Points;
-            }
-            
+
+            TotalPoints = 0;            
             if (game.Players.Count > 1)
             {
                 PointsA = game.Players[0].Points;
@@ -242,6 +248,17 @@ namespace GameController
             }
         }
 
+        private string _DContent = "";
+        public string DContent
+        {
+            get { return _DContent; }
+            set
+            {
+                _DContent = value;
+                NotifyPropertyChanged();
+            }
+        }
+
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -254,35 +271,3 @@ namespace GameController
 
     }
 }
-
-/*
-{
-  "$type": "GameMaster.Game, GameMaster",
-  "Players": [
-    {
-      "$type": "GameMaster.Player, GameMaster",
-      "Name": "Peter",
-      "Points": 0
-    },
-    {
-      "$type": "GameMaster.Player, GameMaster",
-      "Name": "Peter",
-      "Points": 0
-    }
-  ],
-  "Levels": [
-    {
-      "$type": "GameMaster.TestLevel, GameMaster",
-      "Name": "Sound",
-      "Beschreibung": "Spielt Sound"
-    },
-    {
-      "$type": "WebGameController.Models.FirstLevel, GameMaster",
-      "Name": "Bzzer to .2",
-      "Beschreibung": "Setzt auf BuzzerPress dot2 Values"
-    }
-  ],
-  "LevelID": 0,
-  "CLevel": null
-}
- */

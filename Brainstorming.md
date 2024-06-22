@@ -38,6 +38,7 @@
 - [ ] distribute game instance
 - [x] obs setup -> becaus the constructor stuff is not working
 - [x] store instances of outputs in json
+- [X] fix list refeshing
 
 ## Logic Idea
 

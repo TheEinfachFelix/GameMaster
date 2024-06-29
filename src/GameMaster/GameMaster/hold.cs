@@ -5,36 +5,6 @@ using GameMaster.Output;
 
 namespace WebGameController.Models
 {
-    public class MainGame
-    {
-        public Game game;
-
-
-        public MainGame()
-        {
-            game = Game.GetInstance();
-
-
-            List<ILevel> pLevel = [];
-
-            FirstLevel p1 = new();
-            FirstLevel p2 = new();
-
-            pLevel.Add(p1);
-            pLevel.Add(p2);
-
-            game.Levels = pLevel;
-
-            game.NextLevel();
-
-
-            var Buzzer = new BuzzerHandler(8,3,12);
-
-            Buzzer.Start(12, 9600);
-
-        }
-    }
-
     public class FirstLevel : ILevel
     {
         private Game game = Game.GetInstance();
@@ -45,6 +15,7 @@ namespace WebGameController.Models
         public int Points { get; set; } = 2;
         public int CStep { get; set; } = 1;
         public string displayContent { get; set; } = "peter";
+        public int displayFontSize { get; set; } = 200;
 
         public void BuzzerPress(int BuzzerID)
         {

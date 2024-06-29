@@ -11,12 +11,15 @@ namespace GameMaster.Input
 {
     public class BuzzerHandler
     {
+        [JsonIgnore]
         public List<Buzzer> BuzzerList = [];
         public int AmountOfBuzzer { get; private set; }
 
+        [JsonIgnore]
         public List<Taster> TasterList = [];
         public int AmountOfTaster { get; private set; }
 
+        [JsonIgnore]
         public List<LED> LEDListe = [];
         public int AmountOfLED { get; private set; }
 

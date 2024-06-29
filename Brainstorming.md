@@ -35,9 +35,9 @@
 - [ ] smart display of pcb valus
 - [x] create event to update binding
 - [X] fix vs issues
-- [ ] (distribute game instance)
+- [x] (distribute game instance)
 - [x] obs setup -> becaus the constructor stuff is not working
 - [x] store instances of outputs in json
 - [X] Stop Autoupdating if editing list (M)
 - [X] fix list refeshing
-- [ ] auto Size text (M)
+- [x] auto Size text (M)

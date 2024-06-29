@@ -7,12 +7,14 @@ namespace GameMaster
     {
         private Game game = Game.GetInstance();
 
-        public string Name { get; set; } = "Sound";
-        public string Beschreibung { get; set; } = "Spielt Sound";
+        public string Name { get; set; }
+        public string Beschreibung { get; set; }
         public int Points { get; set; } = 3;
         public int CStep { get; set; } = 0;
+        public string displayContent { get; set; }
+        public int displayFontSize { get; set; }
 
-        public string displayContent { get; set; } = "später";
+        public string path { get; set; } = "C:/Users/felix/Downloads/";
 
         public void Setup()
         {
@@ -21,9 +23,8 @@ namespace GameMaster
         }
         public void BuzzerPress(int BuzzerID)
         {
+            AudioPlayer.PlaySound(path + "Zu_gut_fuer_dich.wav");
 
-            BasicAudioPlayer b = new(@"C:\Users\felix\Downloads\");
-            b.PlayWAV("Zu_gut_fuer_dich");
             Trace.WriteLine("BuzzerPress" + BuzzerID.ToString());
             if (BuzzerID == 1) 
             { 
@@ -44,8 +45,7 @@ namespace GameMaster
         public void Clear()
         {
             Trace.WriteLine("Clear");
-            //BasicAudioPlayer a = new(@"C:\Users\felix\Downloads\");
-            //a.PlayWAV("Test-1");
+            AudioPlayer.PlaySound(path + "Test-1.wav");
 
         }
 

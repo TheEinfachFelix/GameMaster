@@ -7,13 +7,9 @@ namespace GameMaster.Output
     
     public class AudioPlayer
     {
-        public AudioPlayer()
-        {
-
-        }
-
         public static void PlaySound(string sound)
         {
+            if (!Game.GetInstance().AudioEnable) {return; }
             WaveStream mystream;
             WaveOutEvent myevent;
             mystream = new AudioFileReader(sound);
@@ -21,7 +17,5 @@ namespace GameMaster.Output
             myevent.Init(mystream);
             myevent.Play();
         }
-
-
     }
 }

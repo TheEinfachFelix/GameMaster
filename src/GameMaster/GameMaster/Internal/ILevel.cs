@@ -17,5 +17,6 @@
         public int CStep { get; set; }
 
         public string displayContent { get; set; }
+        public int displayFontSize {  get; set; }
     }
 }

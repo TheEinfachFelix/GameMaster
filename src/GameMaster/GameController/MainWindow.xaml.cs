@@ -147,6 +147,7 @@ namespace GameController
             ViewType = 1;
             ViewType = 2;
             DContent = game.CDisplayContent;
+            DFontsize = game.CDisplayFontSize;
 
 
             TotalPoints = 0;            
@@ -263,6 +264,12 @@ namespace GameController
             }
         }
 
+        private int _DFontsize;
+        public int DFontsize
+        {
+            get { return _DFontsize; }
+            set { _DFontsize = value; NotifyPropertyChanged(); }
+        }
 
 
         public event PropertyChangedEventHandler? PropertyChanged;

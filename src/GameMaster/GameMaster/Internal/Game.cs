@@ -32,6 +32,28 @@ namespace GameMaster
                 }
             }
         }
+        public int CDisplayFontSize
+        {
+            get
+            {
+                if (CLevel == null)
+                {
+                    return 10;
+                }
+                return CLevel.displayFontSize;
+
+            }
+            set
+            {
+                if (CLevel != null)
+                {
+                    CLevel.displayFontSize = value;
+                }
+            }
+        }
+
+        public bool AudioEnable { get; set; } = true;
+
         public List<IPlayer> Players { get; set; } = [];
         public List<ILevel> Levels { get; set; } = [];
 
@@ -51,7 +73,9 @@ namespace GameMaster
             }
         }
 
+        [JsonIgnore]
         private ILevel? pCLevel = null;
+        [JsonIgnore]
         public ILevel? CLevel 
         { get 
             { 

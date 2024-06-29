@@ -18,6 +18,6 @@
         <ProgressBar Grid.Row="0" Grid.Column="1" Minimum="{Binding TotalPoints}" Maximum="{Binding PointsB}" Value="-1" Background="CornflowerBlue" Foreground="GreenYellow"/>
         <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding PointsA}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="100" Foreground="White"/>
         <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding PointsB}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="100" Foreground="White"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding DContent}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding DContent}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{Binding DFontsize}" />
     </Grid>
 </Window>

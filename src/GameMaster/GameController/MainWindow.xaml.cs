@@ -1,4 +1,5 @@
 ﻿using GameMaster;
+using GameMaster.Output;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -58,6 +59,9 @@ namespace GameController
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //AudioPlayer.PlaySound("C:/Users/felix/Downloads/Test-1.wav");
+            //AudioPlayer.PlaySound("C:/Users/felix/Downloads/Zu_gut_fuer_dich.wav");
+            
             var btn = (System.Windows.Controls.Button)sender;
             string Btn_Name = btn.Content.ToString()!;
 

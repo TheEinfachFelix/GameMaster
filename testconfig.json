@@ -22,8 +22,8 @@
   "Players": [
     {
       "$type": "GameMaster.Player, GameMaster",
-      "Name": "Betreuer",
-      "Points": 10
+      "Name": "Betrer",
+      "Points": 0
     },
     {
       "$type": "GameMaster.Player, GameMaster",

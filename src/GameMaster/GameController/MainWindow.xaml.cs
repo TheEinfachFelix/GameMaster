@@ -4,42 +4,52 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace GameController
 {
+    
     public partial class MainWindow : Window
     {
         Game game;
         DataBinding dataBinding = new();
         readonly string ConfigLocation = "G:/Felix/GitHub/GameMaster/testconfig.json"; // G:\Felix\GitHub\GameMaster "C:/Github/GameMaster/testconfig.json"
-        
-        obsConnector myobs = new("ws://127.0.0.1:4455", "123456"); //, "","Gameshow"
+        System.Windows.Forms.Timer BindingUpdateTimer;
+
         public MainWindow()
         {
-            game = Game.LoadFromFile(ConfigLocation); // Game.GetInstance();//
+            game = Game.LoadFromFile(ConfigLocation);
 
             Closing += OnWindowClosing!;
             DataContext = dataBinding;
-            game.LevelID *= 1; // causes the level setup to run
+
+            // auto binding updates
+            BindingUpdateTimer = new();
+            BindingUpdateTimer.Tick += new EventHandler(TimedUpdateBinding);
+            BindingUpdateTimer.Interval = 100; // Binding Update Speed
+            BindingUpdateTimer.Start();
 
             InitializeComponent();
 
+            game.Setup();
             UpdateBinding();
 
-            
+            // setup other page
+            GameDisplay gameDisplay = new GameDisplay();
+            gameDisplay.Show();
+            gameDisplay.DataContext = dataBinding;
 
-            
         }
 
         ////////////// Handle Window Closing magic
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
             Trace.WriteLine("OnClosed");
         }
         public void OnWindowClosing(object sender, CancelEventArgs e)
@@ -49,7 +59,11 @@ namespace GameController
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string Btn_Name = (sender as Button).Content.ToString()!;
+            //AudioPlayer.PlaySound("C:/Users/felix/Downloads/Test-1.wav");
+            //AudioPlayer.PlaySound("C:/Users/felix/Downloads/Zu_gut_fuer_dich.wav");
+            
+            var btn = (System.Windows.Controls.Button)sender;
+            string Btn_Name = btn.Content.ToString()!;
 
             if (Btn_Name == "GO")
             {
@@ -58,32 +72,33 @@ namespace GameController
             }
 
             dataBinding.Com_Buffer = Btn_Name;
-            UpdateBinding();
+            //UpdateBinding();
+            game.dot2ConnectorList[0].SendButtonPress(101);
         }
         private void CallBtnFunc() 
         { 
             switch (dataBinding.Com_Buffer) 
             {
                 case "Next Level":
-                    myobs.SetScene("2");
+                    game.obsConnectorList[0].SetScene("2");
                     Trace.WriteLine(game.NextLevel());
                     break;
                 case "Set Level":
-                    myobs.SetScene("1");
+                    game.obsConnectorList[0].SetScene("1");
                     if (Levellist.SelectedIndex == -1) return;
                     game.LevelID = Levellist.SelectedIndex;
                     break;
                 case "Level GO":
-                    game.CLevel.GO();
+                    game.CLevel?.GO();
                     break;
 
                 case "Level GO Back":
-                    game.CLevel.GO(-1);
+                    game.CLevel?.GO(-1);
                     break;
 
                 case "Player is Winner":
                     if (Playerlist.SelectedIndex == -1) return;
-                    game.CLevel.WinnerIs(Playerlist.SelectedIndex);
+                    game.CLevel?.WinnerIs(Playerlist.SelectedIndex);
                     break;
 
                 default:
@@ -91,6 +106,12 @@ namespace GameController
                     break;
             }
         }
+
+        private void TimedUpdateBinding(object? source, EventArgs e )
+        {
+            UpdateBinding();
+        }
+
         private void UpdateBinding()
         {
             dataBinding.UpdateData();
@@ -99,6 +120,14 @@ namespace GameController
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+        private void ListView_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            BindingUpdateTimer.Stop();
+        }
+        private void Levellist_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            BindingUpdateTimer.Start();
         }
     }
 
@@ -117,12 +146,26 @@ namespace GameController
             CLevelID = game.LevelID;
             ViewType = 1;
             ViewType = 2;
+            DContent = game.CDisplayContent;
+
+
+            TotalPoints = 0;            
+            if (game.Players.Count > 1)
+            {
+                PointsA = game.Players[0].Points;
+                PointsB = game.Players[1].Points;
+                TotalPoints = -PointsA-2;
+            }
         }
 
-        private List<ILevel> _LevelList;
+        private List<ILevel>? _LevelList;
         public List<ILevel> LevelList
         {
-            get { return _LevelList; }
+            get 
+            {
+                _LevelList ??= [];
+                return _LevelList; 
+            }
             set
             {
                 _LevelList = value;
@@ -130,10 +173,14 @@ namespace GameController
             }
         }
 
-        private List<IPlayer> _PlayerList;
+        private List<IPlayer>? _PlayerList;
         public List<IPlayer> PlayerList
         {
-            get { return _PlayerList; }
+            get 
+            {
+                _PlayerList ??= [];
+                return _PlayerList; 
+            }
             set
             {
                 _PlayerList = value;
@@ -150,6 +197,41 @@ namespace GameController
                 _ViewType = value;
                 NotifyPropertyChanged();
             }
+        }
+
+        private int _TotalPoints;
+        public int TotalPoints
+        {
+            get { return _TotalPoints; }
+            set
+            {
+                _TotalPoints = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private int _PointsA;
+        public int PointsA
+        {
+            get { return _PointsA; }
+            set
+            {
+                _PointsA = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private int _PointsB;
+        public int PointsB
+        {
+            get { return _PointsB; }
+            set
+            {
+                _PointsB = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public int PointsB1
+        {
+            get { return _PointsB - 1; } set { NotifyPropertyChanged(); }
         }
 
         private int _CLevelID;
@@ -170,6 +252,17 @@ namespace GameController
             }
         }
 
+        private string _DContent = "";
+        public string DContent
+        {
+            get { return _DContent; }
+            set
+            {
+                _DContent = value;
+                NotifyPropertyChanged();
+            }
+        }
+
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -179,37 +272,6 @@ namespace GameController
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
-}
 
-/*
-{
-  "$type": "GameMaster.Game, GameMaster",
-  "Players": [
-    {
-      "$type": "GameMaster.Player, GameMaster",
-      "Name": "Peter",
-      "Points": 0
-    },
-    {
-      "$type": "GameMaster.Player, GameMaster",
-      "Name": "Peter",
-      "Points": 0
     }
-  ],
-  "Levels": [
-    {
-      "$type": "GameMaster.TestLevel, GameMaster",
-      "Name": "Sound",
-      "Beschreibung": "Spielt Sound"
-    },
-    {
-      "$type": "WebGameController.Models.FirstLevel, GameMaster",
-      "Name": "Bzzer to .2",
-      "Beschreibung": "Setzt auf BuzzerPress dot2 Values"
-    }
-  ],
-  "LevelID": 0,
-  "CLevel": null
 }
- */

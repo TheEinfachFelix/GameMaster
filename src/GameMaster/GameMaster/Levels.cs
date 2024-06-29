@@ -12,6 +12,8 @@ namespace GameMaster
         public int Points { get; set; } = 3;
         public int CStep { get; set; } = 0;
 
+        public string displayContent { get; set; } = "später";
+
         public void Setup()
         {
             game = Game.GetInstance();

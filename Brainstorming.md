@@ -23,40 +23,21 @@
 4. [x] implement audio
 5. [x] implement dot2
 6. [X] implement remote
-7. [ ] implement obs
-8. [ ] implement visual generaor
-9. [ ] Simultanios Audio Playing
+7. [x] implement obs
+8. [X] implement visual generaor (M)
+9. [x] Simultanios Audio Playing (M)
 10. [X] Rewite buzzer Handler with all the new feature
 11. [X] Load Data fom Json
 
 ## Mini TODOs
-- led numbering is offset
-- clean / refactor Buzzer
-- smart display of pcb valus
-- create event to update binding
-
-
-## Logic Idea
-
-jedes level implementiert ein interface welches die logik übernimmt
-
-#### Level interface
-- [x] Buzzer Press (index as parameter)
-- [x] setup
-- [x] buzzer releas (index as parameter)
-
-
-### Player
-- [x] name
-- [x] points
-
-### Game
-- [x] Add Player
-- [x] Add LVLs
-
-## Buzzer idea
-
-- [X] interface
-- [X] new text on serial chanel crates evetnt (Serial watcher class)
-- [X] event calls button funtiontn
-- [X] that parses and calls a button handler function
+- [ ] led numbering is offset 
+- [ ] clean / refactor Buzzer add to json
+- [ ] smart display of pcb valus
+- [x] create event to update binding
+- [X] fix vs issues
+- [ ] (distribute game instance)
+- [x] obs setup -> becaus the constructor stuff is not working
+- [x] store instances of outputs in json
+- [X] Stop Autoupdating if editing list (M)
+- [X] fix list refeshing
+- [ ] auto Size text (M)

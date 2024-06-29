@@ -1,24 +1,33 @@
 {
   "$type": "GameMaster.Game, GameMaster",
+  "obsConnectorList": [
+    {
+      "$type": "GameMaster.Output.obsConnector, GameMaster",
+      "Enable": false,
+      "IP": "ws://127.0.0.1:4455",
+      "PW": "123456",
+      "Profile": "",
+      "SceneCol": "Gameshow"
+    }
+  ],
+  "dot2ConnectorList": [
+    {
+      "$type": "GameMaster.Output.dot2Connector, GameMaster",
+      "Enable": false,
+      "IP": "ws://localhost:80/",
+      "pageIndex": 0
+    }
+  ],
+  "CDisplayContent": "später",
   "Players": [
     {
       "$type": "GameMaster.Player, GameMaster",
-      "Name": "Peter",
-      "Points": 7
+      "Name": "Betrer",
+      "Points": 0
     },
     {
       "$type": "GameMaster.Player, GameMaster",
-      "Name": "Peter",
-      "Points": 3
-    },
-    {
-      "$type": "GameMaster.Player, GameMaster",
-      "Name": "Peter",
-      "Points": 16
-    },
-    {
-      "$type": "GameMaster.Player, GameMaster",
-      "Name": "Peter",
+      "Name": "Kinder",
       "Points": 0
     }
   ],
@@ -28,22 +37,25 @@
       "Name": "Sound",
       "Beschreibung": "Spielt Sound",
       "Points": 10,
-      "CStep": 0
+      "CStep": 0,
+      "displayContent": "später"
     },
     {
       "$type": "WebGameController.Models.FirstLevel, GameMaster",
       "Name": "Bzzer to .2",
       "Beschreibung": "Setzt auf BuzzerPress dot2 Values",
       "Points": 2,
-      "CStep": 1
+      "CStep": 1,
+      "displayContent": "peter"
     }
   ],
-  "LevelID": 1,
+  "LevelID": 0,
   "CLevel": {
-    "$type": "WebGameController.Models.FirstLevel, GameMaster",
-    "Name": "Bzzer to .2",
-    "Beschreibung": "Setzt auf BuzzerPress dot2 Values",
-    "Points": 2,
-    "CStep": 1
+    "$type": "GameMaster.TestLevel, GameMaster",
+    "Name": "Sound",
+    "Beschreibung": "Spielt Sound",
+    "Points": 10,
+    "CStep": 0,
+    "displayContent": "später"
   }
 }

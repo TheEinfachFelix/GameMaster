@@ -1,4 +1,5 @@
-﻿using OBSWebsocketDotNet;
+﻿using Newtonsoft.Json;
+using OBSWebsocketDotNet;
 using OBSWebsocketDotNet.Types;
 using System.Diagnostics;
 using System.Reflection;
@@ -10,12 +11,38 @@ namespace GameMaster.Output
     {
         protected OBSWebsocket obs;
 
-        public string IP { get; private set; }
-        public string PW { get; private set; }
-        public string Profile { get; private set; }
-        public string SceneCol { get; private set; }
+        public bool Enable { get; set; } = false;
 
+        private string _ip;
+        public string IP 
+        { 
+            get 
+            { 
+            return _ip;
+            } 
+            set 
+            { 
+                _ip = value;
+                Connect();
+            } 
+        }
+        private string _pw;
+        public string PW
+        {
+            get
+            {
+                return _pw;
+            }
+            set
+            {
+                _pw = value;
+                Connect();
+            }
+        }
+        public string Profile { get; set; }
+        public string SceneCol { get; set; }
 
+        [JsonConstructor]
         public obsConnector(string pIP, string pPW, string pProfile = "", string pSzeneCol = "")
         {
             obs = new();
@@ -23,15 +50,11 @@ namespace GameMaster.Output
             obs.Connected += OnConnect;
             obs.Disconnected += OnDisconnect;
 
-            IP = pIP;
-            PW = pPW;
+            _ip = pIP;
+            _pw = pPW;
+            IP = pIP; // run connect if all params where given
             Profile = pProfile;
             SceneCol = pSzeneCol;
-
-            if (! Connect()) throw new Exception("OBS Connection not possible \nread Trace for more Detail");
-
-            printError(obs.IsConnected.ToString());
-            Setup();
         }
 
         ~obsConnector() 
@@ -65,11 +88,11 @@ namespace GameMaster.Output
             {
                 if (e.WebsocketDisconnectionInfo.Exception != null)
                 {
-                    printError($"Connection failed: CloseCode: {e.ObsCloseCode} Desc: {e.WebsocketDisconnectionInfo?.CloseStatusDescription} Exception:{e.WebsocketDisconnectionInfo?.Exception?.Message}\nType: {e.WebsocketDisconnectionInfo.Type}");
+                    printError($"Connection failed: CloseCode: {e.ObsCloseCode} Desc: {e.WebsocketDisconnectionInfo?.CloseStatusDescription} Exception:{e.WebsocketDisconnectionInfo?.Exception?.Message}\nType: {e.WebsocketDisconnectionInfo?.Type}");
                 }
                 else
                 {
-                    printError($"Connection failed: CloseCode: {e.ObsCloseCode} Desc: {e.WebsocketDisconnectionInfo?.CloseStatusDescription}\nType: {e.WebsocketDisconnectionInfo.Type}");
+                    printError($"Connection failed: CloseCode: {e.ObsCloseCode} Desc: {e.WebsocketDisconnectionInfo?.CloseStatusDescription}\nType: {e.WebsocketDisconnectionInfo?.Type}");
                 }
             }
             else
@@ -81,6 +104,7 @@ namespace GameMaster.Output
 
         public bool Connect()
         {
+            if (IP == null || PW == null || !Enable) return false;
             if (!obs.IsConnected)
             {
                 try
@@ -96,14 +120,18 @@ namespace GameMaster.Output
             }
             return false;
         }
-        private void Setup()
+        public void Setup()
         {
+            if (!Enable) return;    
+            Profile ??= "";
+            SceneCol ??= "";
             if (Profile != "") obs.SetCurrentProfile(Profile);
             if (SceneCol != "") obs.SetCurrentSceneCollection(SceneCol);
         }
 
         public void SetScene(string SceneName)
         {
+            if (!Enable) return;
             if (!obs.IsConnected)
             {
                 printError("not Connected");
@@ -111,7 +139,5 @@ namespace GameMaster.Output
             }
             obs.SetCurrentProgramScene(SceneName);
         }
-
     }
 }
-//Identifiziert

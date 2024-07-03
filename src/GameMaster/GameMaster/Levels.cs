@@ -41,6 +41,9 @@ namespace GameMaster
         {
             Trace.WriteLine("BuzzerRelease" + BuzzerID.ToString());
         }
+        public void TasterEvent(int TasterID, bool Value)
+        {
+        }
 
         public void Clear()
         {

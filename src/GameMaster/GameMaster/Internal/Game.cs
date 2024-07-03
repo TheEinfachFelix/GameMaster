@@ -13,6 +13,10 @@ namespace GameMaster
         public List<obsConnector> obsConnectorList { get; set; } = [];
         public List<dot2Connector> dot2ConnectorList { get; set; } = [];
 
+        [JsonIgnore]
+        public List<BuzzerHandler> buzzerHandlerList { get; set;} = [];
+
+        [JsonIgnore]
         public string CDisplayContent
         {
             get
@@ -32,6 +36,7 @@ namespace GameMaster
                 }
             }
         }
+        [JsonIgnore]
         public int CDisplayFontSize
         {
             get
@@ -138,6 +143,7 @@ namespace GameMaster
             foreach (var obs in obsConnectorList)
             {
                 obs.Setup();
+                obs.SetScene("normal");
             }
             foreach (var dot2 in dot2ConnectorList)
             {
@@ -145,6 +151,8 @@ namespace GameMaster
                 while (!dot2.Ready && dot2.Enable) { }
             }
 
+            buzzerHandlerList.Add(new BuzzerHandler(8, 3, 12));
+            buzzerHandlerList[0].Start(3, 115200);
         }
 
         // Buzzer Routing
@@ -159,6 +167,13 @@ namespace GameMaster
             if (CLevel == null) { throw new Exception("CLevel is null"); }
 
             CLevel.BuzzerRelease(BuzzerID);
+        }
+
+        public void TasterEvent(int BuzzerID, bool Value)
+        {
+            if (CLevel == null) { throw new Exception("CLevel is null"); }
+
+            CLevel.TasterEvent(BuzzerID, Value);
         }
 
         // Seting the Levels

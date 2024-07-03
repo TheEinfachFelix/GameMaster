@@ -6,6 +6,7 @@
         public void Clear();
         public void BuzzerPress(int BuzzerID);
         public void BuzzerRelease(int BuzzerID);
+        public void TasterEvent(int TasterID, bool Value);
 
         public void WinnerIs(int PlayerID);
 

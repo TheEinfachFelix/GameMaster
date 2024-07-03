@@ -1,0 +1,63 @@
+{
+  "$type": "GameMaster.Game, GameMaster",
+  "obsConnectorList": [
+    {
+      "$type": "GameMaster.Output.obsConnector, GameMaster",
+      "Enable": true,
+      "IP": "ws://127.0.0.1:4455",
+      "PW": "123456",
+      "Profile": "",
+      "SceneCol": "Gameshow"
+    }
+  ],
+  "dot2ConnectorList": [
+    {
+      "$type": "GameMaster.Output.dot2Connector, GameMaster",
+      "Enable": true,
+      "IP": "ws://localhost:80/",
+      "pageIndex": 0
+    }
+  ],
+  "AudioEnable": true,
+  "Players": [
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Betreuer",
+      "Points": 0
+    },
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Kinder",
+      "Points": 0
+    }
+  ],
+  "Levels": [
+    {
+      "$type": "GameMaster.TestLevel, GameMaster",
+      "Name": "Sound",
+      "Beschreibung": "Spielt Sound",
+      "Points": 10,
+      "CStep": 0,
+      "displayContent": "später",
+      "displayFontSize": 100,
+      "path": "C:/Users/felix/Downloads/"
+    },
+    {
+      "$type": "GameMaster.Level.FragenLevel, GameMaster",
+      "Name": "Fragen",
+      "Beschreibung": "Hier Ein Paar Fragen",
+      "displayFontSize": 100,
+      "QuestionList": [
+        "a",
+        "b",
+        "c"
+      ],
+      "QuestionPoints": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "LevelID": 0
+}

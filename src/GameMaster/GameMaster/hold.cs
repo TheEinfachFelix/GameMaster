@@ -1,6 +1,7 @@
 ﻿using GameMaster;
 using GameMaster.Input;
 using GameMaster.Output;
+using Newtonsoft.Json;
 
 
 namespace WebGameController.Models
@@ -16,8 +17,13 @@ namespace WebGameController.Models
         public int CStep { get; set; }
         public string displayContent { get; set; }
         public int displayFontSize { get; set; }
+
+        [JsonIgnore]
+        public bool BuzzerDisabeled { get; set; }
         public void BuzzerPress(int BuzzerID)
         {
+            if (BuzzerDisabeled) { return; }
+            BuzzerDisabeled = true;
             //dot2.SendButtonPress(101);
 
             //dot2.SetFaderValue(1, 100);
@@ -43,6 +49,7 @@ namespace WebGameController.Models
 
         public void Setup()
         {
+            BuzzerDisabeled = false;
             game = Game.GetInstance();
         }
 

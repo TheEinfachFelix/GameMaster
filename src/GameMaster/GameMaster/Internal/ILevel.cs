@@ -19,5 +19,7 @@
 
         public string displayContent { get; set; }
         public int displayFontSize {  get; set; }
+
+        public bool BuzzerDisabeled { get; set; }
     }
 }

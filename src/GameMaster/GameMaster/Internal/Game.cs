@@ -1,6 +1,7 @@
 ﻿using GameMaster.Input;
 using GameMaster.Output;
 using Newtonsoft.Json;
+using OBSWebsocketDotNet.Types;
 using System.Diagnostics;
 
 namespace GameMaster
@@ -63,6 +64,7 @@ namespace GameMaster
         public List<ILevel> Levels { get; set; } = [];
 
         private int pLevelID  = -1;
+        [JsonIgnore]
         public int LevelID
         {
             get 
@@ -138,7 +140,7 @@ namespace GameMaster
         public void Setup()
         {
             Trace.WriteLine("Game Setup:");
-            LevelID *= 1; // causes the level setup to run
+            LevelID = 0; // causes the level setup to run
 
             foreach (var obs in obsConnectorList)
             {

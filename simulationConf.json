@@ -23,7 +23,7 @@
     {
       "$type": "GameMaster.Player, GameMaster",
       "Name": "Betreuer",
-      "Points": 0
+      "Points": 7
     },
     {
       "$type": "GameMaster.Player, GameMaster",
@@ -33,14 +33,13 @@
   ],
   "Levels": [
     {
-      "$type": "GameMaster.TestLevel, GameMaster",
-      "Name": "Sound",
-      "Beschreibung": "Spielt Sound",
-      "Points": 10,
-      "CStep": 0,
-      "displayContent": "später",
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Erste",
+      "Beschreibung": "einfach ein einfaches",
+      "Points": 2,
+      "displayContent": "Halloo",
       "displayFontSize": 100,
-      "path": "C:/Users/felix/Downloads/"
+      "BuzzerEnabled": true
     },
     {
       "$type": "GameMaster.Level.FragenLevel, GameMaster",
@@ -55,9 +54,8 @@
       "QuestionPoints": [
         1,
         2,
-        3
+        4
       ]
     }
-  ],
-  "LevelID": 0
+  ]
 }

@@ -9,50 +9,30 @@ using System.Threading.Tasks;
 
 namespace GameMaster.Level
 {
-    public class FragenLevel : ILevel
+    public class EinfachesLevel : ILevel
     {
         private Game game = Game.GetInstance();
         dot2Connector dot2;
         public string Name { get; set; }
         public string Beschreibung { get; set; }
-        [JsonIgnore]
         public int Points { get; set; }
 
-        private int _CStep;
         [JsonIgnore]
-        public int CStep 
-        { 
-            get 
-            {
-                return _CStep; 
-            } 
-            set 
-            {
-                if (QuestionList.Count()-1 < value)
-                {
-                    return;
-                }
-                _CStep = value;
-                Points = QuestionPoints[CStep];
-                displayContent = QuestionList[CStep];
-                BuzzerDisabeled = false;
-            } 
-        }
-        [JsonIgnore]
+        public int CStep { get; set; } = -1;
         public string displayContent { get; set; }
         public int displayFontSize { get; set; }
 
-        public List<String> QuestionList { get; set; }
-        public List<int> QuestionPoints { get; set; }
-
+        public bool BuzzerEnabled { get; set; } 
         [JsonIgnore]
         public bool BuzzerDisabeled { get; set; }
 
+       
         public void BuzzerPress(int BuzzerID)
         {
-            if (BuzzerDisabeled) {return; }
+            if ((!BuzzerEnabled) || BuzzerDisabeled) { return; }
             BuzzerDisabeled = true;
-            if (BuzzerID == 0) { 
+            if (BuzzerID == 0)
+            {
                 dot2.SendButtonPress(101);
             }
             if (BuzzerID == 1)
@@ -78,8 +58,8 @@ namespace GameMaster.Level
         }
 
         public void Setup()
-        { 
-
+        {
+            BuzzerDisabeled = false;
             game = Game.GetInstance();
             dot2 = game.dot2ConnectorList[0];
             CStep = 0;
@@ -89,8 +69,10 @@ namespace GameMaster.Level
 
         public void WinnerIs(int PlayerID)
         {
+            BuzzerDisabeled = true;
             game.Players[PlayerID].Points += Points;
             CStep++;
         }
     }
 }
+

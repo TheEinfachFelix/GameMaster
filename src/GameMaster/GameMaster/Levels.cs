@@ -1,4 +1,5 @@
 ﻿using GameMaster.Output;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace GameMaster
@@ -14,18 +15,21 @@ namespace GameMaster
         public string displayContent { get; set; }
         public int displayFontSize { get; set; }
 
+        [JsonIgnore]
+        public bool BuzzerDisabeled { get; set; }
         public string path { get; set; } = "C:/Users/felix/Downloads/";
 
         public void Setup()
         {
+            BuzzerDisabeled = false;
             game = Game.GetInstance();
-            Trace.WriteLine("Setup Level ID is: " + game.LevelID);
         }
         public void BuzzerPress(int BuzzerID)
         {
+            if (BuzzerDisabeled) { return; }
+            BuzzerDisabeled = true;
             AudioPlayer.PlaySound(path + "Zu_gut_fuer_dich.wav");
 
-            Trace.WriteLine("BuzzerPress" + BuzzerID.ToString());
             if (BuzzerID == 1) 
             { 
                 if (!game.NextLevel()) 

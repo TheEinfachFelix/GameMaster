@@ -44,6 +44,7 @@ namespace GameController
             GameDisplay gameDisplay = new GameDisplay();
             gameDisplay.Show();
             gameDisplay.DataContext = dataBinding;
+
         }
 
         ////////////// Handle Window Closing magic
@@ -147,6 +148,7 @@ namespace GameController
             ViewType = 2;
             DContent = game.CDisplayContent;
             DFontsize = game.CDisplayFontSize;
+
 
 
             TotalPoints = 0;            
@@ -270,6 +272,12 @@ namespace GameController
             set { _DFontsize = value; NotifyPropertyChanged(); }
         }
 
+        private int _Disabeled;
+        public int Disabeled
+        {
+            get { return _Disabeled; }
+            set { _Disabeled = value; NotifyPropertyChanged(); }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

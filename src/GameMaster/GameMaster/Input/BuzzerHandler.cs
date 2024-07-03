@@ -178,7 +178,6 @@ namespace GameMaster.Input
             set
             {
                 _LEDState = value;
-                Trace.WriteLine("pene");
                 parent.sendData("{"+ $"\"Output_Type\" : \"Buzzer\", \"ID\" : {myID+1}, \"Value\" : {_LEDState.ToString().ToLower()}" + "}");
             }
         }

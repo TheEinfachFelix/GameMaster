@@ -16,16 +16,16 @@ if (true)
     pLevel.Add(p1);
     pLevel.Add(p2);
 
-    game.Levels = pLevel;
 
-    game.NextLevel();
+    game.Levels = pLevel;
+    game.LevelID = 0;
+
+    game.Setup();
 
 
     Console.WriteLine("Hello, World!");
 
-    var a = new BuzzerHandler(8,3,12);
-
-    a.Start(3, 115200);
+    var a = game.buzzerHandlerList[0];
 
 
     a.BuzzerList[1].LEDState = true;
@@ -35,7 +35,8 @@ if (true)
 }
 else if(false)
 {
-    dot2Connector dot2 = new();
+    Game game = Game.GetInstance();
+    dot2Connector dot2 = game.dot2ConnectorList[0];
 
     dot2.Open();
     while (!dot2.Ready) { }

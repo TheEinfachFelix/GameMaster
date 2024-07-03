@@ -60,11 +60,12 @@ namespace GameMaster.Input
             port.Handshake = Handshake.RequestToSend; // DAS IST EXTREM WICHTIG
 
             // Setup Eventhandler
-            port.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
+            port.DataReceived += new SerialDataReceivedEventHandler(DataReceiver);
 
             // Begin communications
             port.Open();
             port.DiscardInBuffer();
+            Trace.WriteLine("BuzzerOPEN");
         }
         public void Stop()
         {
@@ -73,14 +74,13 @@ namespace GameMaster.Input
             port.Close();
             port = null;
 
-            Console.WriteLine("stop");
+            Trace.WriteLine("Buzzerstop");
         }
-        private void DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void DataReceiver(object sender, SerialDataReceivedEventArgs e)
         {
             if (port == null) { return; }
-            msg += port.ReadExisting();
 
-            //Console.WriteLine(msg);
+            msg += port.ReadExisting();
 
             CheckDataTransmissionDone(msg);
         }
@@ -98,16 +98,21 @@ namespace GameMaster.Input
             if (countClose == countOpen && countOpen != 0 && pmsg != "") // the msg is copletly recived
             {
                 msg = "";
-                HandleData(pmsg);
+                foreach (string mitem in pmsg.Split("{"))
+                {
+                    if (mitem != "")
+                    {
+                        var item = mitem;
+                        item = "{" + item;
+                        HandleData(item);
+                    }
+                }
+                
             }
         }
         private void HandleData(string pmsg)
         {
-            
             BuzzerJson JsonMsg = JsonConvert.DeserializeObject<BuzzerJson>(pmsg)!;
-            
-
-
 
             // do Error catching
             if (JsonMsg == null) { throw new Exception("Buzzer PCB recieved Json not readebel"); }
@@ -208,14 +213,7 @@ namespace GameMaster.Input
 
                 if (newVal != _TasterState)
                 {
-                    if (newVal)
-                    {
-                        //game.BuzzerPress(myID);
-                    }
-                    else
-                    {
-                        //game.BuzzerRelease(myID); //TODO: handle this
-                    }
+                    game.TasterEvent(myID, newVal);
                 }
                 _TasterState = newVal;
             }

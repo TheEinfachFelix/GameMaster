@@ -1,5 +1,7 @@
 ﻿using GameMaster;
+using GameMaster.Input;
 using GameMaster.Output;
+using GameMaster.Level;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -17,7 +19,7 @@ namespace GameController
     {
         Game game;
         DataBinding dataBinding = new();
-        readonly string ConfigLocation = "G:/Felix/GitHub/GameMaster/testconfig.json"; // G:\Felix\GitHub\GameMaster "C:/Github/GameMaster/testconfig.json"
+        readonly string ConfigLocation = "C:/Github/GameMaster/simulationConf.json";//"G:/Felix/GitHub/GameMaster/testconfig.json"; // G:\Felix\GitHub\GameMaster "C:/Github/GameMaster/testconfig.json"
         System.Windows.Forms.Timer BindingUpdateTimer;
 
         public MainWindow()
@@ -80,11 +82,9 @@ namespace GameController
             switch (dataBinding.Com_Buffer) 
             {
                 case "Next Level":
-                    game.obsConnectorList[0].SetScene("2");
                     Trace.WriteLine(game.NextLevel());
                     break;
                 case "Set Level":
-                    game.obsConnectorList[0].SetScene("1");
                     if (Levellist.SelectedIndex == -1) return;
                     game.LevelID = Levellist.SelectedIndex;
                     break;
@@ -148,6 +148,7 @@ namespace GameController
             ViewType = 2;
             DContent = game.CDisplayContent;
             DFontsize = game.CDisplayFontSize;
+
 
 
             TotalPoints = 0;            
@@ -271,6 +272,12 @@ namespace GameController
             set { _DFontsize = value; NotifyPropertyChanged(); }
         }
 
+        private int _Disabeled;
+        public int Disabeled
+        {
+            get { return _Disabeled; }
+            set { _Disabeled = value; NotifyPropertyChanged(); }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

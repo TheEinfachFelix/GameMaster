@@ -1,6 +1,7 @@
 ﻿using GameMaster;
 using GameMaster.Input;
 using GameMaster.Output;
+using Newtonsoft.Json;
 
 
 namespace WebGameController.Models
@@ -10,15 +11,19 @@ namespace WebGameController.Models
         private Game game = Game.GetInstance();
         //dot2Connector dot2 = new();
 
-        public string Name { get; set; } = "Bzzer to .2";
-        public string Beschreibung { get; set; } = "Setzt auf BuzzerPress dot2 Values";
-        public int Points { get; set; } = 2;
-        public int CStep { get; set; } = 1;
-        public string displayContent { get; set; } = "peter";
-        public int displayFontSize { get; set; } = 200;
+        public string Name { get; set; }
+        public string Beschreibung { get; set; }
+        public int Points { get; set; }
+        public int CStep { get; set; }
+        public string displayContent { get; set; }
+        public int displayFontSize { get; set; }
 
+        [JsonIgnore]
+        public bool BuzzerDisabeled { get; set; }
         public void BuzzerPress(int BuzzerID)
         {
+            if (BuzzerDisabeled) { return; }
+            BuzzerDisabeled = true;
             //dot2.SendButtonPress(101);
 
             //dot2.SetFaderValue(1, 100);
@@ -35,7 +40,6 @@ namespace WebGameController.Models
 
         public void Clear()
         {
-            //dot2.Close();
         }
 
         public void GO(int steps = 1)
@@ -45,9 +49,12 @@ namespace WebGameController.Models
 
         public void Setup()
         {
+            BuzzerDisabeled = false;
             game = Game.GetInstance();
-            //dot2.Open();
-            //while (!dot2.Ready) { }
+        }
+
+        public void TasterEvent(int TasterID, bool Value)
+        {
         }
 
         public void WinnerIs(int PlayerID)

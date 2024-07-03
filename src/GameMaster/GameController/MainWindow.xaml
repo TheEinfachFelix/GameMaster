@@ -101,6 +101,13 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        <GridViewColumn Header="Disabeled" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox PreviewTextInput="NumberValidationTextBox"  Text="{Binding BuzzerDisabeled}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                     <GridView x:Key="two"/>
 

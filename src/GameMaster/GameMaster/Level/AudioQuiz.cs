@@ -12,7 +12,7 @@ namespace GameMaster.Level
     public class AudioQuiz : ILevel
     {
         private Game game = Game.GetInstance();
-        dot2Connector dot2;
+
         public string Name { get; set; }
         public string Beschreibung { get; set; }
         [JsonIgnore]
@@ -55,7 +55,7 @@ namespace GameMaster.Level
                 else
                 {
                     displayContent = "";
-                    LastPlayed = AudioPlayer.PlaySound(Path + AudioList[(CStep - 1) / 2] + ".mp3");
+                    LastPlayed = AudioPlayer.PlaySound(Path + AudioList[((CStep - 1) / 2)] + ".mp3");
                 }                
             } 
         }
@@ -83,13 +83,6 @@ namespace GameMaster.Level
                 LastPlayed.Stop();
             }
 
-            if (BuzzerID == 0) { 
-                dot2.SendButtonPress(101);
-            }
-            if (BuzzerID == 1)
-            {
-                dot2.SendButtonPress(102);
-            }
         }
 
         public void BuzzerRelease(int BuzzerID)
@@ -112,7 +105,6 @@ namespace GameMaster.Level
         { 
 
             game = Game.GetInstance();
-            dot2 = game.dot2ConnectorList[0];
             CStep = 0;
             game.obsConnectorList[0].SetScene("FragenLVL");
 

@@ -12,7 +12,6 @@ namespace GameMaster.Level
     public class EinfachesLevel : ILevel
     {
         private Game game = Game.GetInstance();
-        dot2Connector dot2;
         public string Name { get; set; }
         public string Beschreibung { get; set; }
         public int Points { get; set; }
@@ -32,14 +31,7 @@ namespace GameMaster.Level
             if ((!BuzzerEnabled) || BuzzerDisabeled) { return; }
             BuzzerDisabeled = true;
             AudioPlayer.PlaySound("C:/Users/felix/Downloads/buz.wav");
-            if (BuzzerID == 0)
-            {
-                dot2.SendButtonPress(101);
-            }
-            if (BuzzerID == 1)
-            {
-                dot2.SendButtonPress(102);
-            }
+
         }
 
         public void BuzzerRelease(int BuzzerID)
@@ -61,8 +53,6 @@ namespace GameMaster.Level
         public void Setup()
         {
             BuzzerDisabeled = false;
-            game = Game.GetInstance();
-            dot2 = game.dot2ConnectorList[0];
             CStep = 0;
             game.obsConnectorList[0].SetScene("FragenLVL");
 
@@ -70,7 +60,6 @@ namespace GameMaster.Level
 
         public void WinnerIs(int PlayerID)
         {
-            dot2.SendButtonPress(101);
             BuzzerDisabeled = true;
             game.Players[PlayerID].Points += Points;
             CStep++;

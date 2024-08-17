@@ -14,8 +14,7 @@ namespace GameMaster
         public List<obsConnector> obsConnectorList { get; set; } = [];
         public List<dot2Connector> dot2ConnectorList { get; set; } = [];
 
-        [JsonIgnore]
-        public List<BuzzerHandler> buzzerHandlerList { get; set;} = [];
+        public BuzzerControllerMngr BuzzerControll { get; set;}
 
         [JsonIgnore]
         public string CDisplayContent
@@ -139,44 +138,28 @@ namespace GameMaster
 
         public void Setup()
         {
+
+
             Trace.WriteLine("Game Setup:");
             LevelID = 0; // causes the level setup to run
 
+            Trace.Write("Setting up OBS...");
             foreach (var obs in obsConnectorList)
             {
                 obs.Setup();
                 obs.SetScene("normal");
             }
-            Trace.WriteLine("1111111111");
+            Trace.WriteLine("  -DONE-");
+            Trace.Write("Setting up Dot2...");
             foreach (var dot2 in dot2ConnectorList)
             {
                 dot2.Open();
                 while (!dot2.Ready && dot2.Enable) { }
             }
-            Trace.WriteLine("22222222222");
-            buzzerHandlerList.Add(new BuzzerHandler(8, 3, 12));
-            buzzerHandlerList[0].Start(3, 115200);
-            Trace.WriteLine("dsafdsf");
-        }
-
-        // Buzzer Routing
-        public void BuzzerPress(int BuzzerID)
-        {
-            if (CLevel == null) { throw new Exception("CLevel is null"); }
-            CLevel.BuzzerPress(BuzzerID);
-        }
-        public void BuzzerRelease(int BuzzerID)
-        {
-            if (CLevel == null) { throw new Exception("CLevel is null"); }
-
-            CLevel.BuzzerRelease(BuzzerID);
-        }
-
-        public void TasterEvent(int BuzzerID, bool Value)
-        {
-            if (CLevel == null) { throw new Exception("CLevel is null"); }
-
-            CLevel.TasterEvent(BuzzerID, Value);
+            Trace.WriteLine("  -DONE-");
+            Trace.Write("Setting up Buzzer...");
+            BuzzerControll.Setup();
+            Trace.WriteLine("  -DONE-");
         }
 
         // Seting the Levels

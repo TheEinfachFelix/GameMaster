@@ -18,8 +18,40 @@
       "pageIndex": 0
     }
   ],
-  "CDisplayContent": "später",
-  "CDisplayFontSize": 100,
+  "BuzzerControll": {
+    "$type": "GameMaster.Input.BuzzerControllerMngr, GameMaster",
+    "isDisabeled": false,
+    "NormalCollor": [
+      10,
+      100,
+      20
+    ],
+    "PressCollor": [
+      100,
+      0,
+      0
+    ],
+    "BlockCollor": [
+      10,
+      100,
+      100
+    ],
+    "BuzzerControllerList": [
+      {
+        "$type": "GameMaster.Input.BuzzerController, GameMaster",
+        "AmountOfBuzzer": 8,
+        "AmountOfTaster": 3,
+        "AmountOfLED": 12,
+        "ComPort": 3,
+        "Baudrate": 0,
+        "Dummy": true,
+        "dot2Valus": [
+          201,202
+          
+        ]
+      }
+    ]
+  },
   "AudioEnable": false,
   "Players": [
     {
@@ -53,6 +85,5 @@
       "displayContent": "peter",
       "displayFontSize": 200
     }
-  ],
-  "LevelID": 0
+  ]
 }

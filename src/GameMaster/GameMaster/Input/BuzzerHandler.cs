@@ -162,10 +162,12 @@ namespace GameMaster.Input
                 {
                     if (!newVal)
                     {
+                        game = Game.GetInstance();
                         game.BuzzerPress(myID);
                     }
                     else
                     {
+                        game = Game.GetInstance();
                         game.BuzzerRelease(myID);
                     }
                 }

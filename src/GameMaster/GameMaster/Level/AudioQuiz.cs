@@ -9,31 +9,81 @@ using System.Threading.Tasks;
 
 namespace GameMaster.Level
 {
-    public class EinfachesLevel : ILevel
+    public class AudioQuiz : ILevel
     {
         private Game game = Game.GetInstance();
         dot2Connector dot2;
         public string Name { get; set; }
         public string Beschreibung { get; set; }
+        [JsonIgnore]
         public int Points { get; set; }
 
+        private int _CStep;
         [JsonIgnore]
-        public int CStep { get; set; } = -1;
+        public int CStep 
+        { 
+            get 
+            {
+                return _CStep; 
+            } 
+            set 
+            {
+                if (LastPlayed != null)
+                {
+                    LastPlayed.Stop();
+                }
+                if (value == 0)
+                {
+                    displayContent = "Spiel 5";
+                    return;
+                }
+
+                if (AudioList.Count()-1 < (value-1)/2)
+                {
+                    return;
+                }
+
+  
+                Points = QuestionPoints[(CStep - (CStep % 2)) / 2];
+                _CStep = value;
+                BuzzerDisabeled = false;
+
+                if (value % 2 == 0)
+                {
+                    displayContent = AudioList[CStep / 2 - 1];
+                }
+                else
+                {
+                    displayContent = "";
+                    LastPlayed = AudioPlayer.PlaySound(Path + AudioList[(CStep - 1) / 2] + ".mp3");
+                }                
+            } 
+        }
+        [JsonIgnore]
         public string displayContent { get; set; }
         public int displayFontSize { get; set; }
 
-        public bool BuzzerEnabled { get; set; } 
+        public List<String> AudioList { get; set; }
+        public List<int> QuestionPoints { get; set; }
+
+        public string Path { get; set; }
+
         [JsonIgnore]
         public bool BuzzerDisabeled { get; set; }
 
-       
+        private NAudio.Wave.WaveOutEvent? LastPlayed;
+
         public void BuzzerPress(int BuzzerID)
         {
-            if ((!BuzzerEnabled) || BuzzerDisabeled) { return; }
+            if (BuzzerDisabeled) {return; }
             BuzzerDisabeled = true;
             AudioPlayer.PlaySound("C:/Users/felix/Downloads/buz.wav");
-            if (BuzzerID == 0)
+            if (LastPlayed != null)
             {
+                LastPlayed.Stop();
+            }
+
+            if (BuzzerID == 0) { 
                 dot2.SendButtonPress(101);
             }
             if (BuzzerID == 1)
@@ -59,8 +109,8 @@ namespace GameMaster.Level
         }
 
         public void Setup()
-        {
-            BuzzerDisabeled = false;
+        { 
+
             game = Game.GetInstance();
             dot2 = game.dot2ConnectorList[0];
             CStep = 0;
@@ -70,11 +120,8 @@ namespace GameMaster.Level
 
         public void WinnerIs(int PlayerID)
         {
-            dot2.SendButtonPress(101);
-            BuzzerDisabeled = true;
             game.Players[PlayerID].Points += Points;
             CStep++;
         }
     }
 }
-

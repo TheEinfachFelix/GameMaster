@@ -67,13 +67,13 @@
             <DockPanel DockPanel.Dock="Top">
                 <TextBlock Text="Level Information:" TextAlignment="Center" FontSize="20" Width="222" />
                 <TextBlock Text="Level ID is:" TextAlignment="Right" VerticalAlignment="Center"/>
-                <TextBlock Text="{Binding CLevelID}" TextAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding CLevelID}" TextAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
             </DockPanel>
 
             <ListView MouseEnter="ListView_MouseEnter" MouseLeave="Levellist_MouseLeave" ItemsSource="{Binding LevelList}" Name="Levellist" Background="Aqua">
                 <ListView.Resources>
                     <GridView x:Key="one">
-                        <GridViewColumn Header="Name" >
+                        <GridViewColumn Header="Name" Width="80" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox Text="{Binding Name}" />

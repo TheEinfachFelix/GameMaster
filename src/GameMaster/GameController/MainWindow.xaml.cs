@@ -19,11 +19,12 @@ namespace GameController
     {
         Game game;
         DataBinding dataBinding = new();
-        readonly string ConfigLocation = "C:/Github/GameMaster/simulationConf.json";//"G:/Felix/GitHub/GameMaster/testconfig.json"; // G:\Felix\GitHub\GameMaster "C:/Github/GameMaster/testconfig.json"
+        readonly string ConfigLocation = "C:/Github/GameMaster/kinder.json";//"G:/Felix/GitHub/GameMaster/testconfig.json"; // G:\Felix\GitHub\GameMaster "C:/Github/GameMaster/testconfig.json"
         System.Windows.Forms.Timer BindingUpdateTimer;
 
         public MainWindow()
         {
+            
             game = Game.LoadFromFile(ConfigLocation);
 
             Closing += OnWindowClosing!;
@@ -73,9 +74,10 @@ namespace GameController
                 return;
             }
 
+
             dataBinding.Com_Buffer = Btn_Name;
             //UpdateBinding();
-            game.dot2ConnectorList[0].SendButtonPress(101);
+
         }
         private void CallBtnFunc() 
         { 

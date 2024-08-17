@@ -147,21 +147,22 @@ namespace GameMaster
                 obs.Setup();
                 obs.SetScene("normal");
             }
+            Trace.WriteLine("1111111111");
             foreach (var dot2 in dot2ConnectorList)
             {
                 dot2.Open();
                 while (!dot2.Ready && dot2.Enable) { }
             }
-
+            Trace.WriteLine("22222222222");
             buzzerHandlerList.Add(new BuzzerHandler(8, 3, 12));
             buzzerHandlerList[0].Start(3, 115200);
+            Trace.WriteLine("dsafdsf");
         }
 
         // Buzzer Routing
         public void BuzzerPress(int BuzzerID)
         {
             if (CLevel == null) { throw new Exception("CLevel is null"); }
-            
             CLevel.BuzzerPress(BuzzerID);
         }
         public void BuzzerRelease(int BuzzerID)

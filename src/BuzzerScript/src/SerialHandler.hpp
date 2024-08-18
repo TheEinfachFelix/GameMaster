@@ -5,4 +5,4 @@
 #include "Config.hpp"
 
 void PrintButtonValueChanged(String type, int ID, bool Value);
-void PrintError(String errorMSG);
+void PrintError(String errorMSG, bool panic);

@@ -25,7 +25,7 @@ namespace GameMaster.Input
 
         public void Setup()
         {
-            BuzzerControllerList.Add(new(8, 3, 12));
+
 
             game = Game.GetInstance();
             if (isDisabeled) return;
@@ -83,41 +83,45 @@ namespace GameMaster.Input
         public List<int> dot2Valus { get; set; } = [0,5];
 
 
-        private bool _BuzzerSisabeled = false;
+        private bool _BuzzerDisabeled = false;
         [JsonIgnore]
         public bool BuzzerDisabeled 
         {  get
             {
-                return _BuzzerSisabeled;
+                return _BuzzerDisabeled;
             }
-            set
+        }
+        public void setBuzzerDisabeled(bool val)
+        {
+            _BuzzerDisabeled = val;
+
+            if (val)
             {
-                _BuzzerSisabeled= value;
+                // disabeled collor
+                var Collor = Game.GetInstance().BuzzerControll.BlockCollor;
+                foreach (Buzzer item in BuzzerList)
+                {
+                    LEDListe[item.myID].SetLEDColor(Collor[0], Collor[1], Collor[2]);
 
-                if (_BuzzerSisabeled)
-                {
-                    // disabeled collor
-                    var Collor = Game.GetInstance().BuzzerControll.BlockCollor;
-                    foreach (Buzzer item in BuzzerList)
-                    {
-                        LEDListe[item.myID].SetLEDColor(Collor[0], Collor[1], Collor[2]);
-                    }
-                } else
-                {
-                    // restore collor
-                    foreach (Buzzer item in BuzzerList)
-                    {
-                        // get previouse collor
-                        var Collor = Game.GetInstance().BuzzerControll.NormalCollor;
-                        if (item.TasterState)
-                        {
-                            Collor = Game.GetInstance().BuzzerControll.PressCollor;
-                        }
-                        LEDListe[item.myID].SetLEDColor(Collor[0], Collor[1], Collor[2]);
-                    }
                 }
-
             }
+            else
+            {
+                Game game = Game.GetInstance();
+                // restore collor
+                foreach (Buzzer item in BuzzerList)
+                {
+                    // get previouse collor
+                    var Collor = game.BuzzerControll.NormalCollor;
+                    if (item.TasterState)
+                    {
+                        Collor = game.BuzzerControll.PressCollor;
+                    }
+                    LEDListe[item.myID].SetLEDColor(Collor[0], Collor[1], Collor[2]);
+
+                }
+            }
+
         }
 
 
@@ -154,6 +158,10 @@ namespace GameMaster.Input
 
             if (Dummy) return;
             BuzzerControlerInterface = new(ComPort, Baudrate, this);
+            BuzzerControlerInterface.Setup();
+
+
+            setBuzzerDisabeled(false);
         }
 
         public void TasterEvent(int TasterID, bool Value)
@@ -161,7 +169,7 @@ namespace GameMaster.Input
             // taster 0 ist disable
             if (TasterID == 0)
             {
-                BuzzerDisabeled = Value;
+                setBuzzerDisabeled(Value);
                 return;
             }
             
@@ -207,11 +215,17 @@ namespace GameMaster.Input
         private BuzzerController controller;
         private SerialPort? port;
         private string msg = "";
+        int ComPort;
+        int Baudrate;
 
         public BuzzerControllerInterface(int ComPort, int Baudrate, BuzzerController ccontroller)
         {   
             controller = ccontroller;
-
+            this.ComPort = ComPort;
+            this.Baudrate = Baudrate;
+        }
+        public void Setup()
+        {
             if (port != null) { throw new Exception("Buzzer connection alredy open"); }
 
             port = new SerialPort("COM" + ComPort.ToString(), Baudrate, Parity.None, 8, StopBits.One);
@@ -237,6 +251,8 @@ namespace GameMaster.Input
 
             msg += port.ReadExisting();
 
+            Trace.WriteLine("Recieved: "+msg);
+
             CheckDataTransmissionDone(msg);
         }
         private void CheckDataTransmissionDone(string pmsg)
@@ -255,7 +271,7 @@ namespace GameMaster.Input
                 msg = "";
                 foreach (string mitem in pmsg.Split("{"))
                 {
-                    if (mitem != "")
+                    if (mitem != "" && !mitem.Contains("LED") && !mitem.Contains("\"R\":"))
                     {
                         var item = mitem;
                         item = "{" + item;
@@ -267,11 +283,17 @@ namespace GameMaster.Input
         }
         private void HandleData(string pmsg)
         {
-            BuzzerJson JsonMsg = JsonConvert.DeserializeObject<BuzzerJson>(pmsg)!;
-
+            BuzzerJson JsonMsg;
+            try
+            {
+                JsonMsg = JsonConvert.DeserializeObject<BuzzerJson>(pmsg)!;
+            }
+            catch { return; }
             // do Error catching
-            if (JsonMsg == null) { throw new Exception("Buzzer PCB recieved Json not readebel"); }
-            if (JsonMsg.Error != null) { throw new Exception("Buzzer PCB Error was" + JsonMsg.Error); }
+            bool ErrorPanicHelper = JsonMsg.ErrorPanic ?? false;
+            if (JsonMsg == null) { throw new Exception("Buzzer Controller Hardware recieved Json not readebel"); }
+            if (ErrorPanicHelper){ throw new Exception("Buzzer Controller Hardware has reported this Error: " + JsonMsg.Error); }
+            if (JsonMsg.Error != null) { Trace.TraceError("Buzzer Controller Hardware has reported this Error: " + JsonMsg.Error); return; }
             if (JsonMsg.Value == null || JsonMsg.ID == null || JsonMsg.Output_Type == null) { throw new Exception("Json missing Data"); }
 
             int index = (int)JsonMsg.ID - 1;
@@ -292,6 +314,7 @@ namespace GameMaster.Input
         {
             if (port == null) return;
             port.Write(json);
+            //Trace.WriteLine("sending: "+json);
         }
     }
 
@@ -445,6 +468,7 @@ namespace GameMaster.Input
     {
         public string? Output_Type { get; set; }
         public string? Error { get; set; }
+        public bool? ErrorPanic { get; set; }
         public int? ID { get; set; }
         public bool? Value { get; set; }
     }

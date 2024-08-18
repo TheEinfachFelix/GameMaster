@@ -8,5 +8,5 @@
 #include <ArduinoJson.h>
 
 void checkInputComplete();
-void inputToJson();
+void inputToJson(String strJson);
 void HandleJson();

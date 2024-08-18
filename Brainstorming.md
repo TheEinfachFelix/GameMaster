@@ -31,7 +31,9 @@
 
 ## Mini TODOs
 - [ ] led numbering is offset 
-- [ ] clean / refactor Buzzer add to json
+- [ ] fix pcb input buffer overflow
+- [ ] use LED for buzzer taster states and so on
+- [x] clean / refactor Buzzer add to json
 - [ ] smart display of pcb valus
 - [x] create event to update binding
 - [X] fix vs issues

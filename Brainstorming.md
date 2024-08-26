@@ -30,11 +30,11 @@
 11. [X] Load Data fom Json
 
 ## Mini TODOs
-- [ ] led numbering is offset 
+- [x] led numbering is offset 
 - [ ] fix pcb input buffer overflow
 - [ ] use LED for buzzer taster states and so on
 - [x] clean / refactor Buzzer add to json
-- [ ] smart display of pcb valus
+- [x] smart display of pcb valus
 - [x] create event to update binding
 - [X] fix vs issues
 - [x] (distribute game instance)
@@ -43,3 +43,4 @@
 - [X] Stop Autoupdating if editing list (M)
 - [X] fix list refeshing
 - [x] auto Size text (M)
+- [ ] Store values on PCB and *get* them when you need them

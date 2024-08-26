@@ -296,7 +296,7 @@ namespace GameMaster.Input
             if (JsonMsg.Error != null) { Trace.TraceError("Buzzer Controller Hardware has reported this Error: " + JsonMsg.Error); return; }
             if (JsonMsg.Value == null || JsonMsg.ID == null || JsonMsg.Output_Type == null) { throw new Exception("Json missing Data"); }
 
-            int index = (int)JsonMsg.ID - 1;
+            int index = (int)JsonMsg.ID;
 
             switch (JsonMsg.Output_Type)
             {
@@ -359,7 +359,7 @@ namespace GameMaster.Input
             set
             {
                 _LEDState = value;
-                parent.SendData("{"+ $"\"Output_Type\" : \"Buzzer\", \"ID\" : {myID+1}, \"Value\" : {_LEDState.ToString().ToLower()}" + "}");
+                parent.SendData("{"+ $"\"Output_Type\" : \"Buzzer\", \"ID\" : {myID}, \"Value\" : {_LEDState.ToString().ToLower()}" + "}");
             }
         }
 

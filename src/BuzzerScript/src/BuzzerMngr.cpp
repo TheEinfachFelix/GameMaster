@@ -17,8 +17,8 @@ void BuzzerMngr::Setup()
     int IDCounter = 0;
     for(auto &i: BuzzerList)
     {
-        IDCounter ++;
         i.ID = IDCounter;
+        IDCounter ++;
     }
 }
 
@@ -32,5 +32,5 @@ void BuzzerMngr::ChecknPrintPinstate()
 
 void BuzzerMngr::SetLED(int BuzzerID, bool Value)
 {
-    BuzzerList[BuzzerID-1].SetLED(Value);
+    BuzzerList[BuzzerID].SetLED(Value);
 }

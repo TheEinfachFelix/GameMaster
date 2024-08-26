@@ -115,16 +115,43 @@ void inputToJson(String strJson)
 }
 void HandleJson()
 {
-  String OutputType = readJson[String(JsonType)];
-  if (OutputType == BuzzerType) 
+  String RequestType = readJson[String(JsonRequest)];
+  String OutputType = readJson[String(JsonType)].lower();
+  if (RequestType.lower()=="get")
   {
-    BuzzMngr.SetLED(readJson[String(JsonID)],readJson[String(JsonValue)]);
-  }
-  if (OutputType == LEDType) 
+    String GetVal = readJson[String(JsonGetVal)].lower();
+    // catch if there is nothing to get
+    if (getVal == "")
+    {PrintError("The Get request did not contain the key " + String(JsonGetVal)); return;}
+
+    // was soll die api alles können
+    // wie gebe ich das sinn voll zurück 
+    // wie mache ich timeoust
+    if (OutputType == BuzzerType.lower())
+    {
+
+    }
+    if (OutputType == TasterType.lower())
+    {
+
+    }
+    if (OutputType == LEDType.lower())
+    {
+
+    }
+  } 
+  elif (RequestType.lower()=="set" or true)
   {
-    ledCntrl.SetLED(readJson[String(JsonID)], readJson[String(JsonValue)][String("R")],
-                                              readJson[String(JsonValue)][String("G")],
-                                              readJson[String(JsonValue)][String("B")]);
+    if (OutputType == BuzzerType) 
+    {
+      BuzzMngr.SetLED(readJson[String(JsonID)],readJson[String(JsonValue)]);
+    }
+    if (OutputType == LEDType) 
+    {
+      ledCntrl.SetLED(readJson[String(JsonID)], readJson[String(JsonValue)][String("R")],
+                                                readJson[String(JsonValue)][String("G")],
+                                                readJson[String(JsonValue)][String("B")]);
+    }
   }
 }
 

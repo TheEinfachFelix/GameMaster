@@ -23,6 +23,8 @@
 #define JsonID "ID"
 #define JsonValue "Value"
 #define JsonType "Output_Type"
+#define JsonRequest "Request"
+#define JsonGetVal "Get"
 #define JsonBufferLength 1000
 #define JsonErrorPanic "ErrorPanic"
 // {"Output_Type" : "Buzzer", "ID" : 2, "Value" : true}

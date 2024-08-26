@@ -5,7 +5,6 @@ Taster TasterList[] = CTasterList;
 
 TasterMngr::TasterMngr()
 {
-
 }
 
 void TasterMngr::Setup()
@@ -14,14 +13,13 @@ void TasterMngr::Setup()
     int IDCounter = 0;
     for(auto &i: TasterList)
     {
-        IDCounter ++;
         i.ID = IDCounter;
+        IDCounter ++;
     }
 }
 
 TasterMngr::~TasterMngr()
 {
-    
 }
 
 void TasterMngr::ChecknPrintPinstate()

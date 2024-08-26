@@ -29,3 +29,15 @@
 #define JsonErrorPanic "ErrorPanic"
 // {"Output_Type" : "Buzzer", "ID" : 2, "Value" : true}
 // {"Output_Type" : "LED", "ID" : 2, "Value" : {"R":50, "G":10, "B":0}}
+
+
+// type: request
+// requestType: get / set
+// I/O-Type: Buzzer/Taster/LED
+// Index: (hier dein index)
+// request: 
+// value:
+// debug: false -> on set
+
+// type: response
+// 

@@ -44,3 +44,4 @@
 - [X] fix list refeshing
 - [x] auto Size text (M)
 - [ ] Store values on PCB and *get* them when you need them
+- [ ] check if all ids are correct especialy buzzer LED

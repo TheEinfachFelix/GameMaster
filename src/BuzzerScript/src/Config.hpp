@@ -22,22 +22,33 @@
 #define JsonError "Error"
 #define JsonID "ID"
 #define JsonValue "Value"
-#define JsonType "Output_Type"
 #define JsonRequest "Request"
 #define JsonGetVal "Get"
 #define JsonBufferLength 1000
 #define JsonErrorPanic "ErrorPanic"
-// {"Output_Type" : "Buzzer", "ID" : 2, "Value" : true}
-// {"Output_Type" : "LED", "ID" : 2, "Value" : {"R":50, "G":10, "B":0}}
 
+// General
+#define JsonType "Type"
+#define JsonIOType "IO-Type"
+#define JsonGet "Get"
+#define JsonSet "Set"
 
-// type: request
-// requestType: get / set
-// I/O-Type: Buzzer/Taster/LED
-// Index: (hier dein index)
-// request: 
-// value:
-// debug: false -> on set
+//Request
+#define JsonRequest "Request"
+#define JsonRequestType "RequestType"
+#define JsonRequestAmount "Amount"
+#define JsonRequestPin "Pin"
+#define JsonRequestID "ID"
 
-// type: response
-// 
+//Response
+#define JsonResponse "Response"
+#define JsonResponseSuccess "Success"
+#define JsonResponseCritical JsonDebugCritical
+#define JsonResponseError "Error"
+#define JsonResponseValue "Value"
+
+// Debug
+#define JsonDebug "Debug"
+#define JsonDebugMSG "MSG"
+#define JsonDebugCritical "Critical"
+#define JsonDebugValue "Value"

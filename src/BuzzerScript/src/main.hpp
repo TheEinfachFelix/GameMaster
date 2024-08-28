@@ -9,4 +9,4 @@
 
 void checkInputComplete();
 void inputToJson(String strJson);
-void HandleJson();
+String HandleJson(DeserializationError pError, JsonDocument pJson);

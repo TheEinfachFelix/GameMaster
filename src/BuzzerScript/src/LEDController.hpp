@@ -1,6 +1,7 @@
 #pragma once
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
+#include <ArduinoJson.h>
 
 #include "Config.hpp"
 
@@ -13,4 +14,5 @@ public:
     void Setup();
     void SetLED(int id, int R, int G, int B);
     ~LEDController();
+    String JsonHandler(JsonDocument pJson);
 };

@@ -9,7 +9,7 @@ BuzzerMngr BuzzMngr = BuzzerMngr();
 TasterMngr tastMngr = TasterMngr();
 LEDController ledCntrl = LEDController();
 String pinput;
-JsonDocument readJson = JsonDocument();
+
 
 std::list<String> readjsonToDos = {};
 
@@ -64,14 +64,14 @@ void checkInputComplete()
   }
   if (pinput.length() >= JsonBufferLength)
   {
-    PrintError("Input Buffer size exceded! Dumping Buffer! The Buffer length is:" + String(pinput.length()),false);
+    Serial.println(ErrorBuilder("Input Buffer size exceded! Dumping Buffer! The Buffer length is:" + String(pinput.length()),false));
     pinput = "";
     return;
   }
   // Evalueate the analysis
   if (countClose > countOpen) // catch more close than open
   {
-    PrintError("there where to many } send",false);
+    Serial.println(ErrorBuilder("there where to many } send",false));
     pinput = "";
     return;
   }
@@ -98,60 +98,83 @@ void checkInputComplete()
 }
 void inputToJson(String strJson)
 {
-  DeserializationError error = deserializeJson(readJson, strJson);
+  JsonDocument Json = JsonDocument();
+  DeserializationError error = deserializeJson(Json, strJson);
   
-  if (error)
-  {
-    PrintError("While Deserialization this happend: " + (String)error.f_str(),false);
-    return;
-  }
-
-  if (readJson[String(JsonType)] == "null") //catch empty json
-  {
-    PrintError("The Json is Empty",false);
-    return;
-  }
-  HandleJson();
+  Serial.println(HandleJson(error, Json));
 }
-void HandleJson()
+
+String HandleJson(DeserializationError pError, JsonDocument pJson)
 {
-  String RequestType = readJson[String(JsonRequest)];
-  String OutputType = readJson[String(JsonType)].lower();
-  if (RequestType.lower()=="get")
+  // catch deserilaising error
+  if (pError)
   {
-    String GetVal = readJson[String(JsonGetVal)].lower();
-    // catch if there is nothing to get
-    if (getVal == "")
-    {PrintError("The Get request did not contain the key " + String(JsonGetVal)); return;}
+    return ErrorBuilder("During Deserialization this error ocured: " + (String)pError.f_str(),false);
+  }
 
-    // was soll die api alles können
-    // wie gebe ich das sinn voll zurück 
-    // wie mache ich timeoust
-    if (OutputType == BuzzerType.lower())
-    {
-
-    }
-    if (OutputType == TasterType.lower())
-    {
-
-    }
-    if (OutputType == LEDType.lower())
-    {
-
-    }
-  } 
-  elif (RequestType.lower()=="set" or true)
+  //catch empty json
+  if (pJson[String(JsonType)] == "null")
   {
+    return ErrorBuilder("The Json is Empty or key \"" + String(JsonType) + "\" ist missing",false);
+  }
+
+  //validate type
+  if (pJson[String(JsonType)] != JsonRequest) 
+  {
+    return ErrorBuilder("we only handle \"" + String(JsonType) + "\" json \"" + String(JsonRequest) + "\"",true);
+  }
+
+  // validate IOType
+  String IOType = pJson[String(JsonIOType)];
+  if (IOType != LEDType && IOType != BuzzerType && IOType != TasterType)
+  {
+    return ErrorBuilder("the value from key \"" + String(JsonIOType) + "\" is not valide. Must be \""  + String(LEDType) + "\" or \"" + String(BuzzerType) + "\" or \"" + String(TasterType) + "\"",true);
+  }
+
+  // validate get set
+  if (pJson[String(JsonRequestType)] != JsonGet && pJson[String(JsonRequestType)] != JsonSet) 
+  {
+    return ErrorBuilder("error with key \"" + String(JsonRequestType) + "\" must be \""  + String(JsonSet) + "\" or \""  + String(JsonGet) + "\"",true);
+  }
+
+
+
+  // give handling to mngr
+  if (IOType == LEDType)
+  {
+    return ledCntrl.JsonHandler(pJson);
+    // set get collor
+    // get amount of
+    // get hardware pin
+  }
+    if (IOType == BuzzerType)
+  {
+    return BuzzMngr.JsonHandler(pJson);
+    // get amount of
+    // set led state
+    // get hardware pin
+  }
+    if (IOType == TasterType)
+  {
+    return tastMngr.JsonHandler(pJson);
+  }
+
+
+  return ErrorBuilder("The Json Request left me with nothing to do sus",true);
+  
+
+/*
     if (OutputType == BuzzerType) 
     {
-      BuzzMngr.SetLED(readJson[String(JsonID)],readJson[String(JsonValue)]);
+      BuzzMngr.SetLED(pJson[String(JsonID)],pJson[String(JsonValue)]);
     }
     if (OutputType == LEDType) 
     {
-      ledCntrl.SetLED(readJson[String(JsonID)], readJson[String(JsonValue)][String("R")],
-                                                readJson[String(JsonValue)][String("G")],
-                                                readJson[String(JsonValue)][String("B")]);
-    }
-  }
+      ledCntrl.SetLED(pJson[String(JsonID)], pJson[String(JsonValue)][String("R")],
+                                                pJson[String(JsonValue)][String("G")],
+                                                pJson[String(JsonValue)][String("B")]);
+    
+  */
+  
 }
 

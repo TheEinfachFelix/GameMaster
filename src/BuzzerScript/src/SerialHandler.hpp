@@ -5,4 +5,6 @@
 #include "Config.hpp"
 
 void PrintButtonValueChanged(String type, int ID, bool Value);
-void PrintError(String errorMSG, bool panic);
+String ErrorBuilder(String pError, bool pCritical = false);
+String DebugBuilder(String pSorce, String pMSG, bool pCritical, String pValue = "");
+String ResponseBuilder (String pValue);

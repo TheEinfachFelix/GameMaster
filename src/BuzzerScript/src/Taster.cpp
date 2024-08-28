@@ -41,7 +41,10 @@ void Taster::PrintRead()
     }
 }
 
-
+int Taster::GetPin()
+{
+    return PressPin;
+}
 
 Taster::~Taster()
 {

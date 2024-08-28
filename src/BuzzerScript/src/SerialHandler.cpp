@@ -11,11 +11,32 @@ void PrintButtonValueChanged(String type, int ID, bool Value)
     Serial.println(", \""+String(JsonValue)+"\" : " + strValue + " }");
 }
 
-void PrintError(String errorMSG, bool panic = false)
+
+
+String ErrorBuilder(String pError, bool pCritical = false)
 {
-    Serial.print("{\""+String(JsonError)+"\":\"");
-    Serial.print(errorMSG);
-    Serial.print(",\""+String(JsonErrorPanic)+"\" : ");
-    Serial.print(String(panic));
-    Serial.println("\"}");
+    String out = "";
+    out += "{\"" + String(JsonType)             + "\" = \"" + String(JsonResponse) + "\",";
+    out += " \"" + String(JsonResponseSuccess)  + "\" = \"" + String(false)        + "\",";
+    out += " \"" + String(JsonResponseCritical) + "\" = \"" + String(pCritical)    + "\",";
+    out += " \"" + String(JsonResponseError)    + "\" = \"" + pError               + "\"}";
+    return out;
+}
+
+String DebugBuilder(String pSorce, String pMSG, bool pCritical, String pValue = "")
+{
+    String out = "";
+    out += "{\"" + String(JsonType)          + "\" = \"" + String(JsonDebug) + "\",";
+    out += " \"" + String(JsonDebugMSG)      + "\" = \"" + pMSG              + "\",";
+    out += " \"" + String(JsonDebugValue)    + "\" = \"" + pValue            + "\",";
+    out += " \"" + String(JsonDebugCritical) + "\" = \"" + String(pCritical) + "\"}";
+    return out;
+}
+String ResponseBuilder (String pValue)
+{
+    String out = "";
+    out += "{\"" + String(JsonType)             + "\" = \"" + String(JsonResponse) + "\",";
+    out += " \"" + String(JsonResponseSuccess)  + "\" = \"" + String(true)        + "\",";
+    out += " \"" + String(JsonResponseValue)    + "\" = \"" + pValue               + "\"}";
+    return out;
 }

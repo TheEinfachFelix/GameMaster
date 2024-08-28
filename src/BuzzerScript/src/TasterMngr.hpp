@@ -1,5 +1,6 @@
 #pragma once
 #include <Arduino.h>
+#include <ArduinoJson.h>
 
 #include "Taster.hpp"
 
@@ -13,6 +14,7 @@ public:
     void Setup();
     void ChecknPrintPinstate();
     ~TasterMngr();
+    String JsonHandler(JsonDocument pJson);
 };
 
 

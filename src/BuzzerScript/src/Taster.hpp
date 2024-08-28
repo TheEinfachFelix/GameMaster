@@ -15,5 +15,6 @@ public:
     Taster(int pPressPin);
     void PrintRead();
     int Read();
+    int GetPin();
     ~Taster();
 };

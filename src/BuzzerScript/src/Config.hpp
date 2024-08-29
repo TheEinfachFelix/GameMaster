@@ -19,13 +19,7 @@
 #define SerialSpeed 115200
 
 // Json Keys
-#define JsonError "Error"
-#define JsonID "ID"
-#define JsonValue "Value"
-#define JsonRequest "Request"
-#define JsonGetVal "Get"
 #define JsonBufferLength 1000
-#define JsonErrorPanic "ErrorPanic"
 
 // General
 #define JsonType "Type"

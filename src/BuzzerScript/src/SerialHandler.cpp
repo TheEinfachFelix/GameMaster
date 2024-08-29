@@ -18,32 +18,42 @@ void EventSender(String type, int ID, bool oldVal, bool newVal)
     Serial.println(out);
 }
 
-
-
 String ErrorBuilder(String pError, bool pCritical = false)
 {
     String out = "";
-    out += "{\"" + String(JsonType)             + "\" = \"" + String(JsonResponse) + "\",";
-    out += " \"" + String(JsonResponseSuccess)  + "\" = \"" + String(false)        + "\",";
-    out += " \"" + String(JsonResponseCritical) + "\" = \"" + String(pCritical)    + "\",";
-    out += " \"" + String(JsonResponseError)    + "\" = \"" + pError               + "\"}";
+    JsonDocument doc;
+
+    doc[JsonType] = JsonResponse;
+    doc[JsonResponseSuccess] = false;
+    doc[JsonResponseCritical] = pCritical;
+    doc[JsonResponseError] = pError;
+
+    serializeJsonPretty(doc,out);
     return out;
 }
 
 String DebugBuilder(String pSorce, String pMSG, bool pCritical, String pValue = "")
 {
     String out = "";
-    out += "{\"" + String(JsonType)          + "\" = \"" + String(JsonDebug) + "\",";
-    out += " \"" + String(JsonDebugMSG)      + "\" = \"" + pMSG              + "\",";
-    out += " \"" + String(JsonDebugValue)    + "\" = \"" + pValue            + "\",";
-    out += " \"" + String(JsonDebugCritical) + "\" = \"" + String(pCritical) + "\"}";
+    JsonDocument doc;
+
+    doc[JsonType] = JsonDebug;
+    doc[JsonDebugMSG] = pMSG;
+    doc[JsonDebugValue] = pValue;
+    doc[JsonDebugCritical] = pCritical;
+
+    serializeJsonPretty(doc,out);
     return out;
 }
 String ResponseBuilder (String pValue)
 {
     String out = "";
-    out += "{\"" + String(JsonType)             + "\" = \"" + String(JsonResponse) + "\",";
-    out += " \"" + String(JsonResponseSuccess)  + "\" = \"" + String(true)        + "\",";
-    out += " \"" + String(JsonResponseValue)    + "\" = \"" + pValue               + "\"}";
-    return out;
+    JsonDocument doc;
+
+    doc[JsonType] = JsonResponse;
+    doc[JsonResponseSuccess] = true;
+    doc[JsonResponseValue] = pValue;
+
+    serializeJsonPretty(doc,out);
+    return out; 
 }

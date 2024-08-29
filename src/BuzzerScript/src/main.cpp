@@ -137,8 +137,6 @@ String HandleJson(DeserializationError pError, JsonDocument pJson)
     return ErrorBuilder("error with key \"" + String(JsonRequestType) + "\" must be \""  + String(JsonSet) + "\" or \""  + String(JsonGet) + "\"",true);
   }
 
-
-
   // give handling to mngr
   if (IOType == LEDType)
   {

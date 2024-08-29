@@ -85,9 +85,9 @@ String LEDController::JsonSetLedCollor(JsonDocument pJson)
 
     try
     {
-        R = pJson[String(JsonValue)][String("R")];
-        G = pJson[String(JsonValue)][String("G")];
-        B = pJson[String(JsonValue)][String("B")];
+        R = pJson[String(JsonRequestValue)][String("R")];
+        G = pJson[String(JsonRequestValue)][String("G")];
+        B = pJson[String(JsonRequestValue)][String("B")];
     }
     catch(const std::exception& e)
     {
@@ -155,9 +155,13 @@ String LEDController::GetLedCollorAsJson(JsonDocument pJson)
         int b= rgbcolor&0xFF;
 
         String out = "";
-        out += "{\"R\" : \"" + String(r) + "\",";
-        out += " \"G\" : \"" + String(g) + "\",";
-        out += " \"B\" : \"" + String(b) + "\"}";
+        JsonDocument doc;
+
+        doc["R"] = r;
+        doc["G"] = g;
+        doc["B"] = b;
+
+        serializeJsonPretty(doc,out);
         return ResponseBuilder(out);
     }
     catch(const std::exception& e)

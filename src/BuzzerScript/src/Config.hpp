@@ -18,7 +18,7 @@
 #define SerialTimeout 5
 #define SerialSpeed 115200
 
-// Json Keys
+// Json
 #define JsonBufferLength 1000
 
 // General
@@ -42,14 +42,14 @@
 //Response
 #define JsonResponse "Response"
 #define JsonResponseSuccess "Success"
-#define JsonResponseCritical JsonDebugCritical
+#define JsonResponseCritical "Critical"
 #define JsonResponseError "Error"
 #define JsonResponseValue JsonRequestValue
 
 // Debug
 #define JsonDebug "Debug"
 #define JsonDebugMSG "MSG"
-#define JsonDebugCritical "Critical"
+#define JsonDebugCritical JsonResponseCritical
 #define JsonDebugValue JsonRequestValue
 
 // Event
@@ -57,3 +57,9 @@
 #define JsonEventID JsonRequestID
 #define JsonEventNewValue "NewValue"
 #define JsonEventOldValue "OldValue"
+
+/*
+{"Type":"Request","IO-Type":"LED","RequestType":"Set", "Request":"Collor"}
+
+
+*/

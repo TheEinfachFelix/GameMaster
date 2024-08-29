@@ -10,50 +10,31 @@ TasterMngr tastMngr = TasterMngr();
 LEDController ledCntrl = LEDController();
 String pinput;
 
-
-std::list<String> readjsonToDos = {};
-
-void split (std::string toSplit)
+std::list<String> split (std::string toSplit)
 {
-  //(r'\{.*?\}')
-  int pos = 0;
-  std::string Helper;
-  std::string SplitON = "}{";
-
-  while ((pos = toSplit.find(SplitON)) != std::string::npos)
-  {
-    Helper = toSplit.substr(0, pos);
-    readjsonToDos.push_back(String(Helper.c_str())+"}");
-    toSplit.erase(0, pos + SplitON.length());
-  }
-  readjsonToDos.push_back(String(toSplit.c_str()));
-
-std::string s = "Some people, when confronted with a problem, think "
-        "\"I know, I'll use regular expressions.\" "
-        "Now they have two problems.";
-
-
-  std::string s ("this subject has a submarine as a subsequence");
-  std::smatch m;
-  std::regex e ("\\b(sub)([^ ]*)");   // matches words beginning by "sub"
-
-while (std::regex_search (s,m,e)) {
-    for (auto x:m) std::cout << x << " ";
-    std::cout << std::endl;
-    s = m.suffix().str();
-  }
-
-    std::string s ("{\"name\": \"John\", \"age\": {\"subname\": \"John\", \"subage\": 2}}{\"peter\":3}{\"name\": \"John\", \"age\": {\"name\": \"John\", \"age\": 2}}");
-  std::smatch m;
-  std::regex e ("\\{.*?\\}");
+  //toSplit = "{\"Type\":\"Request\",\"IO-Type\":\"LED\",\"RequestType\":\"Set\", \"Request\":\"Collor\"}";
+  std::list<String> OutputList = {};
+  std::smatch smatch;
+  std::regex regex ("\\{.*?\\}");
   
-  while (std::regex_search (s,m,e)) {
+  Serial.println(std::regex_search (toSplit,smatch,regex));
+
+  while (std::regex_search (toSplit,smatch,regex)) {
+    // asamble the json ???????
     std::string out = "";
-    for (auto x:m) out+=x;
-    std::cout << std::endl;
-    s = m.suffix().str();
-     std::cout << out;
+    for (auto x:smatch) out+=x;
+    //toSplit = smatch.suffix().str();
+
+    // delete the found json from the input string
+    int start_position_to_erase = toSplit.find(out);
+    toSplit.erase(start_position_to_erase, out.length());
+
+    // add json to output list
+    OutputList.push_back(String(out.c_str())); 
   }
+  pinput = String(toSplit.c_str());
+
+  return OutputList;
 }
 
 void setup() {
@@ -72,59 +53,38 @@ void loop()
   tastMngr.ChecknPrintPinstate();
 
   pinput = pinput + Serial.readString();
-  
+
   //Serial.print(pinput);
   checkInputComplete();
 }
 
 void checkInputComplete()
 {
-  // Analise the Input
+    for(auto i: split(pinput.c_str()))
+    {
+      //inputToJson(i);
+      Serial.print(pinput); 
+    }
+}
+void inputToJson(String strJson)
+{
+  // fix missing last } on nested json string
   int countOpen = 0;
   int countClose = 0;
-  for (size_t i = 0; i < pinput.length(); i++)
+  for (size_t i = 0; i < strJson.length(); i++)
   {
-    char in = pinput[i];
+    char in = strJson[i];
     if (in  == '{')
       countOpen ++;
     if (in  == '}')
       countClose ++;
   }
-  if (pinput.length() >= JsonBufferLength)
+  if (countClose + 1 == countOpen)
   {
-    Serial.println(ErrorBuilder("Input Buffer size exceded! Dumping Buffer! The Buffer length is:" + String(pinput.length()),false));
-    pinput = "";
-    return;
+    strJson = strJson + "}";
   }
-  // Evalueate the analysis
-  if (countClose > countOpen) // catch more close than open
-  {
-    Serial.println(ErrorBuilder("there where to many } send",false));
-    pinput = "";
-    return;
-  }
-  if (countClose == countOpen && countOpen != 0) // the msg is copletly recived
-  {
-    split(pinput.c_str());
-    pinput = "";
 
-    for(auto i: readjsonToDos)
-    {
-      if (i != "")
-      {
-      if (i[0] != '{')
-      {
-        i="{"+i;
-      }
-      inputToJson(i);
-
-      }
-    }
-    readjsonToDos = {};
-  }
-}
-void inputToJson(String strJson)
-{
+  // deserialise
   JsonDocument Json = JsonDocument();
   DeserializationError error = deserializeJson(Json, strJson);
   

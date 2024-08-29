@@ -26,9 +26,8 @@ String LEDController::JsonHandler(JsonDocument pJson)
     // validate request
     if (Request != JsonRequestAmount && Request != JsonRequestPin && Request != JsonRequestLedCollor) 
     {
-        return ErrorBuilder("Request not found! Only requests are \""  + String(JsonRequestAmount) + "\" or \"" + String(JsonRequestLedCollor) + "\" or \"" + String(JsonRequestPin) + "\"",true);
+        return ErrorBuilder("\"" + String(JsonRequest) + "\" not found! Only requests are \""  + String(JsonRequestAmount) + "\" or \"" + String(JsonRequestLedCollor) + "\" or \"" + String(JsonRequestPin) + "\"",true);
     }
-
 
     if (pJson[String(JsonRequestType)] == JsonSet) 
     {
@@ -54,7 +53,7 @@ String LEDController::JsonSetHandler(JsonDocument pJson)
     // handle set state
     if (Request == JsonRequestLedCollor)
     {
-        return JsonSetLedCollor(pJson);
+        return "adsf";//JsonSetLedCollor(pJson);
     }
 
     return ErrorBuilder("oops somthing went wrond in the BuzzerMngr-Set",true);
@@ -93,7 +92,7 @@ String LEDController::JsonSetLedCollor(JsonDocument pJson)
     {
         return ErrorBuilder("cant convert Value to RGB",true);
     }
-    
+    Serial.println("4");
     // set state
     try
     {

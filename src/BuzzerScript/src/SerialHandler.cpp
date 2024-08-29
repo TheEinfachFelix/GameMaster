@@ -1,14 +1,21 @@
 #include "SerialHandler.hpp"
 
-void PrintButtonValueChanged(String type, int ID, bool Value)
+void EventSender(String type, int ID, bool oldVal, bool newVal)
 {
-    String strValue = "false";
-    if (Value)
-        strValue = "true";
+    //String strValue = "false";
+    //if (Value)
+    //    strValue = "true";
     
-    Serial.print("{\""+String(JsonType)+"\" : \"" + type + "\" ,\""+String(JsonID)+"\" : ");
-    Serial.print(ID);
-    Serial.println(", \""+String(JsonValue)+"\" : " + strValue + " }");
+    String out = "";
+    JsonDocument doc;
+    doc[JsonType] = JsonEvent;
+    doc[JsonIOType] = type;
+    doc[JsonEventID] = ID;
+    doc[JsonEventNewValue] = newVal;
+    doc[JsonEventOldValue] = oldVal;
+    serializeJsonPretty(doc,out);
+    
+    Serial.println(out);
 }
 
 

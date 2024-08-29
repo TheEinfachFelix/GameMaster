@@ -14,7 +14,7 @@ public:
     int ID = 0;
     Taster(int pPressPin);
     void PrintRead();
-    int Read();
+    
     int GetPin();
     ~Taster();
 };

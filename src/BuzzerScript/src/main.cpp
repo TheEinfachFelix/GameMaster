@@ -143,38 +143,17 @@ String HandleJson(DeserializationError pError, JsonDocument pJson)
   if (IOType == LEDType)
   {
     return ledCntrl.JsonHandler(pJson);
-    // set get collor
-    // get amount of
-    // get hardware pin
   }
     if (IOType == BuzzerType)
   {
     return BuzzMngr.JsonHandler(pJson);
-    // get amount of
-    // set led state
-    // get hardware pin
+
   }
     if (IOType == TasterType)
   {
     return tastMngr.JsonHandler(pJson);
   }
 
-
-  return ErrorBuilder("The Json Request left me with nothing to do sus",true);
-  
-
-/*
-    if (OutputType == BuzzerType) 
-    {
-      BuzzMngr.SetLED(pJson[String(JsonID)],pJson[String(JsonValue)]);
-    }
-    if (OutputType == LEDType) 
-    {
-      ledCntrl.SetLED(pJson[String(JsonID)], pJson[String(JsonValue)][String("R")],
-                                                pJson[String(JsonValue)][String("G")],
-                                                pJson[String(JsonValue)][String("B")]);
-    
-  */
-  
+  return ErrorBuilder("The Json Request left me with nothing to do sus",true); 
 }
 

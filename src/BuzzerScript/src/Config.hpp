@@ -39,16 +39,27 @@
 #define JsonRequestAmount "Amount"
 #define JsonRequestPin "Pin"
 #define JsonRequestID "ID"
+#define JsonRequestState "State"
+#define JsonRequestValue "Value"
+#define JsonRequestLEDPin "LedPin"
+#define JsonRequestTasterPin "TasterPin"
+#define JsonRequestLedCollor "Collor"
 
 //Response
 #define JsonResponse "Response"
 #define JsonResponseSuccess "Success"
 #define JsonResponseCritical JsonDebugCritical
 #define JsonResponseError "Error"
-#define JsonResponseValue "Value"
+#define JsonResponseValue JsonRequestValue
 
 // Debug
 #define JsonDebug "Debug"
 #define JsonDebugMSG "MSG"
 #define JsonDebugCritical "Critical"
-#define JsonDebugValue "Value"
+#define JsonDebugValue JsonRequestValue
+
+// Event
+#define JsonEvent "Event"
+#define JsonEventID JsonRequestID
+#define JsonEventNewValue "NewValue"
+#define JsonEventOldValue "OldValue"

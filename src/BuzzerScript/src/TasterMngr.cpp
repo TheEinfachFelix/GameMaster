@@ -86,6 +86,6 @@ String TasterMngr::JsonHandler(JsonDocument pJson)
 
     }
 
-    return ErrorBuilder("Somthing went wrong in TasterMnrg");
+    return ErrorBuilder("Somthing went wrong in TasterMnrg",false);
 
 }

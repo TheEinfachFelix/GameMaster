@@ -3,6 +3,7 @@
 #include <ArduinoJson.h>
 
 #include "Taster.hpp"
+#include "SerialHandler.hpp"
 
 extern Taster TasterList[];
 

@@ -9,35 +9,14 @@ Taster::Taster(int pPressPin)
     PressState = digitalRead(PressPin);
 }
 
-int Taster::Read()
+void Taster::PrintRead()
 {
     bool now = digitalRead(PressPin);
 
     if (PressState != now)
     {
+        EventSender(TasterType, ID , now, PressState);
         PressState = now;
-
-        if(!now)
-        {
-          return 1;
-        } else 
-        {
-          return 0;
-        }
-    }
-    return -1;
-}
-
-void Taster::PrintRead()
-{
-    int buttonState = Read();
-
-    if (buttonState == 1)
-    {
-        PrintButtonValueChanged(TasterType, ID , true);
-    }else if (buttonState == 0)
-    {
-        PrintButtonValueChanged(TasterType, ID , false);
     }
 }
 

@@ -4,14 +4,20 @@
 
 #include "buzzer.hpp"
 #include "Config.hpp"
+#include "SerialHandler.hpp"
 
 class BuzzerMngr
 {
 private:
+    String JsonSetHandler(JsonDocument pJson);
+    String JsonGetHandler(JsonDocument pJson);
+    String JsonSetLedState(JsonDocument pJson);
+    String JsonGetPin(JsonDocument pJson);
+    void SetLED(int BuzzerID, bool Value);
 public:
     BuzzerMngr();
     void ChecknPrintPinstate();
-    void SetLED(int BuzzerID, bool Value);
+    
     ~BuzzerMngr();
     void Setup();
     String JsonHandler(JsonDocument pJson);

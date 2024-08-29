@@ -1,6 +1,5 @@
 #include "buzzer.hpp"
 
-
 Buzzer::Buzzer(int pPressPin, int pLEDPin)
 {
     PressPin = pPressPin;
@@ -12,35 +11,14 @@ Buzzer::Buzzer(int pPressPin, int pLEDPin)
     PressState = digitalRead(PressPin);
 }
 
-int Buzzer::Read()
+void Buzzer::PrintRead()
 {
     bool now = digitalRead(PressPin);
     bool old = PressState;
     if (old != now)
     {
+        EventSender(BuzzerType, ID , old, now);
         PressState = now;
-
-        if(!now)
-        {
-          return 1;
-        } else 
-        {
-          return 0;
-        }
-    }
-    return -1;
-}
-
-void Buzzer::PrintRead()
-{
-    int buttonState = Read();
-
-    if (buttonState == 1)
-    {
-        PrintButtonValueChanged(BuzzerType, ID , true);
-    }else if (buttonState == 0)
-    {
-        PrintButtonValueChanged(BuzzerType, ID , false);
     }
 }
 
@@ -49,7 +27,15 @@ void Buzzer::SetLED(bool value)
     digitalWrite(LedPin, value);
 }
 
-
 Buzzer::~Buzzer()
 {
+}
+
+int Buzzer::GetLedPin()
+{
+    return LedPin;
+}
+int Buzzer::GetBuzPin()
+{
+    return PressPin;
 }

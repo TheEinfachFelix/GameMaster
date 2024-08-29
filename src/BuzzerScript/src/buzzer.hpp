@@ -16,7 +16,8 @@ public:
     int ID = 0;
     Buzzer(int pPressPin, int pLEDPin);
     void PrintRead();
-    int Read();
     void SetLED(bool value);
+    int GetLedPin();
+    int GetBuzPin();
     ~Buzzer();
 };

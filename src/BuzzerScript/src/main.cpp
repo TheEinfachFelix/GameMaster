@@ -15,6 +15,7 @@ std::list<String> readjsonToDos = {};
 
 void split (std::string toSplit)
 {
+  //(r'\{.*?\}')
   int pos = 0;
   std::string Helper;
   std::string SplitON = "}{";
@@ -26,6 +27,33 @@ void split (std::string toSplit)
     toSplit.erase(0, pos + SplitON.length());
   }
   readjsonToDos.push_back(String(toSplit.c_str()));
+
+std::string s = "Some people, when confronted with a problem, think "
+        "\"I know, I'll use regular expressions.\" "
+        "Now they have two problems.";
+
+
+  std::string s ("this subject has a submarine as a subsequence");
+  std::smatch m;
+  std::regex e ("\\b(sub)([^ ]*)");   // matches words beginning by "sub"
+
+while (std::regex_search (s,m,e)) {
+    for (auto x:m) std::cout << x << " ";
+    std::cout << std::endl;
+    s = m.suffix().str();
+  }
+
+    std::string s ("{\"name\": \"John\", \"age\": {\"subname\": \"John\", \"subage\": 2}}{\"peter\":3}{\"name\": \"John\", \"age\": {\"name\": \"John\", \"age\": 2}}");
+  std::smatch m;
+  std::regex e ("\\{.*?\\}");
+  
+  while (std::regex_search (s,m,e)) {
+    std::string out = "";
+    for (auto x:m) out+=x;
+    std::cout << std::endl;
+    s = m.suffix().str();
+     std::cout << out;
+  }
 }
 
 void setup() {
@@ -88,7 +116,6 @@ void checkInputComplete()
       {
         i="{"+i;
       }
-      Serial.println(i);
       inputToJson(i);
 
       }

@@ -19,7 +19,7 @@
 #define SerialSpeed 115200
 
 // Json
-#define JsonBufferLength 1000
+#define JsonDeleteInputBufferAfter 100
 
 // General
 #define JsonType "Type"

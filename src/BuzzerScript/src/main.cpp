@@ -8,7 +8,9 @@
 BuzzerMngr BuzzMngr = BuzzerMngr();
 TasterMngr tastMngr = TasterMngr();
 LEDController ledCntrl = LEDController();
-String pinput;
+String Input;
+String OldInput;
+int64_t TimerOfDeletion;
 
 std::list<String> split (std::string toSplit)
 {
@@ -35,6 +37,7 @@ void setup() {
   tastMngr.Setup();
   BuzzMngr.Setup();
   ledCntrl.Setup();
+  TimerOfDeletion = millis();
 }
 
 void loop() 
@@ -42,19 +45,29 @@ void loop()
   BuzzMngr.ChecknPrintPinstate();
   tastMngr.ChecknPrintPinstate();
 
-  pinput = pinput + Serial.readString();
+  Input = Input + Serial.readString();
 
-  //Serial.print(pinput);
+  //Serial.print(Input);
   checkInputComplete();
+
+  if (millis() > TimerOfDeletion + JsonDeleteInputBufferAfter)
+  {
+    if (OldInput == Input)
+    {
+      Input = "";
+    }
+    TimerOfDeletion = millis();
+    OldInput = Input;
+  }
 }
 
 void checkInputComplete()
 {
-    for(auto i: split(pinput.c_str()))
-    {
-      //inputToJson(i);
-      Serial.print(pinput); 
-    }
+  for(auto i: split(Input.c_str()))
+  {
+    inputToJson(i);
+    Serial.print(Input); 
+  }
 }
 void inputToJson(String strJson)
 {

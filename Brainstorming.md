@@ -1,20 +1,3 @@
-## Parts
-
-- Dot2
-- OBS
-- audio
-- Buzzer
-- visual generator
-- remote master controll
-
-### DOT2
-
-- via Websocet
-- Drückt einfach executor und verschieb fader
-
-### OBS
-- https://github.com/GoaLitiuM/libobs-sharp
-
 ## TODOs
 
 1. [x] greate logic idea
@@ -28,10 +11,12 @@
 9. [x] Simultanios Audio Playing (M)
 10. [X] Rewite buzzer Handler with all the new feature
 11. [X] Load Data fom Json
+12. [ ] Better Visuals Generator
+13. [ ] web Remote
 
 ## Mini TODOs
 - [x] led numbering is offset 
-- [ ] fix pcb input buffer overflow
+- [x] fix pcb input buffer overflow
 - [ ] use LED for buzzer taster states and so on
 - [x] clean / refactor Buzzer add to json
 - [x] smart display of pcb valus
@@ -43,5 +28,7 @@
 - [X] Stop Autoupdating if editing list (M)
 - [X] fix list refeshing
 - [x] auto Size text (M)
-- [ ] Store values on PCB and *get* them when you need them
-- [ ] check if all ids are correct especialy buzzer LED
+- [x] Store values on PCB and *get* them when you need them
+- [ ] check if all IDs are correct especialy buzzer LED
+- [ ] redo api handling in gamemaster
+- [x] automatic clean input

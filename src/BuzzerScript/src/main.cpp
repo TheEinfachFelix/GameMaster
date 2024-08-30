@@ -14,18 +14,20 @@ int64_t TimerOfDeletion;
 
 std::list<String> split (std::string toSplit)
 {
+  
   std::list<String> OutputList = {};
   auto foundOpen = toSplit.find("{");
   auto foundClosed = toSplit.find("}");
 
-  while (foundOpen != std::string::npos ||foundClosed != std::string::npos)
+  while (foundOpen != std::string::npos && foundClosed != std::string::npos)
   {
     OutputList.push_back(String(toSplit.substr(foundOpen , foundOpen-foundClosed).c_str())); 
-    toSplit = toSplit.substr(foundClosed);
+    toSplit = toSplit.substr(foundClosed+1);
 
     foundOpen = toSplit.find("{");
     foundClosed = toSplit.find("}");
   }
+  Input = String(toSplit.c_str());
   return OutputList;
 }
 

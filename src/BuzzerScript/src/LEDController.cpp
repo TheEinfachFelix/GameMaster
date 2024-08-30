@@ -44,38 +44,19 @@ String LEDController::JsonHandler(JsonDocument pJson)
 String LEDController::JsonSetHandler(JsonDocument pJson)
 {
     String Request = pJson[String(JsonRequest)];
-    // catch if value is missing
-    if (pJson[String(JsonRequestValue)] == NULL) 
-    {
-        return ErrorBuilder("the key \"" + String(JsonRequestValue) + "\" is missing",true);
-    }
 
     // handle set state
     if (Request == JsonRequestLedCollor)
     {
-        return "adsf";//JsonSetLedCollor(pJson);
+        return JsonSetLedCollor(pJson);
     }
 
-    return ErrorBuilder("oops somthing went wrond in the BuzzerMngr-Set",true);
+    return ErrorBuilder("Only requests for Get are: \""+String(JsonRequestLedCollor)+"\"",true);
 }
 String LEDController::JsonSetLedCollor(JsonDocument pJson)
 {
-    // check ID
-    if (pJson[String(JsonRequestID)] == NULL) 
-    {
-        return ErrorBuilder("The ID is missig",true);
-    }
-
     // convert ID to int
-    int index;
-    try
-    {
-        index = pJson[String(JsonRequestID)];
-    }
-    catch(const std::exception& e)
-    {
-        return ErrorBuilder("cant convert ID to int",true);
-    }
+    int index  = pJson[String(JsonRequestID)];
 
     //convert value to bool
     int R;
@@ -92,12 +73,12 @@ String LEDController::JsonSetLedCollor(JsonDocument pJson)
     {
         return ErrorBuilder("cant convert Value to RGB",true);
     }
-    Serial.println("4");
+
     // set state
     try
     {
         SetLED(index,R,G,B);
-        return ResponseBuilder("Done");
+        return ResponseBuilder("Done - Be aware that this method has defauld values of 0 for \""+String(JsonRequestID)+"\", \""+String(JsonRequestValueR)+"\", \""+String(JsonRequestValueG)+"\" and \""+String(JsonRequestValueB)+"\"! And be aware that if the index is out of range no error is thrown!");
     }
     catch(const std::exception& e)
     {
@@ -124,26 +105,12 @@ String LEDController::JsonGetHandler(JsonDocument pJson)
         return GetLedCollorAsJson(pJson);
     }
 
-    return ErrorBuilder("oops somthing went wrond in the BuzzerMngr-Get",true);
+    return ErrorBuilder("Only requests for Get are: \""+String(JsonRequestAmount)+"\", \""+String(JsonRequestPin)+"\", \""+String(JsonRequestLedCollor)+"\"",true);
 }
 String LEDController::GetLedCollorAsJson(JsonDocument pJson)
 {
-    // check ID
-    if (pJson[String(JsonRequestID)] == NULL) 
-    {
-        return ErrorBuilder("The ID is missig",true);
-    }
-
     // convert ID to int
-    int index;
-    try
-    {
-        index = pJson[String(JsonRequestID)];
-    }
-    catch(const std::exception& e)
-    {
-        return ErrorBuilder("cant convert ID to int",true);
-    }
+    int index = pJson[String(JsonRequestID)];
 
     try
     {

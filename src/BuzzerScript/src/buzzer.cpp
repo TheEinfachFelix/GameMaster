@@ -4,6 +4,7 @@ Buzzer::Buzzer(int pPressPin, int pLEDPin)
 {
     PressPin = pPressPin;
     LedPin = pLEDPin;
+    LedState = false;
 
     pinMode(PressPin, INPUT_PULLDOWN);
     pinMode(LedPin, OUTPUT);
@@ -25,6 +26,7 @@ void Buzzer::PrintRead()
 void Buzzer::SetLED(bool value)
 {
     digitalWrite(LedPin, value);
+    LedState = value;
 }
 
 Buzzer::~Buzzer()
@@ -38,4 +40,9 @@ int Buzzer::GetLedPin()
 int Buzzer::GetBuzPin()
 {
     return PressPin;
+}
+
+bool Buzzer::GetLedState()
+{
+    return LedState;
 }

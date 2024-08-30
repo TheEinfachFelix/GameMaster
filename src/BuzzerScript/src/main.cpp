@@ -12,28 +12,18 @@ String pinput;
 
 std::list<String> split (std::string toSplit)
 {
-  //toSplit = "{\"Type\":\"Request\",\"IO-Type\":\"LED\",\"RequestType\":\"Set\", \"Request\":\"Collor\"}";
   std::list<String> OutputList = {};
-  std::smatch smatch;
-  std::regex regex ("\\{.*?\\}");
-  
-  Serial.println(std::regex_search (toSplit,smatch,regex));
+  auto foundOpen = toSplit.find("{");
+  auto foundClosed = toSplit.find("}");
 
-  while (std::regex_search (toSplit,smatch,regex)) {
-    // asamble the json ???????
-    std::string out = "";
-    for (auto x:smatch) out+=x;
-    //toSplit = smatch.suffix().str();
+  while (foundOpen != std::string::npos ||foundClosed != std::string::npos)
+  {
+    OutputList.push_back(String(toSplit.substr(foundOpen , foundOpen-foundClosed).c_str())); 
+    toSplit = toSplit.substr(foundClosed);
 
-    // delete the found json from the input string
-    int start_position_to_erase = toSplit.find(out);
-    toSplit.erase(start_position_to_erase, out.length());
-
-    // add json to output list
-    OutputList.push_back(String(out.c_str())); 
+    foundOpen = toSplit.find("{");
+    foundClosed = toSplit.find("}");
   }
-  pinput = String(toSplit.c_str());
-
   return OutputList;
 }
 

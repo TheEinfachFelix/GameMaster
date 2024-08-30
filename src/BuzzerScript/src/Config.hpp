@@ -38,6 +38,9 @@
 #define JsonRequestLEDPin "LedPin"
 #define JsonRequestTasterPin "TasterPin"
 #define JsonRequestLedCollor "Collor"
+#define JsonRequestValueR "R"
+#define JsonRequestValueG "G"
+#define JsonRequestValueB "B"
 
 //Response
 #define JsonResponse "Response"

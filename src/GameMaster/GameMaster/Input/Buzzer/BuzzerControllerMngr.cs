@@ -14,7 +14,6 @@ namespace GameMaster.Input
         public List<int> NormalCollor { get; set; }
         public List<int> PressCollor { get; set; }
         public List<int> BlockCollor { get; set; }
-
         public List<BuzzerController> BuzzerControllerList { get; set; } = [];
 
         public void Setup()
@@ -29,7 +28,6 @@ namespace GameMaster.Input
                 i++;
             }
         }
-
         public void TasterEvent(int parentID, int BuzzerID, bool Value)
         {
             if (isDisabeled) return;

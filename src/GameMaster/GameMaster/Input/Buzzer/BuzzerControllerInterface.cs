@@ -8,12 +8,15 @@ namespace GameMaster.Input
 {
     public class BuzzerControllerInterface
     {
-        static string missingKeyError = "the recieved Json is missing the key ";
+        static readonly string missingKeyError = "the recieved Json is missing the key ";
         private BuzzerController controller;
         private SerialPort? port;
         private string msg = "";
-        int ComPort;
-        int Baudrate;
+        readonly int ComPort;
+        readonly int Baudrate;
+
+        bool RecieveLock = false;
+        string RecieveData = "";
 
         public BuzzerControllerInterface(int ComPort, int Baudrate, BuzzerController ccontroller)
         {   
@@ -98,19 +101,15 @@ namespace GameMaster.Input
                 string outp = "Error MSG is: " + pJson.MSG + " and the Value is" + pJson.Value;
                 if (pJson.Critical == true) {throw new Exception(outp);}
                 Trace.TraceError(outp);
+                return;
             }
 
-            if (type == "Event") {HandleEvent(pJson);}
+            if (type == "Event") {HandleEvent(pJson); return;}
 
-            if (type == "Response") {HandleResponse(pJson);}
+            if (type == "Response") {HandleResponse(pJson); return;}
 
-            // do Error catching
-
-
-
-
+            throw new Exception("der Request existiert nicht");
         }
-        
         private void HandleResponse(BuzzerJson pJson)
         {
             if(!pJson.Success ?? throw new Exception(missingKeyError + "Success"))
@@ -120,9 +119,9 @@ namespace GameMaster.Input
                 Trace.TraceError(outp);
             }
 
-            // give the data to to the function that requested it
+            RecieveData = pJson.Value ?? throw new Exception(missingKeyError + "Value");
+            if (RecieveData == "") throw new Exception("Value is emty");
         }
-
         private void HandleEvent(BuzzerJson pJson)
         {
             int index = pJson.ID ?? throw new Exception(missingKeyError + "ID");
@@ -140,15 +139,28 @@ namespace GameMaster.Input
                 default:
                     throw new Exception("the Type is not valide >" + pJson.IOType);
             }
-
         }
-
-
-        public void SendData(string json)
+        public string GetData(string Json)
         {
-            if (port == null) return;
-            port.Write(json);
-            //Trace.WriteLine("sending: "+json);
+            // await ready to go
+            while(RecieveLock)
+            {}
+            // block to recieving
+            RecieveLock = true;
+            // reset the Data
+            RecieveData = "";
+            // send the data
+            if (port == null) throw new Exception("Serial is not Open");
+            port.Write(Json);
+            // await response or timeout
+            int i = 0;
+            while(RecieveData == "")
+            {
+                if (i < 100000) throw new Exception("the serial request timeouted");
+                i += 1;
+            }
+            RecieveLock = false;
+            return RecieveData;
         }
     }
     public class BuzzerJson

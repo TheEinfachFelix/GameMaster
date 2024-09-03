@@ -7,7 +7,7 @@ namespace GameMaster.Input
 {
     public class BuzzerController
     {
-        private Game game;
+        Game? game;
         [JsonIgnore]
         public List<Buzzer> BuzzerList = [];
         public int AmountOfBuzzer { get; set; }
@@ -27,30 +27,34 @@ namespace GameMaster.Input
         public List<int> dot2Valus { get; set; } = [0,5];
 
 
-        private bool _BuzzerDisabeled = false;
+        private bool _IODisabeled = false;
         [JsonIgnore]
-        public bool BuzzerDisabeled 
+        public bool IODisabeled 
         {  get
             {
-                return _BuzzerDisabeled;
+                return _IODisabeled;
             }
         }
         [JsonIgnore]
-        public BuzzerControllerInterface BuzzerControlerInterface;
+        public BuzzerControllerInterface? BuzzerControlerInterface;
         [JsonIgnore]
         public int ID;
-        public void setBuzzerDisabeled(bool val)
+        public void setIODisabeled(bool val)
         {
-            _BuzzerDisabeled = val;
+            _IODisabeled = val;
 
             if (val)
             {
-                // disabeled collor
+                // disabeled collor for buzzer
                 var Collor = Game.GetInstance().BuzzerControll.BlockCollor;
                 foreach (Buzzer item in BuzzerList)
                 {
                     LEDListe[item.myID].SetLEDColor(Collor[0], Collor[1], Collor[2]);
-
+                }
+                // taster
+                foreach (Taster item in TasterList)
+                {
+                    LEDListe[item.myID + 12].SetLEDColor(Collor[0], Collor[1], Collor[2]);
                 }
             }
             else
@@ -68,8 +72,19 @@ namespace GameMaster.Input
                     LEDListe[item.myID].SetLEDColor(Collor[0], Collor[1], Collor[2]);
 
                 }
-            }
+                // Taster
+                foreach (Taster item in TasterList)
+                {
+                    // get previouse collor
+                    var Collor = game.BuzzerControll.NormalCollor;
+                    if (item.TasterState)
+                    {
+                        Collor = game.BuzzerControll.PressCollor;
+                    }
+                    LEDListe[item.myID + 12].SetLEDColor(Collor[0], Collor[1], Collor[2]);
 
+                }
+            }
         }
 
         public BuzzerController(int pamountOfBuzzer, int pamountOfTaster, int pamountOfLED) 
@@ -77,7 +92,6 @@ namespace GameMaster.Input
             AmountOfBuzzer =  pamountOfBuzzer;
             AmountOfTaster = pamountOfTaster;
             AmountOfLED = pamountOfLED;
-
         }
         public void Setup(int id)
         {
@@ -102,25 +116,33 @@ namespace GameMaster.Input
             BuzzerControlerInterface = new(ComPort, Baudrate, this);
             BuzzerControlerInterface.Setup();
 
-
-            setBuzzerDisabeled(false);
+            setIODisabeled(false);
         }
-
         public void TasterEvent(int TasterID, bool Value)
         {
+            if (game == null) throw new Exception("Game is null");
+            if (IODisabeled) return;
             // taster 0 ist disable
             if (TasterID == 0)
             {
-                setBuzzerDisabeled(Value);
+                setIODisabeled(Value);
                 return;
             }
+
+            var Collor = game.BuzzerControll.NormalCollor;
+            if (Value)
+            {
+                Collor = game.BuzzerControll.PressCollor;
+            }
+            LEDListe[TasterID + 12].SetLEDColor(Collor[0], Collor[1], Collor[2]);
             
             // event weitergeben
             game.BuzzerControll.TasterEvent(ID,TasterID, Value);
         }
         public void BuzzerPress(int BuzzerID)
         {
-            if (BuzzerDisabeled) return;
+            if (game == null) throw new Exception("Game is null");
+            if (IODisabeled) return;
 
             // setzt die passende Farbe
             var Collor = game.BuzzerControll.PressCollor;
@@ -134,7 +156,8 @@ namespace GameMaster.Input
         }
         public void BuzzerRelease(int BuzzerID)
         {
-            if (BuzzerDisabeled) return;
+            if (game == null) throw new Exception("Game is null");
+            if (IODisabeled) return;
 
             // setzt die passende Farbe
             var Collor = game.BuzzerControll.NormalCollor;
@@ -143,12 +166,12 @@ namespace GameMaster.Input
             // event weitergeben
             game.BuzzerControll.BuzzerRelease(ID,BuzzerID);
         }
-
-        public void SendData(string json)
+        public string GetData(string json)
         {
-            if(Dummy) return;
+            if(Dummy) return"";
             if (BuzzerControlerInterface == null) throw new Exception("Buzzer Controller not properly setup");
-            BuzzerControlerInterface.SendData(json);
+            string outp = BuzzerControlerInterface.GetData(json);
+            return outp;
         }
     }
 }

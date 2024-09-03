@@ -12,17 +12,20 @@ namespace GameMaster.Input
 
         public int myID { get; set; } = -1;
 
+        public bool TasterState; //TODO: Get from ESP
+
         public void setBuzzerState(bool Oval, bool Nval)
         {
+            TasterState = Nval;
             if (Oval == Nval)return;
             if (!Nval)
-                {
-                    parent.BuzzerPress(myID);
-                }
-                else
-                {
-                    parent.BuzzerRelease(myID);
-                }
+            {
+                parent.BuzzerPress(myID);
+            }
+            else
+            {
+                parent.BuzzerRelease(myID);
+            }
         }
 
         private bool _LEDState = false;
@@ -30,12 +33,12 @@ namespace GameMaster.Input
         {
             get
             {
-                return _LEDState;
+                return _LEDState; //TODO: Get from ESP
             }
             set
             {
                 _LEDState = value;
-                parent.SendData("{"+ $"\"Output_Type\" : \"Buzzer\", \"ID\" : {myID}, \"Value\" : {_LEDState.ToString().ToLower()}" + "}");
+                parent.GetData("{"+ $"\"Output_Type\" : \"Buzzer\", \"ID\" : {myID}, \"Value\" : {_LEDState.ToString().ToLower()}" + "}");
             }
         }
 
@@ -50,9 +53,11 @@ namespace GameMaster.Input
         private BuzzerController parent;
 
         public int myID { get; private set; } = -1;
+        public bool TasterState; //TODO: Get from ESP
 
         public void setTasterState(bool Oval, bool Nval)
         {
+            TasterState = Nval;
             if (Oval == Nval)return;
             if (Nval != Oval)
                 {
@@ -76,7 +81,7 @@ namespace GameMaster.Input
         {
             get
             {
-                return _R;
+                return _R; //TODO: Get from ESP
             }
             set
             {
@@ -89,7 +94,7 @@ namespace GameMaster.Input
         {
             get
             {
-                return _G;
+                return _G; //TODO: Get from ESP
             }
             set
             {
@@ -102,7 +107,7 @@ namespace GameMaster.Input
         {
             get
             {
-                return _B;
+                return _B; //TODO: Get from ESP
             }
             set
             {
@@ -118,7 +123,7 @@ namespace GameMaster.Input
         }
         private void Send() 
         {
-            parent.SendData("{" + $"\"Output_Type\" : \"LED\", \"ID\" : {myID}, \"Value\" : " +"{"+$"\"R\":{R}, \"G\":{G}, \"B\":{B}" + "}}");
+            parent.GetData("{" + $"\"Output_Type\" : \"LED\", \"ID\" : {myID}, \"Value\" : " +"{"+$"\"R\":{R}, \"G\":{G}, \"B\":{B}" + "}}");
         }
         public void SetLEDColor(int pR, int pG, int pB)
         {

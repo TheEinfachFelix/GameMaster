@@ -17,7 +17,7 @@
 ## Mini TODOs
 - [x] led numbering is offset 
 - [x] fix pcb input buffer overflow
-- [ ] use LED for buzzer taster states and so on
+- [X] use LED for buzzer taster states and so on
 - [x] clean / refactor Buzzer add to json
 - [x] smart display of pcb valus
 - [x] create event to update binding
@@ -30,5 +30,6 @@
 - [x] auto Size text (M)
 - [x] Store values on PCB and *get* them when you need them
 - [ ] check if all IDs are correct especialy buzzer LED
-- [ ] redo api handling in gamemaster
+- [x] redo api handling in gamemaster
 - [x] automatic clean input
+- [ ] validate the new changes to the api

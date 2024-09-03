@@ -8,12 +8,12 @@ namespace GameMaster.Input
     public class BuzzerControllerMngr
     {
         [JsonIgnore]
-        Game game;
+        Game? game;
 
         public bool isDisabeled { get; set; }
-        public List<int> NormalCollor { get; set; }
-        public List<int> PressCollor { get; set; }
-        public List<int> BlockCollor { get; set; }
+        public List<int>? NormalCollor { get; set; }
+        public List<int>? PressCollor { get; set; }
+        public List<int>? BlockCollor { get; set; }
         public List<BuzzerController> BuzzerControllerList { get; set; } = [];
 
         public void Setup()
@@ -31,12 +31,14 @@ namespace GameMaster.Input
         public void TasterEvent(int parentID, int BuzzerID, bool Value)
         {
             if (isDisabeled) return;
+            if (game == null) throw new Exception("Game is null");
             if (game.CLevel == null) { throw new Exception("CLevel is null"); }
 
             game.CLevel.TasterEvent(BuzzerID, Value);
         }
-        public void BuzzerPress(int parentID, int BuzzerID)
+        public void BuzzerPress(int parentID, int BuzzerID)        
         {
+            if (game == null) throw new Exception("Game is null");
             if (isDisabeled) return;
             if (game.CLevel == null) { throw new Exception("CLevel is null"); }
 
@@ -44,6 +46,7 @@ namespace GameMaster.Input
         }
         public void BuzzerRelease(int parentID, int BuzzerID)
         {
+            if (game == null) throw new Exception("Game is null");
             if (isDisabeled) return;
             if (game.CLevel == null) { throw new Exception("CLevel is null"); }
 

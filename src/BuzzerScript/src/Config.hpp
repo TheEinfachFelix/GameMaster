@@ -62,7 +62,6 @@
 #define JsonEventOldValue "OldValue"
 
 /*
-{"Type":"Request","IO-Type":"LED","RequestType":"Set", "Request":"Collor"}
-
-
+{"Type":"Request","IO-Type":"Buzzer","RequestType":"Set", "Request":"State","ID":7,"Value": 1}
+{"Type":"Request","IO-Type":"LED","RequestType":"Set", "Request":"Collor","ID":7,"ID":1,"R":1,"G":1,"B":10 }
 */

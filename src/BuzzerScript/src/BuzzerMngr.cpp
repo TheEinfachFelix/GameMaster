@@ -59,11 +59,6 @@ String BuzzerMngr::JsonHandler(JsonDocument pJson)
 String BuzzerMngr::JsonSetHandler(JsonDocument pJson)
 {
     String Request = pJson[String(JsonRequest)];
-    // catch if value is missing
-    if (pJson[String(JsonRequestValue)] == NULL) 
-    {
-        return ErrorBuilder("the key \"" + String(JsonRequestValue) + "\" is missing",true);
-    }
 
     // handle set state
     if (Request == JsonRequestState)
@@ -71,38 +66,17 @@ String BuzzerMngr::JsonSetHandler(JsonDocument pJson)
         return JsonSetLedState(pJson);
     }
 
-    return ErrorBuilder("oops somthing went wrond in the BuzzerMngr-Set",true);
+    return ErrorBuilder("Only requests for Get are: \""+String(JsonRequestState)+"\"",true);
+
 }
 String BuzzerMngr::JsonSetLedState(JsonDocument pJson)
 {
-    // check ID
-    if (pJson[String(JsonRequestID)] == NULL) 
-    {
-        return ErrorBuilder("The ID is missig",true);
-    }
-
     // convert ID to int
-    int index;
-    try
-    {
-        index = pJson[String(JsonRequestID)];
-    }
-    catch(const std::exception& e)
-    {
-        return ErrorBuilder("cant convert ID to int",true);
-    }
+    int index = pJson[String(JsonRequestID)];
 
     //convert value to bool
-    bool val;
-    try
-    {
-        val = pJson[String(JsonRequestValue)];
-    }
-    catch(const std::exception& e)
-    {
-        return ErrorBuilder("cant convert Value to bool",true);
-    }
-    
+    bool val  = pJson[String(JsonRequestValue)];
+
     // set state
     try
     {
@@ -129,29 +103,33 @@ String BuzzerMngr::JsonGetHandler(JsonDocument pJson)
     if (Request == JsonRequestLEDPin || Request == JsonRequestTasterPin)
     {
         return JsonGetPin(pJson);
+    } 
+
+    if (Request == JsonRequestState)
+    {
+        // convert ID to int
+        int index= pJson[String(JsonRequestID)];
+
+        // get data
+        try
+        {
+            bool pin = BuzzerList[index].GetLedState();
+            return ResponseBuilder(String(pin));
+        }
+        catch(const std::exception& e)
+        {
+            return ErrorBuilder("The ID is wrong",true);
+        }
     }
 
-    return ErrorBuilder("oops somthing went wrond in the BuzzerMngr-Get",true);
+    return ErrorBuilder("Only requests for Get are: \""+String(JsonRequestLEDPin)+"\", \""+String(JsonRequestTasterPin)+"\", \""+String(JsonRequestState)+"\" and \""+String(JsonRequestAmount)+"\"",true);
 }
 String BuzzerMngr::JsonGetPin(JsonDocument pJson)
 {
-    // check id key exists
-    if (pJson[String(JsonRequestID)] == NULL) 
-    {
-        return ErrorBuilder("The ID is missig",true);
-    }
 
     // convert ID to int
-    int index;
-    try
-    {
-        index = pJson[String(JsonRequestID)];
-    }
-    catch(const std::exception& e)
-    {
-        return ErrorBuilder("cant convert ID to int",true);
-    }
-    
+    int index= pJson[String(JsonRequestID)];
+
     // get data
     try
     {

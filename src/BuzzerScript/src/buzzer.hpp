@@ -10,6 +10,7 @@ class Buzzer
 private:
     int PressPin;
     int LedPin;
+    bool LedState;
     
     bool PressState;
 public:
@@ -19,5 +20,6 @@ public:
     void SetLED(bool value);
     int GetLedPin();
     int GetBuzPin();
+    bool GetLedState();
     ~Buzzer();
 };

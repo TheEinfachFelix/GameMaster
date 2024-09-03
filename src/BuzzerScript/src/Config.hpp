@@ -23,7 +23,6 @@
 
 // General
 #define JsonType "Type"
-#define JsonIOType "IO-Type"
 #define JsonGet "Get"
 #define JsonSet "Set"
 
@@ -57,6 +56,7 @@
 
 // Event
 #define JsonEvent "Event"
+#define JsonIOType "IOType"
 #define JsonEventID JsonRequestID
 #define JsonEventNewValue "NewValue"
 #define JsonEventOldValue "OldValue"

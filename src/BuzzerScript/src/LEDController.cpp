@@ -77,7 +77,9 @@ String LEDController::JsonSetLedCollor(JsonDocument pJson)
     // set state
     try
     {
+        Serial.println(DebugBuilder("handler","going to set led", false,""));
         SetLED(index,R,G,B);
+        Serial.println(DebugBuilder("handler","LEDs are set", false,""));
         return ResponseBuilder("Done - Be aware that this method has defauld values of 0 for \""+String(JsonRequestID)+"\", \""+String(JsonRequestValueR)+"\", \""+String(JsonRequestValueG)+"\" and \""+String(JsonRequestValueB)+"\"! And be aware that if the index is out of range no error is thrown!");
     }
     catch(const std::exception& e)

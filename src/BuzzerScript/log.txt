@@ -1,0 +1,535 @@
+"GameController.exe" (CoreCLR: DefaultDomain): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Private.CoreLib.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Github\GameMaster\src\GameMaster\GameController\bin\Debug\net8.0-windows\GameController.dll" geladen. Symbole wurden geladen.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\PresentationFramework.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\WindowsBase.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Runtime.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\System.Xaml.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "c:\program files\microsoft visual studio\2022\community\common7\ide\commonextensions\microsoft\hotreload\Microsoft.Extensions.DotNetDeltaApplier.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.IO.Pipes.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Linq.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Collections.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Console.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Threading.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Runtime.InteropServices.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Threading.Overlapped.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Security.AccessControl.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Security.Principal.Windows.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Security.Claims.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Runtime.Loader.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\PrivateAssemblies\Runtime\Microsoft.VisualStudio.Debugger.Runtime.NetCoreApp.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\netstandard.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Threading.ThreadPool.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+Einzelschritt: Nichtbenutzercode "GameController.App..ctor" wird übersprungen.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Diagnostics.TraceSource.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Collections.Concurrent.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\System.IO.Packaging.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Text.RegularExpressions.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Private.Uri.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\PresentationCore.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Memory.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\DirectWriteForwarder.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Runtime.Extensions.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Diagnostics.Debug.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Runtime.CompilerServices.VisualC.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\Microsoft.Win32.Primitives.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\Microsoft.Win32.Registry.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Collections.Specialized.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Collections.NonGeneric.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.ComponentModel.Primitives.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Threading.Thread.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\System.Configuration.ConfigurationManager.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Xml.ReaderWriter.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Private.Xml.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Net.WebClient.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Text.Encoding.Extensions.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+Einzelschritt: Nichtbenutzercode "GameController.App.InitializeComponent" wird übersprungen.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.ComponentModel.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.ComponentModel.TypeConverter.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\System.Windows.Extensions.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.ObjectModel.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Github\GameMaster\src\GameMaster\GameController\bin\Debug\net8.0-windows\GameMaster.dll" geladen. Symbole wurden geladen.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\System.Windows.Forms.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\UIAutomationTypes.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Github\GameMaster\src\GameMaster\GameController\bin\Debug\net8.0-windows\Newtonsoft.Json.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Runtime.Serialization.Formatters.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Linq.Expressions.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Runtime.Numerics.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Runtime.Serialization.Primitives.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Data.Common.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Reflection.Emit.ILGeneration.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Reflection.Emit.Lightweight.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Reflection.Primitives.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "Anonymously Hosted DynamicMethods Assembly" geladen. 
+"GameController.exe" (CoreCLR: clrhost): "C:\Github\GameMaster\src\GameMaster\GameController\bin\Debug\net8.0-windows\obs-websocket-dotnet.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Github\GameMaster\src\GameMaster\GameController\bin\Debug\net8.0-windows\Websocket.Client.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Net.WebSockets.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\System.Windows.Forms.Primitives.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\System.Drawing.Common.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Diagnostics.Process.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\PresentationFramework.Aero2.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\de\PresentationFramework.resources.dll" geladen. Das Modul wurde ohne Symbole erstellt.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\UIAutomationProvider.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+Game Setup:
+Setting up OBS...  -DONE-
+Setting up Dot2..."GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Net.WebSockets.Client.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Github\GameMaster\src\GameMaster\GameController\bin\Debug\net8.0-windows\System.Reactive.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+  -DONE-
+Setting up Buzzer..."GameController.exe" (CoreCLR: clrhost): "C:\Github\GameMaster\src\GameMaster\GameController\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.IO.Ports.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+Sending:{"Type":"Request","IOType" : "LED","RequestType":"Set","Request":"Collor", "ID" : 0, "R":0, "G":0, "B":10}
+Recieved: {
+  "Type": "Debug",
+  "MSG": "start",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "first",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "second",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "response is buid",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Response",
+  "Success": true,
+  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"
+}
+
+R Item:{  "Type": "Debug",  "MSG": "start",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: start and the Value is
+R Item:{  "Type": "Debug",  "MSG": "first",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: first and the Value is
+R Item:{  "Type": "Debug",  "MSG": "second",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: second and the Value is
+R Item:{  "Type": "Debug",  "MSG": "response is buid",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: response is buid and the Value is
+R Item:{  "Type": "Response",  "Success": true,  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"}
+Sending:{"Type":"Request","IOType" : "LED","RequestType":"Set","Request":"Collor", "ID" : 1, "R":0, "G":0, "B":10}
+Recieved: {
+  "Type": "Debug",
+  "MSG": "start",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "first",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "second",
+  "Value": "",
+  "Critical": false
+}
+
+R Item:{  "Type": "Debug",  "MSG": "start",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: start and the Value is
+R Item:{  "Type": "Debug",  "MSG": "first",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: first and the Value is
+R Item:{  "Type": "Debug",  "MSG": "second",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: second and the Value is
+Recieved: {
+  "Type": "Debug",
+  "MSG": "response is buid",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Response",
+  "Success": true,
+  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"
+}
+
+R Item:{  "Type": "Debug",  "MSG": "response is buid",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: response is buid and the Value is
+R Item:{  "Type": "Response",  "Success": true,  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"}
+Sending:{"Type":"Request","IOType" : "LED","RequestType":"Set","Request":"Collor", "ID" : 2, "R":0, "G":0, "B":10}
+Recieved: {
+  "Type": "Debug",
+  "MSG": "start",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "first",
+  "Value": "",
+  "Critical": 
+R Item:{  "Type": "Debug",  "MSG": "start",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: start and the Value is
+Recieved: {  "Type": "Debug",  "MSG": "first",  "Value": "",  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "second",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "response is buid",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Response",
+  "Success": true,
+  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"
+}
+
+R Item:{  "Type": "Debug",  "MSG": "first",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: first and the Value is
+R Item:{  "Type": "Debug",  "MSG": "second",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: second and the Value is
+R Item:{  "Type": "Debug",  "MSG": "response is buid",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: response is buid and the Value is
+R Item:{  "Type": "Response",  "Success": true,  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"}
+Sending:{"Type":"Request","IOType" : "LED","RequestType":"Set","Request":"Collor", "ID" : 3, "R":0, "G":0, "B":10}
+Recieved: {
+  "Type": "Debug",
+  "MSG": "start",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "first",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "second",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "response is buid",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Response",
+  "Success": true,
+  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"
+}
+
+R Item:{  "Type": "Debug",  "MSG": "start",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: start and the Value is
+R Item:{  "Type": "Debug",  "MSG": "first",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: first and the Value is
+R Item:{  "Type": "Debug",  "MSG": "second",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: second and the Value is
+R Item:{  "Type": "Debug",  "MSG": "response is buid",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: response is buid and the Value is
+R Item:{  "Type": "Response",  "Success": true,  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"}
+Sending:{"Type":"Request","IOType" : "LED","RequestType":"Set","Request":"Collor", "ID" : 4, "R":0, "G":0, "B":10}
+Recieved: {
+  "Type": "Debug",
+  "MSG": "start",
+  "Value":
+Recieved: {  "Type": "Debug",  "MSG": "start",  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "first",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "second",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "response is buid",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Response",
+  "Success": true,
+  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"
+}
+
+R Item:{  "Type": "Debug",  "MSG": "start",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: start and the Value is
+R Item:{  "Type": "Debug",  "MSG": "first",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: first and the Value is
+R Item:{  "Type": "Debug",  "MSG": "second",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: second and the Value is
+R Item:{  "Type": "Debug",  "MSG": "response is buid",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: response is buid and the Value is
+R Item:{  "Type": "Response",  "Success": true,  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"}
+Sending:{"Type":"Request","IOType" : "LED","RequestType":"Set","Request":"Collor", "ID" : 5, "R":0, "G":0, "B":10}
+Recieved: {
+Recieved: 
+  "Type": "Debug",
+  "MSG": "start",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "first",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "second",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "response is buid",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Response",
+  "Success": true,
+  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"
+}
+
+R Item:{  "Type": "Debug",  "MSG": "first",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: first and the Value is
+R Item:{  "Type": "Debug",  "MSG": "second",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: second and the Value is
+R Item:{  "Type": "Debug",  "MSG": "response is buid",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: response is buid and the Value is
+R Item:{  "Type": "Response",  "Success": true,  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"}
+Sending:{"Type":"Request","IOType" : "LED","RequestType":"Set","Request":"Collor", "ID" : 6, "R":0, "G":0, "B":10}
+Recieved: {
+  "Type": "Debug",
+  "MSG": "start",
+  "Value": "",
+  "Critical": false
+}
+
+R Item:{  "Type": "Debug",  "MSG": "start",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: start and the Value is
+Recieved: {
+  "Type": "Debug",
+  "MSG": "first",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "second",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "response is buid",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Response",
+  "Success": true,
+  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"
+}
+
+R Item:{  "Type": "Debug",  "MSG": "first",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: first and the Value is
+R Item:{  "Type": "Debug",  "MSG": "second",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: second and the Value is
+R Item:{  "Type": "Debug",  "MSG": "response is buid",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: response is buid and the Value is
+R Item:{  "Type": "Response",  "Success": true,  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"}
+Sending:{"Type":"Request","IOType" : "LED","RequestType":"Set","Request":"Collor", "ID" : 7, "R":0, "G":0, "B":10}
+Recieved: {
+  "Type": "Debug",
+  "MSG": "start",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "first",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "second",
+  "Value": "",
+  "Critical": false
+}
+
+R Item:{  "Type": "Debug",  "MSG": "start",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: start and the Value is
+R Item:{  "Type": "Debug",  "MSG": "first",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: first and the Value is
+R Item:{  "Type": "Debug",  "MSG": "second",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: second and the Value is
+Recieved: {
+  "Type": "Debug",
+  "MSG": "response is buid",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Response",
+  "Success": true,
+  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"
+}
+
+R Item:{  "Type": "Debug",  "MSG": "response is buid",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: response is buid and the Value is
+R Item:{  "Type": "Response",  "Success": true,  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"}
+Sending:{"Type":"Request","IOType" : "LED","RequestType":"Set","Request":"Collor", "ID" : 9, "R":0, "G":0, "B":10}
+Recieved: {
+  "Type": "Debug",
+  "MSG": "start",
+  "Value": "",
+  "Critical": false
+}
+
+R Item:{  "Type": "Debug",  "MSG": "start",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: start and the Value is
+Recieved: {
+  "Type": "Debug",
+  "MSG": "first",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "second",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "response is buid",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Response",
+  "Success": true,
+  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"
+}
+
+R Item:{  "Type": "Debug",  "MSG": "first",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: first and the Value is
+R Item:{  "Type": "Debug",  "MSG": "second",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: second and the Value is
+R Item:{  "Type": "Debug",  "MSG": "response is buid",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: response is buid and the Value is
+R Item:{  "Type": "Response",  "Success": true,  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"}
+Sending:{"Type":"Request","IOType" : "LED","RequestType":"Set","Request":"Collor", "ID" : 10, "R":0, "G":0, "B":10}
+Recieved: {
+  "Type": "Debug",
+  "MSG": "start",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "first",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "second",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "response is buid",
+  "Value": "",
+  "Critical": false
+}
+
+R Item:{  "Type": "Debug",  "MSG": "start",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: start and the Value is
+R Item:{  "Type": "Debug",  "MSG": "first",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: first and the Value is
+R Item:{  "Type": "Debug",  "MSG": "second",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: second and the Value is
+R Item:{  "Type": "Debug",  "MSG": "response is buid",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: response is buid and the Value is
+Recieved: {
+  "Type": "Response",
+  "Success": true,
+  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"
+}
+
+R Item:{  "Type": "Response",  "Success": true,  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"}
+Sending:{"Type":"Request","IOType" : "LED","RequestType":"Set","Request":"Collor", "ID" : 11, "R":0, "G":0, "B":10}
+Recieved: {
+  "Type": "Debug",
+  "MSG": "start",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "first",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "second",
+  "Value": "",
+  "Critical": false
+}
+{
+  "Type": "Debug",
+  "MSG": "response is buid",
+  "Value": "",
+  "Critical": false
+}
+
+R Item:{  "Type": "Debug",  "MSG": "start",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: start and the Value is
+R Item:{  "Type": "Debug",  "MSG": "first",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: first and the Value is
+R Item:{  "Type": "Debug",  "MSG": "second",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: second and the Value is
+R Item:{  "Type": "Debug",  "MSG": "response is buid",  "Value": "",  "Critical": false}
+GameController Error: 0 : Error MSG is: response is buid and the Value is
+Recieved: {
+  "Type": "Response",
+  "Success": true,
+  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"
+}
+
+R Item:{  "Type": "Response",  "Success": true,  "Value": "Done - Be aware that this method has defauld values of 0 for \"ID\", \"R\", \"G\" and \"B\"! And be aware that if the index is out of range no error is thrown!"}
+  -DONE-
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Diagnostics.Tracing.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\de\PresentationCore.resources.dll" geladen. Das Modul wurde ohne Symbole erstellt.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Resources.ResourceManager.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "c:\program files\microsoft visual studio\2022\community\common7\ide\commonextensions\microsoft\xamldiagnostics\Core\x64\Microsoft.VisualStudio.DesignTools.WpfTap.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Threading.Tasks.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Runtime.Serialization.Json.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Private.DataContractSerialization.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.5\System.Runtime.Serialization.Xml.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\PresentationFramework-SystemXml.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.
+"GameController.exe" (CoreCLR: clrhost): "C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.5\PresentationFramework-SystemData.dll" geladen. Das Laden von Symbolen wurde übersprungen. Das Modul ist optimiert, und die Debugoption "Nur eigenen Code" ist aktiviert.

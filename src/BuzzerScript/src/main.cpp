@@ -98,6 +98,7 @@ void inputToJson(String strJson)
 
 String HandleJson(DeserializationError pError, JsonDocument pJson)
 {
+  Serial.println(DebugBuilder("main","something new", false,""));
   // catch deserilaising error
   if (pError)
   {

@@ -55,7 +55,7 @@ namespace GameMaster.Input
                 // taster
                 foreach (Taster item in TasterList)
                 {
-                    LEDListe[item.myID + 12].SetLEDColor(Collor[0], Collor[1], Collor[2]);
+                    LEDListe[item.myID + 9].SetLEDColor(Collor[0], Collor[1], Collor[2]);
                 }
             }
             else
@@ -82,7 +82,7 @@ namespace GameMaster.Input
                     {
                         Collor = game.BuzzerControll.PressCollor ?? throw new Exception(missingCollor);
                     }
-                    LEDListe[item.myID + 12].SetLEDColor(Collor[0], Collor[1], Collor[2]);
+                    LEDListe[item.myID + 9].SetLEDColor(Collor[0], Collor[1], Collor[2]);
 
                 }
             }
@@ -135,7 +135,7 @@ namespace GameMaster.Input
             {
                 Collor = game.BuzzerControll.PressCollor ?? throw new Exception(missingCollor);
             }
-            LEDListe[TasterID + 12].SetLEDColor(Collor[0], Collor[1], Collor[2]);
+            LEDListe[TasterID + 9].SetLEDColor(Collor[0], Collor[1], Collor[2]);
             
             // event weitergeben
             game.BuzzerControll.TasterEvent(ID,TasterID, Value);

@@ -45,7 +45,7 @@
         "ComPort": 3,
         "Baudrate": 115200,
         "Dummy": false,
-        "dot2Valus": [
+        "Dot2Valus": [
           201,
           202,
           0,

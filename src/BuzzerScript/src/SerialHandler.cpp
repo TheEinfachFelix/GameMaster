@@ -47,13 +47,16 @@ String DebugBuilder(String pSorce, String pMSG, bool pCritical, String pValue = 
 }
 String ResponseBuilder (String pValue)
 {
+    Serial.println(DebugBuilder("responseBuilder","start", false));
     String out = "";
     JsonDocument doc;
-
+    Serial.println(DebugBuilder("responseBuilder","first", false));
     doc[JsonType] = JsonResponse;
     doc[JsonResponseSuccess] = true;
     doc[JsonResponseValue] = pValue;
+    Serial.println(DebugBuilder("responseBuilder","second", false));
 
     serializeJsonPretty(doc,out);
+    Serial.println(DebugBuilder("responseBuilder","response is buid", false));
     return out; 
 }

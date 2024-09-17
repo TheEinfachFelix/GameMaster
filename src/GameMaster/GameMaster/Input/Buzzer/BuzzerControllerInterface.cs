@@ -67,8 +67,17 @@ namespace GameMaster.Input
 
             foreach (string item in matches)
             {
+
+                Trace.WriteLine("R Item:"+item);
                 HandleData(DataToJson(ParseData(item)));
             }
+            string regexes = "\\{.[^\\}]*$";
+            var matches2 = Regex.Matches(pmsg, regexes)
+                .Cast<Match>()
+                .Select(m => m.Value)
+                .ToArray();
+            if (matches2.Count() == 0) { msg = ""; return; }
+            msg = matches2[matches2.Count()-1] ?? "";
         }
         private string ParseData(string input)
         {
@@ -151,13 +160,15 @@ namespace GameMaster.Input
             RecieveData = "";
             // send the data
             if (port == null) throw new Exception("Serial is not Open");
+            Trace.WriteLine("Sending:"+Json);
             port.Write(Json);
             // await response or timeout
             int i = 0;
-            while(RecieveData == "")
+            while(RecieveData == "")  //TODO the code hanges here because i think because of threading
             {
-                if (i < 100000) throw new Exception("the serial request timeouted");
+                if (i > 50) throw new Exception("the serial request timeouted");
                 i += 1;
+                Thread.Sleep(10);
             }
             RecieveLock = false;
             return RecieveData;

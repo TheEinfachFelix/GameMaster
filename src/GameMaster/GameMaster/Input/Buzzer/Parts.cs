@@ -38,7 +38,7 @@ namespace GameMaster.Input
             set
             {
                 _LEDState = value;
-                parent.GetData("{"+ $"\"Output_Type\" : \"Buzzer\", \"ID\" : {myID}, \"Value\" : {_LEDState.ToString().ToLower()}" + "}");
+                parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Set\",\"Request\":\"State\", \"ID\" : {myID}, \"Value\":{_LEDState.ToString().ToLower()}" + "}");
             }
         }
 
@@ -123,7 +123,8 @@ namespace GameMaster.Input
         }
         private void Send() 
         {
-            parent.GetData("{" + $"\"Output_Type\" : \"LED\", \"ID\" : {myID}, \"Value\" : " +"{"+$"\"R\":{R}, \"G\":{G}, \"B\":{B}" + "}}");
+
+            parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"LED\",\"RequestType\":\"Set\",\"Request\":\"Collor\", \"ID\" : {myID}, \"R\":{R}, \"G\":{G}, \"B\":{B}"+"}");
         }
         public void SetLEDColor(int pR, int pG, int pB)
         {

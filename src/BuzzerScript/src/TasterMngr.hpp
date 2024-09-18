@@ -12,10 +12,12 @@ class TasterMngr
 private:
 public:
     TasterMngr();
-    void Setup();
-    void ChecknPrintPinstate();
     ~TasterMngr();
-    String JsonHandler(JsonDocument pJson);
+    void Setup();
+
+    void CheckAllInputChanges();
+    
+    String JsonHandlerGetSet(JsonDocument pJson);
 };
 
 

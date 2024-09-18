@@ -1,8 +1,7 @@
 #include "LEDController.hpp"
 
-LEDController::LEDController()
-{
-}
+LEDController::LEDController(){}
+LEDController::~LEDController(){}
 
 void LEDController::Setup()
 {
@@ -16,19 +15,8 @@ void LEDController::SetLED(int id, int R = 0, int G = 0, int B = 0)
     strip.show();
 }
 
-LEDController::~LEDController()
+String LEDController::JsonHandlerGetSet(JsonDocument pJson)
 {
-}
-
-String LEDController::JsonHandler(JsonDocument pJson)
-{
-    String Request = pJson[String(JsonRequest)];
-    // validate request
-    if (Request != JsonRequestAmount && Request != JsonRequestPin && Request != JsonRequestLedCollor) 
-    {
-        return ErrorBuilder("\"" + String(JsonRequest) + "\" not found! Only requests are \""  + String(JsonRequestAmount) + "\" or \"" + String(JsonRequestLedCollor) + "\" or \"" + String(JsonRequestPin) + "\"",true);
-    }
-
     if (pJson[String(JsonRequestType)] == JsonSet) 
     {
         return JsonSetHandler(pJson);
@@ -41,6 +29,7 @@ String LEDController::JsonHandler(JsonDocument pJson)
 
     return ErrorBuilder("oops somthing went wrong in BuzzerMngr",true);
 }
+// Set
 String LEDController::JsonSetHandler(JsonDocument pJson)
 {
     String Request = pJson[String(JsonRequest)];
@@ -48,12 +37,12 @@ String LEDController::JsonSetHandler(JsonDocument pJson)
     // handle set state
     if (Request == JsonRequestLedCollor)
     {
-        return JsonSetLedCollor(pJson);
+        return JsonSetCollor(pJson);
     }
 
     return ErrorBuilder("Only requests for Get are: \""+String(JsonRequestLedCollor)+"\"",true);
 }
-String LEDController::JsonSetLedCollor(JsonDocument pJson)
+String LEDController::JsonSetCollor(JsonDocument pJson)
 {
     // convert ID to int
     int index  = pJson[String(JsonRequestID)];
@@ -77,16 +66,15 @@ String LEDController::JsonSetLedCollor(JsonDocument pJson)
     // set state
     try
     {
-        Serial.println(DebugBuilder("handler","going to set led", false,""));
         SetLED(index,R,G,B);
-        Serial.println(DebugBuilder("handler","LEDs are set", false,""));
         return ResponseBuilder("Done - Be aware that this method has defauld values of 0 for \""+String(JsonRequestID)+"\", \""+String(JsonRequestValueR)+"\", \""+String(JsonRequestValueG)+"\" and \""+String(JsonRequestValueB)+"\"! And be aware that if the index is out of range no error is thrown!");
     }
     catch(const std::exception& e)
     {
-        return ErrorBuilder("The ID is wrong",true);
+        return ErrorBuilder(JsonErrorGeneric,true);
     }
 }
+// Get
 String LEDController::JsonGetHandler(JsonDocument pJson)
 {
     String Request = pJson[String(JsonRequest)];
@@ -104,15 +92,16 @@ String LEDController::JsonGetHandler(JsonDocument pJson)
     }
 
     if (Request == JsonRequestLedCollor){
-        return GetLedCollorAsJson(pJson);
+        return JsonGetCollor(pJson);
     }
 
     return ErrorBuilder("Only requests for Get are: \""+String(JsonRequestAmount)+"\", \""+String(JsonRequestPin)+"\", \""+String(JsonRequestLedCollor)+"\"",true);
 }
-String LEDController::GetLedCollorAsJson(JsonDocument pJson)
+String LEDController::JsonGetCollor(JsonDocument pJson)
 {
     // convert ID to int
     int index = pJson[String(JsonRequestID)];
+    String key = pJson[String(JsonRequestKey)];
 
     try
     {
@@ -123,17 +112,24 @@ String LEDController::GetLedCollorAsJson(JsonDocument pJson)
         int b= rgbcolor&0xFF;
 
         String out = "";
-        JsonDocument doc;
 
-        doc[JsonRequestValueR] = r;
-        doc[JsonRequestValueG] = g;
-        doc[JsonRequestValueB] = b;
+        if (key == JsonRequestValueR)
+        {
+            return ResponseBuilder(String(r));
+        }
+        if (key == JsonRequestValueG)
+        {
+            return ResponseBuilder(String(g));
+        }
+        if (key == JsonRequestValueB)
+        {
+            return ResponseBuilder(String(b));
+        }
 
-        serializeJsonPretty(doc,out);
-        return ResponseBuilder(out);
+        return ErrorBuilder("the key \"" + String(JsonRequestKey)+"\" does not have a valide Key. mus be :" + String(JsonRequestValueR) + String(JsonRequestValueG) + String(JsonRequestValueB), true);
     }
     catch(const std::exception& e)
     {
-        return ErrorBuilder("The ID is wrong",true);
+        return ErrorBuilder(JsonErrorGeneric,true);
     }
 }

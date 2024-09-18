@@ -9,40 +9,48 @@ Buzzer::Buzzer(int pPressPin, int pLEDPin)
     pinMode(PressPin, INPUT_PULLDOWN);
     pinMode(LedPin, OUTPUT);
 
-    PressState = digitalRead(PressPin);
+    PressState = GetInputState();
 }
+Buzzer::~Buzzer(){}
 
-void Buzzer::PrintRead()
+void Buzzer::CheckStateChange()
 {
-    bool now = digitalRead(PressPin);
+    bool now = GetInputState();
     bool old = PressState;
     if (old != now)
     {
-        EventSender(BuzzerType, ID , old, now);
+        PrintEvent(old,now);
         PressState = now;
     }
 }
 
-void Buzzer::SetLED(bool value)
+void Buzzer::PrintEvent(bool old, bool now)
+{
+    EventSender(BuzzerType, ID , old, now);
+}
+
+void Buzzer::SetLedValue(bool value)
 {
     digitalWrite(LedPin, value);
     LedState = value;
 }
 
-Buzzer::~Buzzer()
+// States
+bool Buzzer::GetInputState()
 {
+    return digitalRead(PressPin);
+}
+bool Buzzer::GetLedState()
+{
+    return LedState;
 }
 
+// Pin
 int Buzzer::GetLedPin()
 {
     return LedPin;
 }
-int Buzzer::GetBuzPin()
+int Buzzer::GetInputPin()
 {
     return PressPin;
-}
-
-bool Buzzer::GetLedState()
-{
-    return LedState;
 }

@@ -16,10 +16,19 @@ private:
 public:
     int ID = 0;
     Buzzer(int pPressPin, int pLEDPin);
-    void PrintRead();
-    void SetLED(bool value);
-    int GetLedPin();
-    int GetBuzPin();
-    bool GetLedState();
     ~Buzzer();
+    // 
+    void CheckStateChange();
+    void PrintEvent(bool old, bool now);
+
+    // Set -> SetInputState is done by only Calling a event
+    void SetLedValue(bool value);
+    // get Pin
+    int GetLedPin();
+    int GetInputPin();
+    // get State
+    bool GetLedState();
+    bool GetInputState();
+    
+    
 };

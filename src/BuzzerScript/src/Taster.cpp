@@ -6,25 +6,31 @@ Taster::Taster(int pPressPin)
 
     pinMode(PressPin, INPUT_PULLUP);
 
-    PressState = digitalRead(PressPin);
+    PressState = GetInputState();
 }
+Taster::~Taster(){}
 
-void Taster::PrintRead()
+void Taster::CheckStateChange()
 {
-    bool now = digitalRead(PressPin);
+    bool now = GetInputState();
 
     if (PressState != now)
     {
-        EventSender(TasterType, ID , now, PressState);
+        PrintEvent(PressState, now);
         PressState = now;
     }
 }
+void Taster::PrintEvent(bool old, bool now)
+{
+    EventSender(BuzzerType, ID , old, now);
+}
 
+// Get
 int Taster::GetPin()
 {
     return PressPin;
 }
-
-Taster::~Taster()
+bool Taster::GetInputState()
 {
+    return digitalRead(PressPin);
 }

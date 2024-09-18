@@ -1,9 +1,4 @@
 #include "main.hpp"
-#include <vector>
-#include <list>
-#include<bits/stdc++.h>
-
-
 
 BuzzerMngr BuzzMngr = BuzzerMngr();
 TasterMngr tastMngr = TasterMngr();
@@ -12,9 +7,8 @@ String Input;
 String OldInput;
 int64_t TimerOfDeletion;
 
-std::list<String> split (std::string toSplit)
+std::list<String> SplitInputToJson (std::string toSplit)
 {
-  
   std::list<String> OutputList = {};
   auto foundOpen = toSplit.find("{");
   auto foundClosed = toSplit.find("}");
@@ -44,14 +38,14 @@ void setup() {
 
 void loop() 
 {
-  BuzzMngr.ChecknPrintPinstate();
-  tastMngr.ChecknPrintPinstate();
+  BuzzMngr.CheckAllInputChanges();
+  tastMngr.CheckAllInputChanges();
 
   Input = Input + Serial.readString();
 
-  //Serial.print(Input);
-  checkInputComplete();
+  SplitInput();
 
+  // Delete the Input if it is not used
   if (millis() > TimerOfDeletion + JsonDeleteInputBufferAfter)
   {
     if (OldInput == Input)
@@ -63,19 +57,20 @@ void loop()
   }
 }
 
-void checkInputComplete()
+void SplitInput()
 {
-  for(auto i: split(Input.c_str()))
+  for(auto i: SplitInputToJson(Input.c_str()))
   {
     inputToJson(i);
-    Serial.print(Input); 
   }
 }
+
 void inputToJson(String strJson)
 {
   // fix missing last } on nested json string
   int countOpen = 0;
   int countClose = 0;
+  // count
   for (size_t i = 0; i < strJson.length(); i++)
   {
     char in = strJson[i];
@@ -84,6 +79,7 @@ void inputToJson(String strJson)
     if (in  == '}')
       countClose ++;
   }
+  // act
   if (countClose + 1 == countOpen)
   {
     strJson = strJson + "}";
@@ -93,12 +89,12 @@ void inputToJson(String strJson)
   JsonDocument Json = JsonDocument();
   DeserializationError error = deserializeJson(Json, strJson);
   
+  // output the result
   Serial.println(HandleJson(error, Json));
 }
 
 String HandleJson(DeserializationError pError, JsonDocument pJson)
 {
-  Serial.println(DebugBuilder("main","something new", false,""));
   // catch deserilaising error
   if (pError)
   {
@@ -111,7 +107,7 @@ String HandleJson(DeserializationError pError, JsonDocument pJson)
     return ErrorBuilder("The Json is Empty or key \"" + String(JsonType) + "\" ist missing",false);
   }
 
-  //validate type
+  // check if Request is Request
   if (pJson[String(JsonType)] != JsonRequest) 
   {
     return ErrorBuilder("we only handle \"" + String(JsonType) + "\" json \"" + String(JsonRequest) + "\"",true);
@@ -130,19 +126,20 @@ String HandleJson(DeserializationError pError, JsonDocument pJson)
     return ErrorBuilder("error with key \"" + String(JsonRequestType) + "\" must be \""  + String(JsonSet) + "\" or \""  + String(JsonGet) + "\"",true);
   }
 
+
   // give handling to mngr
   if (IOType == LEDType)
   {
-    return ledCntrl.JsonHandler(pJson);
+    return ledCntrl.JsonHandlerGetSet(pJson);
   }
     if (IOType == BuzzerType)
   {
-    return BuzzMngr.JsonHandler(pJson);
+    return BuzzMngr.JsonHandlerGetSet(pJson);
 
   }
     if (IOType == TasterType)
   {
-    return tastMngr.JsonHandler(pJson);
+    return tastMngr.JsonHandlerGetSet(pJson);
   }
 
   return ErrorBuilder("The Json Request left me with nothing to do sus",true); 

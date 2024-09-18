@@ -3,13 +3,8 @@
 
 Buzzer BuzzerList[] = CBuzzerList;
 
-BuzzerMngr::BuzzerMngr()
-{
-}
-
-BuzzerMngr::~BuzzerMngr()
-{
-}
+BuzzerMngr::BuzzerMngr(){}
+BuzzerMngr::~BuzzerMngr(){}
 
 void BuzzerMngr::Setup()
 {
@@ -22,28 +17,28 @@ void BuzzerMngr::Setup()
     }
 }
 
-void BuzzerMngr::ChecknPrintPinstate()
+void BuzzerMngr::CheckAllInputChanges()
 {
     for(auto &i: BuzzerList)
     {
-        i.PrintRead();
+        i.CheckStateChange();
     }
 }
 
-void BuzzerMngr::SetLED(int BuzzerID, bool Value)
+// Set States
+void BuzzerMngr::SetLedState(int BuzzerID, bool Value)
 {
-    BuzzerList[BuzzerID].SetLED(Value);
+    BuzzerList[BuzzerID].SetLedValue(Value);
+}
+void BuzzerMngr::SetInputState(int BuzzerID, bool Value)
+{
+    Buzzer buz = BuzzerList[BuzzerID];
+    buz.PrintEvent(buz.GetInputState(),Value);
 }
 
-String BuzzerMngr::JsonHandler(JsonDocument pJson)
+// Handle json
+String BuzzerMngr::JsonHandlerGetSet(JsonDocument pJson)
 {
-    String Request = pJson[String(JsonRequest)];
-    // validate request
-    if (Request != JsonRequestAmount && Request != JsonRequestLEDPin && Request != JsonRequestTasterPin && Request != JsonRequestState) 
-    {
-        return ErrorBuilder("Request not found! Only requests are \""  + String(JsonRequestAmount) + "\" or \"" + String(JsonRequestState) + "\" or \"" + String(JsonRequestTasterPin) + "\" or \"" + String(JsonRequestLEDPin) + "\"",true);
-    }
-
     if (pJson[String(JsonRequestType)] == JsonSet) 
     {
         return JsonSetHandler(pJson);
@@ -56,92 +51,98 @@ String BuzzerMngr::JsonHandler(JsonDocument pJson)
 
     return ErrorBuilder("oops somthing went wrong in BuzzerMngr",true);
 }
+// Json SET
 String BuzzerMngr::JsonSetHandler(JsonDocument pJson)
 {
     String Request = pJson[String(JsonRequest)];
-
-    // handle set state
-    if (Request == JsonRequestState)
-    {
-        return JsonSetLedState(pJson);
-    }
-
-    return ErrorBuilder("Only requests for Get are: \""+String(JsonRequestState)+"\"",true);
-
-}
-String BuzzerMngr::JsonSetLedState(JsonDocument pJson)
-{
-    // convert ID to int
     int index = pJson[String(JsonRequestID)];
-
-    //convert value to bool
     bool val  = pJson[String(JsonRequestValue)];
 
-    // set state
     try
     {
-        SetLED(index,val);
-        return ResponseBuilder("Done");
+        if (Request == JsonRequestState)
+        {
+            SetLedState(index,val);
+            return ResponseBuilder("Done");
+        }
+        if (Request == JsonRequestInputState)
+        {
+            SetInputState(index,val);
+            return ResponseBuilder("Done");
+        } 
     }
     catch(const std::exception& e)
     {
-        return ErrorBuilder("The ID is wrong",true);
+        return ErrorBuilder(JsonErrorGeneric,true);
     }
+
+
+    return ErrorBuilder("Only requests for Get are: \""+String(JsonRequestState)+"\", \""+String(JsonRequestInputState)+"\"",true);
 }
+// Json GET
 String BuzzerMngr::JsonGetHandler(JsonDocument pJson)
 {
     String Request = pJson[String(JsonRequest)];
+    int index= pJson[String(JsonRequestID)];
+    Buzzer Buz = BuzzerList[index];
 
-    // handle amount
     if (Request == JsonRequestAmount)
     {
         int len = sizeof(BuzzerList)/sizeof(BuzzerList[0]);
         return ResponseBuilder(String(len));
     }
 
-    // handle pin
-    if (Request == JsonRequestLEDPin || Request == JsonRequestTasterPin)
+    if (Request == JsonRequestLEDPin)
     {
-        return JsonGetPin(pJson);
-    } 
-
-    if (Request == JsonRequestState)
-    {
-        // convert ID to int
-        int index= pJson[String(JsonRequestID)];
-
-        // get data
         try
         {
-            bool pin = BuzzerList[index].GetLedState();
+            int pin = Buz.GetLedPin();
             return ResponseBuilder(String(pin));
         }
         catch(const std::exception& e)
         {
-            return ErrorBuilder("The ID is wrong",true);
+            return ErrorBuilder(JsonErrorGeneric,true);
         }
-    }
+    } 
 
-    return ErrorBuilder("Only requests for Get are: \""+String(JsonRequestLEDPin)+"\", \""+String(JsonRequestTasterPin)+"\", \""+String(JsonRequestState)+"\" and \""+String(JsonRequestAmount)+"\"",true);
-}
-String BuzzerMngr::JsonGetPin(JsonDocument pJson)
-{
-
-    // convert ID to int
-    int index= pJson[String(JsonRequestID)];
-
-    // get data
-    try
+    if (Request == JsonRequestTasterPin)
     {
-        int pin = BuzzerList[index].GetBuzPin();
-        if (pJson[String(JsonRequest)] == JsonRequestLEDPin)
+        try
         {
-            pin = BuzzerList[index].GetLedPin();
+            int pin = Buz.GetInputPin();
+            return ResponseBuilder(String(pin));
         }
-        return ResponseBuilder(String(pin));
-    }
-    catch(const std::exception& e)
+        catch(const std::exception& e)
+        {
+            return ErrorBuilder(JsonErrorGeneric,true);
+        }
+    } 
+
+    if (Request == JsonRequestState)
     {
-        return ErrorBuilder("The ID is wrong",true);
+        try
+        {
+            bool pin = Buz.GetLedState();
+            return ResponseBuilder(String(pin));
+        }
+        catch(const std::exception& e)
+        {
+            return ErrorBuilder(JsonErrorGeneric,true);
+        }
     }
+
+    if (Request == JsonRequestInputState)
+    {
+        try
+        {
+            bool pin= Buz.GetInputState();
+            return ResponseBuilder(String(pin));
+        }
+        catch(const std::exception& e)
+        {
+            return ErrorBuilder(JsonErrorGeneric,true);
+        }
+    }
+
+    return ErrorBuilder("Only requests for Get are: \""+String(JsonRequestLEDPin)+"\", \""+String(JsonRequestTasterPin)+"\", \""+String(JsonRequestState)+"\" and \""+String(JsonRequestAmount)+"\"and \""+String(JsonRequestInputState)+"\"",true);
 }

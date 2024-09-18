@@ -9,16 +9,21 @@
 class BuzzerMngr
 {
 private:
+    // SET
+    void SetLedState(int BuzzerID, bool Value);
+    void SetInputState(int BuzzerID, bool Value);
+
     String JsonSetHandler(JsonDocument pJson);
+
+    // GET
     String JsonGetHandler(JsonDocument pJson);
-    String JsonSetLedState(JsonDocument pJson);
-    String JsonGetPin(JsonDocument pJson);
-    void SetLED(int BuzzerID, bool Value);
+
 public:
     BuzzerMngr();
-    void ChecknPrintPinstate();
-    
     ~BuzzerMngr();
     void Setup();
-    String JsonHandler(JsonDocument pJson);
+
+    void CheckAllInputChanges();
+
+    String JsonHandlerGetSet(JsonDocument pJson);
 };

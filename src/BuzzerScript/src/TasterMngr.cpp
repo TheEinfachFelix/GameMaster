@@ -3,9 +3,8 @@
 
 Taster TasterList[] = CTasterList;
 
-TasterMngr::TasterMngr()
-{
-}
+TasterMngr::TasterMngr(){}
+TasterMngr::~TasterMngr(){}
 
 void TasterMngr::Setup()
 {
@@ -18,31 +17,38 @@ void TasterMngr::Setup()
     }
 }
 
-TasterMngr::~TasterMngr()
-{
-}
-
-void TasterMngr::ChecknPrintPinstate()
+void TasterMngr::CheckAllInputChanges()
 {
     for(auto &i: TasterList)
     {
-        i.PrintRead();
+        i.CheckStateChange();
     }
 }
 
-String TasterMngr::JsonHandler(JsonDocument pJson)
+String TasterMngr::JsonHandlerGetSet(JsonDocument pJson)
 {
+    String Request = pJson[String(JsonRequest)];
+    int index= pJson[String(JsonRequestID)];
+    Taster Tas = TasterList[index];
+    bool val  = pJson[String(JsonRequestValue)];
+
     // catch Set
     if (pJson[String(JsonRequestType)] == JsonSet) 
     {
-        return ErrorBuilder("Taster has nothing to SET",true);
-    }
-
-    String Request = pJson[String(JsonRequest)];
-    // validate request
-    if (Request != JsonRequestAmount && Request != JsonRequestPin) 
-    {
-        return ErrorBuilder("Request not found! Only requests are \""  + String(JsonRequestAmount) + "\" or \""  + String(JsonRequestPin) + "\"",true);
+        if (Request != JsonRequestInputState)
+        {
+            return ErrorBuilder("Taster only has \"" + String(JsonRequestInputState) + "\" to SET",true);
+        }
+        // SetInputState
+        try
+        {
+            Tas.PrintEvent(Tas.GetInputState(),val);
+            return ResponseBuilder("Done");
+        }
+            catch(const std::exception& e)
+        {
+            return ErrorBuilder(JsonErrorGeneric,true);
+        }
     }
 
     // handle amount
@@ -55,37 +61,31 @@ String TasterMngr::JsonHandler(JsonDocument pJson)
     // handle pin
     if (Request == JsonRequestPin)
     {
-        // check id key exists
-        if (pJson[String(JsonRequestID)] == NULL) 
-        {
-            return ErrorBuilder("The ID is missig",true);
-        }
-
-        // convert ID to int
-        int index;
         try
         {
-            index = pJson[String(JsonRequestID)];
+            int pin = Tas.GetPin();
+            return ResponseBuilder(String(pin));
         }
         catch(const std::exception& e)
         {
-           return ErrorBuilder("cant convert ID to int",true);
+            return ErrorBuilder(JsonErrorGeneric,true);
         }
-        
+    }
+
+    // handle state
+    if (Request == JsonRequestInputState)
+    {
         // get data
         try
         {
-            int pin = TasterList[index].GetPin();
-            String out = ResponseBuilder(String(pin));
-            return out;
+            bool pin = Tas.GetInputState();
+            return ResponseBuilder(String(pin));
         }
         catch(const std::exception& e)
         {
-            return ErrorBuilder("The ID is wrong",true);
+            return ErrorBuilder(JsonErrorGeneric,true);
         }
-
     }
-
-    return ErrorBuilder("Somthing went wrong in TasterMnrg",false);
-
+    
+    return ErrorBuilder("Request not found! Only requests are \""  + String(JsonRequestAmount) + "\" or \""  + String(JsonRequestPin) + "\"",true);
 }

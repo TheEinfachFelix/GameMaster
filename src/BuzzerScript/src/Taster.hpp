@@ -12,9 +12,13 @@ private:
     bool PressState;
 public:
     int ID = 0;
+
     Taster(int pPressPin);
-    void PrintRead();
-    
-    int GetPin();
     ~Taster();
+
+    void CheckStateChange();
+    void PrintEvent(bool old, bool now);
+
+    int GetPin();
+    bool GetInputState();
 };

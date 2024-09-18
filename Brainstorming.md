@@ -33,3 +33,6 @@
 - [x] redo api handling in gamemaster
 - [x] automatic clean input
 - [ ] validate the new changes to the api
+- [x] Completly implement the api
+- [x] (Optional) make the inputs from buzzer and taster set and getable
+- [x] refactor c# code especial io

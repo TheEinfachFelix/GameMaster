@@ -56,38 +56,41 @@ namespace GameMaster.Input
             CheckDataTransmissionDone(msg);
         }
         private void CheckDataTransmissionDone(string pmsg)
-        {
+        {   
+            // Cleans the input msg
             pmsg = new string(pmsg.Where(c => !char.IsControl(c)).ToArray());
 
+            // splits the msg
             string regex = "\\{.*?\\}";
-            var matches = Regex.Matches(pmsg, regex)
-                .Cast<Match>()
-                .Select(m => m.Value)
-                .ToArray();
+            var matches = Regex.Matches(pmsg, regex).Cast<Match>().Select(m => m.Value).ToArray();
 
+            // sends of every json induvidual
             foreach (string item in matches)
             {
-
                 Trace.WriteLine("R Item:"+item);
                 HandleData(DataToJson(ParseData(item)));
             }
+
+            // leaves the last unfinished json msg in the msg
             string regexes = "\\{.[^\\}]*$";
-            var matches2 = Regex.Matches(pmsg, regexes)
-                .Cast<Match>()
-                .Select(m => m.Value)
-                .ToArray();
-            if (matches2.Count() == 0) { msg = ""; return; }
+            var matches2 = Regex.Matches(pmsg, regexes).Cast<Match>().Select(m => m.Value).ToArray();
+            if (matches2.Count() == 0) 
+            { 
+                msg = ""; 
+                return; 
+            }
             msg = matches2[matches2.Count()-1] ?? "";
         }
         private string ParseData(string input)
         {
+            // adds a } if needed
             int countOpen = input.Split('{').Length - 1;
             int countClose = input.Split('}').Length - 1;
-
             if (countClose < countOpen)// catch more close than open
             {
                 input += "}";
             }
+            
             return input;
         }
         private BuzzerJson DataToJson(string input)
@@ -140,10 +143,10 @@ namespace GameMaster.Input
             switch (pJson.IOType ?? throw new Exception(missingKeyError + "IOType"))
             {
                 case "Buzzer":
-                    controller.BuzzerList[index].setBuzzerState(OldValue, NewValue);
+                    controller.BuzzerList[index].HandleEvent(OldValue, NewValue);
                     break;
                 case "Taster":
-                    controller.TasterList[index].setTasterState(OldValue, NewValue);
+                    controller.TasterList[index].HandleEvent(OldValue, NewValue);
                     break;
                 default:
                     throw new Exception("the Type is not valide >" + pJson.IOType);

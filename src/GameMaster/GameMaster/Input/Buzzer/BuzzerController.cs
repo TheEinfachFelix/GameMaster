@@ -25,7 +25,7 @@ namespace GameMaster.Input
         public int ComPort { get; set; }
         public int Baudrate { get; set; }
         public bool Dummy { get; set; }
-        public List<int> Dot2Valus { get; set; } = [0,5];
+        public List<int> Dot2Valus { get; set; };
 
 
         private bool _IODisabeled = false;
@@ -66,7 +66,7 @@ namespace GameMaster.Input
                 {
                     // get previouse collor
                     var Collor = game.BuzzerControll.NormalCollor ?? throw new Exception(missingCollor);
-                    if (item.TasterState)
+                    if (item.InputState)
                     {
                         Collor = game.BuzzerControll.PressCollor ?? throw new Exception(missingCollor);
                     }
@@ -78,7 +78,7 @@ namespace GameMaster.Input
                 {
                     // get previouse collor
                     var Collor = game.BuzzerControll.NormalCollor ?? throw new Exception(missingCollor);
-                    if (item.TasterState)
+                    if (item.InputState)
                     {
                         Collor = game.BuzzerControll.PressCollor ?? throw new Exception(missingCollor);
                     }

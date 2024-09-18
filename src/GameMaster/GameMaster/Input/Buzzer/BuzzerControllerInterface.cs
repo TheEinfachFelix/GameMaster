@@ -15,7 +15,7 @@ namespace GameMaster.Input
         readonly int ComPort;
         readonly int Baudrate;
 
-        bool RecieveLock = false;
+        private  SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
         string RecieveData = "";
 
         public BuzzerControllerInterface(int ComPort, int Baudrate, BuzzerController ccontroller)
@@ -149,29 +149,33 @@ namespace GameMaster.Input
                     throw new Exception("the Type is not valide >" + pJson.IOType);
             }
         }
-        public string GetData(string Json)
+        public async string GetData(string Json)
         {
-            // await ready to go
-            while(RecieveLock)
-            {}
-            // block to recieving
-            RecieveLock = true;
-            // reset the Data
-            RecieveData = "";
-            // send the data
-            if (port == null) throw new Exception("Serial is not Open");
-            Trace.WriteLine("Sending:"+Json);
-            port.Write(Json);
-            // await response or timeout
-            int i = 0;
-            while(RecieveData == "")  //TODO the code hanges here because i think because of threading
+            await semaphore.WaitAsync();
+            try
             {
-                if (i > 50) throw new Exception("the serial request timeouted");
-                i += 1;
-                Thread.Sleep(10);
+                Trace.WriteLine("starting getData");
+                RecieveData = "";
+                // send the data
+                if (port == null) throw new Exception("Serial is not Open");
+                Trace.WriteLine("Sending:"+Json);
+                port.Write(Json);
+                // await response or timeout
+
+                int timeout = 1000;
+                var task = RecieveData != "";
+                
+                if (await Task.WhenAny(task, Task.Delay(timeout)) == task) {
+                    Trace.WriteLine("successfully recieved data continuing");
+                    return RecieveData;
+                } else { 
+                    throw new Exception("the Request timeouted")
+                }
             }
-            RecieveLock = false;
-            return RecieveData;
+            finally
+            {
+                semaphore.Release();
+            }
         }
     }
     public class BuzzerJson

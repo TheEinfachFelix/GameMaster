@@ -20,7 +20,7 @@
   ],
   "BuzzerControll": {
     "$type": "GameMaster.Input.BuzzerControllerMngr, GameMaster",
-    "isDisabeled": false,
+    "isDisabeled": true,
     "NormalCollor": [
       0,
       0,
@@ -44,7 +44,7 @@
         "AmountOfLED": 12,
         "ComPort": 3,
         "Baudrate": 115200,
-        "Dummy": false,
+        "Dummy": true,
         "Dot2Valus": [
           201,
           202,

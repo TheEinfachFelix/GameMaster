@@ -35,11 +35,11 @@ namespace GameMaster.Input
         {
             get
             {
-                return parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Get\",\"Request\":\"InputState\", \"ID\" : {myID}" + "}");
+                return bool.Parse(parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Get\",\"Request\":\"InputState\", \"ID\" : {myID.ToString()}" + "}"));
             }
             set
             {
-                       parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Set\",\"Request\":\"InputState\", \"ID\" : {myID}, \"Value\":{value.ToString().ToLower()}" + "}");
+                       parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Set\",\"Request\":\"InputState\", \"ID\" : {myID.ToString()}, \"Value\":{value.ToString().ToLower()}" + "}");
             }
         }
 
@@ -47,11 +47,11 @@ namespace GameMaster.Input
         {
             get
             {
-                return parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Get\",\"Request\":\"State\", \"ID\" : {myID}" + "}");
+                return bool.Parse(parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Get\",\"Request\":\"State\", \"ID\" : {myID.ToString()}" + "}"));
             }
             set
             {
-                       parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Set\",\"Request\":\"State\", \"ID\" : {myID}, \"Value\":{value.ToString().ToLower()}" + "}");
+                       parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Set\",\"Request\":\"State\", \"ID\" : {myID.ToString()}, \"Value\":{value.ToString().ToLower()}" + "}");
             }
         }
     }

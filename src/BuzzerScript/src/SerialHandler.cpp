@@ -55,3 +55,10 @@ String ResponseBuilder (String pValue)
     serializeJsonPretty(doc,out);
     return out; 
 }
+
+String BoolToString(bool input)
+{
+    if (input)
+        return "true";
+    return "false";
+}

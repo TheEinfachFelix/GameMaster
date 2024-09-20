@@ -79,7 +79,7 @@ String TasterMngr::JsonHandlerGetSet(JsonDocument pJson)
         try
         {
             bool pin = Tas.GetInputState();
-            return ResponseBuilder(String(pin));
+            return ResponseBuilder(BoolToString(pin));
         }
         catch(const std::exception& e)
         {

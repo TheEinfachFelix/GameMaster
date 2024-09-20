@@ -30,7 +30,7 @@ namespace GameMaster.Input
         {
             get
             {
-                return parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Taster\",\"RequestType\":\"Get\",\"Request\":\"InputState\", \"ID\" : {myID}" + "}");
+                return bool.Parse(parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Taster\",\"RequestType\":\"Get\",\"Request\":\"InputState\", \"ID\" : {myID.ToString()}" + "}"));
             }
             set
             {

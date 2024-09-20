@@ -123,7 +123,7 @@ String BuzzerMngr::JsonGetHandler(JsonDocument pJson)
         try
         {
             bool pin = Buz.GetLedState();
-            return ResponseBuilder(String(pin));
+            return ResponseBuilder(BoolToString(pin));
         }
         catch(const std::exception& e)
         {
@@ -136,7 +136,7 @@ String BuzzerMngr::JsonGetHandler(JsonDocument pJson)
         try
         {
             bool pin= Buz.GetInputState();
-            return ResponseBuilder(String(pin));
+            return ResponseBuilder(BoolToString(pin));
         }
         catch(const std::exception& e)
         {

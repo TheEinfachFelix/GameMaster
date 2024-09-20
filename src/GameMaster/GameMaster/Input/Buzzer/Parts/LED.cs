@@ -8,16 +8,17 @@ namespace GameMaster.Input
 {
     public class LED
     {
-        private static string def = "{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Get\",\"Request\":\"Collor\", \"ID\" : {myID}, \"Key\":\"";
         private BuzzerController parent;
         public int myID { get; private set; } = -1;
+
+        private string def = "";
 
         private int _R;
         public int R
         {
             get
             {
-                return parent.GetData(def + "R\"}");
+                return int.Parse(parent.GetData(def + "R\"}"));
             }
             set
             {
@@ -29,7 +30,7 @@ namespace GameMaster.Input
         {
             get
             {
-                return parent.GetData(def + "G\"}");
+                return int.Parse(parent.GetData(def + "G\"}"));
             }
             set
             {
@@ -41,7 +42,7 @@ namespace GameMaster.Input
         {
             get
             {
-                return parent.GetData(def + "B\"}");
+                return int.Parse(parent.GetData(def + "B\"}"));
             }
             set
             {
@@ -53,6 +54,7 @@ namespace GameMaster.Input
         {
             myID = pID;
             parent = pparent;
+            def = "{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Get\",\"Request\":\"Collor\", \"ID\" : {myID.ToString()}, \"Key\":\"";
         }
         public void SetLEDColor(int pR, int pG, int pB)
         {

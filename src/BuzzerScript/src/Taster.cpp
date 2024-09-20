@@ -22,7 +22,7 @@ void Taster::CheckStateChange()
 }
 void Taster::PrintEvent(bool old, bool now)
 {
-    EventSender(BuzzerType, ID , old, now);
+    EventSender(TasterType, ID , old, now);
 }
 
 // Get

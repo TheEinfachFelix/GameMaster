@@ -37,6 +37,8 @@ namespace GameMaster.Input
             // Begin communications
             port.Open();
             port.DiscardInBuffer();
+
+            //Task.Run(() => DataReciverAsync());
         }
         public void Stop()
         {
@@ -54,6 +56,28 @@ namespace GameMaster.Input
             Trace.WriteLine("Recieved: "+msg);
 
             CheckDataTransmissionDone(msg);
+        }
+        private async void DataReciverAsync()
+        {
+            if (port == null) { return; }
+            while (true)
+            {
+                String a = "";
+                do
+                { 
+                    a += port.ReadExisting();
+                    await Task.Delay(10);
+                }
+                while (string.IsNullOrEmpty(a));
+                
+
+                msg += a;
+                a = "";
+
+                Trace.WriteLine("Recieved: " + msg);
+
+                CheckDataTransmissionDone(msg);
+            }
         }
         private void CheckDataTransmissionDone(string pmsg)
         {   
@@ -152,34 +176,41 @@ namespace GameMaster.Input
                     throw new Exception("the Type is not valide >" + pJson.IOType);
             }
         }
-        public async string GetData(string Json)
+        public async Task<string> GetData(string Json)
         {
             await semaphore.WaitAsync();
             try
             {
-                Trace.WriteLine("starting getData");
+                int timeout = 1000;
+                var startTime = DateTime.Now;
                 RecieveData = "";
+                
                 // send the data
                 if (port == null) throw new Exception("Serial is not Open");
                 Trace.WriteLine("Sending:"+Json);
                 port.Write(Json);
-                // await response or timeout
-
-                int timeout = 1000;
-                var task = RecieveData != "";
                 
-                if (await Task.WhenAny(task, Task.Delay(timeout)) == task) {
-                    Trace.WriteLine("successfully recieved data continuing");
-                    return RecieveData;
-                } else { 
-                    throw new Exception("the Request timeouted")
+                // await response or timeout
+                while (string.IsNullOrEmpty(RecieveData)) 
+                {
+                    if ((DateTime.Now-startTime).TotalMilliseconds > timeout)
+                    {
+                        Trace.WriteLine("recieved date = "+RecieveData);
+                        throw new TimeoutException("the GetData() response took to long");
+                    }
+                    await Task.Delay(50);
                 }
+                
+ 
+                return RecieveData;
             }
             finally
             {
                 semaphore.Release();
             }
         }
+
+
     }
     public class BuzzerJson
     {

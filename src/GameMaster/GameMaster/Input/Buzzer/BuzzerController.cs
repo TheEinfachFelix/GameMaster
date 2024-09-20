@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Diagnostics;
 using System.IO.Ports;
+using System.Security.AccessControl;
 
 
 namespace GameMaster.Input
@@ -25,7 +26,7 @@ namespace GameMaster.Input
         public int ComPort { get; set; }
         public int Baudrate { get; set; }
         public bool Dummy { get; set; }
-        public List<int> Dot2Valus { get; set; };
+        public List<int> Dot2Valus { get; set; }
 
 
         private bool _IODisabeled = false;
@@ -170,9 +171,16 @@ namespace GameMaster.Input
         public string GetData(string json)
         {
             if(Dummy) return"";
-            if (BuzzerControlerInterface == null) throw new Exception("Buzzer Controller not properly setup");
-            string outp = BuzzerControlerInterface.GetData(json);
+            
+            string outp = GetDataAsync(json).Result;
             return outp;
+        }
+
+        private async Task<string> GetDataAsync(string json)
+        {
+            if (BuzzerControlerInterface == null) throw new Exception("Buzzer Controller not properly setup");
+            var ret = await BuzzerControlerInterface.GetData(json);
+            return ret;
         }
     }
 }

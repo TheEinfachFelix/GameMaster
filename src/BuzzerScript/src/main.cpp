@@ -6,6 +6,7 @@ LEDController ledCntrl = LEDController();
 String Input;
 String OldInput;
 int64_t TimerOfDeletion;
+bool ProcessingRequestHold = false;
 
 std::list<String> SplitInputToJson (std::string toSplit)
 {
@@ -38,8 +39,11 @@ void setup() {
 
 void loop() 
 {
-  BuzzMngr.CheckAllInputChanges();
-  tastMngr.CheckAllInputChanges();
+  if (!ProcessingRequestHold)
+  {
+    BuzzMngr.CheckAllInputChanges();
+    tastMngr.CheckAllInputChanges();
+  }
 
   Input = Input + Serial.readString();
 
@@ -90,7 +94,9 @@ void inputToJson(String strJson)
   DeserializationError error = deserializeJson(Json, strJson);
   
   // output the result
+  ProcessingRequestHold = true;
   Serial.println(HandleJson(error, Json));
+  ProcessingRequestHold = false;
 }
 
 String HandleJson(DeserializationError pError, JsonDocument pJson)

@@ -10,7 +10,6 @@
 #include <list>
 #include<bits/stdc++.h>
 
-
 std::list<String> SplitInputToJson (std::string toSplit);
 void SplitInput();
 void inputToJson(String strJson);

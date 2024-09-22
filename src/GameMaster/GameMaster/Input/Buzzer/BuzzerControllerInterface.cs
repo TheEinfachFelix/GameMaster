@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Diagnostics;
 using System.IO.Ports;
+using System.Reflection.Metadata.Ecma335;
 using System.Text.RegularExpressions;
 
 
@@ -17,6 +18,7 @@ namespace GameMaster.Input
 
         private  SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
         string RecieveData = "";
+        bool EventBlock = false;
 
         public BuzzerControllerInterface(int ComPort, int Baudrate, BuzzerController ccontroller)
         {   
@@ -50,37 +52,13 @@ namespace GameMaster.Input
         private void DataReceiver(object sender, SerialDataReceivedEventArgs e)
         {
             if (port == null) { return; }
+            if (EventBlock){ return; }
 
             msg += port.ReadExisting();
-
-            Trace.WriteLine("Recieved: "+msg);
-
             CheckDataTransmissionDone(msg);
         }
-        private async void DataReciverAsync()
-        {
-            if (port == null) { return; }
-            while (true)
-            {
-                String a = "";
-                do
-                { 
-                    a += port.ReadExisting();
-                    await Task.Delay(10);
-                }
-                while (string.IsNullOrEmpty(a));
-                
-
-                msg += a;
-                a = "";
-
-                Trace.WriteLine("Recieved: " + msg);
-
-                CheckDataTransmissionDone(msg);
-            }
-        }
         private void CheckDataTransmissionDone(string pmsg)
-        {   
+        {
             // Cleans the input msg
             pmsg = new string(pmsg.Where(c => !char.IsControl(c)).ToArray());
 
@@ -91,9 +69,12 @@ namespace GameMaster.Input
             // sends of every json induvidual
             foreach (string item in matches)
             {
-                Trace.WriteLine("R Item:"+item);
-                HandleData(DataToJson(ParseData(item)));
+
+                    Trace.WriteLine("Rrecived Item:"+item);
+                    HandleData(DataToJson(ParseData(item)));
+
             }
+
 
             // leaves the last unfinished json msg in the msg
             string regexes = "\\{.[^\\}]*$";
@@ -131,7 +112,6 @@ namespace GameMaster.Input
             string type = pJson.Type ?? throw new Exception("Recieved Json is not vaillide");
 
             if (type == "Request") {throw new Exception("The recieved Json is a Request. We dont do that!");}
-
             if (type == "Debug")
             {
                 string outp = "Error MSG is: " + pJson.MSG + " and the Value is" + pJson.Value;
@@ -139,8 +119,12 @@ namespace GameMaster.Input
                 Trace.TraceError(outp);
                 return;
             }
-
-            if (type == "Event") {HandleEvent(pJson); return;}
+            if (type == "Event") 
+            {
+                if (EventBlock) { return; }
+                HandleEvent(pJson); 
+                return;
+            }
 
             if (type == "Response") {HandleResponse(pJson); return;}
 
@@ -148,13 +132,12 @@ namespace GameMaster.Input
         }
         private void HandleResponse(BuzzerJson pJson)
         {
-            if(!pJson.Success ?? throw new Exception(missingKeyError + "Success"))
+            if (!pJson.Success ?? throw new Exception(missingKeyError + "Success"))
             {
                 string outp = "Execution was not successfull. the error is: " + pJson.Error;
                 if (pJson.Critical == true) {throw new Exception(outp);}
                 Trace.TraceError(outp);
             }
-
             RecieveData = pJson.Value ?? throw new Exception(missingKeyError + "Value");
             if (RecieveData == "") throw new Exception("Value is emty");
         }
@@ -163,7 +146,6 @@ namespace GameMaster.Input
             int index = pJson.ID ?? throw new Exception(missingKeyError + "ID");
             bool OldValue = pJson.OldValue ??throw new Exception(missingKeyError + "OldValue");
             bool NewValue = pJson.NewValue ??throw new Exception(missingKeyError + "NewValue");
-
             switch (pJson.IOType ?? throw new Exception(missingKeyError + "IOType"))
             {
                 case "Buzzer":
@@ -181,13 +163,16 @@ namespace GameMaster.Input
             await semaphore.WaitAsync();
             try
             {
-                int timeout = 1000;
+                int timeout = 1000000;
                 var startTime = DateTime.Now;
                 RecieveData = "";
+                msg = "";
                 
                 // send the data
                 if (port == null) throw new Exception("Serial is not Open");
                 Trace.WriteLine("Sending:"+Json);
+                port.BaseStream.Flush();
+                EventBlock = true;
                 port.Write(Json);
                 
                 // await response or timeout
@@ -195,17 +180,20 @@ namespace GameMaster.Input
                 {
                     if ((DateTime.Now-startTime).TotalMilliseconds > timeout)
                     {
-                        Trace.WriteLine("recieved date = "+RecieveData);
                         throw new TimeoutException("the GetData() response took to long");
                     }
-                    await Task.Delay(50);
+                    //await Task.Delay(50);
+
+                    msg += port.ReadExisting();
+                    CheckDataTransmissionDone(msg);
                 }
-                
- 
+
                 return RecieveData;
             }
             finally
             {
+                Trace.WriteLine("Release");
+                EventBlock = false;
                 semaphore.Release();
             }
         }

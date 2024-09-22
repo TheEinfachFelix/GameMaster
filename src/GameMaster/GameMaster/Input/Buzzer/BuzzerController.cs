@@ -123,13 +123,14 @@ namespace GameMaster.Input
         public void TasterEvent(int TasterID, bool Value)
         {
             if (game == null) throw new Exception("Game is null");
-            if (IODisabeled) return;
+            
             // taster 0 ist disable
             if (TasterID == 0)
             {
                 SetIODisabeled(Value);
                 return;
             }
+            if (IODisabeled) return;
 
             var Collor = game.BuzzerControll.NormalCollor ?? throw new Exception(missingCollor);
             if (Value)
@@ -149,6 +150,8 @@ namespace GameMaster.Input
             // setzt die passende Farbe
             var Collor = game.BuzzerControll.PressCollor ?? throw new Exception(missingCollor);
             LEDListe[BuzzerID].SetLEDColor(Collor[0], Collor[1], Collor[2]);
+            BuzzerList[BuzzerID].LEDState = true;
+
 
             // make dot2 licht stuff
             game.dot2ConnectorList[0].SendButtonPress(Dot2Valus[BuzzerID]);
@@ -164,23 +167,18 @@ namespace GameMaster.Input
             // setzt die passende Farbe
             var Collor = game.BuzzerControll.NormalCollor ?? throw new Exception(missingCollor);
             LEDListe[BuzzerID].SetLEDColor(Collor[0], Collor[1], Collor[2]);
+            BuzzerList[BuzzerID].LEDState = false;
 
             // event weitergeben
             game.BuzzerControll.BuzzerRelease(ID,BuzzerID);
         }
         public string GetData(string json)
         {
-            if(Dummy) return"";
-            
-            string outp = GetDataAsync(json).Result;
-            return outp;
-        }
-
-        private async Task<string> GetDataAsync(string json)
-        {
             if (BuzzerControlerInterface == null) throw new Exception("Buzzer Controller not properly setup");
-            var ret = await BuzzerControlerInterface.GetData(json);
-            return ret;
+            if (Dummy) return"";
+            
+            string outp = BuzzerControlerInterface.GetData(json).Result;
+            return outp;
         }
     }
 }

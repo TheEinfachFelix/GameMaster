@@ -13,6 +13,7 @@ void EventSender(String type, int ID, bool oldVal, bool newVal)
 
     serializeJsonPretty(doc,out);
     Serial.println(out);
+    delay(20);
 }
 
 String ErrorBuilder(String pError, bool pCritical = false)

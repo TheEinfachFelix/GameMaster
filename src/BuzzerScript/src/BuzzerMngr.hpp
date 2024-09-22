@@ -9,23 +9,13 @@
 class BuzzerMngr
 {
 private:
-    // SET
-    void SetLedState(int BuzzerID, bool Value);
-    void SetInputState(int BuzzerID, bool Value);
-
-    String JsonSetHandler(JsonDocument pJson);
-
-    // GET
-    String JsonGetHandler(JsonDocument pJson);
-
 public:
     Buzzer BuzzerList[CBuzzerListLength] = CBuzzerList;
+    String Mode;
 
     BuzzerMngr();
     ~BuzzerMngr();
+
     void Setup();
-
     void CheckAllInputChanges();
-
-    String JsonHandlerGetSet(JsonDocument pJson);
 };

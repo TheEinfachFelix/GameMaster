@@ -26,12 +26,29 @@ void LoopAllHardware()
     BuzzMngr.CheckAllInputChanges();
     tastMngr.CheckAllInputChanges();
   }
-  SetLEDs();
+  SetRGBLED();
+  SetBuzzLED();
 }
 
+// TODO validate LED mode
+// TODO disable handling
+void SetBuzzLED()
+{
+    String Mode = BuzzMngr.Mode;
+    for(Buzzer &i: BuzzMngr.BuzzerList)
+    {
+        if (Mode == JsonRequestLEDModeAuto)
+        {        
+            i.SetLedValue(!i.GetInputState());
+        }
+        else
+        {
+            i.SetLedValue(Mode == JsonRequestLEDModeON);
+        }
+    }
+}
 
-
-void SetLEDs()
+void SetRGBLED()
 {
   int R, G, B;
   BlockBuzzer = !tastMngr.TasterList[BlockTasterIndex].GetInputState();
@@ -55,12 +72,11 @@ void SetLEDs()
       G = CollorBlock[1];
       B = CollorBlock[2];
     }
-    else
+    if (ledCntrl.Mode == JsonRequestLEDModeOFF)
     {
-      i.SetLedValue(!i.GetInputState());
-    }
+        R, B, B = 0;
+    } 
     ledCntrl.SetLED(i.ID, R,G,B);
-    
   }
   for(Taster &i: tastMngr.TasterList)
   {
@@ -76,6 +92,10 @@ void SetLEDs()
       G = CollorDef[1];
       B = CollorDef[2];
     }
+    if (ledCntrl.Mode == JsonRequestLEDModeOFF)
+    {
+        R, B, B = 0;
+    } 
     ledCntrl.SetLED(i.ID + NUM_LEDS - CTasterListLength, R,G,B);
   }
   

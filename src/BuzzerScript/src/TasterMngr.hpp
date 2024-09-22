@@ -9,7 +9,6 @@ class TasterMngr
 {
 private:
 public:
-    
     Taster TasterList[CTasterListLength] = CTasterList;
 
     TasterMngr();
@@ -17,8 +16,7 @@ public:
     void Setup();
 
     void CheckAllInputChanges();
-    
-    String JsonHandlerGetSet(JsonDocument pJson);
+
 };
 
 

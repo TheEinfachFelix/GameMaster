@@ -43,12 +43,10 @@
 #define JsonRequestInputState "InputState"
 #define JsonRequestValue "Value"
 #define JsonRequestLEDPin "LedPin"
-#define JsonRequestTasterPin "TasterPin"
-#define JsonRequestLedCollor "Collor"
-#define JsonRequestValueR "R"
-#define JsonRequestValueG "G"
-#define JsonRequestValueB "B"
-#define JsonRequestKey "Key"
+#define JsonRequestLedMode "LedMode"
+#define JsonRequestLEDModeOFF "OFF"
+#define JsonRequestLEDModeON "ON"
+#define JsonRequestLEDModeAuto "Auto"
 
 //Response
 #define JsonResponse "Response"
@@ -74,5 +72,4 @@
 #define JsonErrorGeneric "Something went wrong"
 /*
 {"Type":"Request","IO-Type":"Buzzer","RequestType":"Set", "Request":"State","ID":7,"Value": 1}
-{"Type":"Request","IO-Type":"LED","RequestType":"Set", "Request":"Collor","ID":7,"ID":1,"R":1,"G":1,"B":10 }
 */

@@ -4,6 +4,8 @@ String Input;
 String OldInput;
 int64_t TimerOfDeletion;
 
+String IOTypeNotexisting = ErrorBuilder("the IOType is wrong.",true);
+
 void SetupJson()
 {
     Serial.begin(SerialSpeed);
@@ -51,7 +53,6 @@ std::list<String> SplitInputToJson (std::string toSplit)
   return OutputList;
 }
 
-
 void inputToJson(String strJson)
 {
   // fix missing last } on nested json string
@@ -96,34 +97,163 @@ String HandleJson(DeserializationError pError, JsonDocument pJson)
   if (pJson[String(JsonType)] != JsonRequest) 
     return ErrorBuilder("we only handle \"" + String(JsonType) + "\" json \"" + String(JsonRequest) + "\"",false);
 
-  // validate IOType
-  String IOType = pJson[String(JsonIOType)];
-  if (IOType != LEDType && IOType != BuzzerType && IOType != TasterType)
-  {
-    return ErrorBuilder("the value from key \"" + String(JsonIOType) + "\" is not valide. Must be \""  + String(LEDType) + "\" or \"" + String(BuzzerType) + "\" or \"" + String(TasterType) + "\"",true);
-  }
-
   // validate get set
   if (pJson[String(JsonRequestType)] != JsonGet && pJson[String(JsonRequestType)] != JsonSet) 
-  {
     return ErrorBuilder("error with key \"" + String(JsonRequestType) + "\" must be \""  + String(JsonSet) + "\" or \""  + String(JsonGet) + "\"",true);
-  }
 
 
-  // give handling to mngr
-  //if (IOType == LEDType)
-  //{
-  //  return ledCntrl.JsonHandlerGetSet(pJson);
-  //}
+    return HandleRequest(pJson);
+}
+
+String HandleRequest(JsonDocument pJson)
+{
+    String Request = pJson[String(JsonRequest)];
+
+    if (Request == JsonRequestPin)
+        return JsonPinHandler(pJson);
+    if (Request == JsonRequestLEDPin)
+        return JsonLEDPinHandler(pJson);
+    if (Request == JsonRequestAmount)
+        return JsonAmountHandler(pJson);
+    if (Request == JsonRequestInputState);
+        return JsonInputStateHandler(pJson);
+    if (Request == JsonRequestState)
+        return JsonStateHandler(pJson);
+    if (Request == JsonRequestLedMode)
+        return JsonLedModeHandler(pJson);
+    
+    return ErrorBuilder("The Request was not found",true);
+}
+// TODO buzzer event delay
+
+
+String JsonPinHandler(JsonDocument pJson)
+{
+    if (pJson[String(JsonRequestType)] != JsonGet)
+        return ErrorBuilder("The Pin can only Get",true);
+    
+    String IOType = pJson[String(JsonIOType)];
+    if (IOType == LEDType)
+        return ResponseBuilder(String(LED_PIN));
+
+    int Index = pJson[String(JsonRequestID)];
+
     if (IOType == BuzzerType)
-  {
-    return BuzzMngr.JsonHandlerGetSet(pJson);
-
-  }
+        return ResponseBuilder(String(BuzzMngr.BuzzerList[Index].GetInputPin()));
     if (IOType == TasterType)
-  {
-    return tastMngr.JsonHandlerGetSet(pJson);
-  }
+        return ResponseBuilder(String(tastMngr.TasterList[Index].GetPin()));
+    
+    return IOTypeNotexisting;
+}
+String JsonLEDPinHandler(JsonDocument pJson)
+{
+    if (pJson[String(JsonRequestType)] != JsonGet)
+        return ErrorBuilder("The Pin can only Get",true);
+    
+    String error = ErrorBuilder("only suported by the Buzzer",true);
+    String IOType = pJson[String(JsonIOType)];
+    int Index = pJson[String(JsonRequestID)];
+    
+    if (IOType == LEDType)
+        return error;
+    if (IOType == BuzzerType)
+        return ResponseBuilder(String(BuzzMngr.BuzzerList[Index].GetLedPin()));
+    if (IOType == TasterType)
+        return error;
+    
+    return IOTypeNotexisting;
+}
+String JsonAmountHandler(JsonDocument pJson)
+{
+    if (pJson[String(JsonRequestType)] != JsonGet)
+        return ErrorBuilder("The Amount can only Get",true);
+    
+    String IOType = pJson[String(JsonIOType)];
+    
+    if (IOType == LEDType)
+        return ResponseBuilder(String(NUM_LEDS));
+    if (IOType == BuzzerType)
+        return ResponseBuilder(String(CBuzzerListLength));
+    if (IOType == TasterType)
+        return ResponseBuilder(String(CTasterListLength));
+    
+    return IOTypeNotexisting;
+}
+String JsonInputStateHandler(JsonDocument pJson)
+{
+    String IOType = pJson[String(JsonIOType)];
+    String RType = pJson[String(JsonRequestType)];
+    int Index = pJson[String(JsonRequestID)];
+    bool Value = pJson[String(JsonRequestValue)];
 
-  return ErrorBuilder("The Json Request left me with nothing to do sus",true); 
+    if (IOType == LEDType)
+        return ErrorBuilder("you can not get the input State of the LED ",true);
+    if (IOType == BuzzerType)
+    {
+        Buzzer buz = BuzzMngr.BuzzerList[Index];
+        if (RType == JsonGet)
+            return ResponseBuilder(String(buz.GetInputState()));
+        buz.PrintEvent(buz.GetInputState(),Value);
+        return ResponseBuilder("Done");
+    }
+    if (IOType == TasterType)
+    {
+        Taster tast = tastMngr.TasterList[Index];
+        if (RType == JsonGet)
+            return ResponseBuilder(String(tast.GetInputState()));
+        tast.PrintEvent(tast.GetInputState(),Value);
+        return ResponseBuilder("Done");
+    }
+    return IOTypeNotexisting;
+}
+String JsonStateHandler(JsonDocument pJson)
+{
+    String IOType = pJson[String(JsonIOType)];
+    String RType = pJson[String(JsonRequestType)];
+    int Index = pJson[String(JsonRequestID)];
+    bool Value = pJson[String(JsonRequestValue)];
+
+    if (IOType == LEDType)
+        return ErrorBuilder("you can not get the input State of the LED ",true);
+    if (IOType == BuzzerType)
+    {
+        Buzzer buz = BuzzMngr.BuzzerList[Index];
+        if (RType == JsonGet)
+            return ResponseBuilder(String(buz.GetLedState()));
+        buz.SetLedValue(Value);
+        return ResponseBuilder("Done");
+    }
+    if (IOType == TasterType)
+        return ErrorBuilder("you can not get the (LED) State of the LED ",true);
+
+    return IOTypeNotexisting;
+}
+String JsonLedModeHandler(JsonDocument pJson)
+{
+    String IOType = pJson[String(JsonIOType)];
+    String RType = pJson[String(JsonRequestType)];
+    String Value = pJson[String(JsonRequestValue)];
+
+    if (IOType == LEDType)
+    {
+        if (RType == JsonGet)
+            return ResponseBuilder(String(ledCntrl.Mode));
+        if (Value != JsonRequestLEDModeAuto || Value != JsonRequestLEDModeOFF)
+            return ErrorBuilder("The Value must be: \"" + String(JsonRequestLEDModeAuto)+ String(JsonRequestLEDModeOFF)+ "\", \"",true);
+        ledCntrl.Mode = Value;
+        return ResponseBuilder("Done");
+    }   
+    if (IOType == BuzzerType)
+    {
+        if (RType == JsonGet)
+            return ResponseBuilder(String(BuzzMngr.Mode));
+        if (Value != JsonRequestLEDModeAuto || Value != JsonRequestLEDModeOFF || Value != JsonRequestLEDModeON)
+            return ErrorBuilder("The Value must be: \"" + String(JsonRequestLEDModeAuto)+ "\", \"" + String(JsonRequestLEDModeON)+ "\", \"" + String(JsonRequestLEDModeOFF)+ "\", \"",true);
+        BuzzMngr.Mode = Value;
+        return ResponseBuilder("Done");
+    }
+    if (IOType == TasterType)
+        return ErrorBuilder("the Taster does not have a LED",true);
+
+    return IOTypeNotexisting;
 }

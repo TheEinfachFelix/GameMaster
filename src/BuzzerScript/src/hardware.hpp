@@ -19,6 +19,8 @@ extern bool BlockBuzzer;
 extern bool ProcessingRequestHold;
 
 
+
 void SetupAllHardware();
 void LoopAllHardware();
-void SetLEDs();
+void SetRGBLED();
+void SetBuzzLED();

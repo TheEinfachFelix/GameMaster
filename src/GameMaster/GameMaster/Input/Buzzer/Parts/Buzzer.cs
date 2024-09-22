@@ -12,6 +12,8 @@ namespace GameMaster.Input
 
         public int myID { get; set; } = -1;
 
+        string msgStart = "{\"Type\":\"Request\", \"IOType\" : \"Buzzer\",\"RequestType\":\"";
+
         public Buzzer(int pID, BuzzerController pparent)
         {
             myID = pID;
@@ -20,7 +22,7 @@ namespace GameMaster.Input
 
         public void HandleEvent(bool Oval, bool Nval)
         {
-            if (Oval == Nval)return;
+            if (Oval == Nval) return;
             if (!Nval)
             {
                 parent.BuzzerPress(myID);
@@ -35,23 +37,63 @@ namespace GameMaster.Input
         {
             get
             {
-                return bool.Parse(parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Get\",\"Request\":\"InputState\", \"ID\" : {myID.ToString()}" + "}"));
+                return bool.Parse(parent.GetData(msgStart + $"Get\",\"Request\":\"InputState\", \"ID\" : {myID.ToString()}" + "}"));
             }
             set
             {
-                       parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Set\",\"Request\":\"InputState\", \"ID\" : {myID.ToString()}, \"Value\":{value.ToString().ToLower()}" + "}");
+                parent.GetData(msgStart + $"Set\",\"Request\":\"InputState\", \"ID\" : {myID.ToString()}, \"Value\":{value.ToString().ToLower()}" + "}");
             }
         }
 
-        public bool LEDState
+        public bool LedState
         {
             get
             {
-                return bool.Parse(parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Get\",\"Request\":\"State\", \"ID\" : {myID.ToString()}" + "}"));
+                return bool.Parse(parent.GetData(msgStart + $"Get\",\"Request\":\"State\", \"ID\" : {myID.ToString()}" + "}"));
+            }
+        }
+
+        public string LedMode
+        {
+            get
+            {
+                return parent.GetData(msgStart + $"Get\",\"Request\":\"LedMode\"" + "}");
             }
             set
             {
-                       parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Buzzer\",\"RequestType\":\"Set\",\"Request\":\"State\", \"ID\" : {myID.ToString()}, \"Value\":{value.ToString().ToLower()}" + "}");
+                parent.GetData(msgStart + $"Set\",\"Request\":\"LedMode\", \"Value\":\"{value}\"" + "}");
+            }
+        }
+        public bool isDisabeled
+        {
+            get
+            {
+                return bool.Parse(parent.GetData(msgStart + $"Get\",\"Request\":\"isDisabeled\"" + "}"));
+            }
+            set
+            {
+                parent.GetData(msgStart + $"Set\",\"Request\":\"isDisabeled\", \"Value\":{value.ToString().ToLower()}" + "}");
+            }
+        }
+        public int Amount
+        {
+            get
+            {
+                return int.Parse(parent.GetData(msgStart + $"Get\",\"Request\":\"Amount\"" + "}"));
+            }
+        }
+        public int Pin
+        {
+            get
+            {
+                return int.Parse(parent.GetData(msgStart + $"Get\",\"Request\":\"Pin\", \"ID\" : {myID.ToString()}" + "}"));
+            }
+        }
+        public int LedPin
+        {
+            get
+            {
+                return int.Parse(parent.GetData(msgStart + $"Get\",\"Request\":\"LedPin\", \"ID\" : {myID.ToString()}" + "}"));
             }
         }
     }

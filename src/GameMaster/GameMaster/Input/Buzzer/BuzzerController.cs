@@ -18,6 +18,9 @@ namespace GameMaster.Input
         public List<Taster> TasterList = [];
         public int AmountOfTaster { get; set; }
 
+        [JsonIgnore]
+        LEDs leds;
+
 
 
         public int ComPort { get; set; }
@@ -50,7 +53,7 @@ namespace GameMaster.Input
             {
                 TasterList.Add(new(i, this));
             }
-
+            leds = new(this);
 
             if (Dummy) return;
             BuzzerControlerInterface = new(ComPort, Baudrate, this);
@@ -72,7 +75,7 @@ namespace GameMaster.Input
             game.dot2ConnectorList[0].SendButtonPress(Dot2Valus[BuzzerID]);
 
             // event weitergeben
-            game.BuzzerControll.BuzzerPress(ID,BuzzerID);
+            game.BuzzerControll.BuzzerPress(ID, BuzzerID);
         }
         public void BuzzerRelease(int BuzzerID)
         {

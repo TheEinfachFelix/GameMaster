@@ -79,7 +79,6 @@ void SetRGBLED()
     ledCntrl.SetLED(i.ID, R,G,B);
   }
 
-
   for(Taster &i: tastMngr.TasterList)
   {
     if (!i.GetInputState())

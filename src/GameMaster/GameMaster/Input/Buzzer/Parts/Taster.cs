@@ -9,6 +9,7 @@ namespace GameMaster.Input
     public class Taster
     {
         private BuzzerController parent;
+        string msgStart = "{\"Type\":\"Request\", \"IOType\" : \"Taster\",\"RequestType\":\"";
 
         public int myID { get; private set; } = -1;
         public Taster(int pID, BuzzerController pparent)
@@ -30,11 +31,25 @@ namespace GameMaster.Input
         {
             get
             {
-                return bool.Parse(parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Taster\",\"RequestType\":\"Get\",\"Request\":\"InputState\", \"ID\" : {myID.ToString()}" + "}"));
+                return bool.Parse(parent.GetData(msgStart + $"Get\",\"Request\":\"InputState\", \"ID\" : {myID.ToString()}" + "}"));
             }
             set
             {
-                       parent.GetData("{\"Type\":\"Request\"," + $"\"IOType\" : \"Taster\",\"RequestType\":\"Set\",\"Request\":\"InputState\", \"ID\" : {myID}, \"Value\":{value.ToString().ToLower()}" + "}");
+                       parent.GetData(msgStart + $"Set\",\"Request\":\"InputState\", \"ID\" : {myID}, \"Value\":{value.ToString().ToLower()}" + "}");
+            }
+        }
+        public int Amount
+        {
+            get
+            {
+                return int.Parse(parent.GetData(msgStart + $"Get\",\"Request\":\"Amount\"" + "}"));
+            }
+        }
+        public int Pin
+        {
+            get
+            {
+                return int.Parse(parent.GetData(msgStart + $"Get\",\"Request\":\"Pin\", \"ID\" : {myID.ToString()}" + "}"));
             }
         }
     }

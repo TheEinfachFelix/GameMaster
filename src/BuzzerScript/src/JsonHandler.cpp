@@ -193,7 +193,7 @@ String JsonInputStateHandler(JsonDocument pJson)
     {
         Buzzer buz = BuzzMngr.BuzzerList[Index];
         if (RType == JsonGet)
-            return ResponseBuilder(String(buz.GetInputState()));
+            return ResponseBuilder(BoolToString(buz.GetInputState()));
         //  this is nececary to not cause issues on the other ende
         Serial.println(ResponseBuilder("Done"));
         buz.PrintEvent(buz.GetInputState(),Value);
@@ -203,7 +203,7 @@ String JsonInputStateHandler(JsonDocument pJson)
     {
         Taster tast = tastMngr.TasterList[Index];
         if (RType == JsonGet)
-            return ResponseBuilder(String(tast.GetInputState()));
+            return ResponseBuilder(BoolToString(tast.GetInputState()));
         Serial.println(ResponseBuilder("Done"));
         tast.PrintEvent(tast.GetInputState(),Value);
         return "";
@@ -223,9 +223,8 @@ String JsonStateHandler(JsonDocument pJson)
     {
         Buzzer buz = BuzzMngr.BuzzerList[Index];
         if (RType == JsonGet)
-            return ResponseBuilder(String(buz.GetLedState()));
-        buz.SetLedValue(Value);
-        return ResponseBuilder("Done");
+            return ResponseBuilder(BoolToString(buz.GetLedState()));
+        return ErrorBuilder("",true);
     }
     if (IOType == TasterType)
         return ErrorBuilder("you can not get the (LED) State of the LED ",true);

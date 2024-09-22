@@ -19,6 +19,7 @@ void TasterMngr::CheckAllInputChanges()
 {
     for(auto &i: TasterList)
     {
-        i.CheckStateChange();
+        if (i.ID != BlockTasterIndex)
+            i.CheckStateChange();
     }
 }

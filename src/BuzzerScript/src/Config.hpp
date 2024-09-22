@@ -8,7 +8,8 @@
 #define CCollorDef {0,0,7}
 #define CCollorPress {0,10,0}
 #define CCollorBlock {10,0,0}
-#define BlockTasterIndex 0 // welcher der Taster sperren kann
+#define BlockTasterIndex 2 // welcher der Taster sperren kann
+#define BlockTasterIsAdvanced true
 
 //////////////////// Input ////////////////////
 // Taster
@@ -47,6 +48,7 @@
 #define JsonRequestLEDModeOFF "OFF"
 #define JsonRequestLEDModeON "ON"
 #define JsonRequestLEDModeAuto "Auto"
+#define JsonRequestIsDisabeled "isDisabeled"
 
 //Response
 #define JsonResponse "Response"

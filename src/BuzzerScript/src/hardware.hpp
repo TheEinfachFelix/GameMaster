@@ -15,12 +15,10 @@ extern LEDController ledCntrl;
 #include "TasterMngr.hpp"
 extern TasterMngr tastMngr;
 
-extern bool BlockBuzzer;
 extern bool ProcessingRequestHold;
-
-
 
 void SetupAllHardware();
 void LoopAllHardware();
 void SetRGBLED();
 void SetBuzzLED();
+void CheckDisableButton();

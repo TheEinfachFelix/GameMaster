@@ -14,7 +14,7 @@ private:
     Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 public:
-    String Mode;
+    String Mode = JsonRequestLEDModeAuto;
 
     LEDController();
     ~LEDController();

@@ -8,8 +8,8 @@ int CollorDef[] = CCollorDef;
 int CollorPress[] = CCollorPress;
 int CollorBlock[] = CCollorBlock;
 
-bool BlockBuzzer = false;
 bool ProcessingRequestHold = false;
+bool lastval = true;
 
 
 void SetupAllHardware()
@@ -20,18 +20,18 @@ void SetupAllHardware()
 }
 void LoopAllHardware()
 {
-  if (!ProcessingRequestHold)
-  {
-    if (!BlockBuzzer)
-    BuzzMngr.CheckAllInputChanges();
-    tastMngr.CheckAllInputChanges();
-  }
-  SetRGBLED();
-  SetBuzzLED();
+    if (!ProcessingRequestHold)
+    {
+        if (!BuzzMngr.isDisabeled)
+            BuzzMngr.CheckAllInputChanges();
+        tastMngr.CheckAllInputChanges();
+    }
+    CheckDisableButton();
+    SetRGBLED();
+    SetBuzzLED();
 }
 
 // TODO validate LED mode
-// TODO disable handling
 void SetBuzzLED()
 {
     String Mode = BuzzMngr.Mode;
@@ -47,11 +47,9 @@ void SetBuzzLED()
         }
     }
 }
-
 void SetRGBLED()
 {
   int R, G, B;
-  BlockBuzzer = !tastMngr.TasterList[BlockTasterIndex].GetInputState();
   for(Buzzer &i: BuzzMngr.BuzzerList)
   {
     if (i.GetInputState())
@@ -66,7 +64,7 @@ void SetRGBLED()
       G = CollorDef[1];
       B = CollorDef[2];
     }
-    if (BlockBuzzer)
+    if (BuzzMngr.isDisabeled)
     {
       R = CollorBlock[0];
       G = CollorBlock[1];
@@ -78,6 +76,8 @@ void SetRGBLED()
     } 
     ledCntrl.SetLED(i.ID, R,G,B);
   }
+
+
   for(Taster &i: tastMngr.TasterList)
   {
     if (!i.GetInputState())
@@ -98,5 +98,20 @@ void SetRGBLED()
     } 
     ledCntrl.SetLED(i.ID + NUM_LEDS - CTasterListLength, R,G,B);
   }
-  
 }
+void CheckDisableButton()
+{
+    Taster tast = tastMngr.TasterList[BlockTasterIndex];
+    if (!BlockTasterIsAdvanced)
+    {
+        BuzzMngr.isDisabeled = !tast.GetInputState();
+        return;
+    }
+    if (!lastval && tast.GetInputState())
+    {
+        BuzzMngr.isDisabeled = !BuzzMngr.isDisabeled;
+    }
+    lastval = tast.GetInputState();
+}
+
+

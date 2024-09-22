@@ -11,7 +11,8 @@ class BuzzerMngr
 private:
 public:
     Buzzer BuzzerList[CBuzzerListLength] = CBuzzerList;
-    String Mode;
+    String Mode = JsonRequestLEDModeAuto;
+    bool isDisabeled;
 
     BuzzerMngr();
     ~BuzzerMngr();

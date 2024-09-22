@@ -121,10 +121,12 @@ String HandleRequest(JsonDocument pJson)
         return JsonStateHandler(pJson);
     if (Request == JsonRequestLedMode)
         return JsonLedModeHandler(pJson);
+    if (Request == JsonRequestIsDisabeled)
+        return JsonDisableHandler(pJson);
     
     return ErrorBuilder("The Request was not found",true);
 }
-// TODO buzzer event delay
+// TODO event delay
 
 
 String JsonPinHandler(JsonDocument pJson)
@@ -193,16 +195,19 @@ String JsonInputStateHandler(JsonDocument pJson)
         Buzzer buz = BuzzMngr.BuzzerList[Index];
         if (RType == JsonGet)
             return ResponseBuilder(String(buz.GetInputState()));
+        //  this is nececary to not cause issues on the other ende
+        Serial.println(ResponseBuilder("Done"));
         buz.PrintEvent(buz.GetInputState(),Value);
-        return ResponseBuilder("Done");
+        return "";
     }
     if (IOType == TasterType)
     {
         Taster tast = tastMngr.TasterList[Index];
         if (RType == JsonGet)
             return ResponseBuilder(String(tast.GetInputState()));
+        Serial.println(ResponseBuilder("Done"));
         tast.PrintEvent(tast.GetInputState(),Value);
-        return ResponseBuilder("Done");
+        return "";
     }
     return IOTypeNotexisting;
 }
@@ -254,6 +259,26 @@ String JsonLedModeHandler(JsonDocument pJson)
     }
     if (IOType == TasterType)
         return ErrorBuilder("the Taster does not have a LED",true);
+
+    return IOTypeNotexisting;
+}
+String JsonDisableHandler(JsonDocument pJson)
+{
+    String IOType = pJson[String(JsonIOType)];
+    String RType = pJson[String(JsonRequestType)];
+    bool Value = pJson[String(JsonRequestValue)];
+
+    if (IOType == LEDType)
+        return ErrorBuilder("ony for Buzzer",true);
+    if (IOType == BuzzerType)
+    {
+        if (RType == JsonGet)
+            return ResponseBuilder(String(BuzzMngr.isDisabeled));
+        BuzzMngr.isDisabeled = Value;
+        return ResponseBuilder("Done");
+    }
+    if (IOType == TasterType)
+        return ErrorBuilder("only for Buzzer",true);
 
     return IOTypeNotexisting;
 }

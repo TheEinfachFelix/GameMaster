@@ -31,3 +31,4 @@ String JsonAmountHandler(JsonDocument pJson);
 String JsonInputStateHandler(JsonDocument pJson);
 String JsonStateHandler(JsonDocument pJson);
 String JsonLedModeHandler(JsonDocument pJson);
+String JsonDisableHandler(JsonDocument pJson);

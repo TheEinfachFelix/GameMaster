@@ -41,7 +41,6 @@
         "$type": "GameMaster.Input.BuzzerController, GameMaster",
         "AmountOfBuzzer": 8,
         "AmountOfTaster": 3,
-        "AmountOfLED": 12,
         "ComPort": 3,
         "Baudrate": 115200,
         "Dummy": false,

@@ -5,12 +5,19 @@
 #define NUM_LEDS 12 // Number of LEDs
 #define LEDType "LED"
 
+#define CCollorDef {0,0,7}
+#define CCollorPress {0,10,0}
+#define CCollorBlock {10,0,0}
+#define BlockTasterIndex 0 // welcher der Taster sperren kann
+
 //////////////////// Input ////////////////////
 // Taster
+#define CTasterListLength 3
 #define CTasterList {Taster(40),Taster(39), Taster(38)}
 #define TasterType "Taster"
 
 // Buzzer
+#define CBuzzerListLength 8
 #define CBuzzerList {Buzzer(47, 48),Buzzer(13, 14),Buzzer(11, 12),Buzzer(9, 10),Buzzer(17, 18),Buzzer(15, 16),Buzzer(6,  7),Buzzer(4, 5)}
 #define BuzzerType "Buzzer"
 

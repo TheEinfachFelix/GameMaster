@@ -1,8 +1,6 @@
 #include "TasterMngr.hpp"
 #include "Config.hpp"
 
-Taster TasterList[] = CTasterList;
-
 TasterMngr::TasterMngr(){}
 TasterMngr::~TasterMngr(){}
 

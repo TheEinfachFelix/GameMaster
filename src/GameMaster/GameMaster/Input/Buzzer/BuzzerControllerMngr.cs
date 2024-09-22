@@ -11,9 +11,7 @@ namespace GameMaster.Input
         Game? game;
 
         public bool isDisabeled { get; set; }
-        public List<int>? NormalCollor { get; set; }
-        public List<int>? PressCollor { get; set; }
-        public List<int>? BlockCollor { get; set; }
+
         public List<BuzzerController> BuzzerControllerList { get; set; } = [];
 
         public void Setup()

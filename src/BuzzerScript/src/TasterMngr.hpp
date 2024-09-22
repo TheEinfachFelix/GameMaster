@@ -5,12 +5,13 @@
 #include "Taster.hpp"
 #include "SerialHandler.hpp"
 
-extern Taster TasterList[];
-
 class TasterMngr
 {
 private:
 public:
+    
+    Taster TasterList[CTasterListLength] = CTasterList;
+
     TasterMngr();
     ~TasterMngr();
     void Setup();

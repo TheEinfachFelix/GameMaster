@@ -14,7 +14,7 @@ void LEDController::SetLED(int id, int R = 0, int G = 0, int B = 0)
     strip.setPixelColor(id, R, G, B);
     strip.show();
 }
-
+/*
 String LEDController::JsonHandlerGetSet(JsonDocument pJson)
 {
     if (pJson[String(JsonRequestType)] == JsonSet) 
@@ -133,3 +133,4 @@ String LEDController::JsonGetCollor(JsonDocument pJson)
         return ErrorBuilder(JsonErrorGeneric,true);
     }
 }
+*/

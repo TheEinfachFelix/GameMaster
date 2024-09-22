@@ -197,8 +197,6 @@ namespace GameMaster.Input
                 semaphore.Release();
             }
         }
-
-
     }
     public class BuzzerJson
     {

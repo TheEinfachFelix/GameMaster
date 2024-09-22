@@ -19,6 +19,8 @@ private:
     String JsonGetHandler(JsonDocument pJson);
 
 public:
+    Buzzer BuzzerList[CBuzzerListLength] = CBuzzerList;
+
     BuzzerMngr();
     ~BuzzerMngr();
     void Setup();

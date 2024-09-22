@@ -1,9 +1,13 @@
 #include "BuzzerMngr.hpp"
 #include "Config.hpp"
 
-Buzzer BuzzerList[] = CBuzzerList;
 
-BuzzerMngr::BuzzerMngr(){}
+
+
+BuzzerMngr::BuzzerMngr()
+{
+    
+}
 BuzzerMngr::~BuzzerMngr(){}
 
 void BuzzerMngr::Setup()

@@ -50,12 +50,9 @@ namespace GameMaster.Level
 
         public void BuzzerPress(int BuzzerID)
         {
-            Trace.WriteLine("buzzer");
             if (BuzzerDisabeled) {return; }
             AudioPlayer.PlaySound("C:/Users/felix/Downloads/buz.wav");
-            Trace.WriteLine("buzzer");
             BuzzerDisabeled = true;
-
         }
 
         public void BuzzerRelease(int BuzzerID)

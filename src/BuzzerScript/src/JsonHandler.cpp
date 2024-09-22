@@ -115,7 +115,7 @@ String HandleRequest(JsonDocument pJson)
         return JsonLEDPinHandler(pJson);
     if (Request == JsonRequestAmount)
         return JsonAmountHandler(pJson);
-    if (Request == JsonRequestInputState);
+    if (Request == JsonRequestInputState)
         return JsonInputStateHandler(pJson);
     if (Request == JsonRequestState)
         return JsonStateHandler(pJson);
@@ -126,7 +126,6 @@ String HandleRequest(JsonDocument pJson)
     
     return ErrorBuilder("The Request was not found",true);
 }
-// TODO event delay
 
 
 String JsonPinHandler(JsonDocument pJson)
@@ -243,8 +242,8 @@ String JsonLedModeHandler(JsonDocument pJson)
     {
         if (RType == JsonGet)
             return ResponseBuilder(String(ledCntrl.Mode));
-        if (Value != JsonRequestLEDModeAuto || Value != JsonRequestLEDModeOFF)
-            return ErrorBuilder("The Value must be: \"" + String(JsonRequestLEDModeAuto)+ String(JsonRequestLEDModeOFF)+ "\", \"",true);
+        if (Value != JsonRequestLEDModeAuto && Value != JsonRequestLEDModeOFF)
+            return ErrorBuilder("The Value must be: \"" + String(JsonRequestLEDModeAuto)+  "\", \"" +String(JsonRequestLEDModeOFF)+ "\", \"",true);
         ledCntrl.Mode = Value;
         return ResponseBuilder("Done");
     }   
@@ -252,7 +251,7 @@ String JsonLedModeHandler(JsonDocument pJson)
     {
         if (RType == JsonGet)
             return ResponseBuilder(String(BuzzMngr.Mode));
-        if (Value != JsonRequestLEDModeAuto || Value != JsonRequestLEDModeOFF || Value != JsonRequestLEDModeON)
+        if (Value != JsonRequestLEDModeAuto && Value != JsonRequestLEDModeOFF && Value != JsonRequestLEDModeON)
             return ErrorBuilder("The Value must be: \"" + String(JsonRequestLEDModeAuto)+ "\", \"" + String(JsonRequestLEDModeON)+ "\", \"" + String(JsonRequestLEDModeOFF)+ "\", \"",true);
         BuzzMngr.Mode = Value;
         return ResponseBuilder("Done");

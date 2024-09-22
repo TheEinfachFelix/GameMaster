@@ -74,4 +74,5 @@
 #define JsonErrorGeneric "Something went wrong"
 /*
 {"Type":"Request","IO-Type":"Buzzer","RequestType":"Set", "Request":"State","ID":7,"Value": 1}
+{"Type":"Request","IOType":"Buzzer","RequestType":"Set","Request":"State","ID":4,"Value":true}
 */

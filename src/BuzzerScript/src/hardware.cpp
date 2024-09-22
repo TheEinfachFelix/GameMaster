@@ -31,9 +31,9 @@ void LoopAllHardware()
     SetBuzzLED();
 }
 
-// TODO validate LED mode
 void SetBuzzLED()
 {
+    if (BuzzMngr.isDisabeled) return;
     String Mode = BuzzMngr.Mode;
     for(Buzzer &i: BuzzMngr.BuzzerList)
     {
@@ -72,7 +72,9 @@ void SetRGBLED()
     }
     if (ledCntrl.Mode == JsonRequestLEDModeOFF)
     {
-        R, B, B = 0;
+        R = 0;
+        G = 0;
+        B = 0;    
     } 
     ledCntrl.SetLED(i.ID, R,G,B);
   }
@@ -94,7 +96,9 @@ void SetRGBLED()
     }
     if (ledCntrl.Mode == JsonRequestLEDModeOFF)
     {
-        R, B, B = 0;
+        R = 0;
+        G = 0;
+        B = 0;
     } 
     ledCntrl.SetLED(i.ID + NUM_LEDS - CTasterListLength, R,G,B);
   }

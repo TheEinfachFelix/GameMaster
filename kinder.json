@@ -1,0 +1,210 @@
+{
+  "$type": "GameMaster.Game, GameMaster",
+  "obsConnectorList": [
+    {
+      "$type": "GameMaster.Output.obsConnector, GameMaster",
+      "Enable": false,
+      "IP": "ws://127.0.0.1:4455",
+      "PW": "123456",
+      "Profile": "",
+      "SceneCol": "Gameshow"
+    }
+  ],
+  "dot2ConnectorList": [
+    {
+      "$type": "GameMaster.Output.dot2Connector, GameMaster",
+      "Enable": true,
+      "IP": "ws://192.168.8.190:80/",
+      "pageIndex": 0
+    }
+  ],
+  "AudioEnable": true,
+  "Players": [
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Betreuer",
+      "Points": 470
+    },
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Kinder",
+      "Points": 31
+    }
+  ],
+  "Levels": [
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Einführung",
+      "Beschreibung": "manuel winner",
+      "Points": 0,
+      "displayContent": "",
+      "displayFontSize": 0,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Ballons Platzen",
+      "Beschreibung": "manul winner",
+      "Points": 1,
+      "displayContent": "Spiel 1",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Fangschlägerspiel",
+      "Beschreibung": "winner if correct",
+      "Points": 2,
+      "displayContent": "Spiel 2",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Schätzen",
+      "Beschreibung": "winner if correct",
+      "Points": 3,
+      "displayContent": "Spiel 3",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Holspiel",
+      "Beschreibung": "winner if correct",
+      "Points": 4,
+      "displayContent": "Spiel 4",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.AudioQuiz, GameMaster",
+      "Name": "Song Raten",
+      "Beschreibung": "5 Punke manuell",
+      "displayFontSize": 60,
+      "AudioList": [
+        "Kikaninchen",
+        "Bibi und Tina",
+        "Für Elise",
+        "bad guy",
+        "we can t be friends"
+      ],
+      "QuestionPoints": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Path": "C:/Users/felix/Downloads/"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Jenga",
+      "Beschreibung": "winner if correct",
+      "Points": 6,
+      "displayContent": "Spiel 6",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Waffel wettessen",
+      "Beschreibung": "winner if correct",
+      "Points": 7,
+      "displayContent": "Spiel 7",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "pause",
+      "Beschreibung": "winner if correct",
+      "Points": 0,
+      "displayContent": "Pause",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.FragenLevel, GameMaster",
+      "Name": "Quizz",
+      "Beschreibung": "8 punkte manuell",
+      "displayFontSize": 60,
+      "QuestionList": [
+        "Spiel 8",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "QuestionPoints": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Hirschwerfen",
+      "Beschreibung": "manuel winner",
+      "Points": 9,
+      "displayContent": "Spiel 9",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Autorennen",
+      "Beschreibung": "manuel winner",
+      "Points": 10,
+      "displayContent": "Spiel 10",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Suchspiel",
+      "Beschreibung": "manuel winner",
+      "Points": 11,
+      "displayContent": "Spiel 11",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Pflitschen",
+      "Beschreibung": "manuel winner",
+      "Points": 12,
+      "displayContent": "Spiel 12",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Ende",
+      "Beschreibung": "manuel winner",
+      "Points": 0,
+      "displayContent": "",
+      "displayFontSize": 0,
+      "BuzzerEnabled": false
+    }
+  ]
+}

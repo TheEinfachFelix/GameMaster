@@ -1,0 +1,165 @@
+{
+  "$type": "GameMaster.Game, GameMaster",
+  "obsConnectorList": [
+    {
+      "$type": "GameMaster.Output.obsConnector, GameMaster",
+      "Enable": false,
+      "IP": "ws://127.0.0.1:4455",
+      "PW": "123456",
+      "Profile": "",
+      "SceneCol": "Gameshow"
+    }
+  ],
+  "dot2ConnectorList": [
+    {
+      "$type": "GameMaster.Output.dot2Connector, GameMaster",
+      "Enable": true,
+      "IP": "ws://192.168.8.100:80/",
+      "pageIndex": 0
+    }
+  ],
+  "AudioEnable": true,
+  "Players": [
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Betreuer",
+      "Points": 39
+    },
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Kinder",
+      "Points": 35
+    }
+  ],
+  "Levels": [
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Anfang",
+      "Beschreibung": "manuel winner",
+      "Points": 0,
+      "displayContent": "",
+      "displayFontSize": 0,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Elch",
+      "Beschreibung": "manul winner",
+      "Points": 1,
+      "displayContent": "Spiel 1",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Dart",
+      "Beschreibung": "winner if correct",
+      "Points": 2,
+      "displayContent": "Spiel 2",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.FragenLevel, GameMaster",
+      "Name": "Was war Wann",
+      "Beschreibung": "Hier Ein Paar Fragen",
+      "displayFontSize": 60,
+      "QuestionList": [
+        "Spiel 3",
+        "Pool Aufgebaut",
+        "Hüpfburg Aufgebaut",
+        "erstes Basteln",
+        "Bolonese"
+      ],
+      "QuestionPoints": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "$type": "GameMaster.Level.AudioQuiz, GameMaster",
+      "Name": "Musik",
+      "Beschreibung": "raten",
+      "displayFontSize": 60,
+      "AudioList": [
+        "Caillou",
+        "Kikaninchen",
+        "Gummibärenbande",
+        "Unwritten"
+      ],
+      "QuestionPoints": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "Path": "C:/Users/felix/Downloads/"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Stöckchen",
+      "Beschreibung": "manuel winner",
+      "Points": 5,
+      "displayContent": "Spiel 4",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Eierlauf",
+      "Beschreibung": "manuel winner",
+      "Points": 6,
+      "displayContent": "Spiel 4",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Seilziehen",
+      "Beschreibung": "manuel winner",
+      "Points": 8,
+      "displayContent": "Spiel 5",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Aotorennen",
+      "Beschreibung": "manuel winner",
+      "Points": 9,
+      "displayContent": "Spiel 7",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Lochpflitsch",
+      "Beschreibung": "",
+      "Points": 10,
+      "displayContent": "Spiel 9",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Entfernung schäätzen",
+      "Beschreibung": "manuel winner",
+      "Points": 11,
+      "displayContent": "Spiel 10",
+      "displayFontSize": 60,
+      "BuzzerEnabled": false
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Ende",
+      "Beschreibung": "manuel winner",
+      "Points": 0,
+      "displayContent": "",
+      "displayFontSize": 0,
+      "BuzzerEnabled": false
+    }
+  ]
+}

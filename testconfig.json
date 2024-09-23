@@ -1,0 +1,94 @@
+{
+  "$type": "GameMaster.Game, GameMaster",
+  "obsConnectorList": [
+    {
+      "$type": "GameMaster.Output.obsConnector, GameMaster",
+      "Enable": false,
+      "IP": "ws://127.0.0.1:4455",
+      "PW": "123456",
+      "Profile": "",
+      "SceneCol": "Gameshow"
+    }
+  ],
+  "dot2ConnectorList": [
+    {
+      "$type": "GameMaster.Output.dot2Connector, GameMaster",
+      "Enable": false,
+      "IP": "ws://localhost:80/",
+      "pageIndex": 0
+    }
+  ],
+  "BuzzerControll": {
+    "$type": "GameMaster.Input.BuzzerControllerMngr, GameMaster",
+    "isDisabeled": false,
+    "NormalCollor": [
+      0,
+      0,
+      10
+    ],
+    "PressCollor": [
+      0,
+      20,
+      0
+    ],
+    "BlockCollor": [
+      20,
+      0,
+      0
+    ],
+    "BuzzerControllerList": [
+      {
+        "$type": "GameMaster.Input.BuzzerController, GameMaster",
+        "AmountOfBuzzer": 8,
+        "AmountOfTaster": 3,
+        "ComPort": 3,
+        "Baudrate": 115200,
+        "Dummy": false,
+        "Dot2Valus": [
+          201,
+          202,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "AudioEnable": false,
+  "Players": [
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Betrer",
+      "Points": 0
+    },
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Kinder",
+      "Points": 0
+    }
+  ],
+  "Levels": [
+    {
+      "$type": "GameMaster.TestLevel, GameMaster",
+      "Name": "Sound",
+      "Beschreibung": "Spielt Sound",
+      "Points": 10,
+      "CStep": 0,
+      "displayContent": "später",
+      "displayFontSize": 100,
+      "path": "C:/Users/felix/Downloads/"
+    },
+    {
+      "$type": "WebGameController.Models.FirstLevel, GameMaster",
+      "Name": "Bzzer to .2",
+      "Beschreibung": "Setzt auf BuzzerPress dot2 Values",
+      "Points": 2,
+      "CStep": 1,
+      "displayContent": "peter",
+      "displayFontSize": 200
+    }
+  ]
+}

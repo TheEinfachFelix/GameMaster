@@ -1,15 +1,8 @@
 #include "BuzzerMngr.hpp"
 #include "Config.hpp"
 
-Buzzer BuzzerList[] = CBuzzerList;
-
-BuzzerMngr::BuzzerMngr()
-{
-}
-
-BuzzerMngr::~BuzzerMngr()
-{
-}
+BuzzerMngr::BuzzerMngr(){}
+BuzzerMngr::~BuzzerMngr(){}
 
 void BuzzerMngr::Setup()
 {
@@ -17,20 +10,15 @@ void BuzzerMngr::Setup()
     int IDCounter = 0;
     for(auto &i: BuzzerList)
     {
-        IDCounter ++;
         i.ID = IDCounter;
+        IDCounter ++;
     }
 }
 
-void BuzzerMngr::ChecknPrintPinstate()
+void BuzzerMngr::CheckAllInputChanges()
 {
     for(auto &i: BuzzerList)
     {
-        i.PrintRead();
+        i.CheckStateChange();
     }
-}
-
-void BuzzerMngr::SetLED(int BuzzerID, bool Value)
-{
-    BuzzerList[BuzzerID-1].SetLED(Value);
 }

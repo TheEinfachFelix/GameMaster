@@ -18,7 +18,46 @@
       "pageIndex": 0
     }
   ],
-  "CDisplayContent": "später",
+  "BuzzerControll": {
+    "$type": "GameMaster.Input.BuzzerControllerMngr, GameMaster",
+    "isDisabeled": false,
+    "NormalCollor": [
+      0,
+      0,
+      10
+    ],
+    "PressCollor": [
+      0,
+      20,
+      0
+    ],
+    "BlockCollor": [
+      20,
+      0,
+      0
+    ],
+    "BuzzerControllerList": [
+      {
+        "$type": "GameMaster.Input.BuzzerController, GameMaster",
+        "AmountOfBuzzer": 8,
+        "AmountOfTaster": 3,
+        "ComPort": 3,
+        "Baudrate": 115200,
+        "Dummy": false,
+        "Dot2Valus": [
+          201,
+          202,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "AudioEnable": false,
   "Players": [
     {
       "$type": "GameMaster.Player, GameMaster",
@@ -38,7 +77,9 @@
       "Beschreibung": "Spielt Sound",
       "Points": 10,
       "CStep": 0,
-      "displayContent": "später"
+      "displayContent": "später",
+      "displayFontSize": 100,
+      "path": "C:/Users/felix/Downloads/"
     },
     {
       "$type": "WebGameController.Models.FirstLevel, GameMaster",
@@ -46,16 +87,8 @@
       "Beschreibung": "Setzt auf BuzzerPress dot2 Values",
       "Points": 2,
       "CStep": 1,
-      "displayContent": "peter"
+      "displayContent": "peter",
+      "displayFontSize": 200
     }
-  ],
-  "LevelID": 0,
-  "CLevel": {
-    "$type": "GameMaster.TestLevel, GameMaster",
-    "Name": "Sound",
-    "Beschreibung": "Spielt Sound",
-    "Points": 10,
-    "CStep": 0,
-    "displayContent": "später"
-  }
+  ]
 }

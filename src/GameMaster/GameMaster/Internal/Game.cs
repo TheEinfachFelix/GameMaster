@@ -1,6 +1,7 @@
 ﻿using GameMaster.Input;
 using GameMaster.Output;
 using Newtonsoft.Json;
+using OBSWebsocketDotNet.Types;
 using System.Diagnostics;
 
 namespace GameMaster
@@ -13,6 +14,9 @@ namespace GameMaster
         public List<obsConnector> obsConnectorList { get; set; } = [];
         public List<dot2Connector> dot2ConnectorList { get; set; } = [];
 
+        public BuzzerControllerMngr BuzzerControll { get; set;}
+
+        [JsonIgnore]
         public string CDisplayContent
         {
             get
@@ -32,10 +36,34 @@ namespace GameMaster
                 }
             }
         }
+        [JsonIgnore]
+        public int CDisplayFontSize
+        {
+            get
+            {
+                if (CLevel == null)
+                {
+                    return 10;
+                }
+                return CLevel.displayFontSize;
+
+            }
+            set
+            {
+                if (CLevel != null)
+                {
+                    CLevel.displayFontSize = value;
+                }
+            }
+        }
+
+        public bool AudioEnable { get; set; } = true;
+
         public List<IPlayer> Players { get; set; } = [];
         public List<ILevel> Levels { get; set; } = [];
 
         private int pLevelID  = -1;
+        [JsonIgnore]
         public int LevelID
         {
             get 
@@ -51,7 +79,9 @@ namespace GameMaster
             }
         }
 
+        [JsonIgnore]
         private ILevel? pCLevel = null;
+        [JsonIgnore]
         public ILevel? CLevel 
         { get 
             { 
@@ -108,33 +138,28 @@ namespace GameMaster
 
         public void Setup()
         {
-            Trace.WriteLine("Game Setup:");
-            LevelID *= 1; // causes the level setup to run
 
+
+            Trace.WriteLine("Game Setup:");
+            LevelID = 0; // causes the level setup to run
+
+            Trace.Write("Setting up OBS...");
             foreach (var obs in obsConnectorList)
             {
                 obs.Setup();
+                obs.SetScene("normal");
             }
+            Trace.WriteLine("  -DONE-");
+            Trace.Write("Setting up Dot2...");
             foreach (var dot2 in dot2ConnectorList)
             {
                 dot2.Open();
                 while (!dot2.Ready && dot2.Enable) { }
             }
-
-        }
-
-        // Buzzer Routing
-        public void BuzzerPress(int BuzzerID)
-        {
-            if (CLevel == null) { throw new Exception("CLevel is null"); }
-            
-            CLevel.BuzzerPress(BuzzerID);
-        }
-        public void BuzzerRelease(int BuzzerID)
-        {
-            if (CLevel == null) { throw new Exception("CLevel is null"); }
-
-            CLevel.BuzzerRelease(BuzzerID);
+            Trace.WriteLine("  -DONE-");
+            Trace.Write("Setting up Buzzer...");
+            BuzzerControll.Setup();
+            Trace.WriteLine("  -DONE-");
         }
 
         // Seting the Levels

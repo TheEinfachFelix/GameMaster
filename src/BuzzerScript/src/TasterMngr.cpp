@@ -1,12 +1,8 @@
 #include "TasterMngr.hpp"
 #include "Config.hpp"
 
-Taster TasterList[] = CTasterList;
-
-TasterMngr::TasterMngr()
-{
-
-}
+TasterMngr::TasterMngr(){}
+TasterMngr::~TasterMngr(){}
 
 void TasterMngr::Setup()
 {
@@ -14,20 +10,16 @@ void TasterMngr::Setup()
     int IDCounter = 0;
     for(auto &i: TasterList)
     {
-        IDCounter ++;
         i.ID = IDCounter;
+        IDCounter ++;
     }
 }
 
-TasterMngr::~TasterMngr()
-{
-    
-}
-
-void TasterMngr::ChecknPrintPinstate()
+void TasterMngr::CheckAllInputChanges()
 {
     for(auto &i: TasterList)
     {
-        i.PrintRead();
+        if (i.ID != BlockTasterIndex)
+            i.CheckStateChange();
     }
 }

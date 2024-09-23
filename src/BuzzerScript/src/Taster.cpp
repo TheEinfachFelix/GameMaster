@@ -6,43 +6,31 @@ Taster::Taster(int pPressPin)
 
     pinMode(PressPin, INPUT_PULLUP);
 
-    PressState = digitalRead(PressPin);
+    PressState = GetInputState();
 }
+Taster::~Taster(){}
 
-int Taster::Read()
+void Taster::CheckStateChange()
 {
-    bool now = digitalRead(PressPin);
+    bool now = GetInputState();
 
     if (PressState != now)
     {
+        PrintEvent(PressState, now);
         PressState = now;
-
-        if(!now)
-        {
-          return 1;
-        } else 
-        {
-          return 0;
-        }
-    }
-    return -1;
-}
-
-void Taster::PrintRead()
-{
-    int buttonState = Read();
-
-    if (buttonState == 1)
-    {
-        PrintButtonValueChanged(TasterType, ID , true);
-    }else if (buttonState == 0)
-    {
-        PrintButtonValueChanged(TasterType, ID , false);
     }
 }
-
-
-
-Taster::~Taster()
+void Taster::PrintEvent(bool old, bool now)
 {
+    EventSender(TasterType, ID , old, now);
+}
+
+// Get
+int Taster::GetPin()
+{
+    return PressPin;
+}
+bool Taster::GetInputState()
+{
+    return digitalRead(PressPin);
 }

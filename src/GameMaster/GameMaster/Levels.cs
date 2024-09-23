@@ -1,4 +1,5 @@
 ﻿using GameMaster.Output;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace GameMaster
@@ -7,24 +8,28 @@ namespace GameMaster
     {
         private Game game = Game.GetInstance();
 
-        public string Name { get; set; } = "Sound";
-        public string Beschreibung { get; set; } = "Spielt Sound";
+        public string Name { get; set; }
+        public string Beschreibung { get; set; }
         public int Points { get; set; } = 3;
         public int CStep { get; set; } = 0;
+        public string displayContent { get; set; }
+        public int displayFontSize { get; set; }
 
-        public string displayContent { get; set; } = "später";
+        [JsonIgnore]
+        public bool BuzzerDisabeled { get; set; }
+        public string path { get; set; } = "C:/Users/felix/Downloads/";
 
         public void Setup()
         {
+            BuzzerDisabeled = false;
             game = Game.GetInstance();
-            Trace.WriteLine("Setup Level ID is: " + game.LevelID);
         }
         public void BuzzerPress(int BuzzerID)
         {
+            if (BuzzerDisabeled) { return; }
+            BuzzerDisabeled = true;
+            AudioPlayer.PlaySound(path + "Zu_gut_fuer_dich.wav");
 
-            BasicAudioPlayer b = new(@"C:\Users\felix\Downloads\");
-            b.PlayWAV("Zu_gut_fuer_dich");
-            Trace.WriteLine("BuzzerPress" + BuzzerID.ToString());
             if (BuzzerID == 1) 
             { 
                 if (!game.NextLevel()) 
@@ -40,12 +45,14 @@ namespace GameMaster
         {
             Trace.WriteLine("BuzzerRelease" + BuzzerID.ToString());
         }
+        public void TasterEvent(int TasterID, bool Value)
+        {
+        }
 
         public void Clear()
         {
             Trace.WriteLine("Clear");
-            //BasicAudioPlayer a = new(@"C:\Users\felix\Downloads\");
-            //a.PlayWAV("Test-1");
+            AudioPlayer.PlaySound(path + "Test-1.wav");
 
         }
 

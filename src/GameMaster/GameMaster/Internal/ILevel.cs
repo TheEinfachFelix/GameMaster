@@ -6,6 +6,7 @@
         public void Clear();
         public void BuzzerPress(int BuzzerID);
         public void BuzzerRelease(int BuzzerID);
+        public void TasterEvent(int TasterID, bool Value);
 
         public void WinnerIs(int PlayerID);
 
@@ -17,5 +18,8 @@
         public int CStep { get; set; }
 
         public string displayContent { get; set; }
+        public int displayFontSize {  get; set; }
+
+        public bool BuzzerDisabeled { get; set; }
     }
 }

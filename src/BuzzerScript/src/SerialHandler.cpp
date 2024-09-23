@@ -1,19 +1,65 @@
 #include "SerialHandler.hpp"
 
-void PrintButtonValueChanged(String type, int ID, bool Value)
+void EventSender(String type, int ID, bool oldVal, bool newVal)
 {
-    String strValue = "false";
-    if (Value)
-        strValue = "true";
-    
-    Serial.print("{\""+String(JsonType)+"\" : \"" + type + "\" ,\""+String(JsonID)+"\" : ");
-    Serial.print(ID);
-    Serial.println(", \""+String(JsonValue)+"\" : " + strValue + " }");
+    String out = "";
+    JsonDocument doc;
+
+    doc[JsonType] = JsonEvent;
+    doc[JsonIOType] = type;
+    doc[JsonEventID] = ID;
+    doc[JsonEventNewValue] = newVal;
+    doc[JsonEventOldValue] = oldVal;
+
+    serializeJsonPretty(doc,out);
+    Serial.println(out);
+    delay(20);
 }
 
-void PrintError(String errorMSG)
+String ErrorBuilder(String pError, bool pCritical = false)
 {
-    Serial.print("\""+String(JsonError)+"\":\"");
-    Serial.print(errorMSG);
-    Serial.println("\"}");
+    String out = "";
+    JsonDocument doc;
+
+    doc[JsonType] = JsonResponse;
+    doc[JsonResponseSuccess] = false;
+    doc[JsonResponseCritical] = pCritical;
+    doc[JsonResponseError] = pError;
+
+    serializeJsonPretty(doc,out);
+    return out;
+}
+
+String DebugBuilder(String pSorce, String pMSG, bool pCritical, String pValue = "")
+{
+    String out = "";
+    JsonDocument doc;
+
+    doc[JsonType] = JsonDebug;
+    doc[JsonDebugMSG] = pMSG;
+    doc[JsonDebugValue] = pValue;
+    doc[JsonDebugCritical] = pCritical;
+
+    serializeJsonPretty(doc,out);
+    return out;
+}
+
+String ResponseBuilder (String pValue)
+{
+    String out = "";
+    JsonDocument doc;
+
+    doc[JsonType] = JsonResponse;
+    doc[JsonResponseSuccess] = true;
+    doc[JsonResponseValue] = pValue;
+
+    serializeJsonPretty(doc,out);
+    return out; 
+}
+
+String BoolToString(bool input)
+{
+    if (input)
+        return "true";
+    return "false";
 }

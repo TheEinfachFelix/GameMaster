@@ -11,24 +11,11 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "tinyusb.h"
-#include "tusb_cdc_acm.h"
 #include "esp_timer.h"
-#include <esp_err.h>
 
 static const char *TAG = "example";
-static uint8_t rx_buf[CONFIG_TINYUSB_CDC_RX_BUFSIZE + 1];
 
 /** Helper defines **/
-
-/**
- * @brief Application Queue
- */
-static QueueHandle_t app_queue;
-typedef struct {
-    uint8_t buf[CONFIG_TINYUSB_CDC_RX_BUFSIZE + 1];     // Data buffer
-    size_t buf_len;                                     // Number of bytes received
-    uint8_t itf;                                        // Index of CDC device interface
-} app_message_t;
 
 // Interface counter
 enum interface_count {
@@ -43,7 +30,6 @@ enum interface_count {
 enum usb_endpoints {
     // Available USB Endpoints: 5 IN/OUT EPs and 1 IN EP
     EP_EMPTY = 0,
-    
 #if CFG_TUD_MIDI
     EPNUM_MIDI,
 #endif
@@ -92,35 +78,6 @@ static const uint8_t s_midi_hs_cfg_desc[] = {
     TUD_MIDI_DESCRIPTOR(ITF_NUM_MIDI, 4, EPNUM_MIDI, (0x80 | EPNUM_MIDI), 512),
 };
 #endif // TUD_OPT_HIGH_SPEED
-
-void tinyusb_cdc_rx_callback(int itf, cdcacm_event_t *event)
-{
-    /* initialization */
-    size_t rx_size = 0;
-
-    /* read */
-    esp_err_t ret = tinyusb_cdcacm_read(itf, rx_buf, CONFIG_TINYUSB_CDC_RX_BUFSIZE, &rx_size);
-    if (ret == ESP_OK) {
-
-        app_message_t tx_msg = {
-            .buf_len = rx_size,
-            .itf = itf,
-        };
-
-        /* Copy received message to application queue buffer */
-        memcpy(tx_msg.buf, rx_buf, rx_size);
-        xQueueSend(app_queue, &tx_msg, 0);
-    } else {
-        ESP_LOGE(TAG, "Read Error");
-    }
-}
-
-void tinyusb_cdc_line_state_changed_callback(int itf, cdcacm_event_t *event)
-{
-    int dtr = event->line_state_changed_data.dtr;
-    int rts = event->line_state_changed_data.rts;
-    ESP_LOGI(TAG, "Line state changed on channel %d: DTR:%d, RTS:%d", itf, dtr, rts);
-}
 
 static void midi_task_read_example(void *arg)
 {
@@ -192,7 +149,6 @@ void app_main(void)
 {
     ESP_LOGI(TAG, "USB initialization");
 
-    app_message_t msg;
     tinyusb_config_t const tusb_cfg = {
         .device_descriptor = NULL, // If device_descriptor is NULL, tinyusb_driver_install() will use Kconfig
         .string_descriptor = s_str_desc,
@@ -203,31 +159,12 @@ void app_main(void)
         .hs_configuration_descriptor = s_midi_hs_cfg_desc,
         .qualifier_descriptor = NULL,
 #else
-        .configuration_descriptor = NULL, //s_midi_cfg_desc
+        .configuration_descriptor = s_midi_cfg_desc,
 #endif // TUD_OPT_HIGH_SPEED
     };
     ESP_ERROR_CHECK(tinyusb_driver_install(&tusb_cfg));
 
-    tinyusb_config_cdcacm_t acm_cfg = {
-        .usb_dev = TINYUSB_USBDEV_0,
-        .cdc_port = TINYUSB_CDC_ACM_0,
-        .rx_unread_buf_sz = 64,
-        .callback_rx = &tinyusb_cdc_rx_callback, // the first way to register a callback
-        .callback_rx_wanted_char = NULL,
-        .callback_line_state_changed = NULL,
-        .callback_line_coding_changed = NULL
-    };
-
-    ESP_ERROR_CHECK(tusb_cdc_acm_init(&acm_cfg));
-    /* the second way to register a callback */
-    ESP_ERROR_CHECK(tinyusb_cdcacm_register_callback(
-                        TINYUSB_CDC_ACM_0,
-                        CDC_EVENT_LINE_STATE_CHANGED,
-                        &tinyusb_cdc_line_state_changed_callback));
-    
-    //ESP_ERROR_CHECK(esp_tusb_init_console());
-
-    ESP_LOGI(TAG, "USB Composite initialization DONE");
+    ESP_LOGI(TAG, "USB initialization DONE");
 
     // Periodically send MIDI packets
     int const tempo = 286;
@@ -245,9 +182,4 @@ void app_main(void)
     // Read received MIDI packets
     ESP_LOGI(TAG, "MIDI read task init");
     xTaskCreate(midi_task_read_example, "midi_task_read_example", 4 * 1024, NULL, 5, NULL);
-    tinyusb_cdcacm_write_queue(msg.itf, msg.buf, msg.buf_len);
-                esp_err_t err = tinyusb_cdcacm_write_flush(msg.itf, 0);
-                if (err != ESP_OK) {
-                    ESP_LOGE(TAG, "CDC ACM write flush error: %s", esp_err_to_name(err));
-                }
 }

@@ -1,0 +1,9 @@
+ # Example project files
+build/
+.vscode/
+.devcontainer/
+managed_components/
+build_*_*/
+ # sdkconfig
+sdkconfig.old 
+dependencies.lock

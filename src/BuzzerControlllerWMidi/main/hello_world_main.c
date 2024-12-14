@@ -7,6 +7,7 @@
 #include "tinyusb.h"
 #include "esp_log.h"
 #include <device/usbd.h>
+#include <tusb_cdc_acm.h>
 
 
 static const char *TAG_USB = "USB";
@@ -39,15 +40,80 @@ static const uint8_t s_midi_cfg_desc[] = {
     TUD_MIDI_DESCRIPTOR(ITF_NUM_MIDI, 4, EPNUM_MIDI, (0x80 | EPNUM_MIDI), 64),
 };
 
+/**
+ * @brief CDC device RX callback
+ *
+ * CDC device signals, that new data were received
+ *
+ * @param[in] itf   CDC device index
+ * @param[in] event CDC event type
+ */
+void tinyusb_cdc_rx_callback(int itf, cdcacm_event_t *event)
+{
+    ESP_LOGI(TAG_USB, "Recieved some Data over USB");
+    /* initialization */
+    //size_t rx_size = 0;
+
+    /* read */
+    //esp_err_t ret = tinyusb_cdcacm_read(itf, rx_buf, CONFIG_TINYUSB_CDC_RX_BUFSIZE, &rx_size);
+    //if (ret == ESP_OK) {
+
+    //    app_message_t tx_msg = {
+    //        .buf_len = rx_size,
+    //        .itf = itf,
+    //    };
+
+        /* Copy received message to application queue buffer */
+    //    memcpy(tx_msg.buf, rx_buf, rx_size);
+    //    xQueueSend(app_queue, &tx_msg, 0);
+    //} else {
+    //    ESP_LOGE(TAG, "Read Error");
+    //}
+}
+
+/**
+ * @brief CDC device line change callback
+ *
+ * CDC device signals, that the DTR, RTS states changed
+ *
+ * @param[in] itf   CDC device index
+ * @param[in] event CDC event type
+ */
+void tinyusb_cdc_line_state_changed_callback(int itf, cdcacm_event_t *event)
+{
+    int dtr = event->line_state_changed_data.dtr;
+    int rts = event->line_state_changed_data.rts;
+    ESP_LOGI(TAG_USB, "Line state changed on channel %d: DTR:%d, RTS:%d", itf, dtr, rts);
+}
+
+
 
 void app_main(void)
 {
     ESP_LOGI(TAG_USB, "USB initialization");
+
     tinyusb_config_t const tusb_cfg = {
         .external_phy = false,
         .configuration_descriptor = s_midi_cfg_desc,
     };
     ESP_ERROR_CHECK(tinyusb_driver_install(&tusb_cfg));
+
+    ESP_LOGI(TAG_USB, "USB CDC initialization");
+    const tinyusb_config_cdcacm_t acm_cfg = {
+        .usb_dev = TINYUSB_USBDEV_0,
+        .cdc_port = TINYUSB_CDC_ACM_0,
+        .rx_unread_buf_sz = 64,
+        .callback_rx = &tinyusb_cdc_rx_callback,
+        .callback_rx_wanted_char = NULL,
+        .callback_line_state_changed = NULL,
+        .callback_line_coding_changed = NULL
+    };
+    tusb_cdc_acm_init(&acm_cfg);
+
+    ESP_ERROR_CHECK(tinyusb_cdcacm_register_callback(
+                    TINYUSB_CDC_ACM_0,
+                    CDC_EVENT_LINE_STATE_CHANGED,
+                    &tinyusb_cdc_line_state_changed_callback));
 
     ESP_LOGI(TAG_USB, "USB initialization DONE");
 

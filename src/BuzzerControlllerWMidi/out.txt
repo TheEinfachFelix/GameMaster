@@ -110,8 +110,7 @@ V (866) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): Args okay. Resulting flag
 D (876) intr_alloc: Connected src 52 to int 5 (cpu 0)
 I (876) main_task: Calling app_main()
 I (886) USB: USB initialization
-W (886) tusb_desc: No Device descriptor provided, using default.
-W (896) tusb_desc: No String descriptors provided, using default.
+W (886) tusb_desc: No Device descriptor provided, using default.W (896) tusb_desc: No String descriptors provided, using default.
 I (896) tusb_desc: 
 ┌─────────────────────────────────┐
 │  USB Device Descriptor Summary  │
@@ -157,9 +156,7 @@ D (1116) tusb_tsk: tinyusb task started
 I (1126) USB: USB CDC initialization
 D (1126) tusb_cdc: Init CDC 0
 D (1136) tusb_cdc: CDC Comm class initialized
-I (1136) USB: USB initialization DONE
-I (1146) USB: Test
-Hello Word
+I (1136) USB: USB initialization DONEI (1146) USB: TestHello Word
 USBD Bus Reset : Full Speed
 
 USBD Setup Received 80 06 00 01 00 00 40 00
@@ -462,43 +459,3 @@ USBD Xfer Complete on EP 80 with 18 bytes
   Queue EP 00 with 0 bytes ...
 USBD Xfer Complete on EP 00 with 0 bytes
 USBD Suspend : Remote Wakeup = 0
-I (3146) USB: Test
-Hello Word
-I (4146) USB: Test
-Hello Word
-I (5146) USB: Test
-Hello Word
-I (6146) USB: Test
-Hello Word
-I (7146) USB: Test
-Hello Word
-I (8146) USB: Test
-Hello Word
-I (9146) USB: Test
-Hello Word
-I (10146) USB: Test
-Hello Word
-I (11146) USB: Test
-Hello Word
-I (12146) USB: Test
-Hello Word
-I (13146) USB: Test
-Hello Word
-I (14146) USB: Test
-Hello Word
-I (15146) USB: Test
-Hello Word
-I (16146) USB: Test
-Hello Word
-I (17146) USB: Test
-Hello Word
-I (18146) USB: Test
-Hello Word
-I (19146) USB: Test
-Hello Word
-I (20146) USB: Test
-Hello Word
-I (21146) USB: Test
-Hello Word
-I (22146) USB: Test
-Hello Word

@@ -12,6 +12,9 @@
 
 static const char *TAG_USB = "USB";
 
+#define NOTE_OFF 0x80
+#define NOTE_ON  0x90
+
 // Interface counter
 enum interface_count {
     ITF_NUM_MIDI = 0,
@@ -42,6 +45,16 @@ static const uint8_t s_midi_cfg_desc[] = {
 
     // Interface number, string index, EP Out & EP In address, EP size
     TUD_MIDI_DESCRIPTOR(ITF_NUM_MIDI, 4, EPNUM_MIDI_OUT, EPNUM_MIDI_IN, 64), // OLD in: (0x80 | EPNUM_MIDI)
+};
+
+static const char* s_str_desc[6] = {
+    // array of pointer to string descriptors
+    (char[]){0x09, 0x04},  // 0: is supported language is English (0x0409)
+    "EinfachTechnik",             // 1: Manufacturer
+    "Buzzer Controller",      // 2: Product
+    "123456",              // 3: Serials, should use chip ID
+    "Buzzer Controller Midi", // 4: MIDI
+    "sstrdesc 6 item",
 };
 
 /**
@@ -97,6 +110,9 @@ void app_main(void)
     ESP_LOGI(TAG_USB, "USB initialization");
 
     tinyusb_config_t const tusb_cfg = {
+        .device_descriptor = NULL, // If device_descriptor is NULL, tinyusb_driver_install() will use Kconfig
+        .string_descriptor = s_str_desc,
+        .string_descriptor_count = sizeof(s_str_desc) / sizeof(s_str_desc[0]),
         .external_phy = false,
         .configuration_descriptor = s_midi_cfg_desc,
     };
@@ -125,8 +141,27 @@ void app_main(void)
 
     while (true)
     {
-        ESP_LOGI(TAG_USB, "Test");
-        printf("Hello Word\n" );
+        //ESP_LOGI(TAG_USB, "Test");
+
+
+        char snum[5];
+        // Convert 123 to string [buf]
+        itoa(tud_midi_mounted(), snum, 10);
+        // Print our string
+        //printf("%s\n", snum);
+
+        if (tud_midi_mounted()) {
+            static uint8_t const cable_num = 0;
+            static uint8_t const channel = 0;
+
+            uint8_t note_off[3] = {NOTE_OFF | channel, 98, 0};
+            uint8_t note_on[3] = {NOTE_ON | channel, 98, 127};
+            ESP_LOGI(TAG_USB, "MidiON");
+            tud_midi_stream_write(cable_num, note_on, 3);
+            vTaskDelay(1000 / portTICK_PERIOD_MS);
+            tud_midi_stream_write(cable_num, note_off, 3);
+
+        }
         vTaskDelay(1000 / portTICK_PERIOD_MS);
         
     }

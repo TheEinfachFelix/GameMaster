@@ -1,0 +1,301 @@
+
+��J☻j�����}������ Start of region 0x600fe000 - 0x60100000 overlaps reserved 0x600fe000 - 0x600fe100
+V (521) memory_layout: End of region 0x600fe100 - 0x60100000 overlaps reserved 0x600fffe8 - 0x60100000
+D (531) memory_layout: Available memory region 0x600fe100 - 0x600fffe8
+I (537) heap_init: Initializing. RAM available for dynamic allocation:
+D (545) heap_init: New heap initialised at 0x3fc96ea0
+I (550) heap_init: At 3FC96EA0 len 00052870 (330 KiB): RAM
+I (556) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+D (562) heap_init: New heap initialised at 0x3fcf0000
+I (567) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+D (573) heap_init: New heap initialised at 0x600fe100
+I (578) heap_init: At 600FE100 len 00001EE8 (7 KiB): RTCRAM
+D (584) cpu_start: calling init function: 0x42006a68 on core: 0
+--- 0x42006a68: __esp_system_init_fn_esp_timer_init_nonos at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_timer/src/esp_timer_init.c:28
+
+D (590) cpu_start: calling init function: 0x4200658c on core: 0
+--- 0x4200658c: __esp_system_init_fn_init_newlib at C:/Users/felix/esp/v5.3.2/esp-idf/components/newlib/newlib_init.c:162
+
+D (596) cpu_start: calling init function: 0x42001c44 on core: 0
+--- 0x42001c44: __esp_system_init_fn_init_brownout at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_system/startup_funcs.c:67
+
+V (602) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): checking args
+V (609) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): Args okay. Resulting flags 0x40E
+D (617) intr_alloc: Connected src 39 to int 1 (cpu 0)
+D (622) cpu_start: calling init function: 0x42001c50 on core: 0
+--- 0x42001c50: __esp_system_init_fn_init_newlib_time at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_system/startup_funcs.c:81
+
+D (628) cpu_start: calling init function: 0x42007ac8 on core: 0
+--- 0x42007ac8: __esp_system_init_fn_init_vfs_uart at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_driver_uart/src/uart_vfs.c:1080
+
+D (634) cpu_start: calling init function: 0x42008810 on core: 0
+--- 0x42008810: __esp_system_init_fn_init_vfs_usj_sec at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_vfs.c:405
+
+D (640) cpu_start: calling init function: 0x420089d8 on core: 0
+--- 0x420089d8: __esp_system_init_fn_init_vfs_console at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_vfs_console/vfs_console.c:222
+
+D (646) cpu_start: calling init function: 0x420065f4 on core: 0
+--- 0x420065f4: __esp_system_init_fn_init_newlib_stdio at C:/Users/felix/esp/v5.3.2/esp-idf/components/newlib/newlib_init.c:207
+
+D (652) cpu_start: calling init function: 0x42006980 on core: 0
+--- 0x42006980: __esp_system_init_fn_init_pthread at C:/Users/felix/esp/v5.3.2/esp-idf/components/pthread/pthread.c:76
+
+D (658) cpu_start: calling init function: 0x42001c5c on core: 0
+--- 0x42001c5c: __esp_system_init_fn_init_flash at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_system/startup_funcs.c:88
+
+V (664) memspi: raw_chip_id: 1840C8
+
+V (668) memspi: chip_id: C84018
+
+V (671) memspi: raw_chip_id: 1840C8
+
+V (675) memspi: chip_id: C84018
+
+D (678) spi_flash: trying chip: issi
+D (682) spi_flash: trying chip: gd
+I (685) spi_flash: detected chip: gd
+I (690) spi_flash: flash io: dio
+W (693) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+D (707) cpu_start: calling init function: 0x42001b64 on core: 0
+--- 0x42001b64: __esp_system_init_fn_init_efuse at C:/Users/felix/esp/v5.3.2/esp-idf/components/efuse/src/esp_efuse_startup.c:137
+
+D (713) cpu_start: calling init function: 0x42013000
+--- 0x42013000: _GLOBAL__sub_I__ZN17__eh_globals_init7_S_initE at /builds/idf/crosstool-NG/.build/HOST-x86_64-w64-mingw32/xtensa-esp-elf/src/gcc/libstdc++-v3/libsupc++/eh_globals.cc:162
+
+D (718) cpu_start: calling init function: 0x403794ec
+--- 0x403794ec: enable_timer_group0_for_calibration at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_hw_support/port/esp32s3/rtc_time.c:199
+
+D (723) cpu_start: calling init function: 0x42002f54
+--- 0x42002f54: esp_ipc_init at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_system/esp_ipc.c:113
+
+D (728) cpu_start: calling init function: 0x420021f4
+--- 0x420021f4: esp_reset_reason_init at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_system/port/soc/esp32s3/reset_reason.c:63
+
+D (733) cpu_start: calling init function: 0x420045ec on core: 0
+--- 0x420045ec: __esp_system_init_fn_esp_sleep_startup_init at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_hw_support/sleep_gpio.c:191
+
+I (739) sleep: Configure to isolate all GPIO pins in sleep state
+I (746) sleep: Enable automatic switching of GPIO sleep configuration
+D (753) cpu_start: calling init function: 0x420094ac on core: 0
+--- 0x420094ac: __esp_system_init_fn_init_coredump at C:/Users/felix/esp/v5.3.2/esp-idf/components/espcoredump/src/core_dump_init.c:19
+
+I (759) esp_core_dump_uart: Init core dump to UART
+D (764) cpu_start: calling init function: 0x42001c84 on core: 0
+--- 0x42001c84: __esp_system_init_fn_init_apb_dma at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_system/startup_funcs.c:125
+
+D (770) cpu_start: calling init function: 0x42008420 on core: 0
+--- 0x42008420: __esp_system_init_fn_usb_serial_jtag_conn_status_init at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_connection_monitor.c:75
+
+D (776) cpu_start: calling init function: 0x42001c90 on core: 0
+--- 0x42001c90: __esp_system_init_fn_init_disable_rtc_wdt at C:/Users/felix/esp/v5.3.2/esp-idf/components/esp_system/startup_funcs.c:143
+
+V (782) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): checking args
+V (788) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): Args okay. Resulting flags 0x40E
+D (797) intr_alloc: Connected src 79 to int 2 (cpu 0)
+D (802) app_start: Starting scheduler on CPU0
+V (806) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): checking args
+V (806) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): Args okay. Resulting flags 0x402
+D (806) intr_alloc: Connected src 57 to int 3 (cpu 0)
+V (806) intr_alloc: esp_intr_alloc_intrstatus (cpu 1): checking args
+V (816) intr_alloc: esp_intr_alloc_intrstatus (cpu 1): Args okay. Resulting flags 0x40E
+D (816) intr_alloc: Connected src 80 to int 0 (cpu 1)
+D (826) app_start: Starting scheduler on CPU1
+V (826) intr_alloc: esp_intr_alloc_intrstatus (cpu 1): checking args
+V (836) intr_alloc: esp_intr_alloc_intrstatus (cpu 1): Args okay. Resulting flags 0x402
+D (846) intr_alloc: Connected src 58 to int 1 (cpu 1)
+I (806) main_task: Started on CPU0
+D (856) heap_init: New heap initialised at 0x3fce9710
+V (856) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): checking args
+V (866) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): Args okay. Resulting flags 0xE
+D (876) intr_alloc: Connected src 52 to int 5 (cpu 0)
+I (876) main_task: Calling app_main()
+I (886) USB: USB initialization
+W (886) tusb_desc: No Device descriptor provided, using default.
+I (896) tusb_desc: 
+┌─────────────────────────────────┐
+│  USB Device Descriptor Summary  │
+├───────────────────┬─────────────┤
+│bDeviceClass       │ 239         │
+├───────────────────┼─────────────┤
+│bDeviceSubClass    │ 2           │
+├───────────────────┼─────────────┤
+│bDeviceProtocol    │ 1           │
+├───────────────────┼─────────────┤
+│bMaxPacketSize0    │ 64          │
+├───────────────────┼─────────────┤
+│idVendor           │ 0x303a      │
+├───────────────────┼─────────────┤
+│idProduct          │ 0x4009      │
+├───────────────────┼─────────────┤
+│bcdDevice          │ 0x100       │
+├───────────────────┼─────────────┤
+│iManufacturer      │ 0x1         │
+├───────────────────┼─────────────┤
+│iProduct           │ 0x2         │
+├───────────────────┼─────────────┤
+│iSerialNumber      │ 0x3         │
+├───────────────────┼─────────────┤
+│bNumConfigurations │ 0x1         │
+└───────────────────┴─────────────┘
+USBD init on controller 0, speed = Full
+sizeof(usbd_device_t) = 48
+sizeof(dcd_event_t) = 12
+sizeof(tu_fifo_t) = 20
+sizeof(tu_edpt_stream_t) = 112
+CDC init
+MIDI init
+guid, gsnpsid, ghwcfg1, ghwcfg2, ghwcfg3, ghwcfg4
+0x00000000, 0x4F54400A, 0x00000000, 0x224DD930, 0x00C804B5, 0xD3F0A030
+Fullspeed PHY init
+DMA = 1
+V (1086) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): checking args
+V (1096) intr_alloc: esp_intr_alloc_intrstatus (cpu 0): Args okay. Resulting flags 0xE
+D (1106) intr_alloc: Connected src 38 to int 8 (cpu 0)
+I (1106) TinyUSB: TinyUSB Driver installed
+D (1106) tusb_tsk: tinyusb task started
+I (1116) USB: USB CDC initialization
+D (1126) tusb_cdc: Init CDC 0
+D (1126) tusb_cdc: CDC Comm class initialized
+I (1126) USB: USB initialization DONE
+USBD Bus Reset : Full Speed
+
+USBD Setup Received 80 06 00 01 00 00 40 00
+  Get Descriptor Device
+  Queue EP 80 with 18 bytes ...
+USBD Xfer Complete on EP 80 with 18 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+USBD Bus Reset : Full Speed
+
+USBD Setup Received 00 05 12 00 00 00 00 00
+  Set Address
+USBD Xfer Complete on EP 80 with 0 bytes
+
+USBD Setup Received 80 06 00 01 00 00 12 00
+  Get Descriptor Device
+  Queue EP 80 with 18 bytes ...
+USBD Xfer Complete on EP 80 with 18 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+
+USBD Setup Received 80 06 00 02 00 00 FF 00
+  Get Descriptor Configuration[0]
+  Queue EP 80 with 64 bytes ...
+USBD Xfer Complete on EP 80 with 64 bytes
+  Queue EP 80 with 64 bytes ...
+USBD Xfer Complete on EP 80 with 64 bytes
+  Queue EP 80 with 39 bytes ...
+USBD Xfer Complete on EP 80 with 39 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+
+USBD Setup Received 80 06 03 03 09 04 FF 00
+  Get Descriptor String[3]
+  Queue EP 80 with 14 bytes ...
+USBD Xfer Complete on EP 80 with 14 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+
+USBD Setup Received 80 06 00 03 00 00 FF 00
+  Get Descriptor String[0]
+  Queue EP 80 with 4 bytes ...
+USBD Xfer Complete on EP 80 with 4 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+
+USBD Setup Received 80 06 02 03 09 04 FF 00
+  Get Descriptor String[2]
+  Queue EP 80 with 36 bytes ...
+USBD Xfer Complete on EP 80 with 36 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+
+USBD Setup Received 80 06 00 06 00 00 0A 00
+  Get Descriptor Device Qualifier
+  Stall EP0
+
+USBD Setup Received 80 06 00 01 00 00 12 00
+  Get Descriptor Device
+  Queue EP 80 with 18 bytes ...
+USBD Xfer Complete on EP 80 with 18 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+
+USBD Setup Received 80 06 00 02 00 00 09 00
+  Get Descriptor Configuration[0]
+  Queue EP 80 with 9 bytes ...
+USBD Xfer Complete on EP 80 with 9 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+
+USBD Setup Received 80 06 00 02 00 00 A7 00
+  Get Descriptor Configuration[0]
+  Queue EP 80 with 64 bytes ...
+USBD Xfer Complete on EP 80 with 64 bytes
+  Queue EP 80 with 64 bytes ...
+USBD Xfer Complete on EP 80 with 64 bytes
+  Queue EP 80 with 39 bytes ...
+USBD Xfer Complete on EP 80 with 39 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+
+USBD Setup Received 00 09 01 00 00 00 00 00
+  Set Configuration
+  Open EP 03 with Size = 8
+  Open EP 04 with Size = 64
+  Open EP 05 with Size = 64
+  Queue EP 05 with 64 bytes ...
+  CDC opened
+  Bind EP 03 to driver id 0
+  Bind EP 04 to driver id 0
+  Bind EP 05 to driver id 0
+  Open EP 01 with Size = 64
+  Open EP 02 with Size = 64
+  Queue EP 02 with 64 bytes ...
+  MIDI opened
+  Bind EP 01 to driver id 1
+  Bind EP 02 to driver id 1
+  Queue EP 80 with 0 bytes ...
+USBD Xfer Complete on EP 80 with 0 bytes
+
+USBD Setup Received 80 06 02 03 09 04 04 00
+  Get Descriptor String[2]
+  Queue EP 80 with 4 bytes ...
+USBD Xfer Complete on EP 80 with 4 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+
+USBD Setup Received 80 06 02 03 09 04 24 00
+  Get Descriptor String[2]
+  Queue EP 80 with 36 bytes ...
+USBD Xfer Complete on EP 80 with 36 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+
+USBD Setup Received 80 06 04 03 09 04 04 00
+  Get Descriptor String[4]
+  Queue EP 80 with 4 bytes ...
+USBD Xfer Complete on EP 80 with 4 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+
+USBD Setup Received 80 06 04 03 09 04 2E 00
+  Get Descriptor String[4]
+  Queue EP 80 with 46 bytes ...
+USBD Xfer Complete on EP 80 with 46 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+
+USBD Setup Received 80 06 04 03 09 04 04 00 
+  Get Descriptor String[4]
+  Queue EP 80 with 4 bytes ...
+USBD Xfer Complete on EP 80 with 4 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes
+
+USBD Setup Received 80 06 04 03 09 04 2E 00
+  Get Descriptor String[4]
+  Queue EP 80 with 46 bytes ...
+USBD Xfer Complete on EP 80 with 46 bytes
+  Queue EP 00 with 0 bytes ...
+USBD Xfer Complete on EP 00 with 0 bytes

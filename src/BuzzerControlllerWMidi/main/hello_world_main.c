@@ -30,8 +30,7 @@ enum usb_endpoints {
     EP_EMPTY = 0,
     EPNUM_MIDI,
     EPNUM_CDC_NOTIF,
-    EPNUM_CDC_OUT,
-    EPNUM_CDC_IN
+    EPNUM_CDC
 };
 
 #define TUSB_DESCRIPTOR_TOTAL_LEN (TUD_CONFIG_DESC_LEN + CFG_TUD_MIDI * TUD_MIDI_DESC_LEN + CFG_TUD_CDC * TUD_CDC_DESC_LEN)
@@ -41,7 +40,7 @@ static const uint8_t s_midi_cfg_desc[] = {
     TUD_CONFIG_DESCRIPTOR(1, ITF_COUNT, 0, TUSB_DESCRIPTOR_TOTAL_LEN, 0, 100),
 
     
-    TUD_CDC_DESCRIPTOR(ITF_NUM_CDC, 4, EPNUM_CDC_NOTIF, 8, EPNUM_CDC_OUT, EPNUM_CDC_IN,64), // Hier min ich mir echt unsicher
+    TUD_CDC_DESCRIPTOR(ITF_NUM_CDC, 4, EPNUM_CDC_NOTIF, 8, EPNUM_CDC, (0x80 | EPNUM_CDC),64), // Hier min ich mir echt unsicher
 
     // Interface number, string index, EP Out & EP In address, EP size
     TUD_MIDI_DESCRIPTOR(ITF_NUM_MIDI, 4, EPNUM_MIDI, (0x80 | EPNUM_MIDI), 64), // OLD in: (0x80 | EPNUM_MIDI)

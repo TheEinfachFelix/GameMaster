@@ -8,6 +8,7 @@
 #include "esp_log.h"
 #include <device/usbd.h>
 #include <tusb_cdc_acm.h>
+#include "esp_mac.h"
 
 
 static const char *TAG_USB = "USB";
@@ -148,6 +149,12 @@ void app_main(void)
         itoa(tud_midi_mounted(), snum, 10);
         // Print our string
         //printf("%s\n", snum);
+
+
+        const uint8_t* hh = 'dasis\n';
+        tinyusb_cdcacm_write_queue_char(EPNUM_CDC, 'd');
+        //tinyusb_cdcacm_write_queue(EPNUM_CDC,hh,sizeof(hh));
+        ESP_LOGI(TAG_USB, "CDC Write");
 
         if (tud_midi_mounted()) {
             static uint8_t const cable_num = 0;

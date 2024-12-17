@@ -28,8 +28,7 @@ enum interface_count {
 enum usb_endpoints {
     // Available USB Endpoints: 5 IN/OUT EPs and 1 IN EP
     EP_EMPTY = 0,
-    EPNUM_MIDI_OUT,
-    EPNUM_MIDI_IN,
+    EPNUM_MIDI,
     EPNUM_CDC_NOTIF,
     EPNUM_CDC_OUT,
     EPNUM_CDC_IN
@@ -45,7 +44,7 @@ static const uint8_t s_midi_cfg_desc[] = {
     TUD_CDC_DESCRIPTOR(ITF_NUM_CDC, 4, EPNUM_CDC_NOTIF, 8, EPNUM_CDC_OUT, EPNUM_CDC_IN,64), // Hier min ich mir echt unsicher
 
     // Interface number, string index, EP Out & EP In address, EP size
-    TUD_MIDI_DESCRIPTOR(ITF_NUM_MIDI, 4, EPNUM_MIDI_OUT, EPNUM_MIDI_IN, 64), // OLD in: (0x80 | EPNUM_MIDI)
+    TUD_MIDI_DESCRIPTOR(ITF_NUM_MIDI, 4, EPNUM_MIDI, (0x80 | EPNUM_MIDI), 64), // OLD in: (0x80 | EPNUM_MIDI)
 };
 
 static const char* s_str_desc[6] = {

@@ -41,7 +41,8 @@ static const uint8_t s_midi_cfg_desc[] = {
     // Configuration number, interface count, string index, total length, attribute, power in mA
     TUD_CONFIG_DESCRIPTOR(1, ITF_COUNT, 0, TUSB_DESCRIPTOR_TOTAL_LEN, 0, 100),
 
-    TUD_CDC_DESCRIPTOR(ITF_NUM_CDC, 2, EPNUM_CDC_NOTIF, 8, EPNUM_CDC_OUT, EPNUM_CDC_IN,64), // Hier min ich mir echt unsicher
+    
+    TUD_CDC_DESCRIPTOR(ITF_NUM_CDC, 4, EPNUM_CDC_NOTIF, 8, EPNUM_CDC_OUT, EPNUM_CDC_IN,64), // Hier min ich mir echt unsicher
 
     // Interface number, string index, EP Out & EP In address, EP size
     TUD_MIDI_DESCRIPTOR(ITF_NUM_MIDI, 4, EPNUM_MIDI_OUT, EPNUM_MIDI_IN, 64), // OLD in: (0x80 | EPNUM_MIDI)

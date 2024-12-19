@@ -11,11 +11,18 @@
 #include <tusb_cdc_acm.h>
 #include "esp_mac.h"
 
-
+static uint8_t rx_buf[CONFIG_TINYUSB_CDC_RX_BUFSIZE + 1];
 static const char *TAG_USB = "USB";
 
 #define NOTE_OFF 0x80
 #define NOTE_ON  0x90
+
+static QueueHandle_t app_queue;
+typedef struct {
+    uint8_t buf[CONFIG_TINYUSB_CDC_RX_BUFSIZE + 1];     // Data buffer
+    size_t buf_len;                                     // Number of bytes received
+    uint8_t itf;                                        // Index of CDC device interface
+} app_message_t;
 
 // Interface counter
 enum interface_count {
@@ -85,7 +92,7 @@ void tinyusb_cdc_rx_callback(int itf, cdcacm_event_t *event)
         memcpy(tx_msg.buf, rx_buf, rx_size);
         xQueueSend(app_queue, &tx_msg, 0);
     } else {
-        ESP_LOGE(TAG, "Read Error");
+        ESP_LOGE(TAG_USB, "Read Error");
     }
 }
 
@@ -108,6 +115,11 @@ void tinyusb_cdc_line_state_changed_callback(int itf, cdcacm_event_t *event)
 
 void app_main(void)
 {
+// Create FreeRTOS primitives
+    app_queue = xQueueCreate(5, sizeof(app_message_t));
+    assert(app_queue);
+    app_message_t msg;
+
     ESP_LOGI(TAG_USB, "USB initialization");
 
     tinyusb_config_t const tusb_cfg = {
@@ -161,6 +173,22 @@ void app_main(void)
             tud_cdc_write_char('a');
             tud_cdc_write_flush();
             ESP_LOGI(TAG_USB, "CDC Write");
+
+            if (xQueueReceive(app_queue, &msg, portMAX_DELAY)) {
+            if (msg.buf_len) {
+
+                /* Print received data*/
+                ESP_LOGI(TAG_USB, "Data from channel %d:", msg.itf);
+                ESP_LOG_BUFFER_HEXDUMP(TAG_USB, msg.buf, msg.buf_len, ESP_LOG_INFO);
+
+                /* write back */
+                tinyusb_cdcacm_write_queue(msg.itf, msg.buf, msg.buf_len);
+                esp_err_t err = tinyusb_cdcacm_write_flush(msg.itf, 0);
+                if (err != ESP_OK) {
+                    ESP_LOGE(TAG_USB, "CDC ACM write flush error: %s", esp_err_to_name(err));
+                }
+            }
+        }
         }
 
         if (tud_midi_mounted()) {

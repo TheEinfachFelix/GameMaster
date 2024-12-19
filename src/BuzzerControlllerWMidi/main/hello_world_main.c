@@ -5,6 +5,7 @@
 #include "freertos/task.h"
 #include "esp_system.h"
 #include "tinyusb.h"
+#include "tusb_console.h"
 #include "esp_log.h"
 #include <device/usbd.h>
 #include <tusb_cdc_acm.h>
@@ -69,23 +70,23 @@ void tinyusb_cdc_rx_callback(int itf, cdcacm_event_t *event)
 {
     ESP_LOGI(TAG_USB, "Recieved some Data over USB");
     /* initialization */
-    //size_t rx_size = 0;
+    size_t rx_size = 0;
 
     /* read */
-    //esp_err_t ret = tinyusb_cdcacm_read(itf, rx_buf, CONFIG_TINYUSB_CDC_RX_BUFSIZE, &rx_size);
-    //if (ret == ESP_OK) {
+    esp_err_t ret = tinyusb_cdcacm_read(itf, rx_buf, CONFIG_TINYUSB_CDC_RX_BUFSIZE, &rx_size);
+    if (ret == ESP_OK) {
 
-    //    app_message_t tx_msg = {
-    //        .buf_len = rx_size,
-    //        .itf = itf,
-    //    };
+        app_message_t tx_msg = {
+            .buf_len = rx_size,
+            .itf = itf,
+        };
 
         /* Copy received message to application queue buffer */
-    //    memcpy(tx_msg.buf, rx_buf, rx_size);
-    //    xQueueSend(app_queue, &tx_msg, 0);
-    //} else {
-    //    ESP_LOGE(TAG, "Read Error");
-    //}
+        memcpy(tx_msg.buf, rx_buf, rx_size);
+        xQueueSend(app_queue, &tx_msg, 0);
+    } else {
+        ESP_LOGE(TAG, "Read Error");
+    }
 }
 
 /**
@@ -128,7 +129,7 @@ void app_main(void)
         .callback_line_state_changed = NULL,
         .callback_line_coding_changed = NULL
     };
-    tusb_cdc_acm_init(&acm_cfg);
+    ESP_ERROR_CHECK(tusb_cdc_acm_init(&acm_cfg));
 
     tusb_init();
 
@@ -137,7 +138,11 @@ void app_main(void)
                     CDC_EVENT_LINE_STATE_CHANGED,
                     &tinyusb_cdc_line_state_changed_callback));
 
+    //esp_tusb_init_console(TINYUSB_CDC_ACM_0); // log to usb
+    //esp_tusb_deinit_console(TINYUSB_CDC_ACM_0); // log to uart
+
     ESP_LOGI(TAG_USB, "USB initialization DONE");
+
 
     while (true)
     {
@@ -150,11 +155,13 @@ void app_main(void)
         // Print our string
         //printf("%s\n", snum);
 
-
-        const uint8_t* hh = 'dasis\n';
-        tinyusb_cdcacm_write_queue_char(EPNUM_CDC, 'd');
-        //tinyusb_cdcacm_write_queue(EPNUM_CDC,hh,sizeof(hh));
-        ESP_LOGI(TAG_USB, "CDC Write");
+        if (tud_cdc_write_available())
+        {
+            tud_cdc_write_str("hallo");
+            tud_cdc_write_char('a');
+            tud_cdc_write_flush();
+            ESP_LOGI(TAG_USB, "CDC Write");
+        }
 
         if (tud_midi_mounted()) {
             static uint8_t const cable_num = 0;

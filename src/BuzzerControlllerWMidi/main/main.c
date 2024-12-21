@@ -11,6 +11,11 @@
 #include <tusb_cdc_acm.h>
 #include "esp_mac.h"
 
+
+#include "Hardware.h"
+
+
+
 static uint8_t rx_buf[CONFIG_TINYUSB_CDC_RX_BUFSIZE + 1];
 static const char *TAG_USB = "USB";
 
@@ -150,14 +155,16 @@ void app_main(void)
                     CDC_EVENT_LINE_STATE_CHANGED,
                     &tinyusb_cdc_line_state_changed_callback));
 
-    //esp_tusb_init_console(TINYUSB_CDC_ACM_0); // log to usb
-    //esp_tusb_deinit_console(TINYUSB_CDC_ACM_0); // log to uart
-
     ESP_LOGI(TAG_USB, "USB initialization DONE");
 
+    SetupHardware();
 
     while (true)
     {
+        LoopHardware();
+
+
+        /*
         //ESP_LOGI(TAG_USB, "Test");
 
 
@@ -177,11 +184,11 @@ void app_main(void)
             if (xQueueReceive(app_queue, &msg, portMAX_DELAY)) {
             if (msg.buf_len) {
 
-                /* Print received data*/
+                // Print received data
                 ESP_LOGI(TAG_USB, "Data from channel %d:", msg.itf);
                 ESP_LOG_BUFFER_HEXDUMP(TAG_USB, msg.buf, msg.buf_len, ESP_LOG_INFO);
 
-                /* write back */
+                // write back 
                 tinyusb_cdcacm_write_queue(msg.itf, msg.buf, msg.buf_len);
                 esp_err_t err = tinyusb_cdcacm_write_flush(msg.itf, 0);
                 if (err != ESP_OK) {
@@ -204,7 +211,7 @@ void app_main(void)
 
         }
         vTaskDelay(1000 / portTICK_PERIOD_MS);
-        
+        */
+       vTaskDelay(1);
     }
 }
-// ESP System Settings is changed 

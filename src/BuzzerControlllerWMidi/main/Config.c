@@ -1,5 +1,7 @@
 # include "Config.h"
 
+#define NOTE_OFF 0x80
+#define NOTE_ON  0x90
 //////////////////// NeoPixel ////////////////////
 int NeoPixel_PIN = UCNeoPixel_PIN; // NeoPixel LED strip
 int NeoPixel_LED_Count = UCNeoPixel_LED_Count; // Number of LEDs
@@ -12,19 +14,19 @@ int NeoPixel_Collor_onBlock[] = UCNeoPixel_Collor_onBlock;
 
 //////////////////// Input ////////////////////
 // Taster
-bool Taster_in_state[Buzzer_Count] = {};
+int Taster_Midi_Notes[] = UCTaster_Midi_Notes;
+bool Taster_in_state[Taster_Count] = {};
 int Taster_Pins[] = UCTaster_Pins;
 char* Taster_Name = UCTaster_Name;
-// midi note
 
 
 // Buzzer
+int Buzzer_Midi_Notes[] = UCBuzzer_Midi_Notes;
 bool Buzzer_out_state[Buzzer_Count] = {true,true,true};
 bool Buzzer_in_state[Buzzer_Count] = {};
 int Buzzer_Pins_in[]  = UCBuzzer_Pins_in;
 int Buzzer_Pins_out[] = UCBuzzer_Pins_out;
 char* Buzzer_Name = UCBuzzer_Name;
-// midinote
 // ledmode
 // disabeled
 
@@ -33,6 +35,31 @@ void PrintlnToCDC(char* msg)
     tud_cdc_write_str(msg);
     tud_cdc_write_char('\n');
     tud_cdc_write_flush();
+}
+
+void SendMidiNoteOn(int Note)
+{
+    if (tud_midi_mounted()) {
+        static uint8_t const cable_num = 0;
+        static uint8_t const channel = 0;
+
+        uint8_t note_on[3] = {NOTE_ON | channel, 98, 127};
+        tud_midi_stream_write(cable_num, note_on, 3);
+    } else {
+        ESP_LOGE("MIDI", "Midi is not Mounted");
+    }
+}
+void SendMidiNoteOff(int Note)
+{
+    if (tud_midi_mounted()) {
+        static uint8_t const cable_num = 0;
+        static uint8_t const channel = 0;
+
+        uint8_t note_off[3] = {NOTE_OFF | channel, 98, 0};
+        tud_midi_stream_write(cable_num, note_off, 3);
+    } else {
+        ESP_LOGE("MIDI", "Midi is not Mounted");
+    }
 }
 
 

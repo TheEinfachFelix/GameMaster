@@ -41,6 +41,14 @@ void LoopHardware()
         {
             EventSender(Taster_Name,i,Taster_in_state[i], gpio_get_level(Taster_Pins[i]));
             Taster_in_state[i] = gpio_get_level(Taster_Pins[i]);
+            if (Taster_in_state[i] == 1)
+            {
+                SendMidiNoteOn(Taster_Midi_Notes[i]);
+            }
+            else
+            {
+                SendMidiNoteOff(Taster_Midi_Notes[i]);
+            }
         }
     }
     for (int i = 0; i < Buzzer_Count; i++) // pulllupp
@@ -49,6 +57,14 @@ void LoopHardware()
         {
             EventSender(Buzzer_Name,i,Buzzer_in_state[i], gpio_get_level(Buzzer_Pins_in[i]));
             Buzzer_in_state[i] = gpio_get_level(Buzzer_Pins_in[i]);
+            if (Buzzer_in_state[i] == 1)
+            {
+                SendMidiNoteOn(Buzzer_Midi_Notes[i]);
+            }
+            else
+            {
+                SendMidiNoteOff(Buzzer_Midi_Notes[i]);
+            }
         }
         gpio_set_level(Buzzer_Pins_out[i],Buzzer_out_state[i]);
     }

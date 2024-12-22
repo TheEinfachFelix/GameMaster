@@ -19,8 +19,7 @@
 static uint8_t rx_buf[CONFIG_TINYUSB_CDC_RX_BUFSIZE + 1];
 static const char *TAG_USB = "USB";
 
-#define NOTE_OFF 0x80
-#define NOTE_ON  0x90
+
 
 static QueueHandle_t app_queue;
 typedef struct {

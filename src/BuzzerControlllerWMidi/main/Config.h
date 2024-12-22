@@ -4,6 +4,8 @@
 #include <tusb_cdc_acm.h>
 #include "tinyusb.h"
 #include "tusb_console.h"
+#include "esp_log.h"
+
 
 #include "UserConfig.h"
 //////////////////// NeoPixel ////////////////////
@@ -22,19 +24,22 @@ extern int NeoPixel_Collor_onBlock[];
 
 //////////////////// Input ////////////////////
 // Taster
-extern bool Buzzer_out_state[];
+extern int Taster_Midi_Notes[];
 extern bool Taster_in_state[];
 extern int Taster_Pins[];
 extern char* Taster_Name;
 
 // Buzzer
+extern int Buzzer_Midi_Notes[];
 extern bool Buzzer_in_state[];
+extern bool Buzzer_out_state[];
 extern int Buzzer_Pins_in[];
 extern int Buzzer_Pins_out[];
 extern char* Buzzer_Name;
 
 void PrintlnToCDC(char* msg);
-
+void SendMidiNoteOn(int Note);
+void SendMidiNoteOff(int Note);
 //////////////////// Json ////////////////////
 #define JsonDeleteInputBufferAfter 100
 

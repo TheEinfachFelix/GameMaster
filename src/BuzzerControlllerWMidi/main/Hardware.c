@@ -2,6 +2,8 @@
 
 const char* Tag_Hardware = "Hardware";
 
+void EventSender(char* type, int ID, bool oldVal, bool newVal);
+
 void SetupHardware()
 {
     ESP_LOGI(Tag_Hardware, "Setup");
@@ -55,13 +57,18 @@ void LoopHardware()
 
 void EventSender(char* type, int ID, bool oldVal, bool newVal)
 {
+    // create json
     cJSON *root = cJSON_CreateObject();
     cJSON_AddStringToObject(root, JsonType, JsonEvent);
     cJSON_AddStringToObject(root, JsonIOType, type);
     cJSON_AddNumberToObject(root, JsonEventID, ID);
     cJSON_AddBoolToObject(root, JsonEventOldValue, oldVal);
     cJSON_AddBoolToObject(root, JsonEventNewValue, newVal);
+    // output
     char *my_json_string = cJSON_Print(root);
-
+    PrintlnToCDC(my_json_string);
+    // cleanup
     cJSON_Delete(root);
+    free(my_json_string);
 }
+

@@ -4,6 +4,8 @@
 #include "esp_log.h"
 #include "driver\gpio.h"
 #include "cJSON.h"
+#include <stdbool.h>
+
 
 
 void SetupHardware();

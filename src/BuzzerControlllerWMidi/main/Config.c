@@ -28,7 +28,12 @@ char* Buzzer_Name = UCBuzzer_Name;
 // ledmode
 // disabeled
 
-
+void PrintlnToCDC(char* msg)
+{
+    tud_cdc_write_str(msg);
+    tud_cdc_write_char('\n');
+    tud_cdc_write_flush();
+}
 
 
 /*

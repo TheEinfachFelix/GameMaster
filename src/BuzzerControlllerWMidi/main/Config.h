@@ -1,6 +1,9 @@
 #pragma once
 
 #include <stdbool.h>
+#include <tusb_cdc_acm.h>
+#include "tinyusb.h"
+#include "tusb_console.h"
 
 #include "UserConfig.h"
 //////////////////// NeoPixel ////////////////////
@@ -30,6 +33,7 @@ extern int Buzzer_Pins_in[];
 extern int Buzzer_Pins_out[];
 extern char* Buzzer_Name;
 
+void PrintlnToCDC(char* msg);
 
 //////////////////// Json ////////////////////
 #define JsonDeleteInputBufferAfter 100

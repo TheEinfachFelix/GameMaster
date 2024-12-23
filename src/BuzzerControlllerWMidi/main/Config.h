@@ -12,8 +12,6 @@
 
 #define len(arr) sizeof(arr)/sizeof(arr[0])
 
-extern int NeoPixel_PIN; // NeoPixel LED strip
-extern int NeoPixel_LED_Count; // Number of LEDs
 extern char* LEDType;
 
 extern int NeoPixel_Collor_Default[];

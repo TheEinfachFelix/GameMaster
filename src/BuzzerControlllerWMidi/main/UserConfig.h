@@ -1,7 +1,7 @@
 #pragma once
 
-#define UCNeoPixel_PIN 21 // NeoPixel LED strip
-#define UCNeoPixel_LED_Count 12 // Number of LEDs
+#define NeoPixel_PIN 21 // NeoPixel LED strip
+#define NeoPixel_LED_Count 12 // Number of LEDs
 #define UCLEDType "LED"
 
 #define UCNeoPixel_Collor_Default {0,0,7}

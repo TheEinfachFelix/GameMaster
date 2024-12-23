@@ -3,8 +3,6 @@
 #define NOTE_OFF 0x80
 #define NOTE_ON  0x90
 //////////////////// NeoPixel ////////////////////
-int NeoPixel_PIN = UCNeoPixel_PIN; // NeoPixel LED strip
-int NeoPixel_LED_Count = UCNeoPixel_LED_Count; // Number of LEDs
 char* LEDType = UCLEDType;
 // mode
 

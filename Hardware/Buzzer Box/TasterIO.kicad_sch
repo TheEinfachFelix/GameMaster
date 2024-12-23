@@ -4,6 +4,12 @@
 	(generator_version "8.0")
 	(uuid "0fc7ba98-ab52-4c3a-a31d-36bf9502c4b1")
 	(paper "A4")
+	(title_block
+		(title "BuzzerPCB")
+		(date "2024-12-23")
+		(rev "2")
+		(company "EinfachTechnik")
+	)
 	(lib_symbols
 		(symbol "Connector_Audio:NC3FAAH"
 			(pin_names hide)

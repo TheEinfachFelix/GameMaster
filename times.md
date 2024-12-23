@@ -41,3 +41,5 @@ bis 17.12.2024 -> 30 (USB Config c)
 bis 22.12.2024 -> 10 (basic config c)
 
 sum: 129+4+4+30+10 = 177
+
+23.12.2024 -> 10 (Neopixel und PCb)

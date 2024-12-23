@@ -34,6 +34,8 @@ extern bool Buzzer_out_state[];
 extern int Buzzer_Pins_in[];
 extern int Buzzer_Pins_out[];
 extern char* Buzzer_Name;
+extern bool Buzzer_isBlocked;
+
 
 void PrintlnToCDC(char* msg);
 void SendMidiNoteOn(int Note);

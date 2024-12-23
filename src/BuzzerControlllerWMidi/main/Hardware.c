@@ -30,9 +30,6 @@ void EventSender(char* type, int ID, bool oldVal, bool newVal)
 void LEDupdater(void *pvParameter)
 {
     static uint8_t led_strip_pixels[NeoPixel_LED_Count*3];
-    uint32_t red = 100;
-    uint32_t green = 0;
-    uint32_t blue = 0;
 
     ESP_LOGI(Tag_Neopixel, "Create RMT TX channel");
     rmt_channel_handle_t led_chan = NULL;
@@ -62,17 +59,43 @@ void LEDupdater(void *pvParameter)
 
     while (1)
     {    
-        for (size_t i = 0; i < NeoPixel_LED_Count; i++)
+        for (size_t i = 0; i < Buzzer_Count; i++)
         {
-            led_strip_pixels[i * 3 + 0] = green;
-            led_strip_pixels[i * 3 + 1] = blue;
-            led_strip_pixels[i * 3 + 2] = red;
+            int id = i * 3;
+            led_strip_pixels[id + 0] = NeoPixel_Collor_Default[1];//green
+            led_strip_pixels[id + 1] = NeoPixel_Collor_Default[0];//red
+            led_strip_pixels[id + 2] = NeoPixel_Collor_Default[2];//blue
+            if (Buzzer_in_state[i])
+            {
+                led_strip_pixels[id + 0] = NeoPixel_Collor_onPress[1];//green
+                led_strip_pixels[id + 1] = NeoPixel_Collor_onPress[0];//red
+                led_strip_pixels[id + 2] = NeoPixel_Collor_onPress[2];//blue
+            }
+            if (Buzzer_isBlocked)
+            {
+                led_strip_pixels[id + 0] = NeoPixel_Collor_onBlock[1];//green
+                led_strip_pixels[id + 1] = NeoPixel_Collor_onBlock[0];//red
+                led_strip_pixels[id + 2] = NeoPixel_Collor_onBlock[2];//blue
+            }
         }
-
+        for (size_t i = 0; i < Taster_Count; i++)
+        {
+            int id = (NeoPixel_LED_Count - Taster_Count + i) * 3;
+            led_strip_pixels[id + 0] = NeoPixel_Collor_Default[1];//green
+            led_strip_pixels[id + 1] = NeoPixel_Collor_Default[0];//red
+            led_strip_pixels[id + 2] = NeoPixel_Collor_Default[2];//blue
+            if (Taster_in_state[i])
+            {
+                led_strip_pixels[id + 0] = NeoPixel_Collor_onPress[1];//green
+                led_strip_pixels[id + 1] = NeoPixel_Collor_onPress[0];//red
+                led_strip_pixels[id + 2] = NeoPixel_Collor_onPress[2];//blue
+            }
+        }
+        
         ESP_ERROR_CHECK(rmt_transmit(led_chan, led_encoder, led_strip_pixels, sizeof(led_strip_pixels), &tx_config));
         ESP_ERROR_CHECK(rmt_tx_wait_all_done(led_chan, portMAX_DELAY));
 
-        vTaskDelay(20);
+        vTaskDelay(5);
     }
 }
 
@@ -108,13 +131,13 @@ void SetupHardware()
 
 void LoopHardware()
 {
-    for (int i = 0; i < Taster_Count; i++) // pulllupp
+    for (int i = 0; i < Taster_Count; i++)
     {
-        if (Taster_in_state[i] != gpio_get_level(Taster_Pins[i]))
+        if (Taster_in_state[i] != !gpio_get_level(Taster_Pins[i]))
         {
             EventSender(Taster_Name,i,Taster_in_state[i], gpio_get_level(Taster_Pins[i]));
-            Taster_in_state[i] = gpio_get_level(Taster_Pins[i]);
-            if (Taster_in_state[i] == 1)
+            Taster_in_state[i] = !gpio_get_level(Taster_Pins[i]);
+            if (Taster_in_state[i] == 0)
             {
                 SendMidiNoteOn(Taster_Midi_Notes[i]);
             }
@@ -124,7 +147,7 @@ void LoopHardware()
             }
         }
     }
-    for (int i = 0; i < Buzzer_Count; i++) // pulllupp
+    for (int i = 0; i < Buzzer_Count; i++) 
     {
         if (Buzzer_in_state[i] != gpio_get_level(Buzzer_Pins_in[i]))
         {

@@ -11,8 +11,8 @@
 //////////////////// Input ////////////////////
 // Taster
 #define Taster_Count 3
-#define UCTaster_Pins {40,39, 38}
-#define UCTaster_Midi_Notes {74,78,81}
+#define UCTaster_Pins       {40, 39, 38}
+#define UCTaster_Midi_Notes {74, 78, 81}
 #define UCTaster_Name "Taster"
 
 // Buzzer

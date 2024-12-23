@@ -20,13 +20,13 @@ char* Taster_Name = UCTaster_Name;
 
 // Buzzer
 int Buzzer_Midi_Notes[] = UCBuzzer_Midi_Notes;
-bool Buzzer_out_state[Buzzer_Count] = {true,true,true};
+bool Buzzer_out_state[Buzzer_Count] = {};
 bool Buzzer_in_state[Buzzer_Count] = {};
 int Buzzer_Pins_in[]  = UCBuzzer_Pins_in;
 int Buzzer_Pins_out[] = UCBuzzer_Pins_out;
 char* Buzzer_Name = UCBuzzer_Name;
+bool Buzzer_isBlocked;
 // ledmode
-// disabeled
 
 void PrintlnToCDC(char* msg)
 {

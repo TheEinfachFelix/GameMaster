@@ -11,15 +11,10 @@
 #include <tusb_cdc_acm.h>
 #include "esp_mac.h"
 
-
 #include "Hardware.h"
-
-
 
 static uint8_t rx_buf[CONFIG_TINYUSB_CDC_RX_BUFSIZE + 1];
 static const char *TAG_USB = "USB";
-
-
 
 static QueueHandle_t app_queue;
 typedef struct {
@@ -56,7 +51,7 @@ static const uint8_t s_midi_cfg_desc[] = {
     TUD_CDC_DESCRIPTOR(ITF_NUM_CDC, 4, EPNUM_CDC_NOTIF, 8, EPNUM_CDC, (0x80 | EPNUM_CDC),64), // Hier min ich mir echt unsicher
 
     // Interface number, string index, EP Out & EP In address, EP size
-    TUD_MIDI_DESCRIPTOR(ITF_NUM_MIDI, 4, EPNUM_MIDI, (0x80 | EPNUM_MIDI), 64), // OLD in: (0x80 | EPNUM_MIDI)
+    TUD_MIDI_DESCRIPTOR(ITF_NUM_MIDI, 4, EPNUM_MIDI, (0x80 | EPNUM_MIDI), 64),
 };
 
 static const char* s_str_desc[6] = {
@@ -115,11 +110,9 @@ void tinyusb_cdc_line_state_changed_callback(int itf, cdcacm_event_t *event)
     ESP_LOGI(TAG_USB, "Line state changed on channel %d: DTR:%d, RTS:%d", itf, dtr, rts);
 }
 
-
-
 void app_main(void)
 {
-// Create FreeRTOS primitives
+    // Create FreeRTOS primitives
     app_queue = xQueueCreate(5, sizeof(app_message_t));
     assert(app_queue);
     app_message_t msg;
@@ -162,11 +155,7 @@ void app_main(void)
     {
         LoopHardware();
 
-
         /*
-        //ESP_LOGI(TAG_USB, "Test");
-
-
         char snum[5];
         // Convert 123 to string [buf]
         itoa(tud_midi_mounted(), snum, 10);
@@ -175,42 +164,24 @@ void app_main(void)
 
         if (tud_cdc_write_available())
         {
-            tud_cdc_write_str("hallo");
-            tud_cdc_write_char('a');
-            tud_cdc_write_flush();
-            ESP_LOGI(TAG_USB, "CDC Write");
-
             if (xQueueReceive(app_queue, &msg, portMAX_DELAY)) {
-            if (msg.buf_len) {
+                if (msg.buf_len) {
 
-                // Print received data
-                ESP_LOGI(TAG_USB, "Data from channel %d:", msg.itf);
-                ESP_LOG_BUFFER_HEXDUMP(TAG_USB, msg.buf, msg.buf_len, ESP_LOG_INFO);
+                    // Print received data
+                    ESP_LOGI(TAG_USB, "Data from channel %d:", msg.itf);
+                    ESP_LOG_BUFFER_HEXDUMP(TAG_USB, msg.buf, msg.buf_len, ESP_LOG_INFO);
 
-                // write back 
-                tinyusb_cdcacm_write_queue(msg.itf, msg.buf, msg.buf_len);
-                esp_err_t err = tinyusb_cdcacm_write_flush(msg.itf, 0);
-                if (err != ESP_OK) {
-                    ESP_LOGE(TAG_USB, "CDC ACM write flush error: %s", esp_err_to_name(err));
+                    // write back 
+                    tinyusb_cdcacm_write_queue(msg.itf, msg.buf, msg.buf_len);
+                    esp_err_t err = tinyusb_cdcacm_write_flush(msg.itf, 0);
+                    if (err != ESP_OK) {
+                        ESP_LOGE(TAG_USB, "CDC ACM write flush error: %s", esp_err_to_name(err));
+                    }
                 }
             }
         }
-        }
-
-        if (tud_midi_mounted()) {
-            static uint8_t const cable_num = 0;
-            static uint8_t const channel = 0;
-
-            uint8_t note_off[3] = {NOTE_OFF | channel, 98, 0};
-            uint8_t note_on[3] = {NOTE_ON | channel, 98, 127};
-            ESP_LOGI(TAG_USB, "MidiON");
-            tud_midi_stream_write(cable_num, note_on, 3);
-            vTaskDelay(1000 / portTICK_PERIOD_MS);
-            tud_midi_stream_write(cable_num, note_off, 3);
-
-        }
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
         */
-       vTaskDelay(1);
+
+        vTaskDelay(1);
     }
 }

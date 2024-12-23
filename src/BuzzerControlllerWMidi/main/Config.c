@@ -16,6 +16,7 @@ int Taster_Midi_Notes[] = UCTaster_Midi_Notes;
 bool Taster_in_state[Taster_Count] = {};
 int Taster_Pins[] = UCTaster_Pins;
 char* Taster_Name = UCTaster_Name;
+// etwas um ffestzulegen ob es ein taster ist
 
 
 // Buzzer
@@ -27,6 +28,7 @@ int Buzzer_Pins_out[] = UCBuzzer_Pins_out;
 char* Buzzer_Name = UCBuzzer_Name;
 bool Buzzer_isBlocked;
 // ledmode
+
 
 void PrintlnToCDC(char* msg)
 {

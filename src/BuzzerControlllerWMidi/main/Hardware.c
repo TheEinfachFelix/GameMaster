@@ -27,7 +27,7 @@ void EventSender(char* type, int ID, bool oldVal, bool newVal)
     cJSON_Delete(root);
     free(my_json_string);
 }
-void LEDupdater(void *pvParameter)
+void LEDupdater(void *pvParameter) // hat 788 Bytes stack frei
 {
     static uint8_t led_strip_pixels[NeoPixel_LED_Count*3];
 
@@ -124,7 +124,7 @@ void SetupHardware()
 
     // Setup Neopixel
     ESP_LOGI(Tag_Neopixel, "Start Neopixel Task");
-    xTaskCreate(&LEDupdater, "NeopixelUpdater", 4096,NULL,10,NULL );
+    xTaskCreate(&LEDupdater, "NeopixelUpdater", 3072,NULL,10,NULL );
 
     ESP_LOGI(Tag_Hardware, "Setup DONE");
 }
@@ -133,11 +133,11 @@ void LoopHardware()
 {
     for (int i = 0; i < Taster_Count; i++)
     {
-        if (Taster_in_state[i] != !gpio_get_level(Taster_Pins[i]))
+        if (Taster_in_state[i] != !gpio_get_level(Taster_Pins[i]))// der gpio input ist invertiert, da es hochgepulllt wird
         {
             EventSender(Taster_Name,i,Taster_in_state[i], gpio_get_level(Taster_Pins[i]));
             Taster_in_state[i] = !gpio_get_level(Taster_Pins[i]);
-            if (Taster_in_state[i] == 0)
+            if (Taster_in_state[i] == 1)
             {
                 SendMidiNoteOn(Taster_Midi_Notes[i]);
             }
@@ -162,6 +162,7 @@ void LoopHardware()
                 SendMidiNoteOff(Buzzer_Midi_Notes[i]);
             }
         }
+        Buzzer_out_state[i] = !gpio_get_level(Buzzer_Pins_in[i]) && !Buzzer_isBlocked;
         gpio_set_level(Buzzer_Pins_out[i],Buzzer_out_state[i]);
     }    
 }

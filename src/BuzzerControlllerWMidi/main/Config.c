@@ -6,9 +6,9 @@
 char* LEDType = UCLEDType;
 // mode
 
-int NeoPixel_Collor_Default[] = UCNeoPixel_Collor_Default;
-int NeoPixel_Collor_onPress[] = UCNeoPixel_Collor_onPress;
-int NeoPixel_Collor_onBlock[] = UCNeoPixel_Collor_onBlock;
+uint8_t NeoPixel_Collor_Default[] = UCNeoPixel_Collor_Default;
+uint8_t NeoPixel_Collor_onPress[] = UCNeoPixel_Collor_onPress;
+uint8_t NeoPixel_Collor_onBlock[] = UCNeoPixel_Collor_onBlock;
 
 //////////////////// Input ////////////////////
 // Taster

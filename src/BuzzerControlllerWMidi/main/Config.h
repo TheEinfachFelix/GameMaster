@@ -14,9 +14,9 @@
 
 extern char* LEDType;
 
-extern int NeoPixel_Collor_Default[];
-extern int NeoPixel_Collor_onPress[];
-extern int NeoPixel_Collor_onBlock[];
+extern uint8_t NeoPixel_Collor_Default[];
+extern uint8_t NeoPixel_Collor_onPress[];
+extern uint8_t NeoPixel_Collor_onBlock[];
 //#define BlockTasterIndex 2 // welcher der Taster sperren kann
 //#define BlockTasterIsAdvanced true
 

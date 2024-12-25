@@ -3070,7 +3070,7 @@
 		(descr "SOT, 3 Pin (https://www.jedec.org/system/files/docs/to-236h.pdf variant AB), generated with kicad-footprint-generator ipc_gullwing_generator.py")
 		(tags "SOT TO_SOT_SMD")
 		(property "Reference" "Q4"
-			(at 0 -2.4 -270)
+			(at 0 -2.4 90)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "50dd258f-aa22-4d44-98b5-0d00535507c2")
@@ -3082,7 +3082,7 @@
 			)
 		)
 		(property "Value" "AO3400A"
-			(at 0 2.4 -270)
+			(at 0 2.4 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "7d478435-263e-4753-93fd-7ec5bea65528")
@@ -3277,7 +3277,7 @@
 			(uuid "9e059323-bb5a-4fa0-861d-9076435bbe72")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 -270)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(uuid "c43e45b3-51dc-42ba-8268-edb7f6438721")
 			(effects
@@ -10703,7 +10703,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at -2.79333 0.016962 -180)
+			(at -2.79333 0.016962 180)
 			(layer "F.SilkS")
 			(uuid "ee0ebcdd-09a9-4a67-88a5-0010cb6a9744")
 			(effects
@@ -25397,7 +25397,7 @@
 		(descr "AA Series, 3 pole female XLR receptacle, grounding: without ground/shell contact, horizontal PCB mount, https://www.neutrik.com/en/product/nc3faah")
 		(tags "neutrik xlr aa")
 		(property "Reference" "J18"
-			(at 4.299999 -10 -270)
+			(at 4.299999 -10 90)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "4e9667a3-a1b2-49f5-9a26-516d0f480f8f")
@@ -25409,7 +25409,7 @@
 			)
 		)
 		(property "Value" "NC3FAAH"
-			(at 4.3 17.5 -270)
+			(at 4.3 17.5 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "c0ec4634-722f-47a4-80fb-d71b9b0c254b")
@@ -25875,7 +25875,7 @@
 				)
 			)
 		)
-		(property "Value" "SolderJumper_2_Bridged"
+		(property "Value" "EN-JTAG"
 			(at 0 -2 180)
 			(layer "F.SilkS")
 			(uuid "1800ba17-2db3-43e7-8b7e-3bbfa90c5ef7")

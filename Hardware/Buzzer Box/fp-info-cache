@@ -1,4 +1,4 @@
-23131846913184219
+23135317245663084
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -94765,3 +94765,17 @@ Varistor VF
 0
 2
 2
+kiCadLibs
+490107670612
+<b>WR-WST REDFIT IDC SKEDD<br><br></b>For permanent application up to 10g vibration stable
+
+0
+6
+6
+kiCadLibs
+490107670612_DEBUGGING
+<b>WR-WST REDFIT IDC SKEDD<br></b><br>Only use for debugging or programming application.<br>For mechanical stressed application please use the PCB layout for permanent application.
+
+0
+6
+6

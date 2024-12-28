@@ -43,7 +43,7 @@ void SendMidiNoteOn(int Note)
         static uint8_t const cable_num = 0;
         static uint8_t const channel = 0;
 
-        uint8_t note_on[3] = {NOTE_ON | channel, 98, 127};
+        uint8_t note_on[3] = {NOTE_ON | channel, Note, 127};
         tud_midi_stream_write(cable_num, note_on, 3);
     } else {
         ESP_LOGE("MIDI", "Midi is not Mounted");
@@ -55,7 +55,7 @@ void SendMidiNoteOff(int Note)
         static uint8_t const cable_num = 0;
         static uint8_t const channel = 0;
 
-        uint8_t note_off[3] = {NOTE_OFF | channel, 98, 0};
+        uint8_t note_off[3] = {NOTE_OFF | channel, Note, 0};
         tud_midi_stream_write(cable_num, note_off, 3);
     } else {
         ESP_LOGE("MIDI", "Midi is not Mounted");

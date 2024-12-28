@@ -140,6 +140,10 @@ void LoopHardware()
             if (Taster_in_state[i] == 1)
             {
                 SendMidiNoteOn(Taster_Midi_Notes[i]);
+                if (i == 2)
+                {
+                    Buzzer_isBlocked = !Buzzer_isBlocked;
+                }
             }
             else
             {
@@ -149,13 +153,14 @@ void LoopHardware()
     }
     for (int i = 0; i < Buzzer_Count; i++) 
     {
-        if (Buzzer_in_state[i] != gpio_get_level(Buzzer_Pins_in[i]))
+        if (Buzzer_in_state[i] != gpio_get_level(Buzzer_Pins_in[i]) && !Buzzer_isBlocked)
         {
             EventSender(Buzzer_Name,i,Buzzer_in_state[i], gpio_get_level(Buzzer_Pins_in[i]));
             Buzzer_in_state[i] = gpio_get_level(Buzzer_Pins_in[i]);
             if (Buzzer_in_state[i] == 1)
             {
                 SendMidiNoteOn(Buzzer_Midi_Notes[i]);
+                Buzzer_isBlocked = true;
             }
             else
             {
@@ -163,8 +168,8 @@ void LoopHardware()
             }
         }
         Buzzer_out_state[i] = !gpio_get_level(Buzzer_Pins_in[i]) && !Buzzer_isBlocked;
-        gpio_set_level(Buzzer_Pins_out[i],Buzzer_out_state[i]);
-    }    
+        gpio_set_level(Buzzer_Pins_out[i],Buzzer_out_state[i] && !Buzzer_isBlocked);  
+    } 
 }
 
 

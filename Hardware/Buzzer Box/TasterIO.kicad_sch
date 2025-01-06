@@ -2318,7 +2318,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_Audio:Jack_XLR_Neutrik_NC3FAAH_Horizontal"
+		(property "Footprint" "Felix_XLR:Jack_XLR_Neutrik_NC3FAAH_Horizontal"
 			(at 76.2 68.58 0)
 			(effects
 				(font

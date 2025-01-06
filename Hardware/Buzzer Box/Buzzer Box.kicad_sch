@@ -6998,7 +6998,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "4691"
+		(property "Footprint" "Felix_LED:4691"
 			(at 473.38 168.91 0)
 			(effects
 				(font
@@ -7392,7 +7392,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "4691"
+		(property "Footprint" "Felix_LED:4691"
 			(at 347.65 168.91 0)
 			(effects
 				(font
@@ -7782,7 +7782,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "4691"
+		(property "Footprint" "Felix_LED:4691"
 			(at 445.44 168.91 0)
 			(effects
 				(font
@@ -8442,7 +8442,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 142.5448 80.01 0)
 			(effects
 				(font
@@ -9628,7 +9628,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "4691"
+		(property "Footprint" "Felix_LED:4691"
 			(at 459.41 168.91 0)
 			(effects
 				(font
@@ -9755,7 +9755,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "4691"
+		(property "Footprint" "Felix_LED:4691"
 			(at 361.62 168.91 0)
 			(effects
 				(font
@@ -10012,7 +10012,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "4691"
+		(property "Footprint" "Felix_LED:4691"
 			(at 417.5 168.91 0)
 			(effects
 				(font
@@ -11313,7 +11313,7 @@
 				)
 			)
 		)
-		(property "Footprint" "kiCadLibs:490107670612"
+		(property "Footprint" "Felix_ProgHeader:490107670612"
 			(at 95.25 27.94 0)
 			(effects
 				(font
@@ -11394,7 +11394,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "4691"
+		(property "Footprint" "Felix_LED:4691"
 			(at 389.56 168.91 0)
 			(effects
 				(font
@@ -11974,7 +11974,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "4691"
+		(property "Footprint" "Felix_LED:4691"
 			(at 431.47 168.91 0)
 			(effects
 				(font
@@ -12101,7 +12101,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "4691"
+		(property "Footprint" "Felix_LED:4691"
 			(at 487.35 168.91 0)
 			(effects
 				(font
@@ -12629,7 +12629,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "4691"
+		(property "Footprint" "Felix_LED:4691"
 			(at 375.59 168.91 0)
 			(effects
 				(font
@@ -12756,7 +12756,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 152.7048 80.01 0)
 			(effects
 				(font
@@ -13612,7 +13612,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "4691"
+		(property "Footprint" "Felix_LED:4691"
 			(at 333.68 168.91 0)
 			(effects
 				(font
@@ -13889,7 +13889,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "4691"
+		(property "Footprint" "Felix_LED:4691"
 			(at 403.53 168.91 0)
 			(effects
 				(font
@@ -14080,7 +14080,7 @@
 				)
 			)
 		)
-		(property "Footprint" "kiCadLibs:490107670612"
+		(property "Footprint" "Felix_ProgHeader:490107670612"
 			(at 95.25 55.88 0)
 			(effects
 				(font

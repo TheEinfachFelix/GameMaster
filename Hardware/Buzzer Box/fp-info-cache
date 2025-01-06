@@ -1,4 +1,4 @@
-23135317245663084
+23138835868426747
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -55663,6 +55663,41 @@ One digit LED 7 segment SA39-11 SC39-11 SA39-12 SC39-12
 0
 10
 10
+Felix_LED
+4691
+4691-1
+Integrated Circuit
+0
+4
+4
+Felix_ProgHeader
+490107670612
+<b>WR-WST REDFIT IDC SKEDD<br><br></b>For permanent application up to 10g vibration stable
+
+0
+6
+6
+Felix_ProgHeader
+490107670612_DEBUGGING
+<b>WR-WST REDFIT IDC SKEDD<br></b><br>Only use for debugging or programming application.<br>For mechanical stressed application please use the PCB layout for permanent application.
+
+0
+6
+6
+Felix_USB_Vertical
+USB_A_Wuerth_614004134726_Horizontal
+USB A connector https://www.we-online.com/catalog/datasheet/614004134726.pdf
+USB_A Female Connector receptacle
+0
+8
+5
+Felix_XLR
+Jack_XLR_Neutrik_NC3FAAH_Horizontal
+AA Series, 3 pole female XLR receptacle, grounding: without ground/shell contact, horizontal PCB mount, https://www.neutrik.com/en/product/nc3faah
+neutrik xlr aa
+0
+3
+3
 Ferrite_THT
 LairdTech_28C0236-0JW-10
 Ferrite, vertical, LairdTech 28C0236-0JW-10, https://assets.lairdtech.com/home/brandworld/files/28C0236-0JW-10.pdf, JW Miller core https://www.bourns.com/products/magnetic-products/j.w.-miller-through-hole-ferrite-beads-emi-filters
@@ -62292,13 +62327,6 @@ solder jumper open
 0
 5
 3
-KiCad
-4691
-4691-1
-Integrated Circuit
-0
-4
-4
 LED_SMD
 LED-APA102-2020
 http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf
@@ -94765,17 +94793,3 @@ Varistor VF
 0
 2
 2
-kiCadLibs
-490107670612
-<b>WR-WST REDFIT IDC SKEDD<br><br></b>For permanent application up to 10g vibration stable
-
-0
-6
-6
-kiCadLibs
-490107670612_DEBUGGING
-<b>WR-WST REDFIT IDC SKEDD<br></b><br>Only use for debugging or programming application.<br>For mechanical stressed application please use the PCB layout for permanent application.
-
-0
-6
-6

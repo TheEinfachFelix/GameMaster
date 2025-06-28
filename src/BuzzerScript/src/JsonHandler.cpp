@@ -9,15 +9,16 @@ String IOTypeNotexisting = ErrorBuilder("the IOType is wrong.",true);
 void SetupJson()
 {
     Serial.begin(SerialSpeed);
-    Serial.setTimeout(SerialTimeout);
-    Serial.setDebugOutput(true);
+    //Serial.setTimeout(SerialTimeout);
+    //Serial.setDebugOutput(true);
 
     TimerOfDeletion = millis();
 }
 void LoopJson()
 {
-    Input = Input + Serial.readString();
-
+    while (Serial.available()) {
+        Input += (char)Serial.read();
+    }
     for(auto i: SplitInputToJson(Input.c_str()))
     {
         inputToJson(i);

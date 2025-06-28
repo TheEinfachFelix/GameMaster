@@ -14,7 +14,7 @@
 //////////////////// Input ////////////////////
 // Taster
 #define CTasterListLength 3
-#define CTasterList {Taster(40),Taster(39), Taster(38)}
+#define CTasterList {Taster(1),Taster(2), Taster(38)}
 #define TasterType "Taster"
 
 // Buzzer

@@ -4,7 +4,7 @@ Taster::Taster(int pPressPin)
 {
     PressPin = pPressPin;
 
-    pinMode(PressPin, INPUT_PULLUP);
+    pinMode(PressPin, INPUT_PULLDOWN);
 
     PressState = GetInputState();
 }
@@ -32,5 +32,5 @@ int Taster::GetPin()
 }
 bool Taster::GetInputState()
 {
-    return digitalRead(PressPin);
+    return !digitalRead(PressPin);
 }

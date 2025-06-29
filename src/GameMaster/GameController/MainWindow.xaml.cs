@@ -84,7 +84,8 @@ namespace GameController
             switch (dataBinding.Com_Buffer) 
             {
                 case "Next Level":
-                    Trace.WriteLine(game.NextLevel());
+                    //Trace.WriteLine(game.NextLevel());
+                    game.NextLevel();
                     break;
                 case "Set Level":
                     if (Levellist.SelectedIndex == -1) return;
@@ -148,9 +149,6 @@ namespace GameController
             CLevelID = game.LevelID;
             ViewType = 1;
             ViewType = 2;
-            DContent = game.CDisplayContent;
-            DFontsize = game.CDisplayFontSize;
-
 
 
             TotalPoints = 0;            

@@ -16,47 +16,6 @@ namespace GameMaster
 
         public BuzzerControllerMngr BuzzerControll { get; set;}
 
-        [JsonIgnore]
-        public string CDisplayContent
-        {
-            get
-            {
-                if (CLevel == null)
-                {
-                    return "";
-                }
-                return CLevel.displayContent;
-              
-            }
-            set
-            {
-                if (CLevel != null)
-                {
-                    CLevel.displayContent = value;
-                }
-            }
-        }
-        [JsonIgnore]
-        public int CDisplayFontSize
-        {
-            get
-            {
-                if (CLevel == null)
-                {
-                    return 10;
-                }
-                return CLevel.displayFontSize;
-
-            }
-            set
-            {
-                if (CLevel != null)
-                {
-                    CLevel.displayFontSize = value;
-                }
-            }
-        }
-
         public bool AudioEnable { get; set; } = true;
 
         public List<IPlayer> Players { get; set; } = [];
@@ -141,7 +100,7 @@ namespace GameMaster
 
 
             Trace.WriteLine("Game Setup:");
-            LevelID = 0; // causes the level setup to run
+            
 
             Trace.Write("Setting up OBS...");
             foreach (var obs in obsConnectorList)
@@ -159,6 +118,8 @@ namespace GameMaster
             Trace.WriteLine("  -DONE-");
             Trace.Write("Setting up Buzzer...");
             BuzzerControll.Setup();
+            Trace.Write("Setting up Level...");
+            LevelID = 0; // causes the level setup to run
             Trace.WriteLine("  -DONE-");
         }
 

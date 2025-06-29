@@ -1,8 +1,11 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using OBSWebsocketDotNet;
 using OBSWebsocketDotNet.Types;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Reflection;
+using System.Xml.Linq;
 
 
 namespace GameMaster.Output
@@ -137,7 +140,44 @@ namespace GameMaster.Output
                 printError("not Connected");
                 return;
             }
-            obs.SetCurrentProgramScene(SceneName);
+            try
+            {
+                obs.SetCurrentProgramScene(SceneName);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("The Scene \"" + SceneName + "\" Could not be set. This Error was thrown: " + e.Message);
+            }
+        }
+        public void SetTextfieldValue(string Name, string value)
+        {
+            if (!Enable) return;
+            if (!obs.IsConnected)
+            {
+                printError("not Connected");
+                return;
+            }
+            var json = @"{
+                  ""text"": ""val"",
+                }";
+            obs.SetInputSettings(inputName: Name, inputSettings: JObject.Parse(json.Replace("val",value)));
+        }//obs.CreateSceneItem("1", "Text"); //add scene item Text
+        public void SetItemVisibility(string scene, string item, bool value)
+        {
+            if (!Enable) return;
+            if (!obs.IsConnected)
+            {
+                printError("not Connected");
+                return;
+            }
+            obs.SetSceneItemEnabled(scene, obs.GetSceneItemId(scene, item, 0), value);
+
+        }
+
+        public void SetMainText(string text)
+        {
+            SetTextfieldValue("main",text);
+            printMSG("Called"+text+"xx");
         }
     }
 }

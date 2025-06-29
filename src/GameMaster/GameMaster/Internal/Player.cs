@@ -24,6 +24,12 @@
             set
             {
                 pPoints = value;
+                var game = Game.GetInstance();
+                var obs = game.obsConnectorList.FirstOrDefault();
+                if (obs != null)
+                {
+                    obs.SetTextfieldValue(pName+"Points", pPoints.ToString());
+                }
             }
         }
     }

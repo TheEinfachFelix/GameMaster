@@ -34,16 +34,14 @@ namespace GameMaster.Level
                 }
                 _CStep = value;
                 Points = QuestionPoints[CStep];
-                displayContent = QuestionList[CStep];
+                game.obsConnectorList[0].SetMainText(QuestionList[CStep]);
                 BuzzerDisabeled = false;
             } 
         }
-        [JsonIgnore]
-        public string displayContent { get; set; }
-        public int displayFontSize { get; set; }
-
         public List<String> QuestionList { get; set; }
         public List<int> QuestionPoints { get; set; }
+
+        public string displayContent { get; set; }
 
         [JsonIgnore]
         public bool BuzzerDisabeled { get; set; }
@@ -76,11 +74,9 @@ namespace GameMaster.Level
 
         public void Setup()
         { 
-
             game = Game.GetInstance();
             CStep = 0;
             game.obsConnectorList[0].SetScene("FragenLVL");
-
         }
 
         public void WinnerIs(int PlayerID)
@@ -88,5 +84,6 @@ namespace GameMaster.Level
             game.Players[PlayerID].Points += Points;
             CStep++;
         }
+
     }
 }

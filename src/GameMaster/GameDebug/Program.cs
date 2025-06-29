@@ -25,7 +25,7 @@ if (true)
 
     Console.WriteLine("Hello, World!");
 
-    var a = game.buzzerHandlerList[0];
+    var a = game.BuzzerControll.BuzzerControllerList[0];
 
 
     a.BuzzerList[1].LEDState = true;

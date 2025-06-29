@@ -26483,6 +26483,19 @@
 			(justify left bottom)
 		)
 	)
+	(gr_text "680R von fb nach GND"
+		(at 49 105 0)
+		(layer "F.SilkS")
+		(uuid "95f8b794-09d7-41f9-a582-6660b0c217aa")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.25)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
 	(gr_text_box "In:  17\nOut: 18"
 		(start 156 82.5)
 		(end 169 87.5)

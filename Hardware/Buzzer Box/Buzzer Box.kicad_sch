@@ -5642,6 +5642,16 @@
 		)
 		(uuid "ff649220-a143-45c7-9791-8749c9d53212")
 	)
+	(text "680R von fb nach GND"
+		(exclude_from_sim no)
+		(at 245.618 39.116 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "277a85f4-b5ad-4724-b553-656ab8ca2ff0")
+	)
 	(global_label "RST"
 		(shape input)
 		(at 119.38 105.41 180)

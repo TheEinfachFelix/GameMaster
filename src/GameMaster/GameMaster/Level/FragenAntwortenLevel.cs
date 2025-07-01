@@ -9,20 +9,19 @@ using System.Threading.Tasks;
 
 namespace GameMaster.Level
 {
-    public class AudioQuiz : ILevel
+    public class FragenAntwortenLevel : ILevel
     {
         private Game game = Game.GetInstance();
-
         public string Name { get; set; }
         public string Beschreibung { get; set; }
         [JsonIgnore]
         public int Points { get; set; }
 
-        public string displayContent { get; set; }
+        private List<string> Fields { get; } = new List<string> { "F1", "F2", "F3", "F4" };
 
         private int _CStep;
         [JsonIgnore]
-        public int CStep 
+        public int CStep //TODO
         { 
             get 
             {
@@ -30,56 +29,32 @@ namespace GameMaster.Level
             } 
             set 
             {
-                if (LastPlayed != null)
-                {
-                    LastPlayed.Stop();
-                }
-                if (value == 0)
-                {
-                    game.obsConnectorList[0].SetMainText(displayContent);
-                    return;
-                }
-
-                if (AudioList.Count()-1 < (value-1)/2)
+                if (QuestionList.Count()-1 < value)
                 {
                     return;
                 }
-
-  
-                Points = QuestionPoints[(CStep - (CStep % 2)) / 2];
                 _CStep = value;
+                Points = QuestionPoints[CStep];
+                game.obsConnectorList[0].SetMainText(QuestionList[CStep]);
                 BuzzerDisabeled = false;
 
-                if (value % 2 == 0)
-                {
-                    game.obsConnectorList[0].SetMainText(AudioList[CStep / 2 - 1]);
-                }
-                else
-                {
-                    game.obsConnectorList[0].SetMainText("");
-                    LastPlayed = AudioPlayer.PlaySound(Path + AudioList[((CStep - 1) / 2)] + ".mp3");
-                }                
+
             } 
         }
-        public List<String> AudioList { get; set; }
-        public List<int> QuestionPoints { get; set; }
+        public List<QuestionItem> QuestionList { get; set; }
 
-        public string Path { get; set; }
+        public string displayContent { get; set; }
 
         [JsonIgnore]
         public bool BuzzerDisabeled { get; set; }
 
-        private NAudio.Wave.WaveOutEvent? LastPlayed;
-
         public void BuzzerPress(int BuzzerID)
         {
+            Trace.WriteLine("buzzer");
             if (BuzzerDisabeled) {return; }
-            BuzzerDisabeled = true;
             AudioPlayer.PlaySound("C:/Users/felix/Downloads/buz.wav");
-            if (LastPlayed != null)
-            {
-                LastPlayed.Stop();
-            }
+            Trace.WriteLine("buzzer");
+            BuzzerDisabeled = true;
 
         }
 
@@ -100,7 +75,6 @@ namespace GameMaster.Level
 
         public void Setup()
         { 
-
             game = Game.GetInstance();
             CStep = 0;
             game.obsConnectorList[0].SetScene(obsConnector.normal);
@@ -111,5 +85,13 @@ namespace GameMaster.Level
             game.Players[PlayerID].Points += Points;
             CStep++;
         }
+
+    }
+
+    public class QuestionItem
+    {
+        public string Question { get; set; }
+        public int Points { get; set; }
+        public List<string> Answers { get; set; }
     }
 }

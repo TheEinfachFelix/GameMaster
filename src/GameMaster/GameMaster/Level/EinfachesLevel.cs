@@ -40,7 +40,6 @@ namespace GameMaster.Level
         }
         public void Clear()
         {
-            game.obsConnectorList[0].SetScene("normal");
         }
 
         public void GO(int steps = 1)
@@ -54,7 +53,7 @@ namespace GameMaster.Level
             game = Game.GetInstance();
             BuzzerDisabeled = false;
             CStep = 0;
-            game.obsConnectorList[0].SetScene("FragenLVL");
+            game.obsConnectorList[0].SetScene(obsConnector.normal);
             game.obsConnectorList[0].SetMainText(displayContent);
         }
 

@@ -12,6 +12,10 @@ namespace GameMaster.Output
 {
     public class obsConnector
     {
+        public static string normal = "normal";
+        public static string FragenLVL2x2 = "FragenLVL2x2";
+
+
         protected OBSWebsocket obs;
 
         public bool Enable { get; set; } = false;

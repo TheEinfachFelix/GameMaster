@@ -106,7 +106,7 @@ namespace GameMaster
             foreach (var obs in obsConnectorList)
             {
                 obs.Setup();
-                obs.SetScene("normal");
+                obs.SetScene(obsConnector.normal);
             }
             Trace.WriteLine("  -DONE-");
             Trace.Write("Setting up Dot2...");

@@ -18,6 +18,8 @@ namespace GameMaster.Level
         [JsonIgnore]
         public int Points { get; set; }
 
+        public string displayContent { get; set; }
+
         private int _CStep;
         [JsonIgnore]
         public int CStep 
@@ -34,7 +36,7 @@ namespace GameMaster.Level
                 }
                 if (value == 0)
                 {
-                    displayContent = "Spiel 5";
+                    game.obsConnectorList[0].SetMainText(displayContent);
                     return;
                 }
 
@@ -50,19 +52,15 @@ namespace GameMaster.Level
 
                 if (value % 2 == 0)
                 {
-                    displayContent = AudioList[CStep / 2 - 1];
+                    game.obsConnectorList[0].SetMainText(AudioList[CStep / 2 - 1]);
                 }
                 else
                 {
-                    displayContent = "";
+                    game.obsConnectorList[0].SetMainText("");
                     LastPlayed = AudioPlayer.PlaySound(Path + AudioList[((CStep - 1) / 2)] + ".mp3");
                 }                
             } 
         }
-        [JsonIgnore]
-        public string displayContent { get; set; }
-        public int displayFontSize { get; set; }
-
         public List<String> AudioList { get; set; }
         public List<int> QuestionPoints { get; set; }
 
@@ -93,7 +91,6 @@ namespace GameMaster.Level
         }
         public void Clear()
         {
-            game.obsConnectorList[0].SetScene("normal");
         }
 
         public void GO(int steps = 1)
@@ -106,8 +103,7 @@ namespace GameMaster.Level
 
             game = Game.GetInstance();
             CStep = 0;
-            game.obsConnectorList[0].SetScene("FragenLVL");
-
+            game.obsConnectorList[0].SetScene(obsConnector.normal);
         }
 
         public void WinnerIs(int PlayerID)

@@ -3,7 +3,7 @@
   "obsConnectorList": [
     {
       "$type": "GameMaster.Output.obsConnector, GameMaster",
-      "Enable": false,
+      "Enable": true,
       "IP": "ws://127.0.0.1:4455",
       "PW": "123456",
       "Profile": "",
@@ -43,7 +43,7 @@
         "AmountOfTaster": 3,
         "ComPort": 3,
         "Baudrate": 115200,
-        "Dummy": false,
+        "Dummy": true,
         "Dot2Valus": [
           201,
           202,
@@ -61,34 +61,67 @@
   "Players": [
     {
       "$type": "GameMaster.Player, GameMaster",
-      "Name": "Betrer",
-      "Points": 0
+      "Name": "Betreuer",
+      "Points": 20
     },
     {
       "$type": "GameMaster.Player, GameMaster",
       "Name": "Kinder",
-      "Points": 0
+      "Points": 10
     }
   ],
   "Levels": [
     {
-      "$type": "GameMaster.TestLevel, GameMaster",
-      "Name": "Sound",
-      "Beschreibung": "Spielt Sound",
-      "Points": 10,
-      "CStep": 0,
-      "displayContent": "später",
-      "displayFontSize": 100,
-      "path": "C:/Users/felix/Downloads/"
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Einführung",
+      "Beschreibung": "manuel winner",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "ooooooooooooooooooooooooo"
     },
     {
-      "$type": "WebGameController.Models.FirstLevel, GameMaster",
-      "Name": "Bzzer to .2",
-      "Beschreibung": "Setzt auf BuzzerPress dot2 Values",
-      "Points": 2,
-      "CStep": 1,
-      "displayContent": "peter",
-      "displayFontSize": 200
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Einführung",
+      "Beschreibung": "manuel winner",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "yyyyyyyyy"
+    },
+    {
+      "$type": "GameMaster.Level.FragenLevel, GameMaster",
+      "Name": "Quizz",
+      "Beschreibung": "8 punkte manuell",
+      "QuestionList": [
+        "Spiel 8",
+        "aa",
+        "dd",
+        "vv",
+        "ff",
+        "dd",
+        "ced",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "QuestionPoints": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "displayContent": null
     }
   ]
 }

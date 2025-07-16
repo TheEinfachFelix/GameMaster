@@ -9,18 +9,19 @@ using System.Threading.Tasks;
 
 namespace GameMaster.Level
 {
-    public class FragenLevel : ILevel
+    public class FragenAntwortenLevel : ILevel
     {
         private Game game = Game.GetInstance();
-
         public string Name { get; set; }
         public string Beschreibung { get; set; }
         [JsonIgnore]
         public int Points { get; set; }
 
+        private List<string> Fields { get; } = new List<string> { "F1", "F2", "F3", "F4" };
+
         private int _CStep;
         [JsonIgnore]
-        public int CStep 
+        public int CStep //TODO
         { 
             get 
             {
@@ -36,10 +37,11 @@ namespace GameMaster.Level
                 Points = QuestionPoints[CStep];
                 game.obsConnectorList[0].SetMainText(QuestionList[CStep]);
                 BuzzerDisabeled = false;
+
+
             } 
         }
-        public List<String> QuestionList { get; set; }
-        public List<int> QuestionPoints { get; set; }
+        public List<QuestionItem> QuestionList { get; set; }
 
         public string displayContent { get; set; }
 
@@ -48,9 +50,12 @@ namespace GameMaster.Level
 
         public void BuzzerPress(int BuzzerID)
         {
+            Trace.WriteLine("buzzer");
             if (BuzzerDisabeled) {return; }
             AudioPlayer.PlaySound("C:/Users/felix/Downloads/buz.wav");
+            Trace.WriteLine("buzzer");
             BuzzerDisabeled = true;
+
         }
 
         public void BuzzerRelease(int BuzzerID)
@@ -81,5 +86,12 @@ namespace GameMaster.Level
             CStep++;
         }
 
+    }
+
+    public class QuestionItem
+    {
+        public string Question { get; set; }
+        public int Points { get; set; }
+        public List<string> Answers { get; set; }
     }
 }

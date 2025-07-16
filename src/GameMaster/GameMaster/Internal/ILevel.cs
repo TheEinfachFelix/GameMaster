@@ -16,10 +16,7 @@
         public string Beschreibung { get; set; }
         public int Points {  get; set; }
         public int CStep { get; set; }
-
         public string displayContent { get; set; }
-        public int displayFontSize {  get; set; }
-
         public bool BuzzerDisabeled { get; set; }
     }
 }

@@ -18,14 +18,12 @@ namespace GameMaster.Level
 
         [JsonIgnore]
         public int CStep { get; set; } = -1;
-        public string displayContent { get; set; }
-        public int displayFontSize { get; set; }
-
         public bool BuzzerEnabled { get; set; } 
         [JsonIgnore]
         public bool BuzzerDisabeled { get; set; }
 
-       
+        public string displayContent { get; set; }
+
         public void BuzzerPress(int BuzzerID)
         {
             if ((!BuzzerEnabled) || BuzzerDisabeled) { return; }
@@ -42,20 +40,21 @@ namespace GameMaster.Level
         }
         public void Clear()
         {
-            game.obsConnectorList[0].SetScene("normal");
         }
 
         public void GO(int steps = 1)
         {
             CStep += steps;
+            //game.obsConnectorList[0].SetTextfieldValue("Text", "Uiiiiii");
         }
 
         public void Setup()
         {
+            game = Game.GetInstance();
             BuzzerDisabeled = false;
             CStep = 0;
-            game.obsConnectorList[0].SetScene("FragenLVL");
-
+            game.obsConnectorList[0].SetScene(obsConnector.normal);
+            game.obsConnectorList[0].SetMainText(displayContent);
         }
 
         public void WinnerIs(int PlayerID)

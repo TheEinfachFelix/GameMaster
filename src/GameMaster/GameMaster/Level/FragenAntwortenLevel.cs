@@ -34,11 +34,30 @@ namespace GameMaster.Level
                     return;
                 }
                 _CStep = value;
-                Points = QuestionPoints[CStep];
-                game.obsConnectorList[0].SetMainText(QuestionList[CStep]);
+                int step = _CStep % 6;
+                int substep = _CStep - step * 6;
+                var currentQuestion = QuestionList[step];
+                Points = currentQuestion.Points;
+                if (substep == 0)
+                {
+                    game.obsConnectorList[0].SetMainText("");
+                    for (global::System.Int32 i = 0; i < Fields.Count; i++)
+                    {
+                        var item = Fields[i];
+                        game.obsConnectorList[0].SetTextfieldValue(item, "");
+                    }
+                }
+                else if (substep == 1)
+                {
+                    game.obsConnectorList[0].SetMainText(currentQuestion.Question);
+
+                }
+                else {
+                    int index = substep - 2;
+                    game.obsConnectorList[0].SetTextfieldValue(Fields[index], currentQuestion.Answers[index]);
+                }
+
                 BuzzerDisabeled = false;
-
-
             } 
         }
         public List<QuestionItem> QuestionList { get; set; }

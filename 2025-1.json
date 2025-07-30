@@ -1,0 +1,367 @@
+{
+  "$type": "GameMaster.Game, GameMaster",
+  "obsConnectorList": [
+    {
+      "$type": "GameMaster.Output.obsConnector, GameMaster",
+      "Enable": true,
+      "IP": "ws://192.168.178.50:4455",
+      "PW": "123456",
+      "Profile": "",
+      "SceneCol": "Gameshow"
+    }
+  ],
+  "dot2ConnectorList": [
+    {
+      "$type": "GameMaster.Output.dot2Connector, GameMaster",
+      "Enable": true,
+      "IP": "ws://192.168.178.76:80/",
+      "pageIndex": 0
+    }
+  ],
+  "BuzzerControll": {
+    "$type": "GameMaster.Input.BuzzerControllerMngr, GameMaster",
+    "isDisabeled": false,
+    "BuzzerControllerList": [
+      {
+        "$type": "GameMaster.Input.BuzzerController, GameMaster",
+        "AmountOfBuzzer": 8,
+        "AmountOfTaster": 3,
+        "ComPort": 3,
+        "Baudrate": 115200,
+        "Dummy": false,
+        "Dot2Valus": [
+          816,
+          815,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "AudioEnable": true,
+  "Players": [
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Betreuer",
+      "Points": 49
+    },
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Kinder",
+      "Points": 56
+    }
+  ],
+  "Levels": [
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Schlag die Betreuer",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Schlag die Betreuer"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 1",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 1"
+    },
+    {
+      "$type": "GameMaster.Level.FragenLevel, GameMaster",
+      "Name": "Schätzen",
+      "Beschreibung": "1 punkte manuell",
+      "QuestionList": [
+        "Schätzen",
+        "Schätzen",
+        "Schätzen",
+        "Schätzen",
+        "Schätzen",
+        "Schätzen",
+        "Schätzen",
+        "Schätzen",
+        "Schätzen",
+        "Schätzen",
+        "Schätzen",
+        "Schätzen",
+        "Schätzen"
+      ],
+      "QuestionPoints": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "displayContent": null
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 2",
+      "Beschreibung": "manul winner",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 2"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Hohlspiel",
+      "Beschreibung": "",
+      "Points": 2,
+      "BuzzerEnabled": false,
+      "displayContent": "Hohlspiel"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 3",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 3"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Greifer",
+      "Beschreibung": "manul winner",
+      "Points": 3,
+      "BuzzerEnabled": false,
+      "displayContent": "Greifer"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 4",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 4"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Nageln",
+      "Beschreibung": "manul winner",
+      "Points": 4,
+      "BuzzerEnabled": false,
+      "displayContent": "Nageln"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 5",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 5"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Fahradrally",
+      "Beschreibung": "manul winner",
+      "Points": 5,
+      "BuzzerEnabled": false,
+      "displayContent": "Fahradrally"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 6",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 6"
+    },
+    {
+      "$type": "GameMaster.Level.AudioQuiz, GameMaster",
+      "Name": "Musik",
+      "Beschreibung": "6 Punke manuell",
+      "displayContent": "Musik",
+      "AudioList": [
+        "Kikaninchen",
+        "Bibi und Tina",
+        "Für Elise",
+        "bad guy",
+        "we can t be friends"
+      ],
+      "QuestionPoints": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Path": "C:/Users/felix/Downloads/"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 7",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 7"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Jenga",
+      "Beschreibung": "manul winner",
+      "Points": 7,
+      "BuzzerEnabled": false,
+      "displayContent": "Jenga"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Pause",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Pause"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 8",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 8"
+    },
+    {
+      "$type": "GameMaster.Level.FragenLevel, GameMaster",
+      "Name": "Quiz",
+      "Beschreibung": "8 punkte manuell",
+      "QuestionList": [
+        "Quiz",
+        "Quiz",
+        "Quiz",
+        "Quiz",
+        "Quiz",
+        "Quiz",
+        "Quiz",
+        "Quiz",
+        "Quiz",
+        "Quiz",
+        "Quiz",
+        "Quiz"
+      ],
+      "QuestionPoints": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "displayContent": null
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 9",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 9"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "HinderBox",
+      "Beschreibung": "manul winner",
+      "Points": 9,
+      "BuzzerEnabled": false,
+      "displayContent": "HinderBox"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 10",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 10"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Kerzen aus",
+      "Beschreibung": "manul winner",
+      "Points": 10,
+      "BuzzerEnabled": false,
+      "displayContent": "Kerzen aus"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 11",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 11"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Scharade",
+      "Beschreibung": "manul winner",
+      "Points": 11,
+      "BuzzerEnabled": false,
+      "displayContent": "Scharade"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 12",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 12"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Eimern",
+      "Beschreibung": "manul winner",
+      "Points": 12,
+      "BuzzerEnabled": false,
+      "displayContent": "Eimern"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 13",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 13"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Klotzziehen",
+      "Beschreibung": "manul winner",
+      "Points": 13,
+      "BuzzerEnabled": false,
+      "displayContent": "Klotzziehen"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 14",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 14"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Flipper",
+      "Beschreibung": "manul winner",
+      "Points": 14,
+      "BuzzerEnabled": false,
+      "displayContent": "Flipper"
+    }
+  ]
+}

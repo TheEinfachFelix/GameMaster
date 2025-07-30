@@ -70,7 +70,8 @@ namespace GameMaster.Input
         public void BuzzerPress(int BuzzerID)
         {
             if (game == null) throw new Exception("Game is null");
-
+            game = Game.GetInstance();
+            if (! game.CLevel.BuzzerDisabeled)
             // make dot2 licht stuff
             game.dot2ConnectorList[0].SendButtonPress(Dot2Valus[BuzzerID]);
 

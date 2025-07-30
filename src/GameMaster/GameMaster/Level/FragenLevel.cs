@@ -38,7 +38,7 @@ namespace GameMaster.Level
                 BuzzerDisabeled = false;
             } 
         }
-        public List<String> QuestionList { get; set; }
+        public List<string> QuestionList { get; set; }
         public List<int> QuestionPoints { get; set; }
 
         public string displayContent { get; set; }

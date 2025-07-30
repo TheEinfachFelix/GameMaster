@@ -1,0 +1,202 @@
+{
+  "$type": "GameMaster.Game, GameMaster",
+  "obsConnectorList": [
+    {
+      "$type": "GameMaster.Output.obsConnector, GameMaster",
+      "Enable": true,
+      "IP": "ws://192.168.178.50:4455",
+      "PW": "123456",
+      "Profile": "",
+      "SceneCol": "Gameshow"
+    }
+  ],
+  "dot2ConnectorList": [
+    {
+      "$type": "GameMaster.Output.dot2Connector, GameMaster",
+      "Enable": true,
+      "IP": "ws://192.168.178.76:80/",
+      "pageIndex": 0
+    }
+  ],
+  "BuzzerControll": {
+    "$type": "GameMaster.Input.BuzzerControllerMngr, GameMaster",
+    "isDisabeled": false,
+    "BuzzerControllerList": [
+      {
+        "$type": "GameMaster.Input.BuzzerController, GameMaster",
+        "AmountOfBuzzer": 8,
+        "AmountOfTaster": 3,
+        "ComPort": 3,
+        "Baudrate": 115200,
+        "Dummy": false,
+        "Dot2Valus": [
+          816,
+          815,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "AudioEnable": true,
+  "Players": [
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Betreuer",
+      "Points": 0
+    },
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Kinder",
+      "Points": 0
+    }
+  ],
+  "Levels": [
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Start",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Schlag die Betreuer"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 1",
+      "Beschreibung": "Wettessen",
+      "Points": 1,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 1"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 2",
+      "Beschreibung": "Autorennen",
+      "Points": 2,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 2"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 3",
+      "Beschreibung": "Bankklettern",
+      "Points": 3,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 3"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 4",
+      "Beschreibung": "Nageln",
+      "Points": 4,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 4"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 5",
+      "Beschreibung": "HinderBox",
+      "Points": 5,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 5"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 6",
+      "Beschreibung": "Wer bin ich",
+      "Points": 6,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 6"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Pause",
+      "Beschreibung": "Wettessen",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Pause"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 7",
+      "Beschreibung": "Jenga",
+      "Points": 7,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 7"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 8",
+      "Beschreibung": "Slackline",
+      "Points": 8,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 8"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 9",
+      "Beschreibung": "Quizz Extrem",
+      "Points": 9,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 9"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 10",
+      "Beschreibung": "Holspiel",
+      "Points": 10,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 10"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 11",
+      "Beschreibung": "Luftballon aufpusten",
+      "Points": 11,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 11"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Spiel 12",
+      "Beschreibung": "Pflischen",
+      "Points": 12,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 12"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Ende",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Ende"
+    },
+
+    {
+      "$type": "GameMaster.Level.AudioQuiz, GameMaster",
+      "Name": "Musik",
+      "Beschreibung": "6 Punke manuell",
+      "displayContent": "Musik",
+      "AudioList": [
+        "Kikaninchen",
+        "Bibi und Tina",
+        "Für Elise",
+        "bad guy",
+        "we can t be friends"
+      ],
+      "QuestionPoints": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Path": "C:/Users/felix/Downloads/"
+    }
+  ]
+}

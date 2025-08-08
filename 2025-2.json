@@ -20,7 +20,7 @@
   ],
   "BuzzerControll": {
     "$type": "GameMaster.Input.BuzzerControllerMngr, GameMaster",
-    "isDisabeled": false,
+    "isDisabeled": true,
     "BuzzerControllerList": [
       {
         "$type": "GameMaster.Input.BuzzerController, GameMaster",
@@ -28,7 +28,7 @@
         "AmountOfTaster": 3,
         "ComPort": 3,
         "Baudrate": 115200,
-        "Dummy": false,
+        "Dummy": true,
         "Dot2Valus": [
           816,
           815,
@@ -47,12 +47,12 @@
     {
       "$type": "GameMaster.Player, GameMaster",
       "Name": "Betreuer",
-      "Points": 0
+      "Points": 45
     },
     {
       "$type": "GameMaster.Player, GameMaster",
       "Name": "Kinder",
-      "Points": 0
+      "Points": 21
     }
   ],
   "Levels": [
@@ -62,7 +62,7 @@
       "Beschreibung": "",
       "Points": 0,
       "BuzzerEnabled": false,
-      "displayContent": "Schlag die Betreuer"
+      "displayContent": "Betreuer gegen Kinder"
     },
     {
       "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
@@ -107,7 +107,7 @@
     {
       "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
       "Name": "Spiel 6",
-      "Beschreibung": "Wer bin ich",
+      "Beschreibung": "Scharade",
       "Points": 6,
       "BuzzerEnabled": false,
       "displayContent": "Spiel 6"
@@ -176,7 +176,6 @@
       "BuzzerEnabled": false,
       "displayContent": "Ende"
     },
-
     {
       "$type": "GameMaster.Level.AudioQuiz, GameMaster",
       "Name": "Musik",

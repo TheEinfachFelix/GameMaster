@@ -19,7 +19,7 @@ namespace GameController
     {
         Game game;
         DataBinding dataBinding = new();
-        readonly string ConfigLocation = "C:/Github/GameMaster/2025-2.json";//"G:/Felix/GitHub/GameMaster/testconfig.json"; // G:\Felix\GitHub\GameMaster "C:/Github/GameMaster/testconfig.json"
+        readonly string ConfigLocation = "C:/Github/GameMaster/2026-1.json";//"G:/Felix/GitHub/GameMaster/testconfig.json"; // G:\Felix\GitHub\GameMaster "C:/Github/GameMaster/testconfig.json"
         System.Windows.Forms.Timer BindingUpdateTimer;
 
         public MainWindow()

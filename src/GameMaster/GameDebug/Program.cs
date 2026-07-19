@@ -2,9 +2,36 @@
 using GameMaster;
 using GameMaster.Input;
 using GameMaster.Output;
+using System.Runtime.CompilerServices;
 using static System.Net.Mime.MediaTypeNames;
 
+
+
 if (true)
+{
+    AudioPlayerSegment seg = new("C:\\Users\\felix\\Downloads\\bad guy.mp3",60);
+
+    async void play()
+    {
+        await Task.Delay(1000);
+        seg.PlaySound(1000);
+    }
+
+    Console.WriteLine("Init Done");
+
+    seg.PlaySound(100);
+
+    seg.ProcessCompleted += play;
+
+
+
+
+    Console.WriteLine("Hello, World!");
+
+    while (true) ;
+}
+
+if (false)
 {
     Game game = Game.GetInstance();
 
@@ -28,9 +55,9 @@ if (true)
     var a = game.BuzzerControll.BuzzerControllerList[0];
 
 
-    a.BuzzerList[1].LEDState = true;
-    a.BuzzerList[0].LEDState = true;
-    a.LEDListe[0].SetLEDColor(50, 10, 0);
+    //a.BuzzerList[1].LEDState = true;
+    //a.BuzzerList[0].LEDState = true;
+    //a.LEDListe[0].SetLEDColor(50, 10, 0);
     while (true) ;
 }
 else if(false)

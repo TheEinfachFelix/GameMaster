@@ -1,0 +1,95 @@
+{
+  "$type": "GameMaster.Game, GameMaster",
+  "obsConnectorList": [
+    {
+      "$type": "GameMaster.Output.obsConnector, GameMaster",
+      "Enable": false,
+      "IP": "ws://192.168.178.50:4455",
+      "PW": "123456",
+      "Profile": "",
+      "SceneCol": "Gameshow"
+    }
+  ],
+  "dot2ConnectorList": [
+    {
+      "$type": "GameMaster.Output.dot2Connector, GameMaster",
+      "Enable": false,
+      "IP": "ws://192.168.178.76:80/",
+      "pageIndex": 0
+    }
+  ],
+  "BuzzerControll": {
+    "$type": "GameMaster.Input.BuzzerControllerMngr, GameMaster",
+    "isDisabeled": false,
+    "BuzzerControllerList": [
+      {
+        "$type": "GameMaster.Input.BuzzerController, GameMaster",
+        "AmountOfBuzzer": 8,
+        "AmountOfTaster": 3,
+        "ComPort": 3,
+        "Baudrate": 115200,
+        "Dummy": true,
+        "Dot2Valus": [
+          816,
+          815,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "AudioEnable": true,
+  "Players": [
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Betreuer",
+      "Points": 0
+    },
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Kinder",
+      "Points": 0
+    }
+  ],
+  "Levels": [
+    {
+      "$type": "GameMaster.Level.AudioQuizSegment, GameMaster",
+      "Name": "Musik",
+      "Beschreibung": "6 Punke manuell",
+      "displayContent": "Musik",
+      "AudioList": [
+        "Kikaninchen",
+        "Bibi und Tina",
+        "Für Elise",
+        "bad guy",
+        "we can t be friends"
+      ],
+      "AudioStartOffset": [
+        100000,
+        0,
+        100000,
+        0,
+        100000
+      ],
+      "AudioPlayDuratrion": [
+        [1000,3000,10000],
+        [1000],
+        [1000,3000],
+        [1000,3000,10000],
+        [1000,3000,10000]
+      ],
+      "QuestionPoints": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Path": "C:/Users/felix/Downloads/"
+    }
+  ]
+}

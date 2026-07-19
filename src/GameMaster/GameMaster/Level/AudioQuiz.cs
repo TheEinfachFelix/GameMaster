@@ -39,7 +39,7 @@ namespace GameMaster.Level
                     game.obsConnectorList[0].SetMainText(displayContent);
                     return;
                 }
-
+                    
                 if (AudioList.Count()-1 < (value-1)/2)
                 {
                     return;

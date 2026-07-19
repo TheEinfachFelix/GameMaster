@@ -34,22 +34,46 @@ namespace GameMaster.Level
                 {
                     LastPlayed.StopSound();
                 }
+                // initial Content setzen
                 if (value == 0)
                 {
                     game.obsConnectorList[0].SetMainText(displayContent);
+                    _CStep = 0;
                     return;
                 }
 
-                if (AudioList.Count()-1 < (value-1)/2)
+                int PlayStep = (value - 1) / 2;
+
+                // Limit cStep Value
+                if (AudioList.Count()-1 <PlayStep ) // TODO
                 {
+                    _CStep = (AudioList.Count() - 1) * 2;
                     return;
                 }
 
-  
-                Points = QuestionPoints[(CStep - (CStep % 2)) / 2];
+                // Calc Song 
+                int songID = 0;
+                int prevCount = 0;
+                for (int i = 0; i < AudioPlayDuratrion.Count(); i++)
+                {
+                    int val = calcPlayDurCountUpTo(i);
+                    if ( val < prevCount)
+                    {
+                        prevCount = val;
+                        songID = i;
+                    }
+                        
+                }
+
+
+                int durValue = PlayStep - calcPlayDurCountUpTo(songID);
+
+
+                Points = QuestionPoints[songID];
                 _CStep = value;
                 BuzzerDisabeled = false;
 
+                // Gerade ungerade Zahl Verhalten
                 if (value % 2 == 0)
                 {
                     game.obsConnectorList[0].SetMainText(AudioList[CStep / 2 - 1]);
@@ -57,11 +81,24 @@ namespace GameMaster.Level
                 else
                 {
                     game.obsConnectorList[0].SetMainText("");
-                    LastPlayed = new(Path + AudioList[((CStep - 1) / 2)] + ".mp3", 000000000000); 
+                    LastPlayed = new(Path + AudioList[songID] + ".mp3", AudioStartOffset[songID]);
+                    LastPlayed.PlaySound(AudioPlayDuratrion[songID][durValue]);
                 }                
             } 
         }
-        public List<String> AudioList { get; set; }
+        public List<string> AudioList { get; set; }
+        public List<int> AudioStartOffset { get; set; }
+        public List<List<int>> AudioPlayDuratrion { get; set; }
+        private int calcPlayDurCountUpTo(int i)
+        {
+            int count = 0;
+            for (int j = 0; j < Math.Min(AudioPlayDuratrion.Count()-1,i); j++)
+            {
+                count += AudioPlayDuratrion[j].Count();
+            }
+            return count;
+        }
+
         public List<int> QuestionPoints { get; set; }
 
         public string Path { get; set; }

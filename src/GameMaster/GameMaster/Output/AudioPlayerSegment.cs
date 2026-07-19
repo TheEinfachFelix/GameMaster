@@ -23,7 +23,7 @@ namespace GameMaster.Output
 
             mystream = new AudioFileReader(sound);
             myevent = new();
-            StartPoint = new TimeSpan(startTimeMS);
+            StartPoint = TimeSpan.FromMilliseconds(startTimeMS);
 
             // skip to start time
             mystream.CurrentTime = StartPoint;

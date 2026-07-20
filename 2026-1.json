@@ -61,50 +61,25 @@
       "Name": "Musik",
       "Beschreibung": "6 Punke manuell",
       "displayContent": "Musik",
-      "AudioList": [
-        "Kikaninchen",
-        "Bibi und Tina",
-        "Für Elise",
-        "bad guy",
-        "we can t be friends"
-      ],
-      "AudioStartOffset": [
-        100000,
-        0,
-        100000,
-        0,
-        100000
-      ],
-      "AudioPlayDuratrion": [
-        [
-          1000,
-          3000,
-          10000
-        ],
-        [
-          1000
-        ],
-        [
-          1000,
-          3000
-        ],
-        [
-          1000,
-          3000,
-          10000
-        ],
-        [
-          1000,
-          3000,
-          10000
-        ]
-      ],
-      "QuestionPoints": [
-        0,
-        0,
-        0,
-        0,
-        0
+      "Questions": [
+        {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": "Kikaninchen",
+          "StartOffset": 100000,
+          "Durations": [
+            10000,
+            60000,
+            100000
+          ],
+          "Points": 0
+        },
+        {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": null,
+          "StartOffset": 0,
+          "Durations": null,
+          "Points": 0
+        }
       ],
       "Path": "C:/Users/felix/Downloads/"
     }

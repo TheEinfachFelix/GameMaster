@@ -20,6 +20,8 @@ namespace GameMaster.Level
 
         public string displayContent { get; set; }
 
+        public List<AudioQuestion> Questions { get; set; } = [];
+
         private int _CStep;
         [JsonIgnore]
         public int CStep 
@@ -30,74 +32,82 @@ namespace GameMaster.Level
             } 
             set 
             {
-                // Stop still Played songs
-                if (LastPlayed != null)
-                {
-                    LastPlayed.StopSound();
-                }
-                // initial Content setzen
+                StopCurrentAudio();
+
                 if (value == 0)
                 {
-                    game.obsConnectorList[0].SetMainText(displayContent);
+                    ShowStartScreen();
                     _CStep = 0;
                     return;
                 }
 
-                int songID = calcSongID(value);
-                Trace.WriteLine("songID" +  songID);
-                // Limit cStep Value
-                if (songID >= AudioList.Count)
-                {
-                    _CStep = calcPlayDurCountUpTo(AudioList.Count - 1)
-                           + AudioPlayDuratrion[^1].Count;
-                    return;
-                }
-
-                Points = QuestionPoints[songID];
-                _CStep = value;
-                BuzzerDisabeled = false;
-
-                int durID = value - calcPlayDurCountUpTo(songID);
-                Trace.WriteLine("durID" +  durID);
-
-                // show result
-                if (durID > AudioPlayDuratrion[songID].Count()-1)
-                {
-                    game.obsConnectorList[0].SetMainText(AudioList[songID]);
-                }
-                else
-                {
-                    game.obsConnectorList[0].SetMainText("");
-                    LastPlayed = new(Path + AudioList[songID] + ".mp3", AudioStartOffset[songID]);
-                    LastPlayed.PlaySound(AudioPlayDuratrion[songID][durID]);
-                }
-                Trace.WriteLine("done");
+                ShowStep(value);
             } 
         }
-        public List<string> AudioList { get; set; }
-        public List<int> AudioStartOffset { get; set; }
-        public List<List<int>> AudioPlayDuratrion { get; set; }
+
         private int calcPlayDurCountUpTo(int song)
         {
             int count = 1;
 
             for (int j = 0; j < song; j++)
             {
-                count += AudioPlayDuratrion[j].Count + 1;
+                count += Questions[j].Durations.Count + 1;
             }
 
             return count;
         }
+
         private int calcSongID(int step)
         {
-            int songId = 0;
-            while (step >= calcPlayDurCountUpTo(songId+1))
-                songId ++;
+            for (int song = 0; song < Questions.Count; song++)
+            {
+                if (step < calcPlayDurCountUpTo(song + 1))
+                    return song;
+            }
 
-            return songId;
+            return Questions.Count;
         }
 
-        public List<int> QuestionPoints { get; set; }
+        private (int Song, int StepInSong) GetStepInfo(int globalStep)
+        {
+            int song = calcSongID(globalStep);
+            int stepInSong = globalStep - calcPlayDurCountUpTo(song);
+
+            return (song, stepInSong);
+        }
+
+        private void ShowStep(int step)
+        {
+            var (songID, stepInSong) = GetStepInfo(step);
+
+            if (songID >= Questions.Count)
+            {
+                _CStep = calcPlayDurCountUpTo(Questions.Count - 1)
+                       + Questions[^1].Durations.Count;
+                return;
+            }
+
+            var question = Questions[songID];
+
+            _CStep = step;
+            Points = question.Points;
+            BuzzerDisabeled = false;
+
+            if (stepInSong >= question.Durations.Count)
+            {
+                game.obsConnectorList[0].SetMainText(question.File);
+            }
+            else
+            {
+                game.obsConnectorList[0].SetMainText("");
+
+                LastPlayed = new AudioPlayerSegment(
+                    Path + question.File + ".mp3",
+                    question.StartOffset);
+
+                LastPlayed.PlaySound(question.Durations[stepInSong]);
+            }
+        }
 
         public string Path { get; set; }
 
@@ -105,16 +115,22 @@ namespace GameMaster.Level
         public bool BuzzerDisabeled { get; set; }
 
         private AudioPlayerSegment? LastPlayed;
+        private void StopCurrentAudio()
+        {
+            LastPlayed?.StopSound();
+        }
+
+        private void ShowStartScreen()
+        {
+            game.obsConnectorList[0].SetMainText(displayContent);
+        }
 
         public void BuzzerPress(int BuzzerID)
         {
             if (BuzzerDisabeled) {return; }
             BuzzerDisabeled = true;
             AudioPlayer.PlaySound("C:/Users/felix/Downloads/buz.wav");
-            if (LastPlayed != null)
-            {
-                LastPlayed.StopSound();
-            }
+            StopCurrentAudio();
 
         }
 
@@ -144,10 +160,16 @@ namespace GameMaster.Level
         public void WinnerIs(int PlayerID)
         {
             game.Players[PlayerID].Points += Points;
-            CStep++;
 
             int songID = calcSongID(CStep);
-            CStep = calcPlayDurCountUpTo(songID) + AudioPlayDuratrion[songID].Count;
+            CStep = calcPlayDurCountUpTo(songID) + Questions[songID].Durations.Count;
         }
+    }
+    public class AudioQuestion
+    {
+        public string Name { get; set; } = "";
+        public string Beschreibung { get; set; } = "";
+        public string displayContent { get; set; } = "";
+        public string Path { get; set; } = "";
     }
 }

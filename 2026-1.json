@@ -3,7 +3,7 @@
   "obsConnectorList": [
     {
       "$type": "GameMaster.Output.obsConnector, GameMaster",
-      "Enable": false,
+      "Enable": true,
       "IP": "ws://192.168.178.50:4455",
       "PW": "123456",
       "Profile": "",
@@ -13,7 +13,7 @@
   "dot2ConnectorList": [
     {
       "$type": "GameMaster.Output.dot2Connector, GameMaster",
-      "Enable": false,
+      "Enable": true,
       "IP": "ws://192.168.178.76:80/",
       "pageIndex": 0
     }
@@ -26,9 +26,9 @@
         "$type": "GameMaster.Input.BuzzerController, GameMaster",
         "AmountOfBuzzer": 8,
         "AmountOfTaster": 3,
-        "ComPort": 3,
+        "ComPort": 8,
         "Baudrate": 115200,
-        "Dummy": true,
+        "Dummy": false,
         "Dot2Valus": [
           816,
           815,
@@ -37,7 +37,7 @@
           0,
           0,
           0,
-          0
+          816
         ]
       }
     ]
@@ -57,31 +57,224 @@
   ],
   "Levels": [
     {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Titel",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Betreuer gegen Kinder"
+    },
+    {
+      "$type": "GameMaster.Level.FragenLevel, GameMaster",
+      "Name": "Wettessen",
+      "Beschreibung": "1 punkt manuell",
+      "QuestionList": [
+        "Spiel 1",
+        "Runde 1",
+        "Runde 2",
+        "Runde 3",
+        "Runde 4"
+      ],
+      "QuestionPoints": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "displayContent": null
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Hinderbox",
+      "Beschreibung": "",
+      "Points": 2,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 2"
+    },
+    {
+      "$type": "GameMaster.Level.AudioQuiz, GameMaster",
+      "Name": "Song Raten",
+      "Beschreibung": "3 Punke manuell",
+      "displayContent": "Spiel 3",
+      "AudioList": [
+        "Macarena",
+        "Bester Sommer",
+        "The Final Countdown",
+        "A million Dreams",
+        "Con Calma",
+        "Beauty and a Beat",
+        "Bilder im Kopf",
+        "Hall of Fame"
+      ],
+      "QuestionPoints": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Path": "C:/Github/GameMaster/2026-1/Musik/SongRaten/"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Auto Rennen",
+      "Beschreibung": "",
+      "Points": 4,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 4"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Holspiel",
+      "Beschreibung": "",
+      "Points": 5,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 5"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Seil ziehen",
+      "Beschreibung": "",
+      "Points": 6,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 6"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Quiz",
+      "Beschreibung": "",
+      "Points": 7,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 7"
+    },
+    {
       "$type": "GameMaster.Level.AudioQuizSegment, GameMaster",
-      "Name": "Musik",
-      "Beschreibung": "6 Punke manuell",
-      "displayContent": "Musik",
+      "Name": "Songraten EXTREM",
+      "Beschreibung": "8 Punke manuell",
+      "displayContent": "Spiel 8",
       "Questions": [
         {
           "$type": "GameMaster.Level.AudioQuestion, GameMaster",
-          "File": "Kikaninchen",
-          "StartOffset": 100000,
+          "File": "Traum",
+          "Points": 0,
+          "StartOffset": 80000,
           "Durations": [
-            10000,
-            60000,
-            100000
-          ],
-          "Points": 0
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
         },
         {
           "$type": "GameMaster.Level.AudioQuestion, GameMaster",
-          "File": null,
+          "File": "Beat it",
+          "Points": 0,
+          "StartOffset": 24000,
+          "Durations": [
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
+        },
+        {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": "Count on me",
+          "Points": 0,
           "StartOffset": 0,
-          "Durations": null,
-          "Points": 0
+          "Durations": [
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
+        },
+        {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": "Tausend Tattoos",
+          "Points": 0,
+          "StartOffset": 0,
+          "Durations": [
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
+        },
+        {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": "Summer of 69",
+          "Points": 0,
+          "StartOffset": 0,
+          "Durations": [
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
+        },
+        {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": "Mama Mia",
+          "Points": 0,
+          "StartOffset": 86000,
+          "Durations": [
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
+        },
+        {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": "Viel zu selten gehen wir Zelten",
+          "Points": 0,
+          "StartOffset": 49000,
+          "Durations": [
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
         }
       ],
-      "Path": "C:/Users/felix/Downloads/"
+      "Path": "C:/Github/GameMaster/2026-1/Musik/SongRatenEXTREM/"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Kerze Aus",
+      "Beschreibung": "",
+      "Points": 9,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 9"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Entfernung schätzen",
+      "Beschreibung": "",
+      "Points": 10,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 10"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Becher Pong",
+      "Beschreibung": "",
+      "Points": 11,
+      "BuzzerEnabled": false,
+      "displayContent": "Finale"
     }
   ]
 }

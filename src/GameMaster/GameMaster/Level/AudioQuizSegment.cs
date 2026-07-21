@@ -127,7 +127,7 @@ namespace GameMaster.Level
 
         public void BuzzerPress(int BuzzerID)
         {
-            if (BuzzerDisabeled) {return; }
+            if (BuzzerDisabeled) return;
             BuzzerDisabeled = true;
             AudioPlayer.PlaySound("C:/Users/felix/Downloads/buz.wav");
             StopCurrentAudio();
@@ -167,9 +167,9 @@ namespace GameMaster.Level
     }
     public class AudioQuestion
     {
-        public string Name { get; set; } = "";
-        public string Beschreibung { get; set; } = "";
-        public string displayContent { get; set; } = "";
-        public string Path { get; set; } = "";
+        public string File { get; set; } = "";
+        public int Points { get; set; } = 0;
+        public int StartOffset { get; set; } = 0;
+        public List<int> Durations { get; set; } = [];
     }
 }

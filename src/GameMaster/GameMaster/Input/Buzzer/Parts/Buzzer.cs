@@ -23,7 +23,7 @@ namespace GameMaster.Input
         public void HandleEvent(bool Oval, bool Nval)
         {
             if (Oval == Nval) return;
-            if (!Nval)
+            if (Nval)
             {
                 parent.BuzzerPress(myID);
             }

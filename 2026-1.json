@@ -47,12 +47,12 @@
     {
       "$type": "GameMaster.Player, GameMaster",
       "Name": "Betreuer",
-      "Points": 0
+      "Points": 28
     },
     {
       "$type": "GameMaster.Player, GameMaster",
       "Name": "Kinder",
-      "Points": 0
+      "Points": 28
     }
   ],
   "Levels": [

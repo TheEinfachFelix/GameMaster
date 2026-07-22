@@ -33,9 +33,16 @@ namespace GameMaster.Output
         {
             if (!Enable) { return false; }
             if (client != null) { throw new Exception("already connected"); }
-            client = new(new Uri(IP))
+            var factory = new Func<System.Net.WebSockets.ClientWebSocket>(() =>
             {
-                ReconnectTimeout = TimeSpan.FromSeconds(30)
+                var nativeClient = new System.Net.WebSockets.ClientWebSocket();
+                nativeClient.Options.KeepAliveInterval = TimeSpan.FromSeconds(5); // Ping alle 5 Sekunden
+                return nativeClient;
+            });
+
+            client = new WebsocketClient(new Uri(IP), factory)
+            {
+                ReconnectTimeout = TimeSpan.FromSeconds(10)
             };
             client.ReconnectionHappened.Subscribe(info =>
             {

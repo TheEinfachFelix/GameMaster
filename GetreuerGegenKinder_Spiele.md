@@ -23,10 +23,12 @@
 ## Seilziehen
     Lebensgefährlich wenn man kein gutes Seil hat
     aus 24-1
+    aus 26-1 3B-15K ist unfauir, ist ok
 
 ## Entfernung schätzen
     halt n Schätz Spiel aber nicht schlecht
     aus 24-1
+    aus 26-1 ingo nervt, kinder können das gut, immer cool
 
 ## Ballon Platzen
     Braucht Ballons
@@ -43,10 +45,12 @@
 ## Holspiel
     Sollte im hellen passieren
     aus 24-2; 25-1; 25-2
+    aus 26-1 gut das es viele Gegenstände waren, Herz als Gegenstand war gut, immer gut
 
 ## Song Raten
     sollten aktuelle pop Lieder oder standart lieder sein
     aus 24-1; 24-2; 25-1
+    aus 26-1 gemaine kennt alle lieder, ggf mehr neue / lieder für junge
 
 ## Jenga
     Tisch mus sehr gut stehen und keiner darf den berühren
@@ -57,14 +61,17 @@
 ## Wettessen
     immer Gut
     in 24-2 mit Waffeln aus 25-2 (schokoküsse und Tuks sind sehr gut)
+    in 26-1 mit schokoküssen, Cracker, Weintrauben, Äpfel  (schönes spiel, nur allergie Probleme)
 
 ## Quizz
     Braucht Fragen die beide gleich wissen können
     aus 24-2; 25-1;25-2(in Extrem mit sehr schweren Fragen)
+    aus 26-1 Ingo nervt, Cool das kinder Vatikanstadt wussten, gut, geht immer, nicht nur allgemeinwissen
 
 ## Autorennen
     Braucht 2 wirklich lange und seperate Pacoure und etwas licht. Wenn der Anhänger als Nachteil verwendet wir, muss dafür gesorgt werden das Dieser nicht gebremst wird
     aus 24-1; 24-2; 25-2
+    aus 26-1 betreuer nur zu 2. kinder mit anhänger also zu 4. strecke sollte länger sein als nur um die Feuerstelle
 
 ## Suchspiel
     aus 24-2 und 25-1
@@ -91,10 +98,12 @@
     wettlauf mit den großen grauen paletten Wannen
     Über bänke und box über Tisch und Menschen drunter durch (box muss längs getragen werden da sie sonst auf den 70cm tischen nicht gut stehen kann und runter fällt)
     aus 25-1;25-2
+    aus 26-1 nur mit kurzer seite nach vonre ist sicher, betreuer zu schnell, Wasser rein könnte das fixen
 
 ## Kerze aus
     Teelichter und Wasserpistolen
     aus 25-1
+    aus 26-1 geht zu schnell, Kinder müssen erst ausprobieren, ist ok
 
 ## Scharade aka wer bin ich
     Leberkäse ist kein guter Begriff
@@ -135,8 +144,20 @@
 
 ## Becherpong 
     aka Bierpong
-    ggf mit verschieden leckeren becherinhalten
+    pingpong ball in Becher werfen
+    26-1 zieht sich, kinder haben spaß, bleibt spannend, gutes abschlusspiel, zufall
 
 ## Hochhalten
     entweder im Team mit nem Ball
     oder mit nem Tischtennisschläger und Ball entweder liegend oder mit hochspielen. (hatte ich als Kind)
+
+## Song Raten EXTREM
+    songs werden ab einer stelle nur 1sek, dann 2 sek, 4sek usw angespielt
+    aus 26-1, war cool, braucht gute lieder, 
+
+# Notizen zu 
+
+## 26-1
+Ohne Pause gut,
+mit Kinder assistent wie Paula eine sehr gute idee
+kinder freuen sich über 1€ kantienengutschein

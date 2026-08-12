@@ -1,0 +1,298 @@
+{
+  "$type": "GameMaster.Game, GameMaster",
+  "obsConnectorList": [
+    {
+      "$type": "GameMaster.Output.obsConnector, GameMaster",
+      "Enable": false,
+      "IP": "ws://192.168.178.50:4455",
+      "PW": "123456",
+      "Profile": "",
+      "SceneCol": "Gameshow"
+    }
+  ],
+  "dot2ConnectorList": [
+    {
+      "$type": "GameMaster.Output.dot2Connector, GameMaster",
+      "Enable": false,
+      "IP": "ws://192.168.178.76:80/",
+      "pageIndex": 0
+    }
+  ],
+  "BuzzerControll": {
+    "$type": "GameMaster.Input.BuzzerControllerMngr, GameMaster",
+    "isDisabeled": true,
+    "BuzzerControllerList": [
+      {
+        "$type": "GameMaster.Input.BuzzerController, GameMaster",
+        "AmountOfBuzzer": 8,
+        "AmountOfTaster": 3,
+        "ComPort": 8,
+        "Baudrate": 115200,
+        "Dummy": false,
+        "Dot2Valus": [
+          816,
+          815,
+          0,
+          0,
+          0,
+          0,
+          0,
+          816
+        ]
+      }
+    ]
+  },
+  "AudioEnable": true,
+  "Players": [
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Betreuer",
+      "Points": 0
+    },
+    {
+      "$type": "GameMaster.Player, GameMaster",
+      "Name": "Kinder",
+      "Points": 0
+    }
+  ],
+  "Levels": [
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Titel",
+      "Beschreibung": "",
+      "Points": 0,
+      "BuzzerEnabled": false,
+      "displayContent": "Betreuer gegen Kinder"
+    },
+    {
+      "$type": "GameMaster.Level.AudioQuiz, GameMaster",
+      "Name": "Song Raten",
+      "Beschreibung": "1 Punke manuell",
+      "displayContent": "Spiel 1",
+      "AudioList": [
+        "Mia and me - Komm und flieg mit mir",
+        "Fliegerlied (So ein schöner Tag)",
+        "Laurentia",
+        "Mama hat gesagt",
+        "Alles nur geklaut",
+        "98 Prozent",
+        "Guten Morgen Sonnenschein",
+        "Dai Dai",
+        "The Final Countdown"
+      ],
+      "QuestionPoints": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "Path": "C:/Github/GameMaster/Games/2026-2/Musik/SongRaten/"
+    },
+        {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Holspiel",
+      "Beschreibung": "",
+      "Points": 2,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 2"
+    },
+            {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Ballon Platzen",
+      "Beschreibung": "",
+      "Points": 3,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 3"
+    },
+                {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Jenga",
+      "Beschreibung": "",
+      "Points": 4,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 4"
+    },
+                    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Seil ziehen",
+      "Beschreibung": "",
+      "Points": 5,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 5"
+    },
+                    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Schätzen",
+      "Beschreibung": "",
+      "Points": 6,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 6"
+    },
+                    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Suchspiel",
+      "Beschreibung": "",
+      "Points": 7,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 7"
+    },
+
+
+
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Quiz",
+      "Beschreibung": "",
+      "Points": 7,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 7"
+    },
+    {
+      "$type": "GameMaster.Level.AudioQuizSegment, GameMaster",
+      "Name": "Songraten EXTREM",
+      "Beschreibung": "8 Punke manuell",
+      "displayContent": "Spiel 8",
+      "Questions": [
+        {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": "Lass jetzt los",
+          "Points": 0,
+          "StartOffset": 18000,
+          "Durations": [
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
+        },
+                {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": "Kikaninchen",
+          "Points": 0,
+          "StartOffset": 1000,
+          "Durations": [
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
+        },
+                        {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": "Tanzalarm",
+          "Points": 0,
+          "StartOffset": 0,
+          "Durations": [
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
+        },
+                                {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": "Hakuna Matata",
+          "Points": 0,
+          "StartOffset": 38000,
+          "Durations": [
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
+        },
+                
+                                {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": "Piratentanz",
+          "Points": 0,
+          "StartOffset": 38000,
+          "Durations": [
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
+        },
+                                        {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": "Probier’s mal mit Gemütlichkeit",
+          "Points": 0,
+          "StartOffset": 7000,
+          "Durations": [
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
+        },
+                
+                                        {
+          "$type": "GameMaster.Level.AudioQuestion, GameMaster",
+          "File": "Wie",
+          "Points": 0,
+          "StartOffset": 54000,
+          "Durations": [
+            1000,
+            2000,
+            4000,
+            8000,
+            16000
+          ]
+        }
+      ],
+      "Path": "C:/Github/GameMaster/Games/2026-2/Musik/SongRatenEXTREM/"
+    },
+
+        {
+      "$type": "GameMaster.Level.FragenLevel, GameMaster",
+      "Name": "Wettessen",
+      "Beschreibung": "9 punkt manuell",
+      "QuestionList": [
+        "Spiel 1",
+        "Runde 1",
+        "Runde 2",
+        "Runde 3",
+        "Runde 4"
+      ],
+      "QuestionPoints": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "displayContent": null
+    },
+
+
+
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Wettsägen",
+      "Beschreibung": "",
+      "Points": 10,
+      "BuzzerEnabled": false,
+      "displayContent": "Spiel 10"
+    },
+    {
+      "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
+      "Name": "Becher Pong",
+      "Beschreibung": "",
+      "Points": 11,
+      "BuzzerEnabled": false,
+      "displayContent": "Finale"
+    }
+  ]
+}

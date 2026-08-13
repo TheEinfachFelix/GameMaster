@@ -24,6 +24,7 @@
     Lebensgefährlich wenn man kein gutes Seil hat
     aus 24-1
     aus 26-1 3B-15K ist unfauir, ist ok
+    aus 26-2 3B-8K immernoch etwas unfair
 
 ## Entfernung schätzen
     halt n Schätz Spiel aber nicht schlecht
@@ -33,6 +34,7 @@
 ## Ballon Platzen
     Braucht Ballons
     aus 24-2 und 25-2
+    aus 26-2 schönes schnelles Spiel
 
 ## Fangschlägerspiel
     kp
@@ -41,27 +43,32 @@
 ## Schätzen
     braucht wirklich gute Fragen
     aus 24-2
+    aus 26-2 gut, schöne Fragen
 
 ## Holspiel
     Sollte im hellen passieren
     aus 24-2; 25-1; 25-2
     aus 26-1 gut das es viele Gegenstände waren, Herz als Gegenstand war gut, immer gut
+    aus 26-2 gut haarspange hat zu lang gedauert
 
 ## Song Raten
     sollten aktuelle pop Lieder oder standart lieder sein
     aus 24-1; 24-2; 25-1
     aus 26-1 gemaine kennt alle lieder, ggf mehr neue / lieder für junge
+    aus 26-2 9 Lieder ne Gute Menge
 
 ## Jenga
     Tisch mus sehr gut stehen und keiner darf den berühren
     Johannes hat coole Jenga
     aus 24-2; 25-1(mit markierten Steinen und bei Zug Fragen);25-2
+    aus 26-2 gut, braucht aber zeitlimit pro Zug (30 sek)
     
 
 ## Wettessen
     immer Gut
     in 24-2 mit Waffeln aus 25-2 (schokoküsse und Tuks sind sehr gut)
     in 26-1 mit schokoküssen, Cracker, Weintrauben, Äpfel  (schönes spiel, nur allergie Probleme)
+    aus 26-2 wie 26-1 gut
 
 ## Quizz
     Braucht Fragen die beide gleich wissen können
@@ -75,6 +82,7 @@
 
 ## Suchspiel
     aus 24-2 und 25-1
+    aus 26-2 hat lange gedautert, recht großer bereich und kleines objekt und dunkel. mehr als einer pro Team
 
 ## Pflitschen
     3 Chips Pro Seite sind zu wenig
@@ -146,6 +154,7 @@
     aka Bierpong
     pingpong ball in Becher werfen
     26-1 zieht sich, kinder haben spaß, bleibt spannend, gutes abschlusspiel, zufall
+    aus 26-2 Kinder vielleicht ein becher mehr, kann man machen 
 
 ## Hochhalten
     entweder im Team mit nem Ball
@@ -154,6 +163,11 @@
 ## Song Raten EXTREM
     songs werden ab einer stelle nur 1sek, dann 2 sek, 4sek usw angespielt
     aus 26-1, war cool, braucht gute lieder, 
+    aus 26-2 germaine kanns zu gut, 7 songs gut
+
+## Wettsägen
+    Jedes Team muss x scheiben von einem stück Holz absägen
+    aus 26-2 nicht jeder kann Sägen, ggf betreuer mehr scheiben sägen für die betreuer
 
 # Notizen zu 
 

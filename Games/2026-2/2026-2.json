@@ -3,7 +3,7 @@
   "obsConnectorList": [
     {
       "$type": "GameMaster.Output.obsConnector, GameMaster",
-      "Enable": false,
+      "Enable": true,
       "IP": "ws://192.168.178.50:4455",
       "PW": "123456",
       "Profile": "",
@@ -13,14 +13,14 @@
   "dot2ConnectorList": [
     {
       "$type": "GameMaster.Output.dot2Connector, GameMaster",
-      "Enable": false,
+      "Enable": true,
       "IP": "ws://192.168.178.76:80/",
       "pageIndex": 0
     }
   ],
   "BuzzerControll": {
     "$type": "GameMaster.Input.BuzzerControllerMngr, GameMaster",
-    "isDisabeled": true,
+    "isDisabeled": false,
     "BuzzerControllerList": [
       {
         "$type": "GameMaster.Input.BuzzerController, GameMaster",
@@ -37,7 +37,7 @@
           0,
           0,
           0,
-          816
+          817
         ]
       }
     ]
@@ -47,12 +47,12 @@
     {
       "$type": "GameMaster.Player, GameMaster",
       "Name": "Betreuer",
-      "Points": 0
+      "Points": 42
     },
     {
       "$type": "GameMaster.Player, GameMaster",
       "Name": "Kinder",
-      "Points": 0
+      "Points": 13
     }
   ],
   "Levels": [
@@ -70,8 +70,8 @@
       "Beschreibung": "1 Punke manuell",
       "displayContent": "Spiel 1",
       "AudioList": [
-        "Mia and me - Komm und flieg mit mir",
-        "Fliegerlied (So ein schöner Tag)",
+        "Komm und flieg mit mir",
+        "Fliegerlied",
         "Laurentia",
         "Mama hat gesagt",
         "Alles nur geklaut",
@@ -265,7 +265,7 @@
       "$type": "GameMaster.Level.EinfachesLevel, GameMaster",
       "Name": "Becher Pong",
       "Beschreibung": "",
-      "Points": 11,
+      "Points": 22,
       "BuzzerEnabled": false,
       "displayContent": "Finale"
     }
